@@ -79,9 +79,6 @@ let mapleader = ","
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
-  " neocomplete
-  inoremap <expr><C-d>     neocomplete#undo_completion()
-  inoremap <expr><C-l>     neocomplete#complete_common_string()
   " <CR>: close popup and save indent.
   inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
   function! s:my_cr_function()

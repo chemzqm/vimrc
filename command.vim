@@ -20,6 +20,17 @@ command! -nargs=1 -complete=custom,ListModules P :call PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules J :call PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', 'doc')
 command! -nargs=* L :call ShowGitlog(<f-args>)
+command! -nargs=1 -complete=custom,ListVimrc E :call EditVimrc(<f-args>)
+
+function! ListVimrc(...)
+  return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
+    \ "substitute(v:val, '/Users/chemzqm/.vim/vimrc/', '', '')")
+    \ , "\n")
+endfunction
+
+function! EditVimrc(file)
+  execute "e ~/.vim/vimrc/" . a:file
+endfunction
 
 function! ShowGitlog(...)
   let arg = get(a:000, 0, '')

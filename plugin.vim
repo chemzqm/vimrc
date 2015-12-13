@@ -76,25 +76,9 @@
   let g:NERDSpaceDelims = 1
 " }}
 
-" delimitMate {{
-  let g:delimitMate_jump_expansion = 0
-" }}
-
 " tern_for_vim {{
   let g:tern_show_argument_hints = 'on_hold'
   "let g:tern_show_signature_in_pum = 1
 " }}
 
-" neocomplete.vim {{
-  " Disable AutoComplPop
-  let g:acp_enableAtStartup = 0
-  " use neocomplete
-  if has('gui_running')
-    let g:neocomplete#enable_at_startup = 1
-  end
-  " Set minimum trigger keyword length.
-  let g:neocomplete#sources#syntax#min_keyword_length = 4
-  " let g:neocomplete#sources._ = ['buffer']
-  " let g:neocomplete#enable_auto_select = 1
-" }}
 
