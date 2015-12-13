@@ -37,11 +37,11 @@
   nnoremap <D-d> :bdelete<cr>
 " }}
 
-
 " command line alias {{
   " Change Working Directory to that of the current file
   " For when you forget to sudo.. Really Write the file.
   cnoremap w!! w !sudo tee % >/dev/null
+  cnoremap $v ~/.vimrc
   cnoremap $q <C-\>eDeleteTillSlash()<cr>
   cnoremap $n NeoCompleteDisable
   cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
@@ -57,20 +57,18 @@
   "  In visual mode when you press * or # to search for the current selection
   vnoremap <silent> * :call <SID>visualSearch('f')<CR>
   vnoremap <silent> # :call <SID>visualSearch('b')<CR>
-" }}
 
-" function {{
-function! s:visualSearch(direction)
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-  if a:direction == 'b'
-    execute "normal ?" . l:pattern . "^M"
-  elseif a:direction == 'f'
-    execute "normal /" . l:pattern . "^M"
-  endif
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction
+  function! s:visualSearch(direction)
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    if a:direction == 'b'
+      execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'f'
+      execute "normal /" . l:pattern . "^M"
+    endif
+    let @/ = l:pattern
+    let @" = l:saved_reg
+  endfunction
 " }}
