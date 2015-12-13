@@ -113,10 +113,5 @@ function! PreviewModule(name, ...)
 endfunction
 
 function! Update(...)
-  let output = system('~/.vim/vimrc/publish')
-  if v:shell_error && output != ""
-    echohl WarningMsg | echon output
-    return
-  endif
-  echo output
+  execute "Start " . "~/.vim/vimrc/publish"
 endfunction
