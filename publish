@@ -1,0 +1,10 @@
+#! /usr/local/bin/bash
+
+msg=$1
+if [[ -z $msg ]]; then
+  msg=update
+fi
+dir=~/.vim/vimrc/.git
+cp ~/.vimrc ~/.vim/vimrc/
+git --git-dir=$dir commit -a -m "$msg"
+git --git-dir=$dir push

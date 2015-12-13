@@ -19,8 +19,11 @@ command! -bang -nargs=0 -bar Copy execute 'silent w !tee % | pbcopy > /dev/null'
 command! -nargs=1 -complete=custom,ListModules P :call PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules J :call PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', 'doc')
+" L all:5 search
 command! -nargs=* L :call ShowGitlog(<f-args>)
+" edit vimrc files
 command! -nargs=1 -complete=custom,ListVimrc E :call EditVimrc(<f-args>)
+command! -nargs=? Update :call Update(<f-args>)
 
 function! ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
@@ -107,4 +110,13 @@ function! PreviewModule(name, ...)
   execute "pedit " . file
   let &previewheight = h
   execute "normal! \<c-w>k"
+endfunction
+
+function! Update(...)
+  let output = system('~/.vim/vimrc/publish')
+  if v:shell_error && output != ""
+    echohl WarningMsg | echon output
+    return
+  endif
+  echo output
 endfunction
