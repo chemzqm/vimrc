@@ -1,6 +1,6 @@
 #! /usr/local/bin/bash
 
-msg=$1
+$msg=$1
 if [[ -z $msg ]]; then
   msg=update
 fi
