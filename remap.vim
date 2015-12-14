@@ -14,6 +14,9 @@
   vnoremap > >gv
   " yank to end
   nnoremap Y y$
+  " easy align
+  xmap ga <Plug>(EasyAlign)
+  nmap ga <Plug>(EasyAlign)
 " }}
 
 " window {{

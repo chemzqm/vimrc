@@ -78,10 +78,12 @@
     let type = a:type ==# 'a' ? 'm' : a:type
     if a:type ==# 'm'
       let input = a:0 > 1 ? a:2 : ''
-      execute 'Unite func -buffer-name=func -custom-func-type=' . type . ' -custom-func-name=' . a:1 . ' -input=' . input
+      execute 'Unite func -buffer-name=func -custom-func-type=' . type
+              \. ' -custom-func-name=' . a:1 . ' -input=' . input
     else
       let input = a:0 ? a:1 : ''
-      execute 'Unite func -buffer-name=func -custom-func-type=' . type . ' -input=' . input
+      execute 'Unite func -buffer-name=func -custom-func-type=' . type
+              \. ' -input=' . input
     endif
   endfunction
 " }}

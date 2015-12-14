@@ -1,30 +1,32 @@
 " Git commandline alias
-command! -nargs=0 -bar C :Glcd .
-command! -nargs=* -bar Gc execute 'Gcommit '. expand('%') . " -m '<args>'"
+command! -nargs=0 -bar C   :Glcd .
+command! -nargs=0 -bar Gp  :call Push()
+command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>'"
 command! -nargs=* -bar Gca execute 'Gcommit -a -m '."'<args>'"
+
 " add dictionary
-command! -nargs=0 -bar Canvas execute 'setl dictionary+=~/.vim/dict/canvas.dict'
-command! -nargs=0 -bar Date execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
-command! -nargs=0 -bar Dom execute 'setl dictionary+=~/.vim/dict/dom.dict'
+command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
+command! -nargs=0 -bar Date    execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
+command! -nargs=0 -bar Dom     execute 'setl dictionary+=~/.vim/dict/dom.dict'
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
-command! -nargs=0 -bar Koa execute 'setl dictionary+=~/.vim/dict/koa.dict'
-command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
+command! -nargs=0 -bar Qargs   execute 'args' QuickfixFilenames()
+
 " remove file from filesystem
-command! -nargs=0 -bar Rm execute 'call Remove()'
-command! -nargs=0 -bar Reset execute 'call StatusReset()'
+command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
+command! -nargs=0 -bar Rm       execute 'call Remove()'
+command! -nargs=0 -bar Reset    execute 'call StatusReset()'
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
-command! -nargs=0 -bar Emoji execute 'set completefunc=emoji#complete'
-command! -bang -nargs=0 -bar Copy execute 'silent w !tee % | pbcopy > /dev/null'<bang>
+command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
+
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,ListModules P :call PreviewModule('<args>')
-command! -nargs=1 -complete=custom,ListModules J :call PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', 'doc')
-" L all:5 search
-command! -nargs=* L :call ShowGitlog(<f-args>)
-" edit vimrc files
-command! -nargs=1 -complete=custom,ListVimrc E :call EditVimrc(<f-args>)
-command! -nargs=* Update execute "Start ~/.vim/vimrc/publish '<args>'"
-command! -nargs=0 Publish :call Publish()
+command! -nargs=1 -complete=custom,ListModules P       :call PreviewModule('<args>')
+command! -nargs=1 -complete=custom,ListModules J       :call PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,ListModules H       :call PreviewModule('<args>', 'doc')
+command! -nargs=1 -complete=custom,ListVimrc   E       :call EditVimrc(<f-args>)
+command! -nargs=* -bar                         Update  execute "Start ~/.vim/vimrc/publish '<args>'"
+command! -nargs=0 -bar                         Publish :call Publish()
+command! -nargs=* -bar                         L       :call ShowGitlog(<f-args>)
 
 function! ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
@@ -51,6 +53,10 @@ function! ListModules(A, L, p)
   let res = system("dependencies")
   if v:shell_error | echo res | return | endif
   return res
+endfunction
+
+function! Push()
+  execute "Start -dir= " . expand('%:p:h') . " -title=push git push"
 endfunction
 
 function! Remove()
