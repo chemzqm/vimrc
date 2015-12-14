@@ -12,8 +12,6 @@
     let pandoc_pipeline  = "pandoc --from=html --to=markdown"
     let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
     autocmd FileType html let &formatprg=pandoc_pipeline
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   augroup end
 " }}
 

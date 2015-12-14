@@ -1,9 +1,5 @@
-" TODO move fish related to fish.vim
 augroup fileRead
   autocmd!
-  autocmd FileType fish setl noexpandtab
-  autocmd FileType fish setl softtabstop=0
-  autocmd BufNewFile,BufRead /tmp/fish_* set filetype=fish
   autocmd BufNewFile,BufRead /tmp/mutt-* set filetype=markdown
   autocmd BufReadPost *.log normal G
   autocmd BufRead,BufNewFile /usr/local/etc/nginx/* setfiletype nginx
@@ -13,7 +9,7 @@ augroup end
 
 function! OnBufEnter()
   let name = bufname('%')
-  " quickly leave those template buffers
+  " quickly leave those temporary buffers
   if &previewwindow || name =~# '^fugitive' || &filetype ==# 'help'
     nnoremap <buffer> q :<C-U>bdelete<CR>
     nnoremap <buffer> <esc> :<C-U>bdelete<CR>

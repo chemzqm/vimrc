@@ -1,3 +1,5 @@
+" vim: foldmethod=syntax foldlevel=0:
+
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
 command! -nargs=0 -bar Gp  :call Push()
@@ -6,11 +8,9 @@ command! -nargs=* -bar Gca execute 'Gcommit -a -m '."'<args>'"
 
 " add dictionary
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
-command! -nargs=0 -bar Date    execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Dom     execute 'setl dictionary+=~/.vim/dict/dom.dict'
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
-command! -nargs=0 -bar Qargs   execute 'args' QuickfixFilenames()
 
 " remove file from filesystem
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
@@ -18,6 +18,8 @@ command! -nargs=0 -bar Rm       execute 'call Remove()'
 command! -nargs=0 -bar Reset    execute 'call StatusReset()'
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
+command! -nargs=0 -bar Date    execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
+command! -nargs=0 -bar Qargs   execute 'args' QuickfixFilenames()
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,ListModules P       :call PreviewModule('<args>')
@@ -93,6 +95,7 @@ function! StatusReset()
   endfor
 endf
 
+" TODO no binary dependencies
 function! PreviewModule(name, ...)
   if empty(a:name) | echo "need module name" | return | endif
   if empty(a:000)
@@ -124,11 +127,17 @@ function! PreviewModule(name, ...)
   let &previewheight = h
 endfunction
 
+" module publish
 function! Publish()
+  let dir = GetPackageDir()
+  execute "Start -dir=" . dir . " -title=publish publish"
+endfunction
+
+function! GetPackageDir()
   let dir = expand('%:p:h')
   while 1
     if filereadable(dir . '/package.json')
-      break
+      return dir
     endif
     let dir = fnamemodify(dir, ':h')
     if dir ==# '/Users/chemzqm'
@@ -136,5 +145,4 @@ function! Publish()
       return
     endif
   endwhile
-  execute "Start -dir=" . dir . " -title=publish publish"
 endfunction

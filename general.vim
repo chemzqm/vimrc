@@ -1,4 +1,4 @@
-set hidden " allow buffer switch without saving
+set nohidden " not allow buffer switch without saving
 set history=99
 set wildmenu
 set wildmode=list:longest,full
@@ -29,6 +29,7 @@ highlight clear SignColumn
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set showtabline=1
+set omnifunc=syntaxcomplete#Complete
 
 if has('statusline')
   set laststatus=2
