@@ -113,5 +113,5 @@ function! PreviewModule(name, ...)
 endfunction
 
 function! Update(msg)
-  execute "Start " . "~/.vim/vimrc/publish " . a:msg
+  execute "Start " . "~/.vim/vimrc/publish '" . a:msg . "'"
 endfunction
