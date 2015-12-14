@@ -18,12 +18,8 @@ function! OnBufEnter()
     nnoremap <buffer> q :<C-U>bdelete<CR>
     nnoremap <buffer> <esc> :<C-U>bdelete<CR>
   endif
-  if !did_filetype()
-    if getline(1) =~# '^#!.*bin/fish\>'
-      setfiletype fish
-    endif
-  endif
   if bufname('%') =~# '/tmp/'
     setl bufhidden=delete
   endif
+  unlet name
 endfunction
