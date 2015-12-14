@@ -101,8 +101,8 @@ let mapleader = ","
 " }}
 
 " grep {{
-vnoremap <leader>g :<C-u>call  -buffer-name=grep     GrepFromSelected(visualmode())<cr>
-nnoremap <leader>g :set        -buffer-name=grep     operatorfunc=GrepFromSelected<cr>g@
+vnoremap <leader>g :<C-u>call GrepFromSelected(visualmode())<cr>
+nnoremap <leader>g :set operatorfunc=GrepFromSelected<cr>g@
 function! GrepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'

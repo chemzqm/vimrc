@@ -42,7 +42,6 @@
   " For when you forget to sudo.. Really Write the file.
   cnoremap w!! w !sudo tee % >/dev/null
   cnoremap $v ~/.vimrc
-  cnoremap $q <C-\>eDeleteTillSlash()<cr>
   cnoremap $n NeoCompleteDisable
   cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 " }}
