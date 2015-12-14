@@ -24,6 +24,7 @@ command! -nargs=* L :call ShowGitlog(<f-args>)
 " edit vimrc files
 command! -nargs=1 -complete=custom,ListVimrc E :call EditVimrc(<f-args>)
 command! -nargs=* Update :call Update('<args>')
+command! -nargs=0 Publish :call Publish()
 
 function! ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
@@ -108,10 +109,25 @@ function! PreviewModule(name, ...)
   let h = &previewheight
   let &previewheight = 40
   execute "pedit " . file
-  let &previewheight = h
   execute "normal! \<c-w>k"
+  let &previewheight = h
 endfunction
 
 function! Update(msg)
-  execute "Start " . "~/.vim/vimrc/publish '" . a:msg . "'"
+  execute "Start ~/.vim/vimrc/publish '" . a:msg . "'"
+endfunction
+
+function! Publish()
+  let dir = expand('%:p:h')
+  while 1
+    if filereadable(dir . '/package.json')
+      break
+    endif
+    let dir = fnamemodify(dir, ':h')
+    if dir ==# '/Users/chemzqm'
+      echohl WarningMsg | echon 'package.json not found'
+      return
+    endif
+  endwhile
+  execute "Start -dir=" . dir . " -title=publish publish"
 endfunction
