@@ -23,7 +23,7 @@ command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=1 -complete=custom,ListModules P       :call PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules J       :call PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,ListModules H       :call PreviewModule('<args>', 'doc')
-command! -nargs=1 -complete=custom,ListVimrc   E       :call EditVimrc(<f-args>)
+command! -nargs=? -complete=custom,ListVimrc   E       :call EditVimrc(<f-args>)
 command! -nargs=* -bar                         Update  execute "Start ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar                         Publish :call Publish()
 command! -nargs=* -bar                         L       :call ShowGitlog(<f-args>)
@@ -34,8 +34,12 @@ function! ListVimrc(...)
     \ , "\n")
 endfunction
 
-function! EditVimrc(file)
-  execute "e ~/.vim/vimrc/" . a:file
+function! EditVimrc(...)
+  if !a:0
+    execute "e ~/.vimrc"
+  else
+    execute "e ~/.vim/vimrc/" . a:1
+  endif
 endfunction
 
 function! ShowGitlog(...)
@@ -77,6 +81,7 @@ function! QuickfixFilenames()
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 
+" Remove hidden buffers and cd to current dir
 function! StatusReset()
   let dir = fnameescape(expand('%:p:h'))
   execute "cd ".dir
