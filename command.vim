@@ -1,7 +1,7 @@
 " Git commandline alias
 command! -nargs=0 -bar C :Glcd .
-command! -nargs=* -bar Gc execute 'Gcommit '. expand('%').' '."<args>"
-command! -nargs=* -bar Gca execute 'Gcommit -a '."<args>"
+command! -nargs=* -bar Gc execute 'Gcommit '. expand('%') . " -m '<args>'"
+command! -nargs=* -bar Gca execute 'Gcommit -a -m '."'<args>'"
 " add dictionary
 command! -nargs=0 -bar Canvas execute 'setl dictionary+=~/.vim/dict/canvas.dict'
 command! -nargs=0 -bar Date execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
@@ -23,7 +23,7 @@ command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', '
 command! -nargs=* L :call ShowGitlog(<f-args>)
 " edit vimrc files
 command! -nargs=1 -complete=custom,ListVimrc E :call EditVimrc(<f-args>)
-command! -nargs=* Update :call Update('<args>')
+command! -nargs=* Update execute "Start ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 Publish :call Publish()
 
 function! ListVimrc(...)
@@ -111,10 +111,6 @@ function! PreviewModule(name, ...)
   execute "pedit " . file
   execute "normal! \<c-w>k"
   let &previewheight = h
-endfunction
-
-function! Update(msg)
-  execute "Start ~/.vim/vimrc/publish '" . a:msg . "'"
 endfunction
 
 function! Publish()
