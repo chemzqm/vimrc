@@ -56,7 +56,7 @@ function! ListModules(A, L, p)
 endfunction
 
 function! Push()
-  execute "Start -dir= " . expand('%:p:h') . " -title=push git push"
+  execute "Start -dir= ".expand('%:p:h')." -title=push git push"
 endfunction
 
 function! Remove()
