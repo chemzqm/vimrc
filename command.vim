@@ -23,7 +23,7 @@ command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', '
 command! -nargs=* L :call ShowGitlog(<f-args>)
 " edit vimrc files
 command! -nargs=1 -complete=custom,ListVimrc E :call EditVimrc(<f-args>)
-command! -nargs=? Update :call Update(<f-args>)
+command! -nargs=* Update :call Update('<args>')
 
 function! ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
@@ -112,6 +112,6 @@ function! PreviewModule(name, ...)
   execute "normal! \<c-w>k"
 endfunction
 
-function! Update(...)
-  execute "Start " . "~/.vim/vimrc/publish"
+function! Update(msg)
+  execute "Start " . "~/.vim/vimrc/publish " . a:msg
 endfunction

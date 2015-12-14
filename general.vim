@@ -42,7 +42,7 @@ if has('gui_running')
   set lines=50
   set columns=120
   set guifont=Source\ Code\ Pro:h13
-  "set transparency=10
+  set transparency=10
   set number
   colorscheme solarized
   set relativenumber
@@ -68,7 +68,7 @@ if has("autocmd") && exists("+omnifunc")
     \setlocal omnifunc=syntaxcomplete#Complete |
     \endif
 endif
-set completeopt=menu,longest
+set completeopt=menu
 hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE

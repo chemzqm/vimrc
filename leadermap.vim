@@ -41,12 +41,14 @@ let mapleader = ","
 " }}
 
 " plugin {{
+  " bbye
+  nnoremap <leader>q :Bdelete<cr>
   " vim-test
   nmap <silent> <localleader>t :TestNearest<CR>
   " vim-session
   nmap <leader>sl :OpenSession
   nmap <leader>ss :SaveSession
-  nmap <leader>sr :RestartVim<cr>
+  nmap <leader>sr :call Restart()<cr>
   nmap <leader>sd :CloseSession<cr>
   " fugitive
   nnoremap <silent> <leader>gg :Ggrep<CR>
@@ -117,4 +119,9 @@ endfunction
 
 function! NumberToggle()
   if(&number == 1) | set nu! | set rnu! | else | set rnu | set nu | endif
+endfunction
+
+function! Restart()
+  execute "wa"
+  execute "RestartVim"
 endfunction
