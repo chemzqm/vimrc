@@ -15,6 +15,7 @@ let mapleader = ","
   noremap <leader>rm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
   " space remove in the end of every line
   noremap <leader>rs :%s/\s\+$//<cr>
+  nnoremap <leader>au :!autoprefixer %<cr>
 " }}
 
 " spell checking {{
@@ -61,7 +62,6 @@ let mapleader = ","
   map <leader>st :CtrlSFToggle<cr>
   map <leader>sf :CtrlSF<space>
   " vim-notes
-  map <leader>nn :Note<cr>
   map <leader>ne :Note
   map <leader>ns :SearchNotes
   map <leader>nd :DeleteNote<cr>
@@ -81,17 +81,11 @@ let mapleader = ","
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
-  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  function! s:my_cr_function()
-    return pumvisible() ? "\<C-y>" : "\<CR>"
-  endfunction
   " <C-h>, <BS>: close popup and delete backword char.
   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" }}
-
-" filter {{
-  nnoremap <leader>au :!autoprefixer %<cr>
+  " VimCompletesMe
+  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}
 
 " wrap {{

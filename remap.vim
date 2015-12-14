@@ -3,6 +3,9 @@
 " word {{
   inoremap <C-u> <esc>BveUei
   nnoremap <C-u> BveUe
+  " like emacs
+  inoremap <C-h> <BS>
+  inoremap <C-d> <Del>
 " }}
 
 " line {{
@@ -38,15 +41,23 @@
 " }}
 
 " command line alias {{
-  " Change Working Directory to that of the current file
-  " For when you forget to sudo.. Really Write the file.
   cnoremap w!! w !sudo tee % >/dev/null
   cnoremap $v ~/.vimrc
-  cnoremap $n NeoCompleteDisable
-  cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
+  cnoremap $% <C-R>=expand('%:p:h').'/'<cr>
 " }}
 
-" mac command line alias {{
+" command line emacs shortcut, same as shell {{
+  cmap <C-k> <Up>
+  cmap <C-j> <Down>
+  cmap <C-b> <Left>
+  cmap <C-f> <Right>
+  cmap <C-a> <Home>
+  cmap <C-e> <End>
+  cmap <C-d> <Del>
+  cmap <C-h> <BS>
+" }}
+
+" works like mac app {{
   vnoremap <D-x> :!pbcopy<cr>
   vnoremap <D-c> :w !pbcopy<cr><cr>
   inoremap <D-v> <C-o>:r !pbpaste<cr>
