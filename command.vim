@@ -22,10 +22,10 @@ command! -nargs=0 -bar Date    execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs   execute 'args' QuickfixFilenames()
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,ListModules P       :call PreviewModule('<args>')
-command! -nargs=1 -complete=custom,ListModules J       :call PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,ListModules H       :call PreviewModule('<args>', 'doc')
-command! -nargs=? -complete=custom,ListVimrc   E       :call EditVimrc(<f-args>)
+command! -nargs=1 -complete=custom,ListModules G :call PreviewModule('<args>')
+command! -nargs=1 -complete=custom,ListModules J :call PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', 'doc')
+command! -nargs=? -complete=custom,ListVimrc   E :call EditVimrc(<f-args>)
 command! -nargs=* -bar                         Update  execute "Start ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar                         Publish :call Publish()
 command! -nargs=* -bar                         L       :call ShowGitlog(<f-args>)
@@ -56,9 +56,8 @@ function! ShowGitlog(...)
 endfunction
 
 function! ListModules(A, L, p)
-  let res = system("dependencies")
-  if v:shell_error | echo res | return | endif
-  return res
+  let res = Dependencies()
+  return join(res, "\n")
 endfunction
 
 function! Push()
@@ -95,36 +94,39 @@ function! StatusReset()
   endfor
 endf
 
-" TODO no binary dependencies
 function! PreviewModule(name, ...)
   if empty(a:name) | echo "need module name" | return | endif
+  let dir = GetPackageDir()
+  let content = webapi#json#decode(join(readfile(dir . '/package.json')))
+  if exists('content.browser')
+    let name = get(content.browser, a:name, a:name)
+  else
+    let name = a:name
+  endif
+  let dir = dir . '/node_modules/' . name
+  if !isdirectory(dir) | echo 'module not found' | return | endif
+  let content = webapi#json#decode(join(readfile(dir . '/package.json')))
   if empty(a:000)
-    let res = system("findmodule ".a:name)
-    let file = res
+    let file = dir . '/' . substitute(content.main, '\v^(./)?', '', '')
   else
     let type = a:000[0]
-    let res = system("moduledir ".a:name)
     if type ==? 'doc'
-      let file = res . "/readme.md"
-      if !filereadable(file)
-        let file = res . "/Readme.md"
-        if !filereadable(file)
-          let file = res . "/README.md"
-          if !filereadable(file)
-            echo 'readme file not found'
-          endif
+      for name in ['readme', 'Readme', 'README']
+        if filereadable(dir . '/' . name . '.md')
+          let file = dir . '/' . name . '.md'
+          break
         endif
-      endif
+      endfor
     elseif type ==? 'json'
-      let file = res . "/package.json"
+      let file = dir . "/package.json"
     endif
   endif
-  if v:shell_error | echo res | return | endif
+  if !exists('file') | echohl WarningMsg | echon 'not found' | return | endif
   let h = &previewheight
   let &previewheight = 40
   execute "pedit " . file
-  execute "normal! \<c-w>k"
   let &previewheight = h
+  execute "normal! \<c-w>k"
 endfunction
 
 " module publish
@@ -133,6 +135,7 @@ function! Publish()
   execute "Start -dir=" . dir . " -title=publish publish"
 endfunction
 
+" package directory of current file
 function! GetPackageDir()
   let dir = expand('%:p:h')
   while 1
@@ -146,3 +149,19 @@ function! GetPackageDir()
     endif
   endwhile
 endfunction
+
+function! Dependencies()
+  let dir = GetPackageDir()
+  let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
+  let browser = exists('obj.browser')
+  let deps = browser ? keys(obj.browser) : []
+  let vals = browser ? values(obj.browser) : []
+  for key in keys(obj.dependencies)
+    if index(vals, key) == -1
+      call add(deps, key)
+    endif
+  endfor
+  return deps
+endfunction
+
+command! -nargs=0 Deps :call Dependencies()

@@ -20,7 +20,7 @@ set undofile
 set fileformats=unix,dos
 set diffopt=vertical
 set sessionoptions-=help
-set sessionoptions-=blank
+"set sessionoptions-=blank
 set complete+=k
 set ttimeoutlen=10
 set tabpagemax=5
