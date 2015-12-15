@@ -25,7 +25,6 @@ set complete+=k
 set ttimeoutlen=10
 set tabpagemax=5
 set scrolloff=3
-highlight clear SignColumn
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set showtabline=1
