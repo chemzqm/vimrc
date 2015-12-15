@@ -1,4 +1,4 @@
-set nohidden " not allow buffer switch without saving
+set hidden " allow buffer switch without saving
 set history=99
 set wildmenu
 set wildmode=list:longest,full
@@ -20,8 +20,8 @@ set undofile
 set fileformats=unix,dos
 set diffopt=vertical
 set sessionoptions-=help
+set sessionoptions-=blank
 set complete+=k
-set wildignore+=*/tmp/*,*.so,*~,*.zip,*/.git/*,*/.svn/*,node_modules,*/.DS_Store,coverage,*/*bundle.js,*.map
 set ttimeoutlen=10
 set tabpagemax=5
 set scrolloff=3
@@ -43,7 +43,7 @@ if has('gui_running')
   set lines=50
   set columns=120
   set guifont=Source\ Code\ Pro:h13
-  set transparency=10
+  "set transparency=10
   set macmeta
   set number
   colorscheme solarized

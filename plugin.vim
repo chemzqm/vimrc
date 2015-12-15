@@ -2,10 +2,12 @@
 let test#javascript#mocha#file_pattern = '\.js'
 "let test#strategy = "dispatch"
 
+" jscheck
+let jscheck_debug_mode = 1
+
 " syntastic
-let g:syntastic_enable_async = 1
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = []
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_auto_jump = 3
 

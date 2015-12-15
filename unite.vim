@@ -1,3 +1,11 @@
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts='-i -r --line-numbers --nocolor --nogroup -S --ignore-dir="node_modules"'
+  let g:unite_source_rec_async_command =
+    \ ['ag', '--follow', '--nocolor', '--nogroup',
+    \  '--hidden', '-g', '']
+endif
+
 let g:neomru#follow_links = 1
 let g:unite_source_codesearch_ignore_case = 0
 call unite#filters#matcher_default#use(['matcher_regexp'])
@@ -31,7 +39,7 @@ nnoremap [unite] <Nop>
 nmap <space>  [unite]
 nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank     history/yank<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=gitlog   gitlog<cr>
-nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files    file_rec<cr>
+nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files    file_rec/async:.<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline  outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note     note<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist     gist<cr>
@@ -49,13 +57,6 @@ function! s:unite_my_settings()
   imap <buffer> <TAB>   <Plug>(unite_select_next_line)
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  nmap <buffer> <C-k>   <C-w>k
-  nmap <buffer> <C-h>   <C-w>h
   nmap <buffer> <Esc>   <Plug>(unite_exit)
   nmap <buffer> i       ggk<plug>(unite_insert_enter)
 endfunction
-
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts='-i -r --line-numbers --nocolor --nogroup -S --ignore-dir="node_modules"'
-endif
