@@ -2,8 +2,8 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup --hidden'
   let g:unite_source_rec_async_command =
-    \ ['ag','--nocolor', '--nogroup',
-    \  '-depth', '15', '--hidden', '-g', '']
+    \ ['ag', '--nocolor', '--nogroup',
+    \  '--depth', '15', '--hidden', '-g', '']
 endif
 
 let g:neomru#follow_links = 1
@@ -48,6 +48,7 @@ nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process  process<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru file_mru<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer   buffer<cr>
 nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep     grep:.<cr>
+
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()

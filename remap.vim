@@ -27,11 +27,11 @@
 " }}
 
 " tab {{
-  noremap <D-1> 1gt
-  noremap <D-2> 2gt
-  noremap <D-3> 3gt
-  noremap <D-4> 4gt
-  noremap <D-5> 5gt
+  noremap  <D-1>      1gt
+  noremap  <D-2>      2gt
+  noremap  <D-3>      3gt
+  noremap  <D-4>      4gt
+  noremap  <D-5>      5gt
   inoremap <D-1> <C-o>1gt
   inoremap <D-2> <C-o>2gt
   inoremap <D-3> <C-o>3gt
@@ -50,32 +50,32 @@
 " }}
 
 " command line emacs shortcut, same as shell {{
-  cmap <C-k> <Up>
-  cmap <C-j> <Down>
-  cmap <C-b> <Left>
-  cmap <C-f> <Right>
-  cmap <C-a> <Home>
-  cmap <C-e> <End>
-  cmap <C-d> <Del>
-  cmap <C-h> <BS>
+  cmap     <C-k> <Up>
+  cmap     <C-j> <Down>
+  cmap     <C-b> <Left>
+  cmap     <C-f> <Right>
+  cmap     <C-a> <Home>
+  cmap     <C-e> <End>
+  cmap     <C-d> <Del>
+  cmap     <C-h> <BS>
 " }}
 
 " search {{
   "  In visual mode when you press * or # to search for the current selection
-  vnoremap <silent> * :call <SID>visualSearch('f')<CR>
-  vnoremap <silent> # :call <SID>visualSearch('b')<CR>
+  vnoremap    <silent> * :call <SID>visualSearch('f')<CR>
+  vnoremap    <silent> # :call <SID>visualSearch('b')<CR>
 
-  function! s:visualSearch(direction)
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-    if a:direction == 'b'
+  function!   s:visualSearch(direction)
+    let       l:saved_reg = @"
+    execute   "normal! vgvy"
+    let       l:pattern = escape(@", '\\/.*$^~[]')
+    let       l:pattern = substitute(l:pattern, "\n$", "", "")
+    if        a:direction == 'b'
       execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'f'
+    elseif    a:direction == 'f'
       execute "normal /" . l:pattern . "^M"
     endif
-    let @/ = l:pattern
-    let @" = l:saved_reg
+    let       @/ = l:pattern
+    let       @" = l:saved_reg
   endfunction
 " }}
