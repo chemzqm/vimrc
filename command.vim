@@ -2,7 +2,7 @@
 
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
-command! -nargs=0 -bar Gp  :call Push()
+command! -nargs=0 -bar Gp  :call s:Push()
 command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>'"
 command! -nargs=* -bar Gca execute 'Gcommit -a -m '."'<args>'"
 
@@ -19,24 +19,24 @@ command! -nargs=0 -bar Reset    execute 'call StatusReset()'
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=0 -bar Date    execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
-command! -nargs=0 -bar Qargs   execute 'args' QuickfixFilenames()
+command! -nargs=0 -bar Qargs   execute 'args' s:QuickfixFilenames()
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,ListModules G :call PreviewModule('<args>')
-command! -nargs=1 -complete=custom,ListModules J :call PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,ListModules H :call PreviewModule('<args>', 'doc')
-command! -nargs=? -complete=custom,ListVimrc   E :call EditVimrc(<f-args>)
+command! -nargs=1 -complete=custom,s:ListModules G :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,s:ListModules J :call s:PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,s:ListModules H :call s:PreviewModule('<args>', 'doc')
+command! -nargs=? -complete=custom,s:ListVimrc   E :call s:EditVimrc(<f-args>)
 command! -nargs=* -bar                         Update  execute "Start ~/.vim/vimrc/publish '<args>'"
-command! -nargs=0 -bar                         Publish :call Publish()
-command! -nargs=* -bar                         L       :call ShowGitlog(<f-args>)
+command! -nargs=0 -bar                         Publish :call s:Publish()
+command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
 
-function! ListVimrc(...)
+function! s:ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
     \ "substitute(v:val, '/Users/chemzqm/.vim/vimrc/', '', '')")
     \ , "\n")
 endfunction
 
-function! EditVimrc(...)
+function! s:EditVimrc(...)
   if !a:0
     execute "e ~/.vimrc"
   else
@@ -44,27 +44,23 @@ function! EditVimrc(...)
   endif
 endfunction
 
-function! ShowGitlog(...)
-  let arg = get(a:000, 0, '')
-  let input = get(a:000, 1, '')
-  if a:0 == 1
-    let input = arg
-    let arg = ''
-  endif
-  if arg !~# ':' | let arg = ':' . arg | endif
+function! s:ShowGitlog(arg)
+  let args = split(a:arg, ':', 1)
+  let input = get(args, 0, '')
+  let arg = get(args, 1, '') . ':' . get(args, 2, '')
   execute 'Unite gitlog:' . arg . ' -input=' . input . ' -buffer-name=gitlog'
 endfunction
 
-function! ListModules(A, L, p)
-  let res = Dependencies()
+function! s:ListModules(A, L, p)
+  let res = s:Dependencies()
   return join(res, "\n")
 endfunction
 
-function! Push()
+function! s:Push()
   execute 'Start -dir='. expand('%:p:h') . ' git push'
 endfunction
 
-function! Remove()
+function! s:Remove()
   let file = expand('%:p')
   let buf = bufnr('%')
   execute "bwipeout " . buf
@@ -73,7 +69,7 @@ function! Remove()
   endif
 endfunction
 
-function! QuickfixFilenames()
+function! s:QuickfixFilenames()
   " Building a hash ensures we get each buffer only once
   let buffer_numbers = {}
   for quickfix_item in getqflist()
@@ -83,7 +79,7 @@ function! QuickfixFilenames()
 endfunction
 
 " Remove hidden buffers and cd to current dir
-function! StatusReset()
+function! s:StatusReset()
   let dir = fnameescape(expand('%:p:h'))
   execute "cd ".dir
   " delete hidden buffers
@@ -94,9 +90,9 @@ function! StatusReset()
   endfor
 endf
 
-function! PreviewModule(name, ...)
+function! s:PreviewModule(name, ...)
   if empty(a:name) | echo "need module name" | return | endif
-  let dir = GetPackageDir()
+  let dir = s:GetPackageDir()
   let content = webapi#json#decode(join(readfile(dir . '/package.json')))
   if exists('content.browser')
     let name = get(content.browser, a:name, a:name)
@@ -107,7 +103,9 @@ function! PreviewModule(name, ...)
   if !isdirectory(dir) | echo 'module not found' | return | endif
   let content = webapi#json#decode(join(readfile(dir . '/package.json')))
   if empty(a:000)
-    let file = dir . '/' . substitute(content.main, '\v^(./)?', '', '')
+    let main = exists('content.main') ? content.main : 'index.js'
+    let main = main =~# '\v\.js$' ? main : main . '.js'
+    let file = dir . '/' . substitute(main, '\v^(./)?', '', '')
   else
     let type = a:000[0]
     if type ==? 'doc'
@@ -130,13 +128,14 @@ function! PreviewModule(name, ...)
 endfunction
 
 " module publish
-function! Publish()
-  let dir = GetPackageDir()
+function! s:Publish()
+  " file at ~/bin/publish
+  let dir = s:GetPackageDir()
   execute "Start -dir=" . dir . " -title=publish publish"
 endfunction
 
 " package directory of current file
-function! GetPackageDir()
+function! s:GetPackageDir()
   let dir = expand('%:p:h')
   while 1
     if filereadable(dir . '/package.json')
@@ -150,8 +149,8 @@ function! GetPackageDir()
   endwhile
 endfunction
 
-function! Dependencies()
-  let dir = GetPackageDir()
+function! s:Dependencies()
+  let dir = s:GetPackageDir()
   let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
   let browser = exists('obj.browser')
   let deps = browser ? keys(obj.browser) : []
@@ -163,5 +162,3 @@ function! Dependencies()
   endfor
   return deps
 endfunction
-
-command! -nargs=0 Deps :call Dependencies()

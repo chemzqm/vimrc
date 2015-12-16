@@ -7,8 +7,6 @@
     autocmd FileType html setlocal nowrap
     autocmd FileType htm setlocal foldmethod=manual
     autocmd FileType html setlocal foldnestmax=1
-    autocmd FileType html noremap <D-r> : g/\(<!--\)\\|\(-->\)/d<cr>
-    autocmd FileType xml noremap <D-r> : g/\(<!--\)\\|\(-->\)/d<cr>
     let pandoc_pipeline  = "pandoc --from=html --to=markdown"
     let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
     autocmd FileType html let &formatprg=pandoc_pipeline

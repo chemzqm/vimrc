@@ -40,7 +40,7 @@
 " }}
 
 " {{
-  function! SetJavaScript()
+  function! s:SetJavaScript()
       nnoremap <buffer> <leader>/ :JsDoc<cr>
       nnoremap <buffer> <leader>ff :call JsBeautify()<cr>
       setl foldnestmax=2
@@ -59,22 +59,22 @@
 
   augroup javascript
     autocmd!
-    au FileType javascript :call SetJavaScript()
-    au FileType javascript :call SetLoadFunctions()
+    au FileType javascript :call s:SetJavaScript()
+    au FileType javascript :call s:SetLoadFunctions()
   augroup end
 " }}
 
 " functions {{
-  function! SetLoadFunctions()
-    command! -nargs=? -bar -buffer F  call LoadFunctions("c", <f-args>)
-    command! -nargs=? -bar -buffer Ft call LoadFunctions("t", <f-args>)
-    command! -nargs=? -bar -buffer Fr call LoadFunctions("r", <f-args>)
-    command! -nargs=? -bar -buffer Fa call LoadFunctions("a", <f-args>)
-    command! -nargs=? -bar -buffer Fe call LoadFunctions("e", <f-args>)
-    command! -nargs=+ -bar -buffer -complete=custom,ListModules Fm call LoadFunctions("m", <f-args>)
+  function! s:SetLoadFunctions()
+    command! -nargs=? -bar -buffer F  call <SID>LoadFunctions("c", <f-args>)
+    command! -nargs=? -bar -buffer Ft call <SID>LoadFunctions("t", <f-args>)
+    command! -nargs=? -bar -buffer Fr call <SID>LoadFunctions("r", <f-args>)
+    command! -nargs=? -bar -buffer Fa call <SID>LoadFunctions("a", <f-args>)
+    command! -nargs=? -bar -buffer Fe call <SID>LoadFunctions("e", <f-args>)
+    command! -nargs=+ -bar -buffer -complete=custom,ListModules Fm call <SID>LoadFunctions("m", <f-args>)
   endfunction
 
-  function! LoadFunctions(type, ...)
+  function! s:LoadFunctions(type, ...)
     let type = a:type ==# 'a' ? 'm' : a:type
     if a:type ==# 'm'
       let input = a:0 > 1 ? a:2 : ''

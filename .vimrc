@@ -5,9 +5,9 @@ if &shell =~# 'fish$'
   set shell=bash
 endif
 set runtimepath+=/Users/chemzqm/.vim/bundle/neobundle.vim/
-set runtimepath+=/Users/chemzqm/.vim/bundle/jscheck/
 call neobundle#begin(expand('/Users/chemzqm/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'chemzqm/jscheck'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'Shougo/neoyank.vim'

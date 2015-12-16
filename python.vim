@@ -1,5 +1,4 @@
 " python {{
-  let python_highlight_all = 1
   augroup python
     autocmd!
     autocmd BufNewFile,BufRead *.jinja set syntax=htmljinja
