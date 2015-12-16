@@ -60,12 +60,6 @@
   cmap <C-h> <BS>
 " }}
 
-" works like mac app {{
-  vnoremap <D-x> :!pbcopy<cr>
-  vnoremap <D-c> :w !pbcopy<cr><cr>
-  inoremap <D-v> <C-o>:r !pbpaste<cr>
-" }}
-
 " search {{
   "  In visual mode when you press * or # to search for the current selection
   vnoremap <silent> * :call <SID>visualSearch('f')<CR>

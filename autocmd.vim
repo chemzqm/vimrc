@@ -7,7 +7,7 @@ augroup end
 function! OnBufEnter()
   let name = bufname('%')
   " quickly leave those temporary buffers
-  if &previewwindow || name =~# '^fugitive'
+  if name ==# '' || &previewwindow || name =~# '^fugitive'
     \ || &filetype ==# 'help' || &buftype ==# 'nofile'
     nnoremap <buffer> q :<C-U>bdelete<CR>
     nnoremap <buffer> <esc> :<C-U>bdelete<CR>

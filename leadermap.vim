@@ -28,8 +28,8 @@ let mapleader = ","
 
 " cope {{
   nnoremap <leader>co :cope<cr>
-  nnoremap <leader>cn :cn<cr>
-  nnoremap <leader>cp :cp<cr>
+  nnoremap <leader>n :cn<cr>
+  nnoremap <leader>p :cp<cr>
   nnoremap <leader>cc :ccl<cr>
 " }}
 

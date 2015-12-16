@@ -1,9 +1,9 @@
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts='-i -r --line-numbers --nocolor --nogroup -S --ignore-dir="node_modules"'
+  let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup --hidden'
   let g:unite_source_rec_async_command =
-    \ ['ag', '--follow', '--nocolor', '--nogroup',
-    \  '--hidden', '-g', '']
+    \ ['ag','--nocolor', '--nogroup',
+    \  '-depth', '15', '--hidden', '-g', '']
 endif
 
 let g:neomru#follow_links = 1
@@ -51,8 +51,6 @@ nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep     grep:.<cr>
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-  " Play nice with supertab
-  let b:SuperTabDisabled=1
   " Enable navigation with control-j and control-k in insert mode
   imap <buffer> <TAB>   <Plug>(unite_select_next_line)
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
