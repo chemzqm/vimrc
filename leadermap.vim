@@ -38,7 +38,7 @@ let mapleader = ","
   nnoremap <leader>hl :set hls!<cr>
   nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
-  nnoremap <leader>nu :call NumberToggle()<cr>
+  nnoremap <leader>nu :call <SID>NumberToggle()<cr>
 " }}
 
 " plugin {{
@@ -49,7 +49,7 @@ let mapleader = ","
   " vim-session
   nmap <leader>sl :OpenSession
   nmap <leader>ss :SaveSession
-  nmap <leader>sr :call Restart()<cr>
+  nmap <leader>sr :call <SID>Restart()<cr>
   nmap <leader>sd :CloseSession<cr>
   " fugitive
   nnoremap <silent> <leader>gg :Ggrep<CR>
@@ -92,9 +92,9 @@ let mapleader = ","
 " }}
 
 " grep {{
-vnoremap <leader>g :<C-u>call GrepFromSelected(visualmode())<cr>
-nnoremap <leader>g :set operatorfunc=GrepFromSelected<cr>g@
-function! GrepFromSelected(type)
+vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<cr>
+nnoremap <leader>g :set <SID>operatorfunc=GrepFromSelected<cr>g@
+function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'
       normal! `<v`>y
@@ -108,11 +108,11 @@ function! GrepFromSelected(type)
 endfunction
 " }}
 
-function! NumberToggle()
+function! s:NumberToggle()
   if(&number == 1) | set nu! | set rnu! | else | set rnu | set nu | endif
 endfunction
 
-function! Restart()
+function! s:Restart()
   execute "wa"
   execute "RestartVim"
 endfunction
