@@ -40,9 +40,9 @@ endfunction
 
 function! s:EditVimrc(...)
   if !a:0
-    execute "e ~/.vimrc"
+    execute 'e ~/.vimrc'
   else
-    execute "e ~/.vim/vimrc/" . a:1
+    execute 'e ~/.vim/vimrc/' . a:1
   endif
 endfunction
 
@@ -71,7 +71,7 @@ function! s:CheckOut()
   let file = substitute(expand('%:p'), gitdir, '', '')
   let command = 'git checkout -- ' . file
   let output = system(command)
-  if v:shell_error && output != ""
+  if v:shell_error && output !=# ''
     echohl WarningMsg | echon output
   endif
   execute 'silent cd ' . cwd
@@ -85,7 +85,7 @@ function! s:GitDiff()
   execute 'silent cd ' . base
   let tmpfile = tempname()
   let output = system('git diff')
-  if v:shell_error && output != ""
+  if v:shell_error && output !=# ''
     echohl WarningMsg | echon output
     return
   endif
@@ -104,9 +104,9 @@ endfunction
 function! s:Remove()
   let file = expand('%:p')
   let buf = bufnr('%')
-  execute "bwipeout " . buf
+  execute 'bwipeout ' . buf
   if filereadable(file)
-    call system("rm ".file)
+    call system('rm '.file)
   endif
 endfunction
 
@@ -122,7 +122,7 @@ endfunction
 " Remove hidden buffers and cd to current dir
 function! s:StatusReset()
   let dir = fnameescape(expand('%:p:h'))
-  execute "cd ".dir
+  execute 'cd '.dir
   " delete hidden buffers
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
@@ -132,7 +132,7 @@ function! s:StatusReset()
 endf
 
 function! s:PreviewModule(name, ...)
-  if empty(a:name) | echo "need module name" | return | endif
+  if empty(a:name) | echo 'need module name' | return | endif
   let dir = s:GetPackageDir()
   let content = webapi#json#decode(join(readfile(dir . '/package.json')))
   if exists('content.browser')
@@ -157,13 +157,13 @@ function! s:PreviewModule(name, ...)
         endif
       endfor
     elseif type ==? 'json'
-      let file = dir . "/package.json"
+      let file = dir . '/package.json'
     endif
   endif
   if !exists('file') | echohl WarningMsg | echon 'not found' | return | endif
   let h = &previewheight
   let &previewheight = 40
-  execute "pedit " . file
+  execute 'pedit ' . file
   let &previewheight = h
   execute "normal! \<c-w>k"
 endfunction
@@ -172,7 +172,7 @@ endfunction
 function! s:Publish()
   " file at ~/bin/publish
   let dir = s:GetPackageDir()
-  execute "Start -dir=" . dir . " -title=publish publish"
+  execute 'Start -dir=' . dir . ' -title=publish publish'
 endfunction
 
 " package directory of current file

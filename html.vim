@@ -1,14 +1,14 @@
 " html & xml {{
-  let g:html_indent_inctags = "html,body,head,tbody"
-  let g:html_indent_script1 = "inc"
-  let g:html_indent_style1 = "inc"
+  let g:html_indent_inctags = 'html,body,head,tbody'
+  let g:html_indent_script1 = 'inc'
+  let g:html_indent_style1 = 'inc'
   augroup html
     autocmd!
     autocmd FileType html setlocal nowrap
     autocmd FileType htm setlocal foldmethod=manual
     autocmd FileType html setlocal foldnestmax=1
-    let pandoc_pipeline  = "pandoc --from=html --to=markdown"
-    let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+    let pandoc_pipeline  = 'pandoc --from=html --to=markdown'
+    let pandoc_pipeline .= ' | pandoc --from=markdown --to=html'
     autocmd FileType html let &formatprg=pandoc_pipeline
   augroup end
 " }}

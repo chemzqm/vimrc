@@ -64,7 +64,7 @@ set autoindent "Auto indent
 set smartindent
 set wrap "Wrap lines
 
-if has("autocmd") && exists("+omnifunc")
+if has('autocmd') && exists('+omnifunc')
   autocmd Filetype *
     \if &omnifunc == "" |
     \setlocal omnifunc=syntaxcomplete#Complete |

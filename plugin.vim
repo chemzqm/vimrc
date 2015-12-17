@@ -1,13 +1,14 @@
 " vim-test
-let test#javascript#mocha#file_pattern = '\.js'
+let g:test#javascript#mocha#file_pattern = '\.js'
 "let test#strategy = "dispatch"
 
 " jscheck
-let jscheck_debug_mode = 1
+let g:jscheck_debug_mode = 1
 
 " syntastic
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_javascript_checkers = []
+let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_auto_jump = 3
 
@@ -44,10 +45,10 @@ let g:tagbar_type_markdown = {
 \ }
 
 " ultisnips {{
-  let g:UltiSnipsExpandTrigger="<C-j>"
-  let g:UltiSnipsJumpForwardTrigger="<C-j>"
-  let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-  let g:UltiSnipsEditSplit="vertical"
+  let g:UltiSnipsExpandTrigger='<C-j>'
+  let g:UltiSnipsJumpForwardTrigger='<C-j>'
+  let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+  let g:UltiSnipsEditSplit='vertical'
 " }}
 
 " Netrw
@@ -72,5 +73,3 @@ let g:NERDSpaceDelims = 1
 " tern_for_vim
 let g:tern_show_argument_hints = 'on_hold'
 "let g:tern_show_signature_in_pum = 1
-
-

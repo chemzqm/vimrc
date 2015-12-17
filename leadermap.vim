@@ -1,5 +1,5 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=99:
-let mapleader = ","
+let g:mapleader = ','
 
 " basic {{
   " quite useful
@@ -24,6 +24,11 @@ let mapleader = ","
   nnoremap <leader>sn ]s
   nnoremap <leader>sp [s
   nnoremap <leader>sa zg
+" }}
+
+" location list {{
+  nnoremap <leader>n :lnext<cr>
+  nnoremap <leader>p :lprevious<cr>
 " }}
 
 " cope {{
@@ -104,7 +109,7 @@ function! s:GrepFromSelected(type)
   else
       return
   endif
-  silent execute "Unite -buffer-name=grep grep:. -input=" . @@
+  silent execute 'Unite -buffer-name=grep grep:. -input=' . @@
   let @@ = saved_unnamed_register
 endfunction
 " }}
@@ -114,6 +119,6 @@ function! s:NumberToggle()
 endfunction
 
 function! s:Restart()
-  execute "wa"
-  execute "RestartVim"
+  execute 'wa'
+  execute 'RestartVim'
 endfunction
