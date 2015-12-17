@@ -4,7 +4,7 @@
 command! -nargs=0 -bar C   :Glcd .
 command! -nargs=0 -bar Gp  :call s:Push()
 command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>'"
-command! -nargs=* -bar Gca execute 'Gcommit -a -m '."'<args>'"
+command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
 
 " add dictionary
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
