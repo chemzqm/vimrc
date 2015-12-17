@@ -76,4 +76,4 @@ hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=ligh
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
 " change default search highlight
-hi Search guibg=#333333 guifg=#D8D8DC
+hi Search guibg=#3c3c3c guifg=#D8D8DC

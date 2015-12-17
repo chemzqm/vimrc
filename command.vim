@@ -6,6 +6,7 @@ command! -nargs=0 -bar Gp  :call s:Push()
 command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>'"
 command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
 command! -nargs=0 -bar Gco :call s:CheckOut()
+command! -nargs=0 -bar Gd  :call s:GitDiff()
 
 " add dictionary
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
@@ -75,6 +76,29 @@ function! s:CheckOut()
   endif
   execute 'silent cd ' . cwd
   execute 'silent edit! ' . expand('%:p')
+endfunction
+
+function! s:GitDiff()
+  let gitdir = fugitive#extract_git_dir(expand('%:p'))
+  let base = fnamemodify(gitdir, ':h')
+  let cwd = getcwd()
+  execute 'silent cd ' . base
+  let tmpfile = tempname()
+  let output = system('git diff')
+  if v:shell_error && output != ""
+    echohl WarningMsg | echon output
+    return
+  endif
+  if !len(output) | echom 'no change' | return | endif
+  let lines = split(output, '\n')
+  echom len(lines)
+  execute 'silent vsplit ' . tmpfile
+  call setline(1, lines)
+  setfiletype diff
+  setlocal buftype=nowrite readonly nomodified foldmethod=diff
+  setlocal bufhidden=delete
+  nnoremap <buffer> <silent> q  :<C-U>bdelete<CR>
+  execute 'silent cd ' . cwd
 endfunction
 
 function! s:Remove()
