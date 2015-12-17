@@ -5,6 +5,7 @@ command! -nargs=0 -bar C   :Glcd .
 command! -nargs=0 -bar Gp  :call s:Push()
 command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>'"
 command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
+command! -nargs=0 -bar Gco :call s:CheckOut()
 
 " add dictionary
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
@@ -22,7 +23,7 @@ command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,s:ListModules G     :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
 command! -nargs=1 -complete=custom,s:ListModules J     :call s:PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,s:ListModules H     :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -complete=custom,s:ListVimrc   E     :call s:EditVimrc(<f-args>)
@@ -58,6 +59,22 @@ endfunction
 
 function! s:Push()
   execute 'Start -dir='. expand('%:p:h') . ' git push'
+endfunction
+
+function! s:CheckOut()
+  " check out current file
+  let cwd = getcwd()
+  execute 'silent w'
+  let gitdir = fnamemodify(fugitive#extract_git_dir(expand('%:p')), ':h') . '/'
+  execute 'silent cd ' . gitdir
+  let file = substitute(expand('%:p'), gitdir, '', '')
+  let command = 'git checkout -- ' . file
+  let output = system(command)
+  if v:shell_error && output != ""
+    echohl WarningMsg | echon output
+  endif
+  execute 'silent cd ' . cwd
+  execute 'silent edit! ' . expand('%:p')
 endfunction
 
 function! s:Remove()
