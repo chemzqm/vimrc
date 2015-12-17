@@ -22,7 +22,11 @@ call unite#custom#profile('default', 'context', {
   \  'start_insert': 1,
   \  'winheight': 10,
   \ })
+call unite#custom#profile('grep', 'context', {
+  \  'no_quit': 1
+  \ })
 call unite#custom#profile('gitlog', 'context', {
+  \  'no_quit': 1,
   \  'vertical_preview': 1,
   \ })
 call unite#custom#profile('outline', 'context', {

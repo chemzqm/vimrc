@@ -1,6 +1,6 @@
 augroup fileRead
   autocmd!
-  autocmd BufReadPost *.log normal G
+  autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
 augroup end
 
