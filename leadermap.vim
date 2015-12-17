@@ -93,7 +93,8 @@ let mapleader = ","
 
 " grep {{
 vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<cr>
-nnoremap <leader>g :set <SID>operatorfunc=GrepFromSelected<cr>g@
+nnoremap <leader>g :set operatorfunc=<SID>GrepFromSelected<cr>g@
+
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'

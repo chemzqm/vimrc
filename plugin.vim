@@ -29,6 +29,9 @@ let g:gist_show_privates = 1
 let g:EasyMotion_leader_key = '\\'
 "nnoremap \\ <Plug>(easymotion-prefix)
 
+" VimCompletesMe
+let g:vcm_direction = 'n'
+
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_markdown = {

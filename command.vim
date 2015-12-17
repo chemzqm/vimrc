@@ -18,14 +18,14 @@ command! -nargs=0 -bar Rm       execute 'call Remove()'
 command! -nargs=0 -bar Reset    execute 'call StatusReset()'
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
-command! -nargs=0 -bar Date    execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
-command! -nargs=0 -bar Qargs   execute 'args' s:QuickfixFilenames()
+command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
+command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,s:ListModules G :call s:PreviewModule('<args>')
-command! -nargs=1 -complete=custom,s:ListModules J :call s:PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,s:ListModules H :call s:PreviewModule('<args>', 'doc')
-command! -nargs=? -complete=custom,s:ListVimrc   E :call s:EditVimrc(<f-args>)
+command! -nargs=1 -complete=custom,s:ListModules G     :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,s:ListModules J     :call s:PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,s:ListModules H     :call s:PreviewModule('<args>', 'doc')
+command! -nargs=? -complete=custom,s:ListVimrc   E     :call s:EditVimrc(<f-args>)
 command! -nargs=* -bar                         Update  execute "Start ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar                         Publish :call s:Publish()
 command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
