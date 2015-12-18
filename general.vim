@@ -63,6 +63,9 @@ set shiftround
 set autoindent "Auto indent
 set smartindent
 set wrap "Wrap lines
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 if has('autocmd') && exists('+omnifunc')
   autocmd Filetype *

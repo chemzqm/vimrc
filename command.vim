@@ -14,14 +14,15 @@ command! -nargs=0 -bar Dom     execute 'setl dictionary+=~/.vim/dict/dom.dict'
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
 
-" remove file from filesystem
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
+" remove file from filesystem
 command! -nargs=0 -bar Rm       execute 'call Remove()'
 command! -nargs=0 -bar Reset    execute 'call StatusReset()'
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
+command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "normal ,f"|redraw!
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')

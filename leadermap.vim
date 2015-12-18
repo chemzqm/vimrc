@@ -7,6 +7,8 @@ let g:mapleader = ','
   " vimrc reload edit
   nnoremap <leader>rl :source ~/.vimrc<cr>
   nnoremap <leader>{ F)a<space>{<enter><space><space><esc>o<esc>i}<esc>O<tab>
+  " search
+  nnoremap <leader>/ :Ag<SPACE>
 " }}
 
 " content edit {{
@@ -26,11 +28,6 @@ let g:mapleader = ','
   nnoremap <leader>sa zg
 " }}
 
-" location list {{
-  nnoremap <leader>n :lnext<cr>
-  nnoremap <leader>p :lprevious<cr>
-" }}
-
 " cope {{
   nnoremap <leader>cn :cn<cr>
   nnoremap <leader>cp :cp<cr>
@@ -44,19 +41,16 @@ let g:mapleader = ','
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
 " }}
 
-" toggle list {{
+" list {{
   " /Users/chemzqm/.vim/plugin/togglelist.vim
-  " https://gist.github.com/chemzqm/5b8099dd68213d590064
-  " nnoremap <leader>u
-  " nnoremap <leader>f
-  " nnoremap <leader>l
+  " /Users/chemzqm/.vim/plugin/quickjump.vim
 " }}
 
 " plugin {{
   " bbye
   nnoremap <leader>q :Bdelete<cr>
   " vim-test
-  nmap <silent> <localleader>t :TestNearest<CR>
+  nmap <silent> <leader>t :TestNearest<CR>
   " vim-session
   nmap <leader>sl :OpenSession
   nmap <leader>ss :SaveSession
@@ -100,7 +94,7 @@ let g:mapleader = ','
 
 " grep {{
 vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<cr>
-nnoremap <leader>g :set operatorfunc=<SID>GrepFromSelected<cr>g@
+nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<cr>g@
 
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
@@ -111,7 +105,7 @@ function! s:GrepFromSelected(type)
   else
       return
   endif
-  silent execute 'Unite -buffer-name=grep grep:. -input=' . @@
+  silent execute 'Ag ' . @@
   let @@ = saved_unnamed_register
 endfunction
 " }}
