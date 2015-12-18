@@ -12,12 +12,10 @@ let g:mapleader = ','
 " }}
 
 " content edit {{
-  " TODO use clean to replace
-  " rm windows/DOS ^m
-  noremap <leader>rm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-  " space remove in the end of every line
-  noremap <leader>rs :%s/\s\+$//<cr>
   nnoremap <leader>au :!autoprefixer %<cr>
+
+  " clean some dirty charactors
+  nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
 
 " spell checking {{
@@ -117,4 +115,22 @@ endfunction
 function! s:Restart()
   execute 'wa'
   execute 'RestartVim'
+endfunction
+
+function! s:Clean()
+  let ft = &filetype
+  " replace tab with 2 space
+  if index(['javascript', 'html', 'css', 'vim', 'php'], ft) != -1
+    silent! execute "%s/\<tab>/  /g"
+  endif
+  " replace tailing comma
+  if ft ==# 'javascript'
+    silent! execute '%s/;$//'
+    " line should not starts with [ or (
+    silent! execute '%s/^\s*\zs\([\[(]\)/;\1/'
+  endif
+  " remove tailing white space
+  silent! execute '%s/\s\+$//'
+  " remove windows 
+  silent! execute '%s/$//'
 endfunction
