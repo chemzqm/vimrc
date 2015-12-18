@@ -38,7 +38,7 @@ if has('statusline')
 endif
 
 if has('gui_running')
-  set noimd
+  "set noimd
   set background=light
   set lines=50
   set columns=120
