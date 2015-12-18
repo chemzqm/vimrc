@@ -3,7 +3,7 @@
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
 command! -nargs=0 -bar Gp  :call s:Push()
-command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>' "
+command! -nargs=* -bar Gc  silent execute 'Gcommit '. expand('%') . " -m '<args>' " | echo done
 command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
 command! -nargs=0 -bar Gco :call s:CheckOut()
 command! -nargs=0 -bar Gd  :call s:GitDiff()
