@@ -2,26 +2,26 @@
 
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
+command! -nargs=0 -bar Gd  :call s:GitDiff()
 command! -nargs=0 -bar Gp  :call s:Push()
 command! -nargs=* -bar Gc  silent execute 'Gcommit '. expand('%') . " -m '<args>' " | echo 'done'
 command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
 command! -nargs=0 -bar Gco :call s:CheckOut()
-command! -nargs=0 -bar Gd  :call s:GitDiff()
 
 " add dictionary
-command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
 command! -nargs=0 -bar Dom     execute 'setl dictionary+=~/.vim/dict/dom.dict'
-command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
+command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
+command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
 " remove file from filesystem
 command! -nargs=0 -bar Rm       execute 'call Remove()'
 command! -nargs=0 -bar Reset    execute 'call StatusReset()'
-command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
+command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "normal ,f"|redraw!
 
 " preview module files main/package.json/Readme.md
