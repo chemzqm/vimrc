@@ -9,14 +9,16 @@ endif
 let g:neomru#follow_links = 1
 let g:unite_source_codesearch_ignore_case = 0
 call unite#filters#matcher_default#use(['matcher_regexp'])
-"call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source(
   \  'file_rec,file_rec/async,file_mru,file,buffer,grep',
   \  'ignore_globs',
   \  split(&wildignore, ',')
   \ )
 call unite#custom#source(
-  \  'file_rec,file_rec/async,file_mru,buffer', 'matchers', ['matcher_fuzzy']
+  \  'file_mru,buffer', 'matchers', ['matcher_fuzzy']
+  \ )
+call unite#custom#source(
+  \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
 call unite#custom#profile('default', 'context', {
   \  'start_insert': 1,
@@ -40,6 +42,9 @@ call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
   \  'quick_match': 1,
   \ })
+call unite#custom#profile('files', 'grep', 'sorter_ftime')
+call unite#custom#profile('files', 'filters', 'sorter_selecta')
+call unite#custom#profile('file_mru', 'filters', 'sorter_selecta')
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
