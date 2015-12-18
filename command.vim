@@ -3,7 +3,7 @@
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
 command! -nargs=0 -bar Gp  :call s:Push()
-command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>'"
+command! -nargs=* -bar Gc  execute 'Gcommit '. expand('%') . " -m '<args>' "
 command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
 command! -nargs=0 -bar Gco :call s:CheckOut()
 command! -nargs=0 -bar Gd  :call s:GitDiff()
@@ -85,7 +85,7 @@ function! s:GitDiff()
   let cwd = getcwd()
   execute 'silent cd ' . base
   let tmpfile = tempname()
-  let output = system('git diff')
+  let output = system('git --no-pager diff')
   if v:shell_error && output !=# ''
     echohl WarningMsg | echon output
     return
