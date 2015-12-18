@@ -91,11 +91,11 @@ function! s:GitDiff()
   endif
   if !len(output) | echom 'no change' | return | endif
   let lines = split(output, '\n')
-  echom len(lines)
   execute 'silent vsplit ' . tmpfile
   call setline(1, lines)
-  setfiletype diff
-  setlocal buftype=nowrite readonly nomodified foldmethod=diff
+  file changes
+  setlocal filetype=git buftype=nowrite readonly nomodified foldmethod=syntax foldlevel=99
+  setlocal foldtext=fugitive#foldtext()
   setlocal bufhidden=delete
   nnoremap <buffer> <silent> q  :<C-U>bdelete<CR>
   execute 'silent cd ' . cwd

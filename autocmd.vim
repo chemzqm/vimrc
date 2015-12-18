@@ -8,7 +8,7 @@ function! OnBufEnter()
   let name = bufname('%')
   " quickly leave those temporary buffers
   if name ==# '' || &previewwindow || name =~# '^fugitive'
-    \ || &filetype ==# 'help' || &buftype ==# 'nofile'
+    \ || &filetype ==# 'help'
     nnoremap <buffer> q :<C-U>bdelete<CR>
     nnoremap <buffer> <esc> :<C-U>bdelete<CR>
   endif

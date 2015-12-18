@@ -64,6 +64,7 @@ function! s:unite_my_settings()
   imap <buffer> <TAB>   <Plug>(unite_select_next_line)
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  nmap <buffer> <Esc>   <Plug>(unite_exit)
+  nmap <buffer> <Esc>   :UniteClose<cr>
+  nmap <buffer> q       :UniteClose<cr>
   nmap <buffer> i       ggk<plug>(unite_insert_enter)
 endfunction

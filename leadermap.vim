@@ -46,6 +46,10 @@ let g:mapleader = ','
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
 " }}
 
+" toggle list {{
+  nnoremap <leader>u :call <SID>ToggleUnite()<cr>
+" }}
+
 " plugin {{
   " bbye
   nnoremap <leader>q :Bdelete<cr>
@@ -121,4 +125,16 @@ endfunction
 function! s:Restart()
   execute 'wa'
   execute 'RestartVim'
+endfunction
+
+function! s:ToggleUnite()
+  for i in range(1, winnr('$'))
+    let name = bufname(winbufnr(i))
+    echo name
+    if match(name, '^\[unite\]') == 0
+      UniteClose
+      return
+    endif
+  endfor
+  UniteResume
 endfunction
