@@ -32,10 +32,8 @@ let g:mapleader = ','
 " }}
 
 " cope {{
-  nnoremap <leader>co :cope<cr>
   nnoremap <leader>cn :cn<cr>
   nnoremap <leader>cp :cp<cr>
-  nnoremap <leader>cl :ccl<cr>
 " }}
 
 " setting switch {{
@@ -47,7 +45,11 @@ let g:mapleader = ','
 " }}
 
 " toggle list {{
-  nnoremap <leader>u :call <SID>ToggleUnite()<cr>
+  " /Users/chemzqm/.vim/plugin/togglelist.vim
+  " https://gist.github.com/chemzqm/5b8099dd68213d590064
+  " nnoremap <leader>u
+  " nnoremap <leader>f
+  " nnoremap <leader>l
 " }}
 
 " plugin {{
@@ -60,10 +62,6 @@ let g:mapleader = ','
   nmap <leader>ss :SaveSession
   nmap <leader>sr :call <SID>Restart()<cr>
   nmap <leader>sd :CloseSession<cr>
-  " fugitive
-  nnoremap <silent> <leader>gg :Ggrep<CR>
-  nnoremap <silent> <leader>gs :Gstatus<CR>
-  nnoremap <silent> <leader>gd :Gdiff<CR>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   noremap <leader>js :UltiSnipsAddFiletypes html.js<cr>
@@ -125,16 +123,4 @@ endfunction
 function! s:Restart()
   execute 'wa'
   execute 'RestartVim'
-endfunction
-
-function! s:ToggleUnite()
-  for i in range(1, winnr('$'))
-    let name = bufname(winbufnr(i))
-    echo name
-    if match(name, '^\[unite\]') == 0
-      UniteClose
-      return
-    endif
-  endfor
-  UniteResume
 endfunction

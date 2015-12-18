@@ -184,7 +184,7 @@ function! s:GetPackageDir()
     endif
     let dir = fnamemodify(dir, ':h')
     if dir ==# '/Users/chemzqm'
-      echohl WarningMsg | echon 'package.json not found'
+      echohl WarningMsg | echon 'package.json not found' | echohl None
       return
     endif
   endwhile

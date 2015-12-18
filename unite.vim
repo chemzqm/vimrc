@@ -26,6 +26,7 @@ call unite#custom#profile('grep', 'context', {
   \  'no_quit': 1
   \ })
 call unite#custom#profile('gitlog', 'context', {
+  \  'start_insert': 0,
   \  'no_quit': 1,
   \  'vertical_preview': 1,
   \ })
