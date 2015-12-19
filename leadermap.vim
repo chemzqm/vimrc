@@ -25,22 +25,13 @@ let g:mapleader = ','
   nnoremap <leader>sa zg
 " }}
 
-" cope {{
-  nnoremap <leader>cn :cn<cr>
-  nnoremap <leader>cp :cp<cr>
-" }}
-
 " setting switch {{
+  " TODO switch foldcolumn
   nnoremap <leader>ic :set ic!<cr>
   nnoremap <leader>hl :set hls!<cr>
   nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
-" }}
-
-" list {{
-  " ~/.vim/plugin/togglelist.vim
-  " ~/.vim/plugin/quickjump.vim
 " }}
 
 " plugin {{
@@ -89,7 +80,7 @@ let g:mapleader = ','
   vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
 " }}
 
-" grep {{
+" grep by motion {{
 vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<cr>
 nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<cr>g@
 
@@ -108,6 +99,7 @@ function! s:GrepFromSelected(type)
 endfunction
 " }}
 
+" functions {{
 function! s:NumberToggle()
   if(&number == 1) | set nu! | set rnu! | else | set rnu | set nu | endif
 endfunction
@@ -135,3 +127,4 @@ function! s:Clean()
   " remove windows 
   silent! execute '%s/$//'
 endfunction
+" }}
