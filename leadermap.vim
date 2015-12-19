@@ -13,7 +13,6 @@ let g:mapleader = ','
 
 " content edit {{
   nnoremap <leader>au :!autoprefixer %<cr>
-Next
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
