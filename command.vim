@@ -48,6 +48,7 @@ function! s:EditVimrc(...)
   endif
 endfunction
 
+" L input:[all:day]
 function! s:ShowGitlog(arg)
   let args = split(a:arg, ':', 1)
   let input = get(args, 0, '')

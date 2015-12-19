@@ -39,9 +39,6 @@ call unite#custom#profile('files', 'context', {
 call unite#custom#profile('quickfix', 'context', {
   \  'no_quit': 1
   \ })
-call unite#custom#profile('location_list', 'context', {
-  \  'no_quit': 1
-  \ })
 call unite#custom#profile('gitlog', 'context', {
   \  'no_quit': 1,
   \  'vertical_preview': 1,
@@ -76,6 +73,8 @@ nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep      grep:.<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=location  location_list<cr>
 
+nnoremap [unite]j :UniteNext<cr>
+nnoremap [unite]k :UnitePrevious<cr>
 " Custom mappings for the unite buffer
 augroup unite
   autocmd FileType unite call s:unite_my_settings()
@@ -88,6 +87,6 @@ function! s:unite_my_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   nmap <buffer> <C-h>   <c-w>h
   nmap <buffer> <Esc>   :UniteClose<cr>
-  nmap <buffer> q       :UniteClose<cr>
+  nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> i       ggk<plug>(unite_insert_enter)
 endfunction

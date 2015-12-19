@@ -13,7 +13,7 @@ let g:mapleader = ','
 
 " content edit {{
   nnoremap <leader>au :!autoprefixer %<cr>
-
+Next
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
@@ -96,9 +96,9 @@ nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<cr>g@
 
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
-  if a:type == 'v'
+  if a:type ==# 'v'
       normal! `<v`>y
-  elseif a:type == 'char'
+  elseif a:type ==# 'char'
       normal! `[v`]y
   else
       return
