@@ -64,17 +64,16 @@ nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=file      file<cr>
 nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank      history/yank<cr>
-nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=gitlog    gitlog<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
 nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
 nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep      grep:.<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
-nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=location  location_list<cr>
+nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 
-nnoremap [unite]j :UniteNext<cr>
-nnoremap [unite]k :UnitePrevious<cr>
+nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
+nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
 " Custom mappings for the unite buffer
 augroup unite
   autocmd FileType unite call s:unite_my_settings()
@@ -89,4 +88,8 @@ function! s:unite_my_settings()
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> i       ggk<plug>(unite_insert_enter)
+endfunction
+
+function! s:Jump(count, dir)
+  execute a:count . 'Unite' . a:dir
 endfunction
