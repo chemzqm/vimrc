@@ -1,9 +1,10 @@
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup --hidden'
+  let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup'
   let g:unite_source_rec_async_command =
     \ ['ag', '--nocolor', '-t', '--nogroup',
-    \  '--depth', '15', '--hidden', '-g', '']
+    \  '--depth', '15', '-g', '']
+  let g:unite_source_rec_min_cache_files = 1200
 endif
 
 let g:neomru#follow_links = 1
@@ -21,14 +22,24 @@ call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
 call unite#custom#profile('default', 'context', {
-  \  'start_insert': 1,
   \  'winheight': 10,
   \ })
 call unite#custom#profile('grep', 'context', {
   \  'no_quit': 1
   \ })
+call unite#custom#profile('file_mru', 'context', {
+  \  'start_insert': 1
+  \ })
+call unite#custom#profile('files', 'context', {
+  \  'start_insert': 1
+  \ })
+call unite#custom#profile('quickfix', 'context', {
+  \  'no_quit': 1
+  \ })
+call unite#custom#profile('location_list', 'context', {
+  \  'no_quit': 1
+  \ })
 call unite#custom#profile('gitlog', 'context', {
-  \  'start_insert': 0,
   \  'no_quit': 1,
   \  'vertical_preview': 1,
   \ })
@@ -48,17 +59,19 @@ call unite#custom#profile('file_mru', 'filters', 'sorter_selecta')
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
-nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank     history/yank<cr>
-nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=gitlog   gitlog<cr>
-nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files    file_rec/async:.<cr>
-nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline  outline<cr>
-nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note     note<cr>
-nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist     gist<cr>
-nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=file     file<cr>
-nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process  process<cr>
-nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru file_mru<cr>
-nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer   buffer<cr>
-nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep     grep:.<cr>
+nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
+nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
+nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
+nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=file      file<cr>
+nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank      history/yank<cr>
+nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=gitlog    gitlog<cr>
+nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
+nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
+nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
+nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
+nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep      grep:.<cr>
+nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
+nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=location  location_list<cr>
 
 " Custom mappings for the unite buffer
 augroup unite
