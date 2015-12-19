@@ -30,6 +30,9 @@ call unite#custom#profile('grep', 'context', {
 call unite#custom#profile('file_mru', 'context', {
   \  'start_insert': 1
   \ })
+call unite#custom#profile('file', 'context', {
+  \  'start_insert': 1
+  \ })
 call unite#custom#profile('files', 'context', {
   \  'start_insert': 1
   \ })
