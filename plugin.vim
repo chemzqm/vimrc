@@ -6,14 +6,15 @@ let g:test#javascript#mocha#file_pattern = '\.js'
 let g:jscheck_debug_mode = 1
 
 " syntastic
+let g:syntastic_always_populate_loc_list=1
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": ["vim", "ruby", "php"],
     \ "passive_filetypes": ["javascript"] }
 let g:syntastic_vim_checkers = ['vint']
-let g:syntastic_check_on_wq = 0
 
 " vim-session
 let g:session_default_overwrite =1
@@ -61,7 +62,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:ctrlsf_width = '50%'
 
 " vim-notes
-let g:notes_directories = ['/Users/chemzqm/Documents/notes']
+let g:notes_directories = ['~/Documents/notes']
 let g:notes_title_sync = 'yes'
 
 " vim-shell

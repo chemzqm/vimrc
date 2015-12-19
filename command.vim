@@ -36,7 +36,7 @@ command! -nargs=? -bar                         L       :call s:ShowGitlog('<args
 
 function! s:ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
-    \ "substitute(v:val, '/Users/chemzqm/.vim/vimrc/', '', '')")
+    \ "substitute(v:val, '" . expand('~'). "/.vim/vimrc/', '', '')")
     \ , "\n")
 endfunction
 
@@ -178,6 +178,7 @@ function! s:Publish()
 endfunction
 
 " package directory of current file
+let s:home = expand('~')
 function! s:GetPackageDir()
   let dir = expand('%:p:h')
   while 1
@@ -185,7 +186,7 @@ function! s:GetPackageDir()
       return dir
     endif
     let dir = fnamemodify(dir, ':h')
-    if dir ==# '/Users/chemzqm'
+    if dir ==# s:home
       echohl WarningMsg | echon 'package.json not found' | echohl None
       return
     endif

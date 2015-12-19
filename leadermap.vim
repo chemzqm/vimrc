@@ -40,8 +40,8 @@ let g:mapleader = ','
 " }}
 
 " list {{
-  " /Users/chemzqm/.vim/plugin/togglelist.vim
-  " /Users/chemzqm/.vim/plugin/quickjump.vim
+  " ~/.vim/plugin/togglelist.vim
+  " ~/.vim/plugin/quickjump.vim
 " }}
 
 " plugin {{
@@ -96,9 +96,9 @@ nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<cr>g@
 
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
-  if a:type ==# 'v'
+  if a:type == 'v'
       normal! `<v`>y
-  elseif a:type ==# 'char'
+  elseif a:type == 'char'
       normal! `[v`]y
   else
       return

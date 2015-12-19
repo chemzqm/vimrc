@@ -70,5 +70,5 @@ set rtp+=~/lib/powerline/powerline/bindings/vim
 set wildignore+=*/tmp/*,*.so,*~,*.zip,*/.git/*,*/.svn/*,node_modules,*/.DS_Store,coverage,*/*bundle.js,*.map
 " Source all of the .vim files in ~/.vim/vimrc.d directory.
 for file in split(glob('~/.vim/vimrc/*.vim'), '\n')
-    exe 'source' file
+   exe 'source' file
 endfor
