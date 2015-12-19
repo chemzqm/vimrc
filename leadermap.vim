@@ -103,7 +103,7 @@ function! s:GrepFromSelected(type)
   else
       return
   endif
-  silent execute 'Ag ' . @@
+  silent execute "Ag '\\b" . @@ ."\\b'"
   let @@ = saved_unnamed_register
 endfunction
 " }}
@@ -128,6 +128,7 @@ function! s:Clean()
     silent! execute '%s/;$//'
     " line should not starts with [ or (
     silent! execute '%s/^\s*\zs\([\[(]\)/;\1/'
+    call JsBeautify()
   endif
   " remove tailing white space
   silent! execute '%s/\s\+$//'

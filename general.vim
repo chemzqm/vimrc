@@ -23,7 +23,7 @@ set sessionoptions-=help
 set sessionoptions-=blank
 set sessionoptions-=winpos
 set complete+=k
-set ttimeoutlen=10
+set ttimeoutlen=100
 set tabpagemax=5
 set scrolloff=3
 set list
@@ -64,7 +64,9 @@ set autoindent "Auto indent
 set smartindent
 set wrap "Wrap lines
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+  "set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 if has('autocmd') && exists('+omnifunc')

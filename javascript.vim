@@ -41,8 +41,7 @@
 
 " {{
   function! s:SetJavaScript()
-      nnoremap <buffer> <leader>/ :JsDoc<cr>
-      nnoremap <buffer> <leader>ff :call JsBeautify()<cr>
+      nnoremap <buffer> <leader>d :JsDoc<cr>
       setl foldnestmax=2
       setl foldmethod=syntax
       syn region foldbraces start=/{/ end=/}/ transparent fold keepend extend

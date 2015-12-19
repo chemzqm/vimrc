@@ -22,6 +22,7 @@ command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
+" search with ag and open quickfix window
 command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "normal ,f"|redraw!
 
 " preview module files main/package.json/Readme.md
