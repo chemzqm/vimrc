@@ -103,6 +103,7 @@ function! s:GrepFromSelected(type)
   else
       return
   endif
+  let g:grep_word = @@
   silent execute "Ag '\\b" . @@ ."\\b'"
   let @@ = saved_unnamed_register
 endfunction

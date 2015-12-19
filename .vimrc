@@ -7,7 +7,6 @@ endif
 set runtimepath+=/Users/chemzqm/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('/Users/chemzqm/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'chemzqm/jscheck'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'Shougo/neoyank.vim'
@@ -15,6 +14,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {'build': { 'mac' : 'make' }}
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'chemzqm/jscheck'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -35,7 +35,6 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'junegunn/vim-emoji'
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mileszs/ack.vim'
 NeoBundle 'othree/xml.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'rizzatti/funcoo.vim'

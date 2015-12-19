@@ -16,14 +16,14 @@ command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dic
 
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
 " remove file from filesystem
-command! -nargs=0 -bar Rm       execute 'call Remove()'
-command! -nargs=0 -bar Reset    execute 'call StatusReset()'
+command! -nargs=0 -bar Rm       execute 'call s:Remove()'
+command! -nargs=0 -bar Reset    execute 'call s:StatusReset()'
 command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 " search with ag and open quickfix window
-command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "normal ,f"|redraw!
+command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "Unite -buffer-name=quickfix quickfix"
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
