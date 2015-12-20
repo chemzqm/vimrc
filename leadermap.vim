@@ -88,14 +88,15 @@ nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<cr>g@
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'
-      normal! `<v`>y
+    normal! `<v`>y
+    let g:grep_word = @@
   elseif a:type ==# 'char'
-      normal! `[v`]y
+    normal! `[v`]y
+    let g:grep_word = '\b' . @@ . '\b'
   else
-      return
+    return
   endif
-  let g:grep_word = @@
-  silent execute "Ag '\\b" . @@ ."\\b'"
+  silent execute "Ag '" . g:grep_word ."'"
   let @@ = saved_unnamed_register
 endfunction
 " }}
