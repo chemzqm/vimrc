@@ -32,6 +32,7 @@ let g:mapleader = ','
   nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
+  nnoremap <leader>ag :call <SID>SwitchGrepCmd()<cr>
 " }}
 
 " plugin {{
@@ -126,5 +127,17 @@ function! s:Clean()
   silent! execute '%s/\s\+$//'
   " remove windows 
   silent! execute '%s/$//'
+endfunction
+
+function! s:SwitchGrepCmd()
+  if g:grep_using_git
+    set grepprg=ag\ --vimgrep\ $*
+    let g:grep_using_git = 0
+    echohl Identifier | echon 'grep by ag' | echohl None
+  else
+    set grepprg=grepprg\ $*
+    let g:grep_using_git = 1
+    echohl Identifier | echon 'grep by git' | echohl None
+  endif
 endfunction
 " }}

@@ -66,7 +66,11 @@ set wrap "Wrap lines
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
-  "set grepprg=ag\ --nogroup\ --nocolor
+  let g:grep_using_git = 0
+elseif executable('grepprg')
+  set grepprg=grepprg\ $*
+  set grepformat=%f:%l:%c:%m
+  let g:grep_using_git = 1
 endif
 
 if has('autocmd') && exists('+omnifunc')
