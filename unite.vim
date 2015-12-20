@@ -44,6 +44,7 @@ call unite#custom#profile('quickfix', 'context', {
   \ })
 call unite#custom#profile('location', 'context', {
   \  'no_quit': 1,
+  \  'winheight': 5,
   \  'immediately': 1,
   \ })
 call unite#custom#profile('gitlog', 'context', {

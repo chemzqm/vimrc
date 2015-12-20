@@ -38,7 +38,6 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'othree/xml.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'rizzatti/funcoo.vim'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'tomtom/tlib_vim'
@@ -63,6 +62,7 @@ NeoBundle 'henrik/vim-qargs'
 "NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'xhr/vim-io'
 call neobundle#end()
+set rtp+=~/.vim/bundle/syntastic
 set rtp+=~/vim-dev/unite-location
 filetype plugin indent on
 syntax enable
