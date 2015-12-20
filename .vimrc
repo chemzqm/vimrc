@@ -14,7 +14,6 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {'build': { 'mac' : 'make' }}
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'chemzqm/jscheck'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -53,17 +52,12 @@ NeoBundle 'xolox/vim-shell'
 NeoBundle 'moll/vim-bbye'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'junegunn/fzf'
-NeoBundle 'henrik/vim-qargs'
-"NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'Shougo/vimfiler.vim'
-"NeoBundle 'majutsushi/tagbar'
-"NeoBundle 'tsukkee/unite-tag'
 "NeoBundle 'cakebaker/scss-syntax.vim'
-"NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'xhr/vim-io'
 call neobundle#end()
 set rtp+=~/.vim/bundle/syntastic
 set rtp+=~/vim-dev/unite-location
+set rtp+=~/vim-dev/js-check
 filetype plugin indent on
 syntax enable
 set rtp+=~/lib/powerline/powerline/bindings/vim

@@ -14,6 +14,7 @@ command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 
+command! -nargs=0 -bar Format   execute 'call s:Format()'
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
 " remove file from filesystem
 command! -nargs=0 -bar Rm       execute 'call s:Remove()'
@@ -22,6 +23,7 @@ command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
+command! -nargs=1 -bang Qdo call s:Qdo(<q-bang>, <q-args>)
 " search with ag and open quickfix window
 command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "Unite -buffer-name=quickfix quickfix"
 
@@ -206,4 +208,31 @@ function! s:Dependencies()
     endif
   endfor
   return deps
+endfunction
+
+function! s:Format()
+  let types = ['javascript', 'html', 'xml', 'css', 'json']
+  if index(types, &ft) == -1
+    echohl WarningMsg | echon 'not supported filetype' | echohl None
+    return
+  endif
+  call JsBeautify()
+endfunction
+
+function! s:Qdo(bang, command)
+  if exists('w:quickfix_title')
+    let in_quickfix_window = 1
+    cclose
+  else
+    let in_quickfix_window = 0
+  endif
+
+  arglocal
+  exe 'args '.s:QuickfixFilenames()
+  exe 'argdo'.a:bang.' '.a:command
+  argglobal
+
+  if in_quickfix_window
+    copen
+  endif
 endfunction
