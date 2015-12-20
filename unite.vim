@@ -21,6 +21,9 @@ call unite#custom#source(
 call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
+call unite#custom#source(
+  \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
+  \ )
 call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
   \ })
@@ -85,11 +88,17 @@ function! s:unite_my_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   nmap <buffer> <C-h>   <c-w>h
+  nmap <buffer> <C-r>   <Plug>(unite_redraw)
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)
-  nmap <buffer> i       ggk<plug>(unite_insert_enter)
+  nmap <buffer> H       <Plug>(unite_quick_help)
+  nmap <buffer> i       <plug>(unite_append_end)
 endfunction
 
 function! s:Jump(count, dir)
-  execute a:count . 'Unite' . a:dir
+  if a:count == 1
+    execute 'Unite' . a:dir
+  else
+    execute a:count . 'Unite' . a:dir
+  endif
 endfunction
