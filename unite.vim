@@ -42,6 +42,10 @@ call unite#custom#profile('files', 'context', {
 call unite#custom#profile('quickfix', 'context', {
   \  'no_quit': 1
   \ })
+call unite#custom#profile('location', 'context', {
+  \  'no_quit': 1,
+  \  'immediately': 1,
+  \ })
 call unite#custom#profile('gitlog', 'context', {
   \  'no_quit': 1,
   \  'vertical_preview': 1,
@@ -88,7 +92,7 @@ function! s:unite_my_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   nmap <buffer> <C-h>   <c-w>h
-  nmap <buffer> <C-r>   <Plug>(unite_redraw)
+  nmap <buffer> <C-r>   <Plug>(unite_restart)
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> H       <Plug>(unite_quick_help)

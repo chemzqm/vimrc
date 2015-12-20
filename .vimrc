@@ -63,6 +63,7 @@ NeoBundle 'henrik/vim-qargs'
 "NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'xhr/vim-io'
 call neobundle#end()
+set rtp+=~/vim-dev/unite-location
 filetype plugin indent on
 syntax enable
 set rtp+=~/lib/powerline/powerline/bindings/vim
@@ -72,3 +73,8 @@ set wildignore+=*/tmp/*,*.so,*~,*.zip,*/.git/*,*/.svn/*,node_modules,*/.DS_Store
 for file in split(glob('~/.vim/vimrc/*.vim'), '\n')
    exe 'source' file
 endfor
+
+iabbrev @G chemzqm@gmail.com
+iabbrev @C Copyright 2015 Qiming Zhao, all rights reserved
+iabbrev mocah mocha
+iabbrev fi if
