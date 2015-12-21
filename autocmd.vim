@@ -24,7 +24,6 @@ endfunction
 " css {{
 augroup css
   autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType css inoremap <buffer> { {<CR>}<C-o>O
 augroup end
 " }}
@@ -35,6 +34,8 @@ augroup javascript
   autocmd!
   au FileType javascript :call s:SetJavaScript()
   au FileType javascript :call s:SetLoadFunctions()
+  " use omnicomplete as I'm using tern
+  autocmd FileType html let b:vcm_tab_complete = "omni"
 augroup end
 
 function! s:SetJavaScript()
@@ -95,4 +96,7 @@ endfunction
     let pandoc_pipeline .= ' | pandoc --from=markdown --to=html'
     autocmd FileType html let &formatprg=pandoc_pipeline
   augroup end
+" }}
+
+" json handlebar {{
 " }}

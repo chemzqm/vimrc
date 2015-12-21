@@ -19,7 +19,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": ["vim", "ruby", "php"],
-    \ "passive_filetypes": ["javascript"] }
+    \ "passive_filetypes": ["javascript", "html"] }
 let g:syntastic_vim_checkers = ['vint']
 " }}
 
@@ -85,7 +85,7 @@ let g:shell_mappings_enabled = 0
 " }}
 
 " vim-gitgutter {{
-let g:gitgutter_max_signs = 9999
+let g:gitgutter_max_signs = 999
 " }}
 
 " tern_for_vim {{

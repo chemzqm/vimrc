@@ -15,11 +15,12 @@ command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 
 command! -nargs=0 -bar Format   execute 'call s:Format()'
+command! -nargs=0 -bar Jsongen  execute 'call s:Jsongen()'
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
 " remove file from filesystem
 command! -nargs=0 -bar Rm       execute 'call s:Remove()'
 command! -nargs=0 -bar Reset    execute 'call s:StatusReset()'
-command! -nargs=0 -bar Emoji    execute 'set completefunc=emoji#complete'
+command! -nargs=0 -bar Emoji    execute 'setl completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
@@ -235,4 +236,20 @@ function! s:Qdo(bang, command)
   if in_quickfix_window
     copen
   endif
+endfunction
+
+function! s:Jsongen()
+  let file = expand('%')
+  if !&filetype =~? 'handlebars$'
+    echoerr 'file type should be handlebars'
+    return
+  endif
+  let out = substitute(file, '\v\zs(\w*)\.hbs', '\1.json', '')
+  echo out
+  let output = system('Jsongen ' . file . ' > ' . out)
+  if v:shell_error && output !=# ""
+    echohl WarningMsg | echon output | echohl None
+    return
+  endif
+  execute 'belowright vs ' . out
 endfunction

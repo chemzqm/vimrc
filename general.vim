@@ -21,7 +21,6 @@ set fileformats=unix,dos
 set diffopt=vertical
 set sessionoptions-=help
 set sessionoptions-=blank
-set sessionoptions-=winpos
 set complete+=k
 set ttimeoutlen=100
 set tabpagemax=5
@@ -86,3 +85,22 @@ hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=da
 
 " change default search highlight
 hi Search guibg=#3c3c3c guifg=#D8D8DC
+
+set completefunc=SnipComplete
+function! SnipComplete(findstart, base)
+    if a:findstart
+        let line = getline('.')
+        let start = col('.') - 1
+        while start > 0 && line[start - 1] =~ '\a'
+            let start -= 1
+        endwhile
+        return start
+    else
+        let suggestions = []
+        for entry in keys(UltiSnips#SnippetsInCurrentScope())
+            if entry =~ '^' . a:base
+                call add(suggestions, entry)
+            endif
+        endfor
+        return suggestions
+endfunction
