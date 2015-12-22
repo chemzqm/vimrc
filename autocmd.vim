@@ -52,6 +52,8 @@ function! s:SetJavaScript()
     setl si
     setl nofen
     setl textwidth=80
+    noremap <buffer> <silent> [[ ?function\s*(.*\zs{$<CR>w99[{
+    noremap <buffer> <silent> ][ /^}<CR>b99]}
 endfunction
 
 function! s:SetLoadFunctions()

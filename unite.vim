@@ -79,6 +79,7 @@ nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
 nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep      grep:.<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
+nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 
 nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
 nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
@@ -93,6 +94,7 @@ function! s:unite_my_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   nmap <buffer> <C-h>   <c-w>h
+  nmap <buffer> <C-k>   <c-w>k
   nmap <buffer> <C-r>   <Plug>(unite_restart)
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)

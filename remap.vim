@@ -1,8 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
 " word {{
-  inoremap <C-u> <esc>BveUei
-  nnoremap <C-u> BveUe
+  inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
   " like emacs
   inoremap <C-h> <BS>
   inoremap <C-d> <Del>
@@ -24,6 +23,13 @@
   nnoremap <c-h> <c-w>h
   nnoremap <c-j> <c-w>j
   nnoremap <c-k> <c-w>k
+" }}
+
+" fix section movemont {{
+  noremap [[ ?{<CR>w99[{
+  noremap ][ /}<CR>b99]}
+  noremap ]] j0[[%/{<CR>
+  noremap [] k$][%?}<CR>
 " }}
 
 " tab {{
