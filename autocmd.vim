@@ -52,8 +52,8 @@ function! s:SetJavaScript()
     setl si
     setl nofen
     setl textwidth=80
-    noremap <buffer> <silent> [[ ?\<function\>.*\zs{$<CR>:nohlsearch<CR>$
-    noremap <buffer> <silent> ][ /^\s*}<CR>:nohlsearch<CR>]}
+    noremap <buffer> <silent> [[ ?\<function\>.*{$?e<CR>:nohlsearch<CR>
+    noremap <buffer> <silent> ][ ?\<function\>.*{$?e%<CR>:nohlsearch<CR>
     onoremap <buffer> [[ :<c-u>call <SID>SelectToFunctionStart()<cr>
     onoremap <buffer> ][ :<c-u>call <SID>SelectToFunctionEnd()<cr>
     onoremap <buffer> if :<c-u>call <SID>SelectInsideFunction()<cr>

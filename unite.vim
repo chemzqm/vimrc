@@ -83,6 +83,7 @@ nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep      grep:.<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
+nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji emoji<cr>
 
 nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
 nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>

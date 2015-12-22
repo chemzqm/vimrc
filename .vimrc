@@ -61,6 +61,7 @@ set rtp+=~/vim-dev/unite-js-func
 set rtp+=~/vim-dev/unite-git-log
 set rtp+=~/vim-dev/js-check
 set rtp+=~/vim-dev/comment.vim
+set rtp+=~/vim-dev/snippets
 filetype plugin indent on
 syntax enable
 set rtp+=~/lib/powerline/powerline/bindings/vim
