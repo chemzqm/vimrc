@@ -27,6 +27,9 @@ call unite#custom#source(
 call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
   \ })
+call unite#custom#profile('ultisnips', 'context', {
+  \  'winheight': 20,
+  \ })
 call unite#custom#profile('grep', 'context', {
   \  'no_quit': 1
   \ })
