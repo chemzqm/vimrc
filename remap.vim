@@ -26,10 +26,10 @@
 " }}
 
 " fix section movemont {{
-  noremap [[ ?{<CR>w99[{
-  noremap ][ /}<CR>b99]}
-  noremap ]] j0[[%/{<CR>
-  noremap [] k$][%?}<CR>
+  noremap <silent> [[ ?{<CR>w99[{
+  noremap <silent> ][ /}<CR>b99]}
+  noremap <silent> ]] j0[[%/{<CR>
+  noremap <silent> [] k$][%?}<CR>
 " }}
 
 " tab {{

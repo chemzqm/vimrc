@@ -52,8 +52,12 @@ function! s:SetJavaScript()
     setl si
     setl nofen
     setl textwidth=80
-    noremap <buffer> <silent> [[ ?function\s*(.*\zs{$<CR>w99[{
-    noremap <buffer> <silent> ][ /^}<CR>b99]}
+    noremap <buffer> <silent> [[ ?\<function\>.*\zs{$<CR>:nohlsearch<CR>$
+    noremap <buffer> <silent> ][ /^\s*}<CR>:nohlsearch<CR>]}
+    onoremap <buffer> [[ :<c-u>call <SID>SelectToFunctionStart()<cr>
+    onoremap <buffer> ][ :<c-u>call <SID>SelectToFunctionEnd()<cr>
+    onoremap <buffer> if :<c-u>call <SID>SelectInsideFunction()<cr>
+    onoremap <buffer> af :<c-u>call <SID>SelectAllFunction()<cr>
 endfunction
 
 function! s:SetLoadFunctions()
@@ -76,6 +80,75 @@ function! s:LoadFunctions(type, ...)
     execute 'Unite func -buffer-name=func -custom-func-type=' . type
             \. ' -input=' . input
   endif
+endfunction
+
+function! s:SelectInsideFunction()
+  let sr = s:FindFunctionStart() + 1
+  let er = s:FindFunctionEnd() - 1
+  if sr == -1 || er == -1
+    return
+  endif
+  execute 'normal! ' . sr . 'GV' . er . 'G'
+endfunction
+
+function! s:SelectAllFunction()
+  let sr = s:FindFunctionStart()
+  let er = s:FindFunctionEnd()
+  if sr == -1 || er == -1
+    return
+  endif
+  execute 'normal! ' . sr . 'GV' . er . 'G'
+endfunction
+
+function! s:SelectToFunctionStart()
+  let nr = line('.')
+  let sr = s:FindFunctionStart()
+  if sr == -1 | return | endif
+  let n = nr - sr - 1
+  if n == 0
+    execute 'normal! V'
+  else
+    execute 'normal! V' . n . 'k'
+  endif
+endfunction
+
+function! s:SelectToFunctionEnd()
+  let nr = line('.')
+  let er = s:FindFunctionEnd()
+  if er == -1 | return| endif
+  let n = er - nr - 1
+  if n == 0
+    execute 'normal! V'
+  else
+    execute 'normal! V' . n . 'j'
+  endif
+endfunction
+
+function! s:FindFunctionStart()
+  let nr = line('.')
+  while nr != 1
+    let line = getline(nr - 1)
+    if line =~# '\v<function>'
+      return nr - 1
+    endif
+    let nr = nr - 1
+  endwhile
+  return -1
+endfunction
+
+function! s:FindFunctionEnd()
+  let start = s:FindFunctionStart()
+  if start == -1 | return -1 | endif
+  let ind = indent(start)
+  let last = line('$')
+  let nr = line('.')
+  while nr != last
+    if indent(nr + 1) == ind
+      return nr + 1
+    endif
+    let nr = nr + 1
+  endwhile
+  return -1
 endfunction
 " }}
 
