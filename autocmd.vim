@@ -52,12 +52,18 @@ function! s:SetJavaScript()
     setl si
     setl nofen
     setl textwidth=80
-    noremap <buffer> <silent> [[ ?\<function\>.*{$?e<CR>:nohlsearch<CR>
-    noremap <buffer> <silent> ][ ?\<function\>.*{$?e%<CR>:nohlsearch<CR>
-    onoremap <buffer> [[ :<c-u>call <SID>SelectToFunctionStart()<cr>
-    onoremap <buffer> ][ :<c-u>call <SID>SelectToFunctionEnd()<cr>
-    onoremap <buffer> if :<c-u>call <SID>SelectInsideFunction()<cr>
-    onoremap <buffer> af :<c-u>call <SID>SelectAllFunction()<cr>
+    noremap  <script> <buffer> <silent> [] :call <SID>GotoSection(0)<cr>
+    noremap  <script> <buffer> <silent> ]] :call <SID>GotoSection(1)<cr>
+    noremap  <script> <buffer> <silent> [[ :call <SID>GotoSection(0)<cr>
+    noremap  <script> <buffer> <silent> ][ :call <SID>GotoSection(1)<cr>
+    onoremap <script> <buffer> <silent> [[ :<c-u>call <SID>SelectSection(0, 0)<cr>
+    onoremap <script> <buffer> <silent> ][ :<c-u>call <SID>SelectSection(1, 0)<cr>
+    vnoremap <script> <buffer> <silent> [[ :<c-u>call <SID>SelectSection(0, 1)<cr>
+    vnoremap <script> <buffer> <silent> ][ :<c-u>call <SID>SelectSection(1, 1)<cr>
+    onoremap <script> <buffer> <silent> if :<c-u>call <SID>SelectInsideFunction()<cr>
+    onoremap <script> <buffer> <silent> af :<c-u>call <SID>SelectAllFunction()<cr>
+    vnoremap <script> <buffer> <silent> if :<c-u>call <SID>SelectInsideFunction()<cr>
+    vnoremap <script> <buffer> <silent> af :<c-u>call <SID>SelectAllFunction()<cr>
 endfunction
 
 function! s:SetLoadFunctions()
@@ -100,36 +106,33 @@ function! s:SelectAllFunction()
   execute 'normal! ' . sr . 'GV' . er . 'G'
 endfunction
 
-function! s:SelectToFunctionStart()
-  let nr = line('.')
-  let sr = s:FindFunctionStart()
-  if sr == -1 | return | endif
-  let n = nr - sr - 1
-  if n == 0
+function! s:SelectSection(close, visual)
+  let cr = line('.')
+  let tail = a:close ? 'End' : 'Start'
+  let nr = cr
+  execute "let nr = s:FindFunction" . tail . "()"
+  if nr == -1 | return | endif
+  let n = a:close ? nr - cr - 1 : cr - nr -1
+  if n < 0
+    return
+  elseif n == 0
     execute 'normal! V'
   else
-    execute 'normal! V' . n . 'k'
-  endif
-endfunction
-
-function! s:SelectToFunctionEnd()
-  let nr = line('.')
-  let er = s:FindFunctionEnd()
-  if er == -1 | return| endif
-  let n = er - nr - 1
-  if n == 0
-    execute 'normal! V'
-  else
-    execute 'normal! V' . n . 'j'
+    execute 'normal! V' . n . (a:close ? 'j' : 'k')
   endif
 endfunction
 
 function! s:FindFunctionStart()
   let nr = line('.')
+  let pi = indent(nr)
   while nr != 1
     let line = getline(nr - 1)
-    if line =~# '\v<function>'
+    let ci = indent(nr - 1)
+    if line =~# '\v<function>' && ci < pi
       return nr - 1
+    endif
+    if line !~# '^\s*$' && ci < pi
+      let pi = ci
     endif
     let nr = nr - 1
   endwhile
@@ -143,12 +146,20 @@ function! s:FindFunctionEnd()
   let last = line('$')
   let nr = line('.')
   while nr != last
-    if indent(nr + 1) == ind
+    if indent(nr + 1) == ind && getline(nr) !~# '^\s*$'
       return nr + 1
     endif
     let nr = nr + 1
   endwhile
   return -1
+endfunction
+
+function! s:GotoSection(close)
+  let nr = -1
+  let tail = a:close ? 'End' : 'Start'
+  execute "let nr = s:FindFunction" . tail . "()"
+  if nr == -1 | return | endif
+  execute "normal! " . nr . "G" . (a:close ? '^' : '$')
 endfunction
 " }}
 
