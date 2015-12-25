@@ -1,4 +1,4 @@
-" vim: foldmethod=syntax foldlevel=0:
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
@@ -26,7 +26,8 @@ command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=1 -bang Qdo call s:Qdo(<q-bang>, <q-args>)
 " search with ag and open quickfix window
-command! -nargs=+ -bar -complete=file Ag silent! grep! <args>|execute "Unite -buffer-name=quickfix quickfix"
+command! -nargs=+ -bar -complete=file Ag call s:Quickfix('ag', <q-args>)
+command! -nargs=+ -bar Ns call s:Quickfix('note', <q-args>)
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
@@ -36,6 +37,17 @@ command! -nargs=? -complete=custom,s:ListVimrc   E     :call s:EditVimrc(<f-args
 command! -nargs=* -bar                         Update  execute "Start ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar                         Publish :call s:Publish()
 command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
+
+function! s:Quickfix(type, arg)
+  let g:grep_word = substitute(split(a:arg, ' ')[-1],
+      \ "\\v^\\'(.*)\\'$", "\\1", "")
+  if a:type ==# 'ag'
+    execute "silent grep! " . a:arg
+  elseif a:type ==# 'note'
+    execute "silent SearchNote! " . a:arg
+  endif
+  execute "Unite -buffer-name=quickfix quickfix"
+endfunction
 
 function! s:ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),

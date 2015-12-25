@@ -20,7 +20,6 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'dag/vim-fish', '825853f'
 NeoBundle 'dyng/ctrlsf.vim'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'ajh17/VimCompletesMe'
 NeoBundle 'empanda/vim-varnish'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'godlygeek/tabular'
@@ -65,7 +64,6 @@ set rtp+=~/vim-dev/snippets
 filetype plugin indent on
 syntax enable
 set rtp+=~/lib/powerline/powerline/bindings/vim
-
 set wildignore+=*/tmp/*,*.so,*~,*.zip,*/.git/*,*/.svn/*,node_modules,*/.DS_Store,coverage,*/*bundle.js,*.map
 " Source all of the .vim files in ~/.vim/vimrc.d directory.
 for file in split(glob('~/.vim/vimrc/*.vim'), '\n')

@@ -53,7 +53,7 @@ let g:mapleader = ','
   map <leader>sf :CtrlSF<space>
   " vim-notes
   map <leader>ne :Note
-  map <leader>ns :SearchNotes
+  map <leader>ns :Ns 
   map <leader>nd :DeleteNote<cr>
   map <leader>nr :RecentNotes<cr>
   map <leader>nl :RelatedNotes<cr>
@@ -89,14 +89,14 @@ function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'
     normal! `<v`>y
-    let g:grep_word = @@
+    let command = "Ag"
   elseif a:type ==# 'char'
     normal! `[v`]y
-    let g:grep_word = '\b' . @@ . '\b'
+    let command = "Ag -w"
   else
     return
   endif
-  silent execute "Ag '" . g:grep_word ."'"
+  silent execute command . " '" . @@ . "'"
   let @@ = saved_unnamed_register
 endfunction
 " }}
