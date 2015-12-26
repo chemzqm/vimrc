@@ -184,5 +184,12 @@ endfunction
   augroup end
 " }}
 
+" fish {{
+  augroup fish
+    autocmd!
+    autocmd FileType fish setl noexpandtab
+  augroup end
+" }}
+
 " json handlebar {{
 " }}

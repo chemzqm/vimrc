@@ -52,7 +52,7 @@ let g:mapleader = ','
   map <leader>st :CtrlSFToggle<cr>
   map <leader>sf :CtrlSF<space>
   " vim-notes
-  map <leader>ne :Note
+  map <leader>ne :Note 
   map <leader>ns :Ns 
   map <leader>nd :DeleteNote<cr>
   map <leader>nr :RecentNotes<cr>

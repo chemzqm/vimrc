@@ -2,7 +2,12 @@
 
 " vim-test {{
 let g:test#javascript#mocha#file_pattern = '\.js'
-"let test#strategy = "dispatch"
+function! s:StartTest(cmd)
+  execute 'silent Start ' . a:cmd
+endfunction
+
+let g:test#custom_strategies = {'start': function('s:StartTest')}
+let g:test#strategy = 'start'
 " }}
 
 " jscheck {{
