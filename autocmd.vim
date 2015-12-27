@@ -21,6 +21,16 @@ function! OnBufEnter()
 endfunction
 " }}
 
+" auto cloase preview{{
+  autocmd CompleteDone * call AutoClosePreviewWindow()
+
+  function! AutoClosePreviewWindow()
+    if !&l:previewwindow
+      pclose
+    endif
+  endfunction
+" }}
+
 " css {{
 augroup css
   autocmd!

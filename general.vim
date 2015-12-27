@@ -78,7 +78,7 @@ if has('autocmd') && exists('+omnifunc')
     \setlocal omnifunc=syntaxcomplete#Complete |
     \endif
 endif
-set completeopt=menu
+set completeopt=menu,preview
 hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
@@ -91,16 +91,22 @@ function! SnipComplete(findstart, base)
     if a:findstart
         let line = getline('.')
         let start = col('.') - 1
-        while start > 0 && line[start - 1] =~ '\a'
+        while start > 0 && line[start - 1] =~# '\a'
             let start -= 1
         endwhile
         return start
     else
         let suggestions = []
-        for entry in keys(UltiSnips#SnippetsInCurrentScope())
-            if entry =~ '^' . a:base
+        for item in UltiSnips#SnippetsInCurrentScope()
+            let trigger = item[0]
+            if trigger =~ '^' . a:base
+                let menu = fnamemodify(item[2], ':t:r')
+                let entry = {'word': trigger, 'menu': menu, 'info': item[1]}
                 call add(suggestions, entry)
             endif
         endfor
         return suggestions
+    endif
 endfunction
+
+i
