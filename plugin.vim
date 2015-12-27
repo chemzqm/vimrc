@@ -3,7 +3,7 @@
 " vim-test {{
 let g:test#javascript#mocha#file_pattern = '\.js'
 function! s:StartTest(cmd)
-  execute 'silent Start ' . a:cmd
+  execute 'Start ' . a:cmd
 endfunction
 
 let g:test#custom_strategies = {'start': function('s:StartTest')}

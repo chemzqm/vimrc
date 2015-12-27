@@ -79,7 +79,6 @@ nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
 nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
-nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=grep      grep:.<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>

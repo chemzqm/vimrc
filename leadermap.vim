@@ -89,14 +89,12 @@ function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@
   if a:type ==# 'v'
     normal! `<v`>y
-    let command = "Ag"
   elseif a:type ==# 'char'
     normal! `[v`]y
-    let command = "Ag -w"
   else
     return
   endif
-  silent execute command . " '" . @@ . "'"
+  silent execute "Ag -Q '" . @@ . "'"
   let @@ = saved_unnamed_register
 endfunction
 " }}
