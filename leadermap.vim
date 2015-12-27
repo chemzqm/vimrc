@@ -10,7 +10,7 @@ let g:mapleader = ','
   " search
   nnoremap <leader>/ :Ag<SPACE>
   nmap <leader>f \\f
-  nmap <leader>b \\F
+  nmap <leader>F \\F
 " }}
 
 " content edit {{
