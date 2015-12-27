@@ -94,7 +94,7 @@ function! s:GrepFromSelected(type)
   else
     return
   endif
-  let word = escape(@@, '|')
+  let word = substitute(escape(@@, '|'), "'","''",'g')
   silent execute "Ag -Q '" . word . "'"
   let @@ = saved_unnamed_register
 endfunction

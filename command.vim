@@ -40,7 +40,7 @@ command! -nargs=? -bar                         L       :call s:ShowGitlog('<args
 
 function! s:Quickfix(type, arg)
   if a:arg =~# "\\v'.+'"
-    let g:grep_word = matchlist(a:arg, "\\v'(.+)'")[1]
+    let g:grep_word = substitute(matchlist(a:arg, "\\v'(.+)'")[1], "''", "'", 'g')
   else
     let g:grep_word = split(a:arg, ' ')[-1]
   endif
