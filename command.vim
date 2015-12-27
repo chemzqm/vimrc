@@ -39,10 +39,13 @@ command! -nargs=0 -bar                         Publish :call s:Publish()
 command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
 
 function! s:Quickfix(type, arg)
-  let g:grep_word = substitute(split(a:arg, ' ')[-1],
-      \ "\\v^\\'(.*)\\'$", "\\1", "")
+  if a:arg =~# "\\v'.+'"
+    let g:grep_word = matchlist(a:arg, "\\v'(.+)'")[1]
+  else
+    let g:grep_word = split(a:arg, ' ')[-1]
+  endif
   if a:type ==# 'ag'
-    execute "silent grep! " . a:arg
+    execute "silent! grep! " . escape(a:arg, '|')
   elseif a:type ==# 'note'
     execute "silent SearchNote! " . a:arg
   endif
