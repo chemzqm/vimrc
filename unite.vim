@@ -84,7 +84,7 @@ nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji emoji<cr>
 
-nmap [unite]u :call <SID>ToggleUnite()<cr>
+nmap <leader>u :call <SID>ToggleUnite()<cr>
 nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
 nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
 " Custom mappings for the unite buffer

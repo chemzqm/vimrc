@@ -2,6 +2,7 @@
 
 " vim-test {{
 let g:test#javascript#mocha#file_pattern = '\.js'
+let g:test#javascript#mocha#options = '-c'
 function! s:StartTest(cmd)
   execute 'Start ' . a:cmd
 endfunction
