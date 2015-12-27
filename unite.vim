@@ -2,8 +2,8 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup'
   let g:unite_source_rec_async_command =
-    \ ['ag', '--nocolor', '-t', '--nogroup',
-    \  '--depth', '15', '-g', '']
+    \ ['ag', '--nocolor', '--nogroup',
+    \  '--depth', '10', '-g', '']
   let g:unite_source_rec_min_cache_files = 1200
 endif
 
@@ -73,7 +73,7 @@ nmap <space>  [unite]
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
-nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=file      file<cr>
+"nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=file      file<cr>
 nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank      history/yank<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>

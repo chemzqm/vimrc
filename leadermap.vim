@@ -9,6 +9,8 @@ let g:mapleader = ','
   nnoremap <leader>{ F)a<space>{<enter><space><space><esc>o<esc>i}<esc>O<tab>
   " search
   nnoremap <leader>/ :Ag<SPACE>
+  nmap <leader>f \\f
+  nmap <leader>b \\F
 " }}
 
 " content edit {{
@@ -94,8 +96,9 @@ function! s:GrepFromSelected(type)
   else
     return
   endif
-  let word = substitute(escape(@@, '|'), "'","''",'g')
-  silent execute "Ag -Q '" . word . "'"
+  let word = substitute(@@, "'","''",'g')
+  let word = substitute(word, '\n$', '', 'g')
+  call g:Quickfix('ag', "-Q '" . word . "'")
   let @@ = saved_unnamed_register
 endfunction
 " }}

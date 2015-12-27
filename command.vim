@@ -26,8 +26,8 @@ command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=1 -bang Qdo call s:Qdo(<q-bang>, <q-args>)
 " search with ag and open quickfix window
-command! -nargs=+ -bar -complete=file Ag call s:Quickfix('ag', <q-args>)
-command! -nargs=+ -bar Ns call s:Quickfix('note', <q-args>)
+command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <q-args>)
+command! -nargs=+ Ns call g:Quickfix('note', <q-args>)
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
@@ -38,14 +38,14 @@ command! -nargs=* -bar                         Update  execute "Start ~/.vim/vim
 command! -nargs=0 -bar                         Publish :call s:Publish()
 command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
 
-function! s:Quickfix(type, arg)
+function! g:Quickfix(type, arg)
   if a:arg =~# "\\v'.+'"
     let g:grep_word = substitute(matchlist(a:arg, "\\v'(.+)'")[1], "''", "'", 'g')
   else
     let g:grep_word = split(a:arg, ' ')[-1]
   endif
   if a:type ==# 'ag'
-    execute "silent! grep! " . escape(a:arg, '|')
+    execute "silent! grep! " . escape(a:arg, '#%*')
   elseif a:type ==# 'note'
     execute "silent SearchNote! " . a:arg
   endif
