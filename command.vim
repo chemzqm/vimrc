@@ -99,7 +99,7 @@ function! s:ListModules(A, L, p)
 endfunction
 
 function! s:Push()
-  execute 'ItermStart! -dir='. expand('%:p:h') . ' git push'
+  execute 'ItermStartTab! -dir='. expand('%:p:h') . ' git push'
 endfunction
 
 function! s:CheckOut()
