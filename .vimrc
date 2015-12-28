@@ -56,6 +56,7 @@ set rtp+=~/.vim/bundle/ultisnips
 set rtp+=~/.vim/bundle/syntastic
 set rtp+=~/.vim/bundle/vim-snippets
 set rtp+=~/vim-dev/unite-location
+set rtp+=~/vim-dev/vim-iterm2-start
 set rtp+=~/vim-dev/unite-js-func
 set rtp+=~/vim-dev/unite-git-log
 set rtp+=~/vim-dev/js-check
