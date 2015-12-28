@@ -37,7 +37,7 @@ command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<a
 command! -nargs=1 -complete=custom,s:ListModules J     :call s:PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,s:ListModules H     :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -complete=custom,s:ListVimrc   E     :call s:EditVimrc(<f-args>)
-command! -nargs=* -bar                         Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
+command! -nargs=* -bar                         Update  execute "ItermStart! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar                         Publish :call s:Publish()
 command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
 
