@@ -35,6 +35,7 @@ let g:mapleader = ','
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
   nnoremap <leader>ag :call <SID>SwitchGrepCmd()<cr>
+  nnoremap <leader>bg :call <SID>ToggleBackground()<cr>
 " }}
 
 " plugin {{
@@ -104,6 +105,16 @@ endfunction
 " }}
 
 " functions {{
+let g:background_light = 1
+function! s:ToggleBackground()
+  if g:background_light
+    set background=dark
+    let g:background_light = 0
+  else
+    set background=light
+    let g:background_light = 1
+  endif
+endfunction
 function! s:NumberToggle()
   if(&number == 1) | set nu! | set rnu! | else | set rnu | set nu | endif
 endfunction

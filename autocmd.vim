@@ -5,6 +5,7 @@ augroup fileRead
   autocmd!
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup end
 
 function! OnBufEnter()
