@@ -7,7 +7,6 @@ endif
 set runtimepath+=/Users/chemzqm/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('/Users/chemzqm/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'Shougo/neomru.vim'

@@ -1,25 +1,28 @@
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
+" vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
 command! -nargs=0 -bar Gd  :call s:GitDiff()
 command! -nargs=0 -bar Gp  :call s:Push()
-command! -nargs=* -bar Gc  silent execute 'Gcommit '. expand('%') . " -m '<args>' " | echo 'done'
-command! -nargs=0 -bar Gca execute 'Gcommit -a -v'
+command! -nargs=* -bar Gc  execute 'silent Gcommit '. expand('%') . " -m '<args>' " | echo 'done'
+command! -nargs=0 -bar Gca execute 'silent Gcommit -a -v'
 command! -nargs=0 -bar Gco :call s:CheckOut()
 
 " add dictionary
+command! -nargs=0 -bar Node    execute 'setl dictionary+=~/.vim/dict/node.dict'
 command! -nargs=0 -bar Dom     execute 'setl dictionary+=~/.vim/dict/dom.dict'
 command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 
-command! -nargs=0 -bar Format   execute 'call s:Format()'
-command! -nargs=0 -bar Jsongen  execute 'call s:Jsongen()'
+" Copy file to system clipboard
 command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
 " remove file from filesystem
-command! -nargs=0 -bar Rm       execute 'call s:Remove()'
-command! -nargs=0 -bar Reset    execute 'call s:StatusReset()'
+command! -nargs=* -complete=file Rm       :call s:Remove(<f-args>)
+command! -nargs=+ -bar Mdir     :call s:Mkdir(<f-args>)
+command! -nargs=0 -bar Format   :call s:Format()
+command! -nargs=0 -bar Jsongen  :call s:Jsongen()
+command! -nargs=0 -bar Reset    :call s:StatusReset()
 command! -nargs=0 -bar Emoji    execute 'setl completefunc=emoji#complete'
 command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
@@ -50,6 +53,12 @@ function! g:Quickfix(type, ...)
     execute "silent SearchNote! " . join(a:000, ' ')
   endif
   execute "silent Unite -buffer-name=quickfix quickfix"
+endfunction
+
+function! s:Mkdir(...)
+  for str in a:000
+    call mkdir(str, 'p')
+  endfor
 endfunction
 
 function! s:FindPattern(list)
@@ -132,13 +141,18 @@ function! s:GitDiff()
   execute 'silent cd ' . cwd
 endfunction
 
-function! s:Remove()
-  let file = expand('%:p')
-  let buf = bufnr('%')
-  execute 'bwipeout ' . buf
-  if filereadable(file)
-    call system('rm '.file)
+function! s:Remove(...)
+  if a:0 ==# 0
+    let file = expand('%:p')
+    let buf = bufnr('%')
+    execute 'bwipeout ' . buf
+    call system('rm -f'.file)
+  else
+    for str in a:000
+      call system('rm -rf ' . str)
+    endfor
   endif
+
 endfunction
 
 function! s:QuickfixFilenames()
