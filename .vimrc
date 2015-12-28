@@ -28,7 +28,6 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'moll/vim-bbye'
-NeoBundle 'othree/xml.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tommcdo/vim-exchange'
@@ -43,7 +42,6 @@ call neobundle#end()
 set rtp+=~/.vim/bundle/vim-easymotion
 set rtp+=~/.vim/bundle/ultisnips
 set rtp+=~/.vim/bundle/syntastic
-set rtp+=~/.vim/bundle/vim-snippets
 for path in split(glob('~/vim-dev/*'), '\n')
    exe 'set rtp+=' . path
 endfor
