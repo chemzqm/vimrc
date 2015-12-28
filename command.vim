@@ -217,7 +217,7 @@ endfunction
 function! s:Publish()
   " file at ~/bin/publish
   let dir = s:GetPackageDir()
-  execute 'Start -dir=' . dir . ' -title=publish publish'
+  execute 'ItermStart! -dir=' . dir . ' -title=publish publish'
 endfunction
 
 " package directory of current file
