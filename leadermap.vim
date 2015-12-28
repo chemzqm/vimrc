@@ -96,9 +96,8 @@ function! s:GrepFromSelected(type)
   else
     return
   endif
-  let word = substitute(@@, "'","''",'g')
-  let word = substitute(word, '\n$', '', 'g')
-  call g:Quickfix('ag', "-Q '" . word . "'")
+  let word = substitute(@@, '\n$', '', 'g')
+  call g:Quickfix('ag', "-Q ", word)
   let @@ = saved_unnamed_register
 endfunction
 " }}

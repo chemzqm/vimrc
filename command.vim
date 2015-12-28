@@ -26,8 +26,8 @@ command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 command! -nargs=1 -bang Qdo call s:Qdo(<q-bang>, <q-args>)
 " search with ag and open quickfix window
-command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <q-args>)
-command! -nargs=+ Ns call g:Quickfix('note', <q-args>)
+command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
+command! -nargs=+ Ns call g:Quickfix('note', <f-args>)
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
@@ -38,18 +38,28 @@ command! -nargs=* -bar                         Update  execute "Start ~/.vim/vim
 command! -nargs=0 -bar                         Publish :call s:Publish()
 command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
 
-function! g:Quickfix(type, arg)
-  if a:arg =~# "\\v'.+'"
-    let g:grep_word = substitute(matchlist(a:arg, "\\v'(.+)'")[1], "''", "'", 'g')
-  else
-    let g:grep_word = split(a:arg, ' ')[-1]
-  endif
+function! g:Quickfix(type, ...)
   if a:type ==# 'ag'
-    execute "silent! grep! " . escape(a:arg, '#%*')
+    let pattern = s:FindPattern(a:000)
+    let list = deepcopy(a:000)
+    let g:grep_word = pattern[0]
+    let list[pattern[1]] = shellescape(g:grep_word, 1)
+    execute "silent grep! " . join(list, ' ')
   elseif a:type ==# 'note'
-    execute "silent SearchNote! " . a:arg
+    let g:grep_word = a:1
+    execute "silent SearchNote! " . join(a:000, ' ')
   endif
-  execute "Unite -buffer-name=quickfix quickfix"
+  execute "silent Unite -buffer-name=quickfix quickfix"
+endfunction
+
+function! s:FindPattern(list)
+  let l = len(a:list)
+  for i in range(l)
+    let word = a:list[i]
+    if word !~# '^-'
+      return [word, i]
+    endif
+  endfor
 endfunction
 
 function! s:ListVimrc(...)
