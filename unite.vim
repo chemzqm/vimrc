@@ -80,7 +80,7 @@ nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
 nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
-nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
+nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji emoji<cr>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
