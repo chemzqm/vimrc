@@ -7,7 +7,6 @@ endif
 set runtimepath+=/Users/chemzqm/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('/Users/chemzqm/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'Shougo/unite-outline'
@@ -48,8 +47,8 @@ endfor
 filetype plugin indent on
 syntax enable
 set rtp+=~/lib/powerline/powerline/bindings/vim
-set wildignore+=*/tmp/*,*.so,*~,*.zip,*/.git/*,*/.svn/*,node_modules,*/.DS_Store,coverage,*/*bundle.js,*.map
-" Source all of the .vim files in ~/.vim/vimrc.d directory.
+set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
+" Source all of the .vim files in ~/.vim/vimrc directory.
 for file in split(glob('~/.vim/vimrc/*.vim'), '\n')
    exe 'source' file
 endfor
