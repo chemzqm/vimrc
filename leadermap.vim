@@ -42,6 +42,7 @@ let g:mapleader = ','
   nnoremap <leader>q :Bdelete<cr>
   " vim-test
   nmap <silent> <leader>t :TestNearest<CR>
+  nmap <silent> <leader>ta :TestFile<CR>
   " vim-session
   nmap <leader>sl :OpenSession
   nmap <leader>ss :SaveSession
