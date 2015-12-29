@@ -18,7 +18,8 @@ let g:airline_exclude_preview = 0
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_section_y= '%{&encoding} %l:%c'
+let g:airline_section_x= '%{GetSymbol()}'
+let g:airline_section_y= '%{&encoding} %l:%c %L'
 let g:airline_section_z= ''
 let g:airline_mode_map = {
 \ '__' : '-',
@@ -33,6 +34,19 @@ let g:airline_mode_map = {
 \ 'S'  : 'S',
 \ '' : 'S',
 \ }
+function! GetSymbol()
+  let ft = &filetype
+  if ft ==# 'vim'
+    return '💎'
+  elseif ft ==# 'javascript'
+    return '🌸'
+  elseif ft ==# 'html'
+    return '🌵'
+  elseif ft ==# 'css'
+    return '🌼'
+  endif
+  return ft
+endfunction
 " }}
 
 " jscheck {{
