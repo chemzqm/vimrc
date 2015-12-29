@@ -273,19 +273,30 @@ function! s:Qdo(bang, command)
 endfunction
 
 function! s:Jsongen()
-  let file = expand('%')
+  let file = expand('%:p')
   if !&filetype =~? 'handlebars$'
     echoerr 'file type should be handlebars'
     return
   endif
-  let out = substitute(file, '\v\zs(\w*)\.hbs', '\1.json', '')
-  echo out
+  let out = substitute(file, '\v\.hbs$', '.json', '')
   let output = system('Jsongen ' . file . ' > ' . out)
   if v:shell_error && output !=# ""
     echohl WarningMsg | echon output | echohl None
     return
   endif
-  execute 'belowright vs ' . out
+  let exist = 0
+  for i in range(winnr('$'))
+    let nr = i + 1
+    let fname = fnamemodify(bufname(winbufnr(nr)), ':p')
+    if fname ==# out
+      let exist = 1
+      exe nr . 'wincmd w'
+      exec 'e ' . out
+      break
+    endif
+  endfor
+  if !exist | execute 'belowright vs ' . out | endif
+  exe 'wincmd p'
 endfunction
 
 
