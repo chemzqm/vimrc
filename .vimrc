@@ -27,6 +27,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'moll/vim-bbye'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tommcdo/vim-exchange'
@@ -36,7 +37,6 @@ NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'xolox/vim-shell'
-NeoBundle 'bling/vim-airline'
 call neobundle#end()
 set rtp+=~/.vim/bundle/vim-easymotion
 set rtp+=~/.vim/bundle/ultisnips
