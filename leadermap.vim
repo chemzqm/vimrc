@@ -54,12 +54,6 @@ let g:mapleader = ','
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   noremap <leader>js :UltiSnipsAddFiletypes html.js<cr>
-  " vim-notes
-  map <leader>ne :Note 
-  map <leader>ns :Ns 
-  "map <leader>nd :DeleteNote<cr>
-  "map <leader>nr :RecentNotes<cr>
-  "map <leader>nl :RelatedNotes<cr>
   " Gundo
   nnoremap <D-u> :GundoToggle<CR>
   " vim-shell
