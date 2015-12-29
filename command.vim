@@ -290,12 +290,13 @@ endfunction
 
 
 " npm update -g js-beautify
+" npm update -g cssfmt
 " brew update tidy-html5
 let g:Pretty_commmand_map = {
-      \ "css": "css-beautify -s 2 -N -f -",
-      \ "html": "tidy -i -q -w 160",
-      \ "javascript": "js-beautify -s 2 -p -f -",
-      \}
+    \ "css": "cssfmt",
+    \ "html": "tidy -i -q -w 160",
+    \ "javascript": "js-beautify -s 2 -p -f -",
+    \}
 
 function! s:PrettyFile()
   let cmd = get(g:Pretty_commmand_map, &filetype, '')
@@ -304,6 +305,8 @@ function! s:PrettyFile()
     return
   endif
   let win_view = winsaveview()
+  let old_cwd = getcwd()
+  silent exe ':lcd ' . expand('%:p:h')
   let output = system(cmd, join(getline(1,'$'), "\n"))
   if v:shell_error
     echohl Error | echon 'Got error during processing' | echohl None
@@ -311,7 +314,8 @@ function! s:PrettyFile()
   else
     silent exe 'normal! ggdG'
     call append(0, split(output, "\n"))
-    silent exe 'silent :$d'
+    silent exe ':$d'
   endif
+  exe 'silent lcd ' . old_cwd
   call winrestview(win_view)
 endfunction
