@@ -101,7 +101,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 " vim-notes {{
 let g:notes_directories = ['~/Documents/notes']
-let g:notes_title_sync = 'yes'
+let g:notes_title_sync = 'rename_file'
 " }}
 
 " vim-shell {{
