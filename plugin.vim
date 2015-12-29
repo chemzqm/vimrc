@@ -11,6 +11,28 @@ let g:test#custom_strategies = {'start': function('s:StartTest')}
 let g:test#strategy = 'start'
 " }}
 
+" airline {{
+let g:airline_powerline_fonts = 1
+let g:airline_extensions = ['syntastic', 'branch', 'netrw']
+let g:airline_inactive_collapse=1
+let g:airline_exclude_preview = 0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_mode_map = {
+\ '__' : '-',
+\ 'n'  : 'N',
+\ 'i'  : 'I',
+\ 'R'  : 'R',
+\ 'c'  : 'C',
+\ 'v'  : 'V',
+\ 'V'  : 'V',
+\ '' : 'V',
+\ 's'  : 'S',
+\ 'S'  : 'S',
+\ '' : 'S',
+\ }
+" }}
+
 " jscheck {{
 let g:jscheck_debug_mode = 1
 " }}
