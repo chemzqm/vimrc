@@ -31,22 +31,22 @@ NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'xolox/vim-shell'
+NeoBundle 'bling/vim-airline'
 call neobundle#end()
 set rtp+=~/.vim/bundle/vim-easymotion
 set rtp+=~/.vim/bundle/ultisnips
 set rtp+=~/.vim/bundle/syntastic
+set rtp+=~/.vim/bundle/vim-fugitive
 for path in split(glob('~/vim-dev/*'), '\n')
    exe 'set rtp+=' . path
 endfor
 filetype plugin indent on
 syntax enable
-set rtp+=~/lib/powerline/powerline/bindings/vim
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
 " Source all of the .vim files in ~/.vim/vimrc directory.
 for file in split(glob('~/.vim/vimrc/*.vim'), '\n')
