@@ -2,7 +2,8 @@
 
 " Git commandline alias
 command! -nargs=0 -bar C   :Glcd .
-command! -nargs=0 -bar Gd  :call s:GitDiff()
+command! -nargs=0 -bar Gd  :call s:GitDiff(0)
+command! -nargs=0 -bar Gda :call s:GitDiff(1)
 command! -nargs=0 -bar Gp  :call s:Push()
 command! -nargs=* -bar Gc  execute 'silent Gcommit '. expand('%') . " -m '<args>' " | echo 'done'
 command! -nargs=0 -bar Gca execute 'silent Gcommit -a -v'
@@ -16,21 +17,21 @@ command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 
 " Copy file to system clipboard
-command! -nargs=0 -bar Copy     execute 'silent w !tee % | pbcopy > /dev/null'
-" remove file from filesystem
+command! -nargs=0 -bar           Copy     execute 'silent w !tee % | pbcopy > /dev/null'
+" remove files or file of current buffer
 command! -nargs=* -complete=file Rm       :call s:Remove(<f-args>)
-command! -nargs=+ -bar Mdir     :call s:Mkdir(<f-args>)
-command! -nargs=0 -bar Format   :call s:Format()
-command! -nargs=0 -bar Jsongen  :call s:Jsongen()
-command! -nargs=0 -bar Reset    :call s:StatusReset()
-command! -nargs=0 -bar Emoji    execute 'setl completefunc=emoji#complete'
-command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
-command! -nargs=0 -bar Qargs    execute 'args' s:QuickfixFilenames()
-command! -nargs=0 -bar Standard execute '!standard --format %:p'
-command! -nargs=1 -bang Qdo call s:Qdo(<q-bang>, <q-args>)
+command! -nargs=+ -bar           Mdir     :call s:Mkdir(<f-args>)
+command! -nargs=0 -bar           Pretty   :call s:PrettyFile()
+command! -nargs=0 -bar           Jsongen  :call s:Jsongen()
+command! -nargs=0 -bar           Reset    :call s:StatusReset()
+command! -nargs=0 -bar           Emoji    execute 'setl completefunc=emoji#complete'
+command! -nargs=0 -bar           Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
+command! -nargs=0 -bar           Qargs    execute 'args' s:QuickfixFilenames()
+command! -nargs=0 -bar           Standard execute '!standard --format %:p'
+command! -nargs=1 -bang          Qdo call s:Qdo(<q-bang>, <q-args>)
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
-command! -nargs=+ Ns call g:Quickfix('note', <f-args>)
+command! -nargs=+ Ns             call g:Quickfix('note', <f-args>)
 
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
@@ -118,27 +119,30 @@ function! s:CheckOut()
   execute 'silent edit! ' . expand('%:p')
 endfunction
 
-function! s:GitDiff()
-  let gitdir = fugitive#extract_git_dir(expand('%:p'))
+function! s:GitDiff(all)
+  let fullpath = expand('%:p')
+  let gitdir = fugitive#extract_git_dir(fullpath)
   let base = fnamemodify(gitdir, ':h')
   let cwd = getcwd()
-  execute 'silent cd ' . base
+  execute 'silent lcd ' . base
+  let path = fnamemodify(fullpath, ':.')
   let tmpfile = tempname()
-  let output = system('git --no-pager diff')
+  let end = a:all ? '' : ' -- ' . path
+  let output = system('git --no-pager diff' . end)
   if v:shell_error && output !=# ''
-    echohl WarningMsg | echon output
-    return
+    echohl Error | echon output | echohl None
+  else
+    if !len(output) | echom 'no change' | return | endif
+    let lines = split(output, '\n')
+    execute 'silent vsplit ' . tmpfile
+    call setline(1, lines)
+    exe 'file diff://' . path
+    setlocal filetype=git buftype=nofile readonly nomodified foldmethod=syntax foldlevel=99
+    setlocal foldtext=fugitive#foldtext()
+    setlocal bufhidden=delete
+    nnoremap <buffer> <silent> q  :<C-U>bdelete<CR>
   endif
-  if !len(output) | echom 'no change' | return | endif
-  let lines = split(output, '\n')
-  execute 'silent vsplit ' . tmpfile
-  call setline(1, lines)
-  file changes
-  setlocal filetype=git buftype=nowrite readonly nomodified foldmethod=syntax foldlevel=99
-  setlocal foldtext=fugitive#foldtext()
-  setlocal bufhidden=delete
-  nnoremap <buffer> <silent> q  :<C-U>bdelete<CR>
-  execute 'silent cd ' . cwd
+  execute 'silent lcd ' . cwd
 endfunction
 
 function! s:Remove(...)
@@ -250,15 +254,6 @@ function! s:Dependencies()
   return deps
 endfunction
 
-function! s:Format()
-  let types = ['javascript', 'html', 'xml', 'css', 'json']
-  if index(types, &ft) == -1
-    echohl WarningMsg | echon 'not supported filetype' | echohl None
-    return
-  endif
-  call JsBeautify()
-endfunction
-
 function! s:Qdo(bang, command)
   if exists('w:quickfix_title')
     let in_quickfix_window = 1
@@ -291,4 +286,32 @@ function! s:Jsongen()
     return
   endif
   execute 'belowright vs ' . out
+endfunction
+
+
+" npm update -g js-beautify
+" brew update tidy-html5
+let g:Pretty_commmand_map = {
+      \ "css": "css-beautify -s 2 -N -f -",
+      \ "html": "tidy -i -q -w 160",
+      \ "javascript": "js-beautify -s 2 -p -f -",
+      \}
+
+function! s:PrettyFile()
+  let cmd = get(g:Pretty_commmand_map, &filetype, '')
+  if !len(cmd)
+    echohl Error | echon 'Filetype not supported' | echohl None
+    return
+  endif
+  let win_view = winsaveview()
+  let output = system(cmd, join(getline(1,'$'), "\n"))
+  if v:shell_error
+    echohl Error | echon 'Got error during processing' | echohl None
+    echo output
+  else
+    silent exe 'normal! ggdG'
+    call append(0, split(output, "\n"))
+    silent exe 'silent :$d'
+  endif
+  call winrestview(win_view)
 endfunction
