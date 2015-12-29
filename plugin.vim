@@ -74,22 +74,6 @@ let g:EasyMotion_leader_key = '\\'
 "nnoremap \\ <Plug>(easymotion-prefix)
 " }}
 
-" VimCompletesMe {{
-let g:vcm_direction = 'n'
-" }}
-
-" tagbar {{
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_markdown = {
-  \ 'ctagstype' : 'markdown',
-  \ 'kinds' : [
-    \ 'h:Heading_L1',
-    \ 'i:Heading_L2',
-    \ 'k:Heading_L3'
-  \ ]
-\ }
-" }}
-
 " ultisnips {{
   let g:UltiSnipsExpandTrigger='<C-j>'
   let g:UltiSnipsJumpForwardTrigger='<C-j>'
