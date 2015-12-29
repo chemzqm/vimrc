@@ -48,8 +48,6 @@ augroup javascript
   autocmd!
   au FileType javascript :call s:SetJavaScript()
   au FileType javascript :call s:SetLoadFunctions()
-  " use omnicomplete as I'm using tern
-  " autocmd FileType html let b:vcm_tab_complete = "omni"
 augroup end
 
 function! s:SetJavaScript()
