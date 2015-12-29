@@ -11,6 +11,8 @@ let g:mapleader = ','
   nnoremap <leader>/ :Ag<SPACE>
   nmap <leader>f \\f
   nmap <leader>F \\F
+  " remap <cr> when completing
+  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}
 
 " content edit {{
@@ -52,15 +54,12 @@ let g:mapleader = ','
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   noremap <leader>js :UltiSnipsAddFiletypes html.js<cr>
-  " ctrlsf
-  map <leader>st :CtrlSFToggle<cr>
-  map <leader>sf :CtrlSF<space>
   " vim-notes
   map <leader>ne :Note 
   map <leader>ns :Ns 
-  map <leader>nd :DeleteNote<cr>
-  map <leader>nr :RecentNotes<cr>
-  map <leader>nl :RelatedNotes<cr>
+  "map <leader>nd :DeleteNote<cr>
+  "map <leader>nr :RecentNotes<cr>
+  "map <leader>nl :RelatedNotes<cr>
   " Gundo
   nnoremap <D-u> :GundoToggle<CR>
   " vim-shell
@@ -75,8 +74,6 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
-  " VimCompletesMe
-  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}
 
 " wrap {{
@@ -135,7 +132,6 @@ function! s:Clean()
     silent! execute '%s/;$//'
     " line should not starts with [ or (
     silent! execute '%s/^\s*\zs\([\[(]\)/;\1/'
-    call JsBeautify()
   endif
   " remove tailing white space
   silent! execute '%s/\s\+$//'
