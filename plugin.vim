@@ -17,6 +17,8 @@ let g:airline_extensions = ['syntastic', 'branch', 'netrw', 'unite']
 let g:airline_inactive_collapse=1
 let g:airline_exclude_preview = 0
 let g:airline_theme='molokai'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline_mode_map = {
 \ '__' : '-',
 \ 'n'  : 'N',

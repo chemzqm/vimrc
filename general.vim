@@ -19,6 +19,7 @@ set undodir=~/.undodir
 set undofile
 set fileformats=unix,dos
 set diffopt=vertical
+set sessionoptions+=winpos
 set sessionoptions-=help
 set sessionoptions-=blank
 set complete+=k
@@ -39,11 +40,10 @@ endif
 if has('gui_running')
   "set noimd
   set background=light
-  set lines=50
-  set columns=120
   set guifont=Source\ Code\ Pro:h13
   set transparency=10
   set macmeta
+  set antialias
   set number
   colorscheme solarized
   set relativenumber
