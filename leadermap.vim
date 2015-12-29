@@ -9,8 +9,8 @@ let g:mapleader = ','
   nnoremap <leader>{ F)a<space>{<enter><space><space><esc>o<esc>i}<esc>O<tab>
   " search
   nnoremap <leader>/ :Ag<SPACE>
-  nmap <leader>f \\f
-  nmap <leader>F \\F
+  nnoremap <leader>f \\f
+  nnoremap <leader>F \\F
   " remap <cr> when completing
   inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}
@@ -21,16 +21,10 @@ let g:mapleader = ','
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
 
-" spell checking {{
-  nnoremap <leader>sc :setl spell!<cr>
-  nnoremap <leader>s? z=
-  nnoremap <leader>sn ]s
-  nnoremap <leader>sp [s
-  nnoremap <leader>sa zg
-" }}
 
 " setting switch {{
   " TODO switch foldcolumn
+  nnoremap <leader>sc :setl spell!<cr>
   nnoremap <leader>ic :set ic!<cr>
   nnoremap <leader>hl :set hls!<cr>
   nnoremap <leader>hc :let @/ = ""<cr>
@@ -53,7 +47,6 @@ let g:mapleader = ','
   nmap <leader>sd :CloseSession<cr>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
-  noremap <leader>js :UltiSnipsAddFiletypes html.js<cr>
   " Gundo
   nnoremap <D-u> :GundoToggle<CR>
   " vim-shell
@@ -68,12 +61,6 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
-" }}
-
-" wrap {{
-  vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
-  vnoremap <leader>` <esc>`<i`<esc>`>la`<esc>
-  vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
 " }}
 
 " grep by motion {{
