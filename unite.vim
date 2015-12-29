@@ -8,10 +8,9 @@ if executable('ag')
 endif
 
 let g:neomru#follow_links = 1
-let g:unite_source_codesearch_ignore_case = 0
 call unite#filters#matcher_default#use(['matcher_regexp'])
 call unite#custom#source(
-  \  'file_rec,file_rec/async,file_mru,file,buffer,grep',
+  \  'file_rec,file_rec/async,file_mru,file,buffer',
   \  'ignore_globs',
   \  split(&wildignore, ',')
   \ )
@@ -25,27 +24,18 @@ call unite#custom#source(
   \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
   \ )
 call unite#custom#profile('default', 'context', {
+  \  'start_insert': 1,
   \  'winheight': 10,
   \ })
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 20,
   \ })
-call unite#custom#profile('grep', 'context', {
-  \  'no_quit': 1
-  \ })
-call unite#custom#profile('file_mru', 'context', {
-  \  'start_insert': 1
-  \ })
-call unite#custom#profile('file', 'context', {
-  \  'start_insert': 1
-  \ })
-call unite#custom#profile('files', 'context', {
-  \  'start_insert': 1
-  \ })
 call unite#custom#profile('quickfix', 'context', {
-  \  'no_quit': 1
+  \  'start_insert': 0,
+  \  'no_quit': 1,
   \ })
 call unite#custom#profile('location', 'context', {
+  \  'start_insert': 0,
   \  'no_quit': 1,
   \  'winheight': 5,
   \ })
@@ -63,7 +53,7 @@ call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
   \  'quick_match': 1,
   \ })
-call unite#custom#profile('files', 'grep', 'sorter_ftime')
+call unite#custom#profile('files', 'filters', 'sorter_ftime')
 call unite#custom#profile('files', 'filters', 'sorter_selecta')
 call unite#custom#profile('file_mru', 'filters', 'sorter_selecta')
 
@@ -72,7 +62,6 @@ nmap <space>  [unite]
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
-"nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=file      file<cr>
 nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank      history/yank<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
