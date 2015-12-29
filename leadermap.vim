@@ -21,7 +21,6 @@ let g:mapleader = ','
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
 
-
 " setting switch {{
   " TODO switch foldcolumn
   nnoremap <leader>sc :setl spell!<cr>
@@ -83,16 +82,14 @@ endfunction
 " }}
 
 " functions {{
-let g:background_light = 1
 function! s:ToggleBackground()
-  if g:background_light
+  if &background ==# 'light'
     set background=dark
-    let g:background_light = 0
   else
     set background=light
-    let g:background_light = 1
   endif
 endfunction
+
 function! s:NumberToggle()
   if(&number == 1) | set nu! | set rnu! | else | set rnu | set nu | endif
 endfunction
