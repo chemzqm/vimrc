@@ -110,5 +110,3 @@ function! SnipComplete(findstart, base)
         return suggestions
     endif
 endfunction
-
-i
