@@ -22,7 +22,6 @@ set diffopt=vertical
 set sessionoptions+=winpos
 set sessionoptions-=help
 set sessionoptions-=blank
-set complete+=k
 set ttimeoutlen=100
 set tabpagemax=5
 set scrolloff=3
@@ -30,7 +29,6 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
 set showtabline=1
-set omnifunc=syntaxcomplete#Complete
 
 if has('statusline')
   set laststatus=2
@@ -82,13 +80,6 @@ elseif executable('grepprg')
   let g:grep_using_git = 1
 endif
 
-if has('autocmd') && exists('+omnifunc')
-  autocmd Filetype *
-    \if &omnifunc == "" |
-    \setlocal omnifunc=syntaxcomplete#Complete |
-    \endif
-endif
-set completeopt=menu,preview
 " improve performance
 syntax sync minlines=200
 
@@ -99,6 +90,9 @@ hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=da
 " change default search highlight
 hi Search guibg=#333333 guifg=#C5B569
 
+set complete+=k
+set omnifunc=syntaxcomplete#Complete
+set completeopt=menu,preview
 " set <c-x><c-u> user complete to ultisnip trigger complete
 set completefunc=SnipComplete
 function! SnipComplete(findstart, base)
