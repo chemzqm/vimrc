@@ -142,8 +142,6 @@ let g:tern_show_argument_hints = 'on_hold'
   let g:user_emmet_balancetaginward_key = '<C-y>i'
   let g:user_emmet_balancetagoutward_key = '<C-y>o'
   let g:user_emmet_mode='a'
-  let g:user_emmet_settings = webapi#json#decode(
-  \  join(readfile(expand('~/.vim/emmit.json')), "\n"))
 " }}
 
 " vim-run {{
