@@ -24,7 +24,6 @@ command! -nargs=+ -bar           Mdir     :call s:Mkdir(<f-args>)
 command! -nargs=0 -bar           Pretty   :call s:PrettyFile()
 command! -nargs=0 -bar           Jsongen  :call s:Jsongen()
 command! -nargs=0 -bar           Reset    :call s:StatusReset()
-command! -nargs=0 -bar           Emoji    execute 'setl completefunc=emoji#complete'
 command! -nargs=0 -bar           Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar           Qargs    execute 'args' s:QuickfixFilenames()
 command! -nargs=0 -bar           Standard execute '!standard --format %:p'
