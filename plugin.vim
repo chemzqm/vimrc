@@ -34,18 +34,19 @@ let g:airline_mode_map = {
 \ 'S'  : 'S',
 \ '' : 'S',
 \ }
+
+let g:symbol_map = {
+      \'vim': '💎',
+      \'javascript': '🌸',
+      \'css': '🌼',
+      \'html': '🌵',
+      \'markdown': '🍀',
+      \'go': '🌻',
+      \'python': '🌱',
+      \}
 function! GetSymbol()
   let ft = &filetype
-  if ft ==# 'vim'
-    return '💎'
-  elseif ft ==# 'javascript'
-    return '🌸'
-  elseif ft ==# 'html'
-    return '🌵'
-  elseif ft ==# 'css'
-    return '🌼'
-  endif
-  return ft
+  return get(g:symbol_map, ft, ft)
 endfunction
 " }}
 
@@ -76,6 +77,9 @@ let g:session_menu = 0
 if (has('gui_running'))
   let g:session_autosave='yes'
   let g:session_autoload='yes'
+else
+  let g:session_autosave='no'
+  let g:session_autoload='no'
 endif
 " }}
 
