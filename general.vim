@@ -34,7 +34,7 @@ set omnifunc=syntaxcomplete#Complete
 
 if has('statusline')
   set laststatus=2
-  "as we use powerline
+  "as we use airline
   set noshowmode
 endif
 
@@ -50,12 +50,12 @@ if has('gui_running')
   else
     set background=light
   endif
+  colorscheme solarized
   set guifont=Source\ Code\ Pro:h13
   set transparency=10
   set macmeta
   set antialias
   set number
-  colorscheme solarized
   set relativenumber
 else
   let g:solarized_termcolors=256
