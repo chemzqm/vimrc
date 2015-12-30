@@ -21,7 +21,6 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'janko-m/vim-test'
 NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/gist-vim'
@@ -31,24 +30,19 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tommcdo/vim-exchange'
-NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'xolox/vim-shell'
 call neobundle#end()
-set rtp+=~/.vim/bundle/vim-easymotion
-set rtp+=~/.vim/bundle/ultisnips
-set rtp+=~/.vim/bundle/syntastic
-set rtp+=~/.vim/bundle/vim-fugitive
+" developed plugins
 for path in split(glob('~/vim-dev/*'), '\n')
    exe 'set rtp+=' . path
 endfor
 filetype plugin indent on
 syntax enable
-set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
-" Source all of the .vim files in ~/.vim/vimrc directory.
+" config files
 for file in split(glob('~/.vim/vimrc/*.vim'), '\n')
    exe 'source' file
 endfor

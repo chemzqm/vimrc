@@ -28,6 +28,7 @@ set tabpagemax=5
 set scrolloff=3
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
 set showtabline=1
 set omnifunc=syntaxcomplete#Complete
 
@@ -79,6 +80,7 @@ if has('autocmd') && exists('+omnifunc')
     \endif
 endif
 set completeopt=menu,preview
+" improve performance
 syntax sync minlines=200
 
 hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
@@ -90,23 +92,23 @@ hi Search guibg=#333333 guifg=#C5B569
 
 set completefunc=SnipComplete
 function! SnipComplete(findstart, base)
-    if a:findstart
-        let line = getline('.')
-        let start = col('.') - 1
-        while start > 0 && line[start - 1] =~# '\a'
-            let start -= 1
-        endwhile
-        return start
-    else
-        let suggestions = []
-        for item in UltiSnips#SnippetsInCurrentScope()
-            let trigger = item[0]
-            if trigger =~ '^' . a:base
-                let menu = fnamemodify(item[2], ':t:r')
-                let entry = {'word': trigger, 'menu': menu, 'info': item[1]}
-                call add(suggestions, entry)
-            endif
-        endfor
-        return suggestions
-    endif
+  if a:findstart
+    let line = getline('.')
+    let start = col('.') - 1
+    while start > 0 && line[start - 1] =~# '\a'
+      let start -= 1
+    endwhile
+    return start
+  else
+    let suggestions = []
+    for item in UltiSnips#SnippetsInCurrentScope()
+      let trigger = item[0]
+      if trigger =~ '^' . a:base
+        let menu = fnamemodify(item[2], ':t:r')
+        let entry = {'word': trigger, 'menu': menu, 'info': item[1]}
+        call add(suggestions, entry)
+      endif
+    endfor
+    return suggestions
+  endif
 endfunction

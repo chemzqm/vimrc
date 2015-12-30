@@ -53,7 +53,6 @@ call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
   \  'quick_match': 1,
   \ })
-call unite#custom#profile('files', 'filters', 'sorter_ftime')
 call unite#custom#profile('files', 'filters', 'sorter_selecta')
 call unite#custom#profile('file_mru', 'filters', 'sorter_selecta')
 
@@ -70,7 +69,7 @@ nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
 nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
-nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji emoji<cr>
+nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
 nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
