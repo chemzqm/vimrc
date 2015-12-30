@@ -72,8 +72,11 @@ let g:session_default_overwrite =1
 let g:session_default_to_last=1
 let g:session_command_aliases = 1
 let g:session_menu = 0
-let g:session_autosave='yes'
-let g:session_autoload='yes'
+
+if (has('gui_running'))
+  let g:session_autosave='yes'
+  let g:session_autoload='yes'
+endif
 " }}
 
 " gist-vim {{
@@ -141,6 +144,15 @@ let g:tern_show_argument_hints = 'on_hold'
   let g:user_emmet_mode='a'
   let g:user_emmet_settings = webapi#json#decode(
   \  join(readfile(expand('~/.vim/emmit.json')), "\n"))
+" }}
+
+" vim-run {{
+let g:vim_run_command_map = {
+  \'javascript': 'node',
+  \'php': 'php',
+  \'go': 'go',
+  \'python': 'python',
+  \}
 " }}
 
 " jsdoc settings {{
