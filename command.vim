@@ -30,16 +30,17 @@ command! -nargs=0 -bar           Standard execute '!standard --format %:p'
 command! -nargs=1 -bang          Qdo call s:Qdo(<q-bang>, <q-args>)
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
-command! -nargs=+ Ns             call g:Quickfix('note', <f-args>)
+command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,s:ListModules V     :call s:PreviewModule('<args>')
-command! -nargs=1 -complete=custom,s:ListModules J     :call s:PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,s:ListModules H     :call s:PreviewModule('<args>', 'doc')
+command! -nargs=1 -complete=custom,s:ListModules ModuleEdit :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,s:ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,s:ListModules ModuleHelp :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -complete=custom,s:ListVimrc   E     :call s:EditVimrc(<f-args>)
-command! -nargs=* -bar                         Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
-command! -nargs=0 -bar                         Publish :call s:Publish()
-command! -nargs=? -bar                         L       :call s:ShowGitlog('<args>')
+
+command! -nargs=* -bar Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
+command! -nargs=0 -bar Publish :call s:Publish()
+command! -nargs=? -bar L       :call s:ShowGitlog('<args>')
 
 function! g:Quickfix(type, ...)
   if a:type ==# 'ag'
