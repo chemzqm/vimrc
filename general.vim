@@ -39,7 +39,6 @@ if has('statusline')
 endif
 
 if has('gui_running')
-  "set noimd
   if exists("*strftime")
     let h = strftime('%H')
     if h > 18 || h < 8
@@ -54,6 +53,7 @@ if has('gui_running')
   set guifont=Source\ Code\ Pro:h13
   set transparency=10
   set macmeta
+  " better font render on Retina screen
   set antialias
   set number
   set relativenumber
