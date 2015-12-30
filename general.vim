@@ -40,7 +40,16 @@ endif
 
 if has('gui_running')
   "set noimd
-  set background=light
+  if exists("*strftime")
+    let h = strftime('%H')
+    if h > 18 || h < 8
+      set background=dark
+    else
+      set background=light
+    endif
+  else
+    set background=light
+  endif
   set guifont=Source\ Code\ Pro:h13
   set transparency=10
   set macmeta
@@ -90,6 +99,7 @@ hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=da
 " change default search highlight
 hi Search guibg=#333333 guifg=#C5B569
 
+" set <c-x><c-u> user complete to ultisnip trigger complete
 set completefunc=SnipComplete
 function! SnipComplete(findstart, base)
   if a:findstart
