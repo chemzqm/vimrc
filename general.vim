@@ -68,7 +68,6 @@ set shiftwidth=2
 set expandtab
 set shiftround
 set autoindent "Auto indent
-set smartindent
 set wrap "Wrap lines
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
