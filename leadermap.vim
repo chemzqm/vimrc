@@ -2,23 +2,22 @@
 let g:mapleader = ','
 
 " basic {{
-  " quite useful
-  nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
-  " vimrc reload edit
+  " Edit file in current file folder
+  nnoremap <silent> <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
+  " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<cr>
-  nnoremap <leader>{ F)a<space>{<enter><space><space><esc>o<esc>i}<esc>O<tab>
-  " search
+  " Search with grep
   nnoremap <leader>/ :Ag<SPACE>
-  nnoremap <leader>f \\f
-  nnoremap <leader>F \\F
   " remap <cr> when completing
   inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  " generate doc
+  nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
+  " clean some dirty charactors
+  nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
 
 " content edit {{
   nnoremap <leader>au :!autoprefixer %<cr>
-  " clean some dirty charactors
-  nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
 
 " setting switch {{
@@ -34,6 +33,9 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
+  " easy-motion improved
+  nnoremap <leader>f \\f
+  nnoremap <leader>F \\F
   " bbye
   nnoremap <leader>q :Bdelete<cr>
   " vim-test
@@ -99,6 +101,7 @@ function! s:Restart()
   execute 'RestartVim'
 endfunction
 
+" Simple clean utility
 function! s:Clean()
   let ft = &filetype
   " replace tab with 2 space
@@ -117,6 +120,8 @@ function! s:Clean()
   silent! execute '%s/$//'
 endfunction
 
+" Switch between `ag` and `git grep`, `grepprg` is a wrapper command
+" See https://gist.github.com/55a5246a5b218b9848dc
 function! s:SwitchGrepCmd()
   if g:grep_using_git
     set grepprg=ag\ --vimgrep\ $*
@@ -126,6 +131,25 @@ function! s:SwitchGrepCmd()
     set grepprg=grepprg\ $*
     let g:grep_using_git = 1
     echohl Identifier | echon 'grep by git' | echohl None
+  endif
+endfunction
+
+function! s:GenDoc()
+  if &ft ==# 'javascript'
+    exe "JsDoc"
+  elseif &ft ==# 'css'
+    let lines = ['/*', ' * ', ' */']
+    exe "normal! j?{$\<cr>:noh\<cr>"
+    let lnum = getpos('.')[1]
+    call append(lnum - 1, lines)
+    exe "normal! kk$"
+    startinsert!
+  elseif &ft ==# 'html'
+    let lnum = getpos('.')[1]
+    let ind = matchstr(getline('.'), '\v\s*')
+    call append(lnum - 1, ind . '<!--  -->')
+    exe "normal! k^Ell"
+    startinsert
   endif
 endfunction
 " }}
