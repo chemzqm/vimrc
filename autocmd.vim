@@ -5,7 +5,6 @@ augroup fileRead
   autocmd!
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup end
 
 function! OnBufEnter()
@@ -26,57 +25,24 @@ endfunction
 " }}
 
 " auto cloase preview{{
-  autocmd CompleteDone * call AutoClosePreviewWindow()
-
-  function! AutoClosePreviewWindow()
-    if !&l:previewwindow
-      pclose
-    endif
-  endfunction
-" }}
-
-" css {{
-augroup css
+augroup complete
   autocmd!
-  autocmd FileType css inoremap <buffer> { {<CR>}<C-o>O
+  autocmd CompleteDone * call AutoClosePreviewWindow()
 augroup end
+
+function! AutoClosePreviewWindow()
+  if !&l:previewwindow
+    pclose
+  endif
+endfunction
 " }}
 
 " javascript {{
 
 augroup javascript
   autocmd!
-  au FileType javascript :call s:SetJavaScript()
   au FileType javascript :call s:SetLoadFunctions()
 augroup end
-
-function! s:SetJavaScript()
-    nnoremap <buffer> <leader>d :JsDoc<cr>
-    setl foldnestmax=2
-    setl foldmethod=syntax
-    syn region foldbraces start=/{/ end=/}/ transparent fold keepend extend
-    function! Foldtext()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    " use neocomplete
-    setl dictionary+=~/.vim/dict/js.dict
-    setl foldtext=Foldtext()
-    setl si
-    setl nofen
-    setl textwidth=80
-    noremap  <script> <buffer> <silent> [] :call <SID>GotoSection(0)<cr>
-    noremap  <script> <buffer> <silent> ]] :call <SID>GotoSection(1)<cr>
-    noremap  <script> <buffer> <silent> [[ :call <SID>GotoSection(0)<cr>
-    noremap  <script> <buffer> <silent> ][ :call <SID>GotoSection(1)<cr>
-    onoremap <script> <buffer> <silent> [[ :<c-u>call <SID>SelectSection(0, 0)<cr>
-    onoremap <script> <buffer> <silent> ][ :<c-u>call <SID>SelectSection(1, 0)<cr>
-    vnoremap <script> <buffer> <silent> [[ :<c-u>call <SID>SelectSection(0, 1)<cr>
-    vnoremap <script> <buffer> <silent> ][ :<c-u>call <SID>SelectSection(1, 1)<cr>
-    onoremap <script> <buffer> <silent> if :<c-u>call <SID>SelectInsideFunction()<cr>
-    onoremap <script> <buffer> <silent> af :<c-u>call <SID>SelectAllFunction()<cr>
-    vnoremap <script> <buffer> <silent> if :<c-u>call <SID>SelectInsideFunction()<cr>
-    vnoremap <script> <buffer> <silent> af :<c-u>call <SID>SelectAllFunction()<cr>
-endfunction
 
 function! s:SetLoadFunctions()
   command! -nargs=? -bar -buffer F  call <SID>LoadFunctions("c", <f-args>)
@@ -99,109 +65,4 @@ function! s:LoadFunctions(type, ...)
             \. ' -input=' . input
   endif
 endfunction
-
-function! s:SelectInsideFunction()
-  let sr = s:FindFunctionStart() + 1
-  let er = s:FindFunctionEnd() - 1
-  if sr == -1 || er == -1
-    return
-  endif
-  execute 'normal! ' . sr . 'GV' . er . 'G'
-endfunction
-
-function! s:SelectAllFunction()
-  let sr = s:FindFunctionStart()
-  let er = s:FindFunctionEnd()
-  if sr == -1 || er == -1
-    return
-  endif
-  execute 'normal! ' . sr . 'GV' . er . 'G'
-endfunction
-
-function! s:SelectSection(close, visual)
-  let cr = line('.')
-  let tail = a:close ? 'End' : 'Start'
-  let nr = cr
-  execute "let nr = s:FindFunction" . tail . "()"
-  if nr == -1 | return | endif
-  let n = a:close ? nr - cr - 1 : cr - nr -1
-  if n < 0
-    return
-  elseif n == 0
-    execute 'normal! V'
-  else
-    execute 'normal! V' . n . (a:close ? 'j' : 'k')
-  endif
-endfunction
-
-function! s:FindFunctionStart()
-  let nr = line('.')
-  let pi = indent(nr)
-  while nr != 1
-    let line = getline(nr - 1)
-    let ci = indent(nr - 1)
-    if line =~# '\v<function>' && ci < pi
-      return nr - 1
-    endif
-    if line !~# '^\s*$' && ci < pi
-      let pi = ci
-    endif
-    let nr = nr - 1
-  endwhile
-  return -1
-endfunction
-
-function! s:FindFunctionEnd()
-  let start = s:FindFunctionStart()
-  if start == -1 | return -1 | endif
-  let ind = indent(start)
-  let last = line('$')
-  let nr = line('.')
-  while nr != last
-    if indent(nr + 1) == ind && getline(nr) !~# '^\s*$'
-      return nr + 1
-    endif
-    let nr = nr + 1
-  endwhile
-  return -1
-endfunction
-
-function! s:GotoSection(close)
-  let nr = -1
-  let tail = a:close ? 'End' : 'Start'
-  execute "let nr = s:FindFunction" . tail . "()"
-  if nr == -1 | return | endif
-  execute "normal! " . nr . "G" . (a:close ? '^' : '$')
-endfunction
-" }}
-
-" python {{
-  augroup python
-    autocmd!
-    autocmd BufNewFile,BufRead *.jinja set syntax=htmljinja
-    autocmd BufNewFile,BufRead *.mako set ft=mako
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-  augroup end
-" }}
-
-" html & xml {{
-  augroup html
-    autocmd!
-    autocmd FileType html setlocal nowrap
-    autocmd FileType htm setlocal foldmethod=manual
-    autocmd FileType html setlocal foldnestmax=1
-    let pandoc_pipeline  = 'pandoc --from=html --to=markdown'
-    let pandoc_pipeline .= ' | pandoc --from=markdown --to=html'
-    autocmd FileType html let &formatprg=pandoc_pipeline
-  augroup end
-" }}
-
-" fish {{
-  augroup fish
-    autocmd!
-    autocmd FileType fish setl noexpandtab
-  augroup end
-" }}
-
-" json handlebar {{
 " }}
