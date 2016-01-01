@@ -13,7 +13,7 @@ let g:test#strategy = 'start'
 
 " airline {{
 let g:airline_powerline_fonts = 1
-let g:airline_extensions = ['syntastic', 'netrw', 'unite']
+let g:airline_extensions = ['syntastic', 'branch', 'netrw', 'unite']
 let g:airline_exclude_preview = 0
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
@@ -41,7 +41,7 @@ let g:symbol_map = {
       \'css': '🌼',
       \'html': '🌵',
       \'markdown': '🍀',
-      \'go': '🌻',
+      \'go': '⚡',
       \'python': '🌱',
       \}
 function! GetSymbol()

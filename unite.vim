@@ -24,21 +24,18 @@ call unite#custom#source(
   \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
   \ )
 call unite#custom#profile('default', 'context', {
-  \  'start_insert': 1,
   \  'winheight': 10,
   \ })
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 20,
   \ })
-call unite#custom#profile('file_mru', 'context', {
-  \  'start_insert': 0,
+call unite#custom#profile('files', 'context', {
+  \  'start_insert': 1,
   \ })
 call unite#custom#profile('quickfix', 'context', {
-  \  'start_insert': 0,
   \  'no_quit': 1,
   \ })
 call unite#custom#profile('location', 'context', {
-  \  'start_insert': 0,
   \  'no_quit': 1,
   \  'winheight': 5,
   \ })
@@ -47,7 +44,6 @@ call unite#custom#profile('gitlog', 'context', {
   \  'vertical_preview': 1,
   \ })
 call unite#custom#profile('outline', 'context', {
-  \  'start_insert': 0,
   \  'winheight': 15,
   \ })
 call unite#custom#profile('buffer', 'context', {
