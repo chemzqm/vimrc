@@ -13,7 +13,7 @@ let g:test#strategy = 'start'
 
 " airline {{
 let g:airline_powerline_fonts = 1
-let g:airline_extensions = ['syntastic', 'branch', 'netrw', 'unite']
+let g:airline_extensions = ['syntastic', 'netrw', 'unite']
 let g:airline_exclude_preview = 0
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
@@ -119,13 +119,6 @@ let g:gitgutter_max_signs = 999
 let g:tern_show_argument_hints = 'on_hold'
 "let g:tern_show_signature_in_pum = 1
 "}}
-
-" xml.vim {{
-  let g:html_indent_inctags = 'html,body,head,tbody'
-  let g:html_indent_script1 = 'inc'
-  let g:html_indent_style1 = 'inc'
-  let g:xml_use_xmtml = 0
-" }}
 
 " emmet {{
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
