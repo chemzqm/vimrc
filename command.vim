@@ -1,13 +1,11 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " Git commandline alias
-command! -nargs=0 -bar C   :Glcd .
-command! -nargs=0 -bar Gd  :call s:GitDiff(0)
-command! -nargs=0 -bar Gda :call s:GitDiff(1)
+command! -nargs=0 -bar C   :Glcd
 command! -nargs=0 -bar Gp  :call s:Push()
-command! -nargs=* -bar Gc  execute 'silent Gcommit '. expand('%') . " -m '<args>' " | echo 'done'
-command! -nargs=0 -bar Gca execute 'silent Gcommit -a -v'
-command! -nargs=0 -bar Gco :call s:CheckOut()
+command! -nargs=* -bar Gd  :Gdiff <args>
+command! -nargs=* -bar Gt  :GdiffThis <args>
+command! -nargs=* -bar Gc  :Gci <args>
 
 " add dictionary
 command! -nargs=0 -bar Node    execute 'setl dictionary+=~/.vim/dict/node.dict'
@@ -31,10 +29,10 @@ command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,s:ListModules ModuleEdit :call s:PreviewModule('<args>')
-command! -nargs=1 -complete=custom,s:ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,s:ListModules ModuleHelp :call s:PreviewModule('<args>', 'doc')
-command! -nargs=? -complete=custom,s:ListVimrc   E     :call s:EditVimrc(<f-args>)
+command! -nargs=1 -complete=custom,ListModules Me :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,ListModules Mj :call s:PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,ListModules Mh :call s:PreviewModule('<args>', 'doc')
+command! -nargs=? -complete=custom,s:ListVimrc   E  :call s:EditVimrc(<f-args>)
 
 command! -nargs=* -bar Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar Publish :call s:Publish()
@@ -92,55 +90,13 @@ function! s:ShowGitlog(arg)
   execute 'Unite gitlog:' . arg . ' -input=' . input . ' -buffer-name=gitlog'
 endfunction
 
-function! s:ListModules(A, L, p)
+function! ListModules(A, L, p)
   let res = s:Dependencies()
   return join(res, "\n")
 endfunction
 
 function! s:Push()
   execute 'ItermStartTab! -dir='. expand('%:p:h') . ' git push'
-endfunction
-
-function! s:CheckOut()
-  " check out current file
-  let cwd = getcwd()
-  execute 'silent w'
-  let gitdir = fnamemodify(fugitive#extract_git_dir(expand('%:p')), ':h') . '/'
-  execute 'silent cd ' . gitdir
-  let file = substitute(expand('%:p'), gitdir, '', '')
-  let command = 'git checkout -- ' . file
-  let output = system(command)
-  if v:shell_error && output !=# ''
-    echohl WarningMsg | echon output
-  endif
-  execute 'silent cd ' . cwd
-  execute 'silent edit! ' . expand('%:p')
-endfunction
-
-function! s:GitDiff(all)
-  let fullpath = expand('%:p')
-  let gitdir = fugitive#extract_git_dir(fullpath)
-  let base = fnamemodify(gitdir, ':h')
-  let cwd = getcwd()
-  execute 'silent lcd ' . base
-  let path = fnamemodify(fullpath, ':.')
-  let tmpfile = tempname()
-  let end = a:all ? '' : ' -- ' . path
-  let output = system('git --no-pager diff' . end)
-  if v:shell_error && output !=# ''
-    echohl Error | echon output | echohl None
-  else
-    if !len(output) | echom 'no change' | return | endif
-    let lines = split(output, '\n')
-    execute 'silent vsplit ' . tmpfile
-    call setline(1, lines)
-    exe 'file diff://' . path
-    setlocal filetype=git buftype=nofile readonly nomodified foldmethod=syntax foldlevel=99
-    setlocal foldtext=fugitive#foldtext()
-    setlocal bufhidden=delete
-    nnoremap <buffer> <silent> q  :<C-U>bdelete<CR>
-  endif
-  execute 'silent lcd ' . cwd
 endfunction
 
 function! s:Remove(...)
