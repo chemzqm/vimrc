@@ -38,7 +38,9 @@ NeoBundle 'xolox/vim-shell'
 call neobundle#end()
 " developed plugins
 for path in split(glob('~/vim-dev/*'), '\n')
-   exe 'set rtp+=' . path
+  if path !~# 'fugitive'
+    exe 'set rtp+=' . path
+  endif
 endfor
 filetype plugin indent on
 syntax enable
