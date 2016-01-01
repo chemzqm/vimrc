@@ -245,6 +245,7 @@ function! s:PrettyFile()
   endif
   let win_view = winsaveview()
   let old_cwd = getcwd()
+  " some tool may use project specified config
   silent exe ':lcd ' . expand('%:p:h')
   let output = system(cmd, join(getline(1,'$'), "\n"))
   if v:shell_error
@@ -252,8 +253,9 @@ function! s:PrettyFile()
     echo output
   else
     silent exe 'normal! ggdG'
-    call append(0, split(output, "\n"))
-    silent exe ':$d'
+    let list = split(output, "\n")
+    call setline(1, list[0])
+    call append(1, list[1:])
   endif
   exe 'silent lcd ' . old_cwd
   call winrestview(win_view)
