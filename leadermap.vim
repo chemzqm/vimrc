@@ -12,6 +12,8 @@ let g:mapleader = ','
   inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
   " generate doc
   nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
+  " toggle fold
+  nnoremap <silent> <leader>z zi
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
@@ -150,6 +152,16 @@ function! s:GenDoc()
     call append(lnum - 1, ind . '<!--  -->')
     exe "normal! k^Ell"
     startinsert
+  elseif &ft ==# 'vim'
+    let lnum = getpos('.')[1]
+    call append(lnum - 1, '" ')
+    exe "normal! k$"
+    startinsert!
+  else
+    let lnum = getpos('.')[1]
+    call append(lnum - 1, '# ')
+    exe "normal! k$"
+    startinsert!
   endif
 endfunction
 " }}
