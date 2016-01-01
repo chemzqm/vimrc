@@ -30,6 +30,9 @@ call unite#custom#profile('default', 'context', {
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 20,
   \ })
+call unite#custom#profile('file_mru', 'context', {
+  \  'start_insert': 0,
+  \ })
 call unite#custom#profile('quickfix', 'context', {
   \  'start_insert': 0,
   \  'no_quit': 1,
@@ -44,6 +47,7 @@ call unite#custom#profile('gitlog', 'context', {
   \  'vertical_preview': 1,
   \ })
 call unite#custom#profile('outline', 'context', {
+  \  'start_insert': 0,
   \  'winheight': 15,
   \ })
 call unite#custom#profile('buffer', 'context', {
