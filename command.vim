@@ -253,9 +253,11 @@ function! s:PrettyFile()
     echo output
   else
     silent exe 'normal! ggdG'
-    let list = split(output, "\n")
-    call setline(1, list[0])
-    call append(1, list[1:])
+    if len(list)
+      let list = split(output, "\n")
+      call setline(1, list[0])
+      call append(1, list[1:])
+    endif
   endif
   exe 'silent lcd ' . old_cwd
   call winrestview(win_view)
