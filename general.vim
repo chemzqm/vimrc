@@ -1,3 +1,4 @@
+" General options {{
 set hidden " allow buffer switch without saving
 set history=99
 set wildmenu
@@ -29,13 +30,28 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
 set showtabline=1
-
-if has('statusline')
-  set laststatus=2
-  "as we use airline
-  set noshowmode
+set laststatus=2
+set noshowmode
+" Formatting
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set shiftround
+set autoindent
+set wrap
+if executable('ag')
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+  let g:grep_using_git = 0
+elseif executable('grepprg')
+  set grepprg=grepprg\ $*
+  set grepformat=%f:%l:%c:%m
+  let g:grep_using_git = 1
 endif
+" }}
 
+" Special options for macvim {{
 if has('gui_running')
   if exists("*strftime")
     let h = strftime('%H')
@@ -60,35 +76,19 @@ else
   set background=dark
   colorscheme solarized
 endif
+" }}
 
-" Formatting
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set shiftround
-set autoindent "Auto indent
-set wrap "Wrap lines
-if executable('ag')
-  set grepprg=ag\ --vimgrep\ $*
-  set grepformat=%f:%l:%c:%m
-  let g:grep_using_git = 0
-elseif executable('grepprg')
-  set grepprg=grepprg\ $*
-  set grepformat=%f:%l:%c:%m
-  let g:grep_using_git = 1
-endif
-
+" Syntax related {{
 " improve performance
 syntax sync minlines=200
-
 hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
 " change default search highlight
 hi Search guibg=#333333 guifg=#C5B569
+" }}
 
+" Complete config {{
 set complete+=k
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
@@ -115,3 +115,6 @@ function! SnipComplete(findstart, base)
     return suggestions
   endif
 endfunction
+" }}
+
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
