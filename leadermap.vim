@@ -23,9 +23,7 @@ let g:mapleader = ','
 " }}
 
 " setting switch {{
-  " TODO switch foldcolumn
   nnoremap <leader>sc :setl spell!<cr>
-  nnoremap <leader>ic :set ic!<cr>
   nnoremap <leader>hl :set hls!<cr>
   nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
@@ -159,7 +157,8 @@ function! s:GenDoc()
     startinsert!
   else
     let lnum = getpos('.')[1]
-    call append(lnum - 1, '# ')
+    let ind = matchstr(getline('.'), '\v\s*')
+    call append(lnum - 1, ind, '# ')
     exe "normal! k$"
     startinsert!
   endif
