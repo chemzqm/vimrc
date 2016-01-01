@@ -5,10 +5,10 @@ set wildmode=list:longest,full
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set backspace=2
 set autowrite
+set autoread
 set hlsearch
 set incsearch
 set smartcase
-set autoread
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
