@@ -46,7 +46,7 @@
 " }}
 
 " file & buffer {{
-  nnoremap <D-d> :bdelete<cr>
+  nnoremap <D-d> :bwipeout<cr>
 " }}
 
 " command line alias {{

@@ -47,7 +47,6 @@ call unite#custom#profile('outline', 'context', {
   \  'winheight': 15,
   \ })
 call unite#custom#profile('buffer', 'context', {
-  \  'quick_match': 1,
   \ })
 call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
