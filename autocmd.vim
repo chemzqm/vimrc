@@ -10,14 +10,12 @@ augroup end
 function! OnBufEnter()
   let name = bufname('%')
   " quickly leave those temporary buffers
-  if &previewwindow || name =~# '^fugitive'
+  if &previewwindow || name =~# '^__run'
     nnoremap <buffer> q :<C-U>bdelete<CR>
     nnoremap <buffer> <esc> :<C-U>bdelete<CR>
-  endif
-  if &filetype ==# 'help'
+  elseif &buftype ==# 'help'
     nnoremap <buffer> q :helpc<cr>
-  endif
-  if name =~# '/tmp/'
+  elseif name =~# '/tmp/'
     setl bufhidden=delete
   endif
   unlet name
