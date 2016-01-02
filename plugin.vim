@@ -13,7 +13,7 @@ let g:test#strategy = 'start'
 
 " airline {{
 let g:airline_powerline_fonts = 1
-let g:airline_extensions = ['syntastic', 'branch', 'netrw', 'unite']
+let g:airline_extensions = ['syntastic', 'netrw', 'unite']
 let g:airline_exclude_preview = 0
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
@@ -122,15 +122,11 @@ let g:tern_show_argument_hints = 'on_hold'
 
 " emmet {{
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
-  " html:5
-  " <c-c> Wrap with Abbreviation
   " <c-y>a Make anchor from URL
   " <c-y>A Make quoted text from URL
   let g:user_emmet_expandabbr_key = '<D-y>'
   let g:user_emmet_next_key = '<C-y>n'
   let g:user_emmet_prev_key = '<C-y>N'
-  "注释
-  let g:user_emmet_togglecomment_key = '<C-y>/'
   "内部全选
   let g:user_emmet_balancetaginward_key = '<C-y>i'
   let g:user_emmet_balancetagoutward_key = '<C-y>o'
@@ -140,9 +136,6 @@ let g:tern_show_argument_hints = 'on_hold'
 " vim-run {{
 let g:vim_run_command_map = {
   \'javascript': 'node',
-  \'php': 'php',
-  \'go': 'go',
-  \'python': 'python',
   \}
 " }}
 
