@@ -32,7 +32,7 @@ command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
 command! -nargs=1 -complete=custom,ListModules Me :call s:PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules Mj :call s:PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,ListModules Mh :call s:PreviewModule('<args>', 'doc')
-command! -nargs=? -complete=custom,s:ListVimrc   E  :call s:EditVimrc(<f-args>)
+command! -nargs=? -bang -complete=custom,s:ListVimrc  E  :call s:EditVimrc(<q-bang>, <f-args>)
 
 command! -nargs=* -bar Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar Publish :call s:Publish()
@@ -75,10 +75,11 @@ function! s:ListVimrc(...)
 endfunction
 
 function! s:EditVimrc(...)
-  if !a:0
-    execute 'e ~/.vimrc'
+  let edit = empty(a:1) ? 'edit' : 'tabedit'
+  if a:0 < 2
+    execute edit . ' ~/.vimrc'
   else
-    execute 'e ~/.vim/vimrc/' . a:1
+    execute edit . '~/.vim/vimrc/' . a:2
   endif
 endfunction
 
