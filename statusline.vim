@@ -99,3 +99,5 @@ augroup statusline
   autocmd BufReadPost * unlet! b:git_dir
   autocmd CursorHold,ShellCmdPost,CmdwinLeave * unlet! b:git_branch
 augroup end
+
+call s:SetStatusLine()
