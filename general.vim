@@ -32,7 +32,6 @@ set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
 set showtabline=1
 set laststatus=2
 set noshowmode
-set iskeyword-=#
 " Formatting
 set tabstop=2
 set softtabstop=2
