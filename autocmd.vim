@@ -10,7 +10,7 @@ augroup end
 function! OnBufEnter()
   let name = bufname('%')
   " quickly leave those temporary buffers
-  if &previewwindow || name =~# '^__run'
+  if &previewwindow || name =~# '^__run' || name =~# 'COMMIT_EDITMSG$'
     nnoremap <buffer> q :<C-U>bdelete<CR>
     nnoremap <buffer> <esc> :<C-U>bdelete<CR>
   elseif &buftype ==# 'help'
