@@ -14,11 +14,6 @@ command! -nargs=0 -bar Koa     execute 'setl dictionary+=~/.vim/dict/koa.dict'
 command! -nargs=0 -bar Canvas  execute 'setl dictionary+=~/.vim/dict/canvas.dict'
 command! -nargs=0 -bar Express execute 'setl dictionary+=~/.vim/dict/express.dict'
 
-" Copy file to system clipboard
-command! -nargs=0 -bar           Copy     execute 'silent w !tee % | pbcopy > /dev/null'
-" remove files or file of current buffer
-command! -nargs=* -complete=file Rm       :call s:Remove(<f-args>)
-command! -nargs=+ -bar           Mdir     :call s:Mkdir(<f-args>)
 command! -nargs=0 -bar           Pretty   :call s:PrettyFile()
 command! -nargs=0 -bar           Jsongen  :call s:Jsongen()
 command! -nargs=0 -bar           Reset    :call s:StatusReset()
@@ -66,15 +61,8 @@ endfunction
 function! s:Publish()
   " file at ~/bin/publish
   let dir = s:GetPackageDir()
-  execute 'ItermStart! -dir=' . dir . ' -title=publish publish'
+  execute 'ItermStartTab! -dir=' . dir . ' -title=publish publish'
 endfunction
-
-function! s:Mkdir(...)
-  for str in a:000
-    call mkdir(str, 'p')
-  endfor
-endfunction
-
 
 function! s:ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
@@ -104,20 +92,6 @@ function! ListModules(A, L, p)
   let res = s:Dependencies()
   return join(res, "\n")
 endfunction
-
-function! s:Remove(...)
-  if a:0 ==# 0
-    let file = expand('%:p')
-    let buf = bufnr('%')
-    execute 'bwipeout ' . buf
-    call system('rm -f'.file)
-  else
-    for str in a:000
-      call system('rm -rf ' . str)
-    endfor
-  endif
-endfunction
-
 " Remove hidden buffers and cd to current dir
 function! s:StatusReset()
   let dir = fnameescape(expand('%:p:h'))
@@ -231,8 +205,8 @@ function! s:PrettyFile()
     echo output
   else
     silent exe 'normal! ggdG'
+    let list = split(output, "\n")
     if len(list)
-      let list = split(output, "\n")
       call setline(1, list[0])
       call append(1, list[1:])
     endif
