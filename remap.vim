@@ -53,7 +53,7 @@
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
   cnoremap $v ~/.vimrc
-  cnoremap $% <C-R>=expand('%:p:h').'/'<cr>
+  cnoremap $h <C-R>=expand('%:p:h').'/'<cr>
 " }}
 
 " command line emacs shortcut, same as shell {{
