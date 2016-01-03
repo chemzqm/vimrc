@@ -201,7 +201,6 @@ function! s:Dependencies()
   return deps
 endfunction
 
-
 function! s:Jsongen()
   let file = expand('%:p')
   if !&filetype =~? 'handlebars$'
@@ -225,7 +224,7 @@ function! s:Jsongen()
       break
     endif
   endfor
-  if !exist | execute 'belowright vs ' . out | endif
+  if !exist | execute 'keepalt belowright vs ' . out | endif
   exe 'wincmd p'
 endfunction
 

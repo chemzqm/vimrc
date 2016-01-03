@@ -2,7 +2,6 @@ function! MyStatusSyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
 
-
 function! MyStatusLine()
   return "%2*%3.3{MyStatusModeMap()}%*"
         \. s:GetPaste()
