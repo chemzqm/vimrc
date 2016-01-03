@@ -29,9 +29,7 @@ augroup complete
 augroup end
 
 function! AutoClosePreviewWindow()
-  if !&l:previewwindow
-    pclose
-  endif
+  if !&l:previewwindow | pclose | endif
 endfunction
 " }}
 
