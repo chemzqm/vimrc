@@ -131,40 +131,29 @@ function! s:StatusReset()
 endf
 
 function! s:PreviewModule(name, ...)
-  if empty(a:name) | echo 'need module name' | return | endif
   let dir = s:GetPackageDir()
   let content = webapi#json#decode(join(readfile(dir . '/package.json')))
-  if exists('content.browser')
-    let name = get(content.browser, a:name, a:name)
-  else
-    let name = a:name
-  endif
+  if !exists('content.browser') | let content.browser = [] | endif
+  let name = get(content.browser, a:name, a:name)
   let dir = dir . '/node_modules/' . name
   if !isdirectory(dir) | echo 'module not found' | return | endif
   let content = webapi#json#decode(join(readfile(dir . '/package.json')))
   if empty(a:000)
+    " fix main field
     let main = exists('content.main') ? content.main : 'index.js'
     let main = main =~# '\v\.js$' ? main : main . '.js'
     let file = dir . '/' . substitute(main, '\v^(./)?', '', '')
   else
     let type = a:000[0]
     if type ==? 'doc'
-      for name in ['readme', 'Readme', 'README']
-        if filereadable(dir . '/' . name . '.md')
-          let file = dir . '/' . name . '.md'
-          break
-        endif
-      endfor
+      let list = filter(split(glob(dir . '/*.md'), '\n'), 'v:val =~? "readme\.md"')
+      if len(list) |let file = list[0] |endif
     elseif type ==? 'json'
       let file = dir . '/package.json'
     endif
   endif
-  if !exists('file') | echohl WarningMsg | echon 'not found' | return | endif
-  let h = &previewheight
-  let &previewheight = 40
-  execute 'pedit ' . file
-  let &previewheight = h
-  execute "normal! \<c-w>k"
+  if !exists('file') | echon 'not found' | return | endif
+  execute 'silent keepalt split ' . file
 endfunction
 
 function! s:GetPackageDir()
