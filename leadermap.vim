@@ -3,7 +3,7 @@ let g:mapleader = ','
 
 " basic {{
   " Edit file in current file folder
-  nnoremap <silent> <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
   " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<cr>
   " Search with grep
