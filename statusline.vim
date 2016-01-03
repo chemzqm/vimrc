@@ -9,14 +9,24 @@ function! MyStatusLine()
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%0{MyStatusReadonly()}%*"
         \. "%3* %{MyStatusSyntasticError()} %*"
-        \. "%=%-5.10{&ft} "
+        \. "%=%-5.10{&ft} %{MyStatusBufnr()}"
 "%{&fenc}
 endfunction
 
+function! MyStatusBufnr()
+  if s:IsTempFile() | return '' | endif
+  return bufnr('%') . ' '
+endfunction
+
 function! MyStatusModeMap()
-  if &buftype =~# '\v(help|nofile)' | return '' | endif
-  if &filetype ==# 'gitcommit' | return '' | endif
+  if s:IsTempFile() | return '' | endif
   return s:mode_map[mode()] . " "
+endfunction
+
+function! s:IsTempFile()
+  if &buftype =~# '\v(help|nofile)' | return 1 | endif
+  if &filetype ==# 'gitcommit' | return 1 | endif
+  if expand('%:p') =~# '^/tmp' | return 1 | endif
 endfunction
 
 function! s:GetPaste()
@@ -34,8 +44,7 @@ function! MyStatusModifySymbol()
 endfunction
 
 function! MyStatusBranch()
-  if &buftype =~# '\v(help|nofile)' | return '' | endif
-  if &filetype ==# 'gitcommit' | return '' | endif
+  if s:IsTempFile() | return '' | endif
   if exists('b:git_branch') | return b:git_branch | endif
   let b:git_dir = exists('b:git_dir') ? b:git_dir : finddir('.git', '.;')
   " no git dir found
