@@ -1,7 +1,8 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
 " word {{
-  inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
+  "inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
+  inoremap <C-u> <esc>mzgUiw`za
   " like emacs
   inoremap <C-h> <BS>
   inoremap <C-d> <Del>

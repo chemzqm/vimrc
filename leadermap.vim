@@ -12,8 +12,6 @@ let g:mapleader = ','
   inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
   " generate doc
   nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
-  " toggle fold
-  nnoremap <silent> <leader>z zi
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
 " }}
