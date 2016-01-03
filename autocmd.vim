@@ -36,7 +36,6 @@ endfunction
 " }}
 
 " javascript {{
-
 augroup javascript
   autocmd!
   au FileType javascript :call s:SetLoadFunctions()
