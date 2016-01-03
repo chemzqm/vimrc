@@ -102,6 +102,7 @@ endfunction
 
 " Simple clean utility
 function! s:Clean()
+  let view = winsaveview()
   let ft = &filetype
   " replace tab with 2 space
   if index(['javascript', 'html', 'css', 'vim', 'php'], ft) != -1
@@ -117,6 +118,7 @@ function! s:Clean()
   silent! execute '%s/\s\+$//'
   " remove windows 
   silent! execute '%s/$//'
+  call winrestview(view)
 endfunction
 
 " Switch between `ag` and `git grep`, `grepprg` is a wrapper command
