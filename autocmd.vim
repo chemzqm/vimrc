@@ -64,3 +64,17 @@ function! s:LoadFunctions(type, ...)
   endif
 endfunction
 " }}
+
+" html {{
+augroup html
+  autocmd!
+  autocmd FileType html : csll s:SetHtml()
+augroup end
+
+function! s:SetHtml()
+  setl nowrap
+  setl foldmethod=manual
+  setl formatprg=tidy\ -i\ -q\ -w\ 160
+  exec 'UltiSnipsAddFiletypes html.css'
+endfunction
+" }}

@@ -4,7 +4,7 @@
 let g:test#javascript#mocha#file_pattern = '\.js'
 let g:test#javascript#mocha#options = '-c'
 function! s:StartTest(cmd)
-  execute 'ItermStartTab ' . a:cmd . '| error-parser'
+  execute 'ItermStartTab! ' . a:cmd . '| error-parser'
 endfunction
 
 let g:test#custom_strategies = {'start': function('s:StartTest')}
