@@ -52,12 +52,6 @@ function! g:Quickfix(type, ...)
   execute "silent Unite -buffer-name=quickfix quickfix"
 endfunction
 
-function! s:Mkdir(...)
-  for str in a:000
-    call mkdir(str, 'p')
-  endfor
-endfunction
-
 function! s:FindPattern(list)
   let l = len(a:list)
   for i in range(l)
@@ -67,6 +61,20 @@ function! s:FindPattern(list)
     endif
   endfor
 endfunction
+
+" module publish
+function! s:Publish()
+  " file at ~/bin/publish
+  let dir = s:GetPackageDir()
+  execute 'ItermStart! -dir=' . dir . ' -title=publish publish'
+endfunction
+
+function! s:Mkdir(...)
+  for str in a:000
+    call mkdir(str, 'p')
+  endfor
+endfunction
+
 
 function! s:ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
@@ -108,7 +116,6 @@ function! s:Remove(...)
       call system('rm -rf ' . str)
     endfor
   endif
-
 endfunction
 
 " Remove hidden buffers and cd to current dir
@@ -160,27 +167,13 @@ function! s:PreviewModule(name, ...)
   execute "normal! \<c-w>k"
 endfunction
 
-" module publish
-function! s:Publish()
-  " file at ~/bin/publish
-  let dir = s:GetPackageDir()
-  execute 'ItermStart! -dir=' . dir . ' -title=publish publish'
-endfunction
-
-" package directory of current file
-let s:home = expand('~')
 function! s:GetPackageDir()
-  let dir = expand('%:p:h')
-  while 1
-    if filereadable(dir . '/package.json')
-      return dir
-    endif
-    let dir = fnamemodify(dir, ':h')
-    if dir ==# s:home
-      echohl WarningMsg | echon 'package.json not found' | echohl None
-      return
-    endif
-  endwhile
+  let file = findfile('package.json', '.;')
+  if empty(file)
+    echohl Error | echon 'project root not found' | echohl None
+    return
+  endif
+  return fnamemodify(file, ':h')
 endfunction
 
 function! s:Dependencies()
@@ -233,7 +226,6 @@ let g:Pretty_commmand_map = {
     \ "html": "tidy -i -q -w 160",
     \ "javascript": "js-beautify -s 2 -p -f -",
     \}
-
 function! s:PrettyFile()
   let cmd = get(g:Pretty_commmand_map, &filetype, '')
   if !len(cmd)
