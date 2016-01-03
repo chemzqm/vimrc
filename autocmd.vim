@@ -73,8 +73,6 @@ augroup end
 function! s:SetHtml()
   setl nowrap
   setl foldmethod=manual
-  " tidy is bad need replacement
-  setl formatprg=tidy\ -i\ -q\ -w\ 160
   exec 'UltiSnipsAddFiletypes html.css'
 endfunction
 " }}
