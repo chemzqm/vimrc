@@ -57,7 +57,7 @@ call unite#custom#profile('file_mru', 'filters', 'sorter_selecta')
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
-nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
+nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
 nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank      history/yank<cr>
