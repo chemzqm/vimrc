@@ -67,12 +67,13 @@ endfunction
 " html {{
 augroup html
   autocmd!
-  autocmd FileType html : csll s:SetHtml()
+  autocmd FileType html : call s:SetHtml()
 augroup end
 
 function! s:SetHtml()
   setl nowrap
   setl foldmethod=manual
+  " tidy is bad need replacement
   setl formatprg=tidy\ -i\ -q\ -w\ 160
   exec 'UltiSnipsAddFiletypes html.css'
 endfunction
