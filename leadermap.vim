@@ -18,6 +18,7 @@ let g:mapleader = ','
 
 " content edit {{
   nnoremap <leader>au :!autoprefixer %<cr>
+  nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
 " }}
 
 " setting switch {{
@@ -32,8 +33,8 @@ let g:mapleader = ','
 
 " plugin {{
   " easy-motion improved
-  nnoremap <leader>f \\f
-  nnoremap <leader>F \\F
+  nmap <leader>f \\f
+  nmap <leader>F \\F
   " bbye
   nnoremap <leader>q :Bdelete<cr>
   " vim-test
