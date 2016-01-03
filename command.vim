@@ -1,11 +1,11 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " Git commandline alias
-command! -nargs=0 -bar C   :Glcd
-command! -nargs=0 -bar Gp  :call s:Push()
-command! -nargs=* -bar Gd  :Gdiff <args>
-command! -nargs=* -bar Gt  :GdiffThis <args>
-command! -nargs=* -bar Gc  :Gci <args>
+command! -nargs=0 -bar C   Glcd
+command! -nargs=0 -bar Gp  execute 'ItermStartTab! -dir='. expand('%:p:h') . ' git push'
+command! -nargs=* -bar Gd  Gdiff <args>
+command! -nargs=* -bar Gt  GdiffThis <args>
+command! -nargs=* -bar Gc  Gci <args>
 
 " add dictionary
 command! -nargs=0 -bar Node    execute 'setl dictionary+=~/.vim/dict/node.dict'
@@ -95,10 +95,6 @@ endfunction
 function! ListModules(A, L, p)
   let res = s:Dependencies()
   return join(res, "\n")
-endfunction
-
-function! s:Push()
-  execute 'ItermStartTab! -dir='. expand('%:p:h') . ' git push'
 endfunction
 
 function! s:Remove(...)
