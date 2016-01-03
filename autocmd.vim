@@ -12,7 +12,7 @@ function! OnBufEnter()
   " quickly leave those temporary buffers
   if &previewwindow || name =~# '^__run' || name =~# 'COMMIT_EDITMSG$'
     nnoremap <buffer> q :<C-U>bdelete<CR>
-    nnoremap <buffer> <esc> :<C-U>bdelete<CR>
+    "nnoremap <buffer> <esc> :<C-U>bdelete<CR>
   elseif &buftype ==# 'help'
     nnoremap <buffer> q :helpc<cr>
   elseif name =~# '/tmp/'
