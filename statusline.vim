@@ -9,7 +9,7 @@ function! MyStatusLine()
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%0{MyStatusReadonly()}%*"
         \. "%3* %{MyStatusSyntasticError()} %*"
-        \. "%=%-5.10{&ft} %{MyStatusBufnr()}"
+        \. "%=%-{&ft} %{MyStatusBufnr()}"
 "%{&fenc}
 endfunction
 
