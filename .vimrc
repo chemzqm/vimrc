@@ -14,6 +14,7 @@ endfunction
 
 if !exists('g:bundles_loaded')
   Plugin 'dash.vim'
+  Plugin 'xml.vim'
   Plugin 'emmet-vim'
   Plugin 'gist-vim'
   Plugin 'gundo.vim'
@@ -60,3 +61,21 @@ iabbrev @G chemzqm@gmail.com
 iabbrev @C Copyright 2015 Qiming Zhao, all rights reserved
 iabbrev mocah mocha
 iabbrev fi if
+
+function! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
+call SetupCommandAlias('C', 'Glcd')
+call SetupCommandAlias('Gd', 'Gdiff')
+call SetupCommandAlias('Gt', 'GdiffThis')
+call SetupCommandAlias('Gs', 'Gedit')
+call SetupCommandAlias('Gc', 'GcommitCurrent')
+call SetupCommandAlias('Gca', 'GcommitAll')
+call SetupCommandAlias('Gco', 'Gcheckout')
+call SetupCommandAlias('U', 'Update')
+call SetupCommandAlias('P', 'Publish')
+
+cnoreabbrev -a --amend
