@@ -138,3 +138,7 @@ let g:vim_run_command_map = {
   \ }
   \}
 " }}
+
+" easygit {{
+  let g:easygit_auto_lcd = 1
+"}}

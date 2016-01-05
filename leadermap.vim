@@ -153,7 +153,8 @@ function! s:GenDoc()
     startinsert
   elseif &ft ==# 'vim'
     let lnum = getpos('.')[1]
-    call append(lnum - 1, '" ')
+    let ind = matchstr(getline('.'), '\v\s*')
+    call append(lnum - 1, ind . '" ')
     exe "normal! k$"
     startinsert!
   else

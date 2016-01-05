@@ -75,7 +75,6 @@ function! s:EditVimrc(...)
   if a:0 < 2
     execute edit . ' ~/.vimrc'
   else
-    execute 'lcd ~/.vim/vimrc'
     execute edit . ' ' . a:2
   endif
 endfunction
