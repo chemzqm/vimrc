@@ -1,7 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " Git commandline alias
-command! -nargs=0 -bar Gp  execute 'ItermStartTab! -dir='. expand('%:p:h') . ' git push'
+command! -nargs=0 -bar Gpush  execute 'ItermStartTab! -dir='. expand('%:p:h') . ' git push'
 
 " add dictionary
 command! -nargs=0 -bar Node     execute 'setl dictionary+=~/.vim/dict/node.dict'

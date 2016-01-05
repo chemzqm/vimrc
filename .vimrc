@@ -75,7 +75,9 @@ call SetupCommandAlias('Gs', 'Gedit')
 call SetupCommandAlias('Gc', 'GcommitCurrent')
 call SetupCommandAlias('Gca', 'GcommitAll')
 call SetupCommandAlias('Gco', 'Gcheckout')
+call SetupCommandAlias('Gp', 'Gpush')
 call SetupCommandAlias('U', 'Update')
 call SetupCommandAlias('P', 'Publish')
+call SetupCommandAlias('N', 'Note')
 
 cnoreabbrev -a --amend
