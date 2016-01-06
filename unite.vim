@@ -21,6 +21,9 @@ call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
 call unite#custom#source(
+  \  'buffer,file_rec,file_mru', 'sorters', 'sorter_selecta'
+  \)
+call unite#custom#source(
   \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
   \ )
 call unite#custom#profile('default', 'context', {
@@ -52,8 +55,6 @@ call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
   \  'quick_match': 1,
   \ })
-call unite#custom#profile('files', 'filters', 'sorter_selecta')
-call unite#custom#profile('file_mru', 'filters', 'sorter_selecta')
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
