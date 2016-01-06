@@ -62,6 +62,8 @@ endfunction
 function! s:SetStatusLine()
   if &previewwindow | return | endif
   if &buftype ==# 'nofile' | return | endif
+  unlet! b:git_branch
+  unlet! b:git_dir
   setl statusline=%!MyStatusLine()
   call s:highlight()
 endfunction
@@ -103,7 +105,7 @@ let s:mode_map = {
 
 augroup statusline
   autocmd!
-  autocmd BufWinEnter * call s:SetStatusLine()
+  autocmd BufWinEnter,ShellCmdPost * call s:SetStatusLine()
   autocmd BufReadPost * unlet! b:git_dir
   autocmd CursorHold,ShellCmdPost,CmdwinLeave * unlet! b:git_branch
 augroup end
