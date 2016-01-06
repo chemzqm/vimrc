@@ -1,11 +1,12 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
 " common file autocmd {{
-augroup fileRead
+augroup common
   autocmd!
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
   autocmd BufWinLeave * call OnBufLeave()
+  autocmd CursorHold * call OnCursorHold()
 augroup end
 
 function! OnBufEnter()
@@ -26,9 +27,14 @@ endfunction
 function! OnBufLeave()
   let nr = +expand('<abuf>')
   let name = bufname(nr)
+  " Delete no name buffer on leave
   if empty(name)
     execute 'silent bdelete' nr
   endif
+endfunction
+
+function! OnCursorHold()
+  let @/ = ""
 endfunction
 " }}
 
