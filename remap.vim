@@ -33,7 +33,7 @@
   noremap <silent> [] k$][%?}<CR>
 " }}
 
-" tab {{
+" command key {{
   noremap  <D-1>      1gt
   noremap  <D-2>      2gt
   noremap  <D-3>      3gt
