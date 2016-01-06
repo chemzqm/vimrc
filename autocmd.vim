@@ -1,24 +1,34 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" file read {{
+" common file autocmd {{
 augroup fileRead
   autocmd!
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
+  autocmd BufWinLeave * call OnBufLeave()
 augroup end
 
 function! OnBufEnter()
-  let name = bufname('%')
+  let name = bufname(+expand('<abuf>'))
   " quickly leave those temporary buffers
   if &previewwindow || name =~# '^__run' || name =~# 'COMMIT_EDITMSG$'
-    nnoremap <buffer> q :<C-U>bdelete<CR>
-    "nnoremap <buffer> <esc> :<C-U>bdelete<CR>
+    if !mapcheck('q', 'n')
+      nnoremap <buffer> q :<C-U>bdelete<CR>
+    endif
   elseif &buftype ==# 'help'
     nnoremap <buffer> q :helpc<cr>
   elseif name =~# '/tmp/'
     setl bufhidden=delete
   endif
   unlet name
+endfunction
+
+function! OnBufLeave()
+  let nr = +expand('<abuf>')
+  let name = bufname(nr)
+  if empty(name)
+    execute 'silent bdelete' nr
+  endif
 endfunction
 " }}
 
