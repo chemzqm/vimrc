@@ -86,7 +86,8 @@ function! ListModules(A, L, p)
 endfunction
 " Remove hidden buffers and cd to current dir
 function! s:StatusReset()
-  let dir = fnameescape(expand('%:p:h'))
+  let dir = easygit#smartRoot()
+  if empty(dir) | let dir = fnameescape(expand('%:p:h')) | endif
   execute 'cd '.dir
   " delete hidden buffers
   let tpbl=[]
