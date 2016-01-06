@@ -28,11 +28,8 @@ if !exists('g:bundles_loaded')
   Plugin 'vim-easymotion'
   Plugin 'vim-colors-solarized'
   Plugin 'vim-exchange'
-  Plugin 'vim-fish'
   Plugin 'vim-gitgutter'
-  Plugin 'vim-go'
   Plugin 'vim-jsdoc'
-  Plugin 'vim-json'
   Plugin 'vim-notes'
   Plugin 'vim-misc'
   Plugin 'vim-session'
@@ -43,6 +40,10 @@ if !exists('g:bundles_loaded')
   Plugin 'webapi-vim'
   Plugin 'tern_for_vim'
   Plugin 'vim-css-color'
+
+  Plugin 'vim-fish'
+  Plugin 'vim-go'
+  Plugin 'vim-json'
 endif
 let g:bundles_loaded = 1
 
@@ -73,11 +74,17 @@ call SetupCommandAlias('Gd', 'Gdiff')
 call SetupCommandAlias('Gt', 'GdiffThis')
 call SetupCommandAlias('Gs', 'Gedit')
 call SetupCommandAlias('Gc', 'GcommitCurrent')
-call SetupCommandAlias('Gca', 'GcommitAll')
+call SetupCommandAlias('Gci', 'Gcommit -v')
+call SetupCommandAlias('Gca', 'Gcommit -a -v')
 call SetupCommandAlias('Gco', 'Gcheckout')
+call SetupCommandAlias('Grm', 'Gremove')
+call SetupCommandAlias('Gmv', 'Gmove')
 call SetupCommandAlias('Gp', 'Gpush')
 call SetupCommandAlias('U', 'Update')
 call SetupCommandAlias('P', 'Publish')
 call SetupCommandAlias('N', 'Note')
+call SetupCommandAlias('T', 'tabe')
+call SetupCommandAlias('H', 'ModuleHelp')
 
-cnoreabbrev -a --amend
+cnoreabbrev a --amend
+cnoreabbrev c --cached

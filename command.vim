@@ -16,9 +16,9 @@ command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
 
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,ListModules Me :call s:PreviewModule('<args>')
-command! -nargs=1 -complete=custom,ListModules Mj :call s:PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,ListModules Mh :call s:PreviewModule('<args>', 'doc')
+command! -nargs=1 -complete=custom,ListModules ModuleMain :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,ListModules ModuleHelp :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -bang -complete=custom,s:ListVimrc  E  :call s:EditVimrc(<q-bang>, <f-args>)
 
 command! -nargs=* -bar Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
@@ -98,6 +98,7 @@ endf
 
 function! s:PreviewModule(name, ...)
   let dir = s:GetPackageDir()
+  if empty(dir) | return | endif
   let content = webapi#json#decode(join(readfile(dir . '/package.json')))
   if !exists('content.browser') | let content.browser = [] | endif
   let name = get(content.browser, a:name, a:name)
