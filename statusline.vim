@@ -98,7 +98,11 @@ function! s:highlight()
   hi User2         ctermfg=253   ctermbg=144   cterm=none
   hi User3         guifg=#FF001E guibg=#333333 gui=none
   hi User3         ctermfg=160   ctermbg=16    cterm=none
-  hi User4         guifg=#f5f5f5 guibg=#111111 gui=none
+  if &bg ==# 'light'
+    hi User4         guifg=#111111 guibg=#fdf6e3 gui=none
+  else
+    hi User4         guifg=#222222 guibg=#fdf6e3 gui=none
+  endif
   hi User4         ctermbg=16    cterm=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
