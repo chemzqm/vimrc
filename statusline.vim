@@ -137,3 +137,5 @@ augroup statusline
 augroup end
 
 call s:SetStatusLine()
+
+" vim:set et sw=2 ts=2 tw=78:
