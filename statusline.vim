@@ -5,9 +5,9 @@ endfunction
 function! MyStatusLine()
   return "%2*%3.3{MyStatusModeMap()}%*"
         \. s:GetPaste()
-        \. "%4*%0{MyStatusBranch()}%*"
+        \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
-        \. "%1*%0{MyStatusReadonly()}%*"
+        \. "%1*%{MyStatusReadonly()}%*"
         \. "%3* %{MyStatusSyntasticError()} %*"
         \. "%=%-{&ft} %{MyStatusBufnr()}"
 "%{&fenc}
@@ -43,29 +43,52 @@ function! MyStatusModifySymbol()
   return &mod ? '✨' : ''
 endfunction
 
-function! MyStatusBranch()
+function! MyStatusGit() abort
   if s:IsTempFile() | return '' | endif
   if exists('b:git_branch') | return b:git_branch | endif
-  let b:git_dir = exists('b:git_dir') ? b:git_dir : finddir('.git', '.;')
-  " no git dir found
-  if empty(b:git_dir) | return '' | endif
-  let cmd = 'git --git-dir=' . b:git_dir . ' rev-parse --abbrev-ref HEAD'
+  let root = easygit#smartRoot(1)
+  if empty(root) | return '' | endif
+  let cwd = getcwd()
+  exe 'lcd ' . root
+  let cmd = 'git rev-parse --abbrev-ref HEAD'
   let output = system(cmd)
-  if v:shell_error && output !=# ""
-    let b:git_branch = ''
+  if v:shell_error |
+    call s:PrintError(output)
+    exe 'lcd ' . cwd
+    return ''
+  else
+    let out = system('git status -s -- ' . expand('%') )
+    let stat = substitute(out, '^\v\s*([^\s]*)\s.*$', '\1', '')
+    let b:git_branch = '   ' . substitute(output, '\v\n', '', '')
+        \. ' '. s:GetStatSymbol(stat) . ' '
+    exe 'lcd ' . cwd
     return b:git_branch
   endif
-  let b:git_branch = '   ' . substitute(output, '\v\n', '', '') . ' '
-  return b:git_branch
+endfunction
+
+function! s:GetStatSymbol(stat)
+  if empty(a:stat) | return '' | endif
+  if a:stat ==# '?'
+    return '? '
+  elseif a:stat ==? 'm'
+    return '+'
+  elseif a:stat ==? 'd'
+    return '-'
+  endif
+  return '😕'
 endfunction
 
 function! s:SetStatusLine()
   if &previewwindow | return | endif
   if &buftype ==# 'nofile' | return | endif
-  unlet! b:git_branch
-  unlet! b:git_dir
+  if exists('b:git_branch') | unlet b:git_branch | endif
+  if exists('b:git_root') | unlet b:git_root | endif
   setl statusline=%!MyStatusLine()
   call s:highlight()
+endfunction
+
+function! s:PrintError(msg)
+  echohl Error | echon a:msg | echohl None
 endfunction
 
 function! s:highlight()
@@ -75,7 +98,7 @@ function! s:highlight()
   hi User2         ctermfg=253   ctermbg=144   cterm=none
   hi User3         guifg=#FF001E guibg=#333333 gui=none
   hi User3         ctermfg=160   ctermbg=16    cterm=none
-  hi User4         guibg=#111111 gui=none
+  hi User4         guifg=#f5f5f5 guibg=#111111 gui=none
   hi User4         ctermbg=16    cterm=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
@@ -106,7 +129,8 @@ let s:mode_map = {
 augroup statusline
   autocmd!
   autocmd BufWinEnter,ShellCmdPost * call s:SetStatusLine()
-  autocmd BufReadPost * unlet! b:git_dir
+  autocmd FileChangedShellPost,ColorScheme * call s:SetStatusLine()
+  autocmd BufReadPost * unlet! b:git_root
   autocmd CursorHold,ShellCmdPost,CmdwinLeave * unlet! b:git_branch
 augroup end
 
