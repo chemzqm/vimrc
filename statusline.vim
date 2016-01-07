@@ -82,7 +82,6 @@ function! s:SetStatusLine()
   if &previewwindow | return | endif
   if &buftype ==# 'nofile' | return | endif
   if exists('b:git_branch') | unlet b:git_branch | endif
-  if exists('b:git_root') | unlet b:git_root | endif
   setl statusline=%!MyStatusLine()
   call s:highlight()
 endfunction
@@ -134,8 +133,7 @@ augroup statusline
   autocmd!
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call s:SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call s:SetStatusLine()
-  autocmd BufReadPost * unlet! b:git_root
-  autocmd CursorHold,ShellCmdPost,FileWritePost,WinLeave * unlet! b:git_branch
+  autocmd CursorHold,ShellCmdPost,FileWritePost,BufLeave * unlet! b:git_branch
 augroup end
 
 call s:SetStatusLine()
