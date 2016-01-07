@@ -32,7 +32,7 @@ function! OnBufLeave()
 endfunction
 
 function! OnCursorHold()
-  let @/ = ""
+  "let @/ = ""
 endfunction
 " }}
 

@@ -57,17 +57,15 @@ function! MyStatusGit() abort
     exe 'lcd ' . cwd
     return ''
   else
-    let out = system('git status -s -- ' . expand('%') )
-    let stat = substitute(out, '^\v\s*([^\s]*)\s.*$', '\1', '')
+    let more = ' ' . system('git-status')
     let b:git_branch = '   ' . substitute(output, '\v\n', '', '')
-        \. ' '. s:GetStatSymbol(stat) . ' '
+        \. more . ' '
     exe 'lcd ' . cwd
     return b:git_branch
   endif
 endfunction
 
 function! s:GetStatSymbol(stat)
-  if empty(a:stat) | return '' | endif
   if a:stat ==# '?'
     return '? '
   elseif a:stat ==? 'm'
