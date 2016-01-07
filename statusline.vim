@@ -132,10 +132,10 @@ let s:mode_map = {
 
 augroup statusline
   autocmd!
-  autocmd BufWinEnter,ShellCmdPost * call s:SetStatusLine()
+  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call s:SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call s:SetStatusLine()
   autocmd BufReadPost * unlet! b:git_root
-  autocmd CursorHold,ShellCmdPost,CmdwinLeave * unlet! b:git_branch
+  autocmd CursorHold,ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end
 
 call s:SetStatusLine()
