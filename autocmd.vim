@@ -4,9 +4,9 @@
 augroup common
   autocmd!
   autocmd BufReadPost *.log normal! G
-  autocmd BufWinEnter * call OnBufEnter()
-  autocmd BufWinLeave * call OnBufLeave()
+  autocmd BufEnter * call OnBufEnter()
   autocmd CursorHold * call OnCursorHold()
+  "autocmd BufLeave * call OnBufLeave()
 augroup end
 
 function! OnBufEnter()
@@ -14,7 +14,7 @@ function! OnBufEnter()
   " quickly leave those temporary buffers
   if &previewwindow || name =~# '^__run' || name =~# 'COMMIT_EDITMSG$'
     if !mapcheck('q', 'n')
-      nnoremap <buffer> q :<C-U>bdelete<CR>
+      "nnoremap <buffer> q :<C-U>bdelete!<CR>
     endif
   elseif &buftype ==# 'help'
     nnoremap <buffer> q :helpc<cr>
@@ -25,11 +25,9 @@ function! OnBufEnter()
 endfunction
 
 function! OnBufLeave()
-  let nr = +expand('<abuf>')
-  let name = bufname(nr)
   " Delete no name buffer on leave
-  if empty(name)
-    execute 'silent bdelete' nr
+  if empty(bufname(+expand('<abuf>')))
+    execute 'silent bdelete ' . expand('<abuf>')
   endif
 endfunction
 
