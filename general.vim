@@ -32,7 +32,7 @@ set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store
 set showtabline=1
 set laststatus=2
 set noshowmode
-set updatetime=3000
+set updatetime=2000
 " Formatting
 set tabstop=2
 set softtabstop=2
