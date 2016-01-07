@@ -56,7 +56,7 @@ endif
 if has('gui_running')
   if exists("*strftime")
     let h = strftime('%H')
-    if h > 18 || h < 8
+    if h >= 17 || h < 8
       set background=dark
     else
       set background=light
