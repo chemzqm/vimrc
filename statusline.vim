@@ -100,7 +100,7 @@ function! s:highlight()
   if &bg ==# 'light'
     hi User4         guifg=#111111 guibg=#fdf6e3 gui=none
   else
-    hi User4         guifg=#222222 guibg=#fdf6e3 gui=none
+    hi User4         guifg=#eee8d5 guibg=#222222 gui=none
   endif
   hi User4         ctermbg=16    cterm=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
@@ -132,7 +132,7 @@ let s:mode_map = {
 augroup statusline
   autocmd!
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call s:SetStatusLine()
-  autocmd FileChangedShellPost,ColorScheme,BufEnter * call s:SetStatusLine()
+  autocmd FileChangedShellPost,ColorScheme * call s:SetStatusLine()
   autocmd CursorHold,ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end
 
