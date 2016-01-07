@@ -21,7 +21,7 @@ call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
 call unite#custom#source(
-  \  'buffer,file_rec,file_mru', 'sorters', 'sorter_selecta'
+  \  'buffer,file_rec', 'sorters', 'sorter_selecta'
   \)
 call unite#custom#source(
   \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
@@ -29,6 +29,10 @@ call unite#custom#source(
 call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
   \  'no_empty': 1,
+  \ })
+call unite#custom#profile('file_mru', 'context', {
+  \  'winheight': 20,
+  \  'start_insert': 1,
   \ })
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 20,

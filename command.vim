@@ -24,6 +24,11 @@ command! -nargs=? -bang -complete=custom,s:ListVimrc  E  :call s:EditVimrc(<q-ba
 command! -nargs=* -bar Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 -bar Publish :call s:Publish()
 command! -nargs=? -bar L       :call s:ShowGitlog('<args>')
+command! -nargs=? -bar S       :call s:LoadTestFile()
+
+function! s:LoadTestFile()
+  exe 'source ~/.vim/test.vim'
+endfunction
 
 function! g:Quickfix(type, ...)
   if a:type ==# 'ag'
