@@ -3,8 +3,8 @@ function! MyStatusSyntaxItem()
 endfunction
 
 function! MyStatusLine()
-  return "%2*%3.3{MyStatusModeMap()}%*"
-        \. s:GetPaste()
+   "%2*%3.3{MyStatusModeMap()}%*"
+  return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%{MyStatusReadonly()}%*"
