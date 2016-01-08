@@ -77,6 +77,7 @@ function! s:GrepFromSelected(type)
     return
   endif
   let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '|')
   call g:Quickfix('ag', "-Q -s", word)
   let @@ = saved_unnamed_register
 endfunction
