@@ -7,6 +7,9 @@
   inoremap <C-h> <BS>
   inoremap <C-d> <Del>
 " }}
+" git {{
+  nnoremap gca :Gcommit -a -v<CR>
+" }}
 
 " line {{
   " Visual shifting (does not exit Visual mode)
