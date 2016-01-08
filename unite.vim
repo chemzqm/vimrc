@@ -95,6 +95,12 @@ function! s:unite_my_settings()
   nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> H       <Plug>(unite_quick_help)
   nmap <buffer> i       <plug>(unite_append_end)
+  let unite = unite#get_current_unite()
+  if unite.profile_name ==# 'gitlog'
+    nnoremap <silent><buffer><expr> r     unite#do_action('reset')
+  else
+    nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+  endif
 endfunction
 
 function! s:Jump(count, dir)
