@@ -1,51 +1,40 @@
-" vim: set sw=2 ts=2 sts=2 et tw=78;
-
 filetype off
 if &shell =~# 'fish$'
   set shell=bash
 endif
 
-" Do nothing plugin manager
-command! -nargs=1 Plugin call s:bundle(<args>)
-
-function! s:bundle(name)
-  exe 'set rtp+=~/.vim/bundle/' . a:name
-endfunction
-
-if !exists('g:bundles_loaded')
-  Plugin 'dash.vim'
-  Plugin 'xml.vim'
-  Plugin 'emmet-vim'
-  Plugin 'gist-vim'
-  Plugin 'gundo.vim'
-  Plugin 'neomru.vim'
-  Plugin 'neoyank.vim'
-  Plugin 'syntastic'
-  Plugin 'ultisnips'
-  Plugin 'unite-outline'
-  Plugin 'unite.vim'
-  Plugin 'vim-easy-align'
-  Plugin 'vim-easymotion'
-  Plugin 'vim-colors-solarized'
-  Plugin 'vim-exchange'
-  Plugin 'vim-gitgutter'
-  Plugin 'vim-jsdoc'
-  Plugin 'vim-notes'
-  Plugin 'vim-misc'
-  Plugin 'vim-session'
-  Plugin 'vim-shell'
-  Plugin 'vim-surround'
-  Plugin 'vim-test'
-  Plugin 'vimproc'
-  Plugin 'webapi-vim'
-  Plugin 'tern_for_vim'
-  Plugin 'vim-css-color'
-
-  Plugin 'vim-fish'
-  Plugin 'vim-go'
-  Plugin 'vim-json'
-endif
-let g:bundles_loaded = 1
+call plug#begin('~/.vim/bundle')
+Plug 'Lokaltog/vim-easymotion'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc', {'do': 'yse \| make'}
+Plug 'SirVer/ultisnips', {'do': 'yes \| git checkout me'}
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ap/vim-css-color'
+Plug 'dag/vim-fish'
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/vim-easy-align'
+Plug 'marijnh/tern_for_vim', {'do': 'yes \| npm update --upgradeAll'}
+Plug 'mattn/emmet-vim'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'othree/xml.vim'
+Plug 'rizzatti/dash.vim'
+Plug 'scrooloose/syntastic'
+Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-surround'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-shell'
+call plug#end()
 
 " developing plugins
 for path in split(glob('~/vim-dev/*'), '\n')
@@ -63,28 +52,28 @@ iabbrev @C Copyright 2015 Qiming Zhao, all rights reserved
 iabbrev mocah mocha
 iabbrev fi if
 
-function! SetupCommandAlias(from, to)
+function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
         \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
-call SetupCommandAlias('C', 'Glcd')
-call SetupCommandAlias('Gd', 'Gdiff')
-call SetupCommandAlias('Gt', 'GdiffThis')
-call SetupCommandAlias('Gs', 'Gedit')
-call SetupCommandAlias('Gc', 'GcommitCurrent')
-call SetupCommandAlias('Gci', 'Gcommit -v')
-call SetupCommandAlias('Gca', 'Gcommit -a -v')
-call SetupCommandAlias('Gco', 'Gcheckout')
-call SetupCommandAlias('Grm', 'Gremove')
-call SetupCommandAlias('Gmv', 'Gmove')
-call SetupCommandAlias('Gp', 'Gpush')
-call SetupCommandAlias('U', 'Update')
-call SetupCommandAlias('P', 'Publish')
-call SetupCommandAlias('N', 'Note')
-call SetupCommandAlias('T', 'tabe')
-call SetupCommandAlias('H', 'ModuleHelp')
+call SetupCommandAbbrs('C', 'Glcd')
+call SetupCommandAbbrs('Gd', 'Gdiff')
+call SetupCommandAbbrs('Gt', 'GdiffThis')
+call SetupCommandAbbrs('Gs', 'Gedit')
+call SetupCommandAbbrs('Gc', 'GcommitCurrent')
+call SetupCommandAbbrs('Gci', 'Gcommit -v')
+call SetupCommandAbbrs('Gca', 'Gcommit -a -v')
+call SetupCommandAbbrs('Gco', 'Gcheckout')
+call SetupCommandAbbrs('Grm', 'Gremove')
+call SetupCommandAbbrs('Gmv', 'Gmove')
+call SetupCommandAbbrs('Gp', 'Gpush')
+call SetupCommandAbbrs('U', 'Update')
+call SetupCommandAbbrs('P', 'Publish')
+call SetupCommandAbbrs('N', 'Note')
+call SetupCommandAbbrs('T', 'tabe')
+call SetupCommandAbbrs('R', 'Reset')
+call SetupCommandAbbrs('H', 'ModuleHelp')
 
-cnoreabbrev a --amend
-cnoreabbrev c --cached
+" vim: set sw=2 ts=2 sts=2 et tw=78;
