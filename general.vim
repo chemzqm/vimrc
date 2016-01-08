@@ -1,6 +1,6 @@
 " General options {{
 set hidden " allow buffer switch without saving
-set history=99
+set history=1000
 set wildmenu
 set wildmode=list:longest,full
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
@@ -19,12 +19,16 @@ set nobackup
 set undodir=~/.undodir
 set undofile
 set fileformats=unix,dos
+set display+=lastline
+set formatoptions+=j
 set diffopt=vertical
 set sessionoptions+=winpos
 set sessionoptions-=help
 set sessionoptions-=blank
+set sessionoptions-=options
+set ttimeout
 set ttimeoutlen=100
-set tabpagemax=5
+set tabpagemax=10
 set scrolloff=3
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace

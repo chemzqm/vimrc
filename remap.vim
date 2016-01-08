@@ -1,33 +1,29 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
-" word {{
-  "inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
-  inoremap <C-u> <esc>mzgUiw`za
-  " like emacs
-  inoremap <C-h> <BS>
-  inoremap <C-d> <Del>
-" }}
-" git {{
-  nnoremap gca :Gcommit -a -v<CR>
-" }}
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+nnoremap Y y$
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+" clear highhigh reset diff
+nnoremap <silent> <c-r> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+nnoremap <D-d> :bdelete!<cr>
+nnoremap gca :Gcommit -a -v<CR>
+nnoremap gp  :Gpush<CR>
 
-" line {{
-  " Visual shifting (does not exit Visual mode)
-  vnoremap < <gv
-  vnoremap > >gv
-  " yank to end
-  nnoremap Y y$
-  " easy align
-  xmap ga <Plug>(EasyAlign)
-  nmap ga <Plug>(EasyAlign)
-" }}
-
-" window {{
-  nnoremap <c-l> <c-w>l
-  nnoremap <c-h> <c-w>h
-  nnoremap <c-j> <c-w>j
-  nnoremap <c-k> <c-w>k
-" }}
+"inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
+inoremap <D-u> <esc>mzgUiw`za
+" like emacs
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-U> <C-G>u<C-U>
+" yank to end
+" easy align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " fix section movemont {{
   noremap <silent> [[ ?{<CR>w99[{
@@ -36,7 +32,7 @@
   noremap <silent> [] k$][%?}<CR>
 " }}
 
-" command key {{
+" tabs {{
   noremap  <D-1>      1gt
   noremap  <D-2>      2gt
   noremap  <D-3>      3gt
@@ -49,10 +45,6 @@
   inoremap <D-5> <C-o>5gt
 " }}
 
-" file & buffer {{
-  nnoremap <D-d> :bdelete!<cr>
-" }}
-
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
   cnoremap $v ~/.vimrc
@@ -60,17 +52,17 @@
 " }}
 
 " command line emacs shortcut, same as shell {{
-  cmap     <C-k> <Up>
-  cmap     <C-j> <Down>
-  cmap     <C-b> <Left>
-  cmap     <C-f> <Right>
-  cmap     <C-a> <Home>
-  cmap     <C-e> <End>
-  cmap     <C-d> <Del>
-  cmap     <C-h> <BS>
+  cmap <C-k> <Up>
+  cmap <C-j> <Down>
+  cmap <C-b> <Left>
+  cmap <C-f> <Right>
+  cmap <C-a> <Home>
+  cmap <C-e> <End>
+  cmap <C-d> <Del>
+  cmap <C-h> <BS>
 " }}
 
-" search {{
+" visual search {{
   "  In visual mode when you press * or # to search for the current selection
   vnoremap    <silent> * :call <SID>visualSearch('f')<CR>
   vnoremap    <silent> # :call <SID>visualSearch('b')<CR>

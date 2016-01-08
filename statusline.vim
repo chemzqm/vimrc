@@ -65,17 +65,6 @@ function! MyStatusGit() abort
   endif
 endfunction
 
-function! s:GetStatSymbol(stat)
-  if a:stat ==# '?'
-    return '? '
-  elseif a:stat ==? 'm'
-    return '+'
-  elseif a:stat ==? 'd'
-    return '-'
-  endif
-  return '😕'
-endfunction
-
 function! s:SetStatusLine()
   if &previewwindow | return | endif
   if &buftype ==# 'nofile' | return | endif
