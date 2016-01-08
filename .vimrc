@@ -14,9 +14,9 @@ Plug 'SirVer/ultisnips', {'do': 'yes \| git checkout me'}
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-css-color'
-Plug 'dag/vim-fish', {'for', 'fish'}
-Plug 'elzr/vim-json', {'for', 'json'}
-Plug 'fatih/vim-go', {'for', 'go'}
+Plug 'dag/vim-fish', {'for': 'fish'}
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'heavenshell/vim-jsdoc'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/vim-easy-align'
