@@ -4,12 +4,12 @@
 vnoremap < <gv
 vnoremap > >gv
 nnoremap Y y$
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
+nnoremap <M-l> <c-w>l
+nnoremap <M-h> <c-w>h
+nnoremap <M-j> <c-w>j
+nnoremap <M-k> <c-w>k
 " clear highhigh reset diff
-nnoremap <silent> <c-r> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+nnoremap <silent> <c-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap <D-d> :bdelete!<cr>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gp  :Gpush<CR>
