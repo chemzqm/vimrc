@@ -5,8 +5,6 @@ augroup common
   autocmd!
   autocmd BufReadPost *.log normal! G
   autocmd BufEnter * call OnBufEnter()
-  autocmd CursorHold * call OnCursorHold()
-  "autocmd BufLeave * call OnBufLeave()
 augroup end
 
 function! OnBufEnter()
@@ -29,10 +27,6 @@ function! OnBufLeave()
   if empty(bufname(+expand('<abuf>')))
     execute 'silent bdelete ' . expand('<abuf>')
   endif
-endfunction
-
-function! OnCursorHold()
-  "let @/ = ""
 endfunction
 " }}
 
