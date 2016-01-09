@@ -15,7 +15,7 @@ call unite#custom#source(
   \  split(&wildignore, ',')
   \ )
 call unite#custom#source(
-  \  'file_mru,buffer,outline,func', 'matchers', ['matcher_fuzzy']
+  \  'file_mru,buffer,outline,func,command', 'matchers', ['matcher_fuzzy']
   \ )
 call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
