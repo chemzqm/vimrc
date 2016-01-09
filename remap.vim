@@ -1,6 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
 " Visual shifting (does not exit Visual mode)
+nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
 nnoremap Y y$
