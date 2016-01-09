@@ -35,7 +35,7 @@ call unite#custom#profile('file_mru', 'context', {
   \  'start_insert': 1,
   \ })
 call unite#custom#profile('ultisnips', 'context', {
-  \  'winheight': 20,
+  \  'winheight': 10,
   \ })
 call unite#custom#profile('files', 'context', {
   \ })
