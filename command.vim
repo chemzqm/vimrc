@@ -9,12 +9,10 @@ command! -nargs=0 -bar Express  execute 'setl dictionary+=~/.vim/dict/express.di
 command! -nargs=0 -bar Pretty   :call s:PrettyFile()
 command! -nargs=0 -bar Jsongen  :call s:Jsongen()
 command! -nargs=0 -bar Reset    :call s:StatusReset()
-command! -nargs=0 -bar Date     execute 'r !date "+\%Y-\%m-\%d \%H:\%M:\%S"'
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
-
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,ListModules ModuleMain :call s:PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
@@ -110,7 +108,7 @@ function! s:PreviewModule(name, ...)
   let name = get(content.browser, a:name, a:name)
   let dir = dir . '/node_modules/' . name
   if !isdirectory(dir) | echo 'module not found' | return | endif
-  let content = webapi#json#decode(join(readfile(dir . '/package.json')))
+  let content = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
   if empty(a:000)
     " fix main field
     let main = exists('content.main') ? content.main : 'index.js'
