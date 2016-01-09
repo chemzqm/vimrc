@@ -4,6 +4,7 @@
 nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
+" yank to end
 nnoremap Y y$
 nnoremap <M-l> <c-w>l
 nnoremap <M-h> <c-w>h
@@ -15,14 +16,12 @@ nnoremap <D-d> :bdelete!<cr>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
-
 "inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
-inoremap <D-u> <esc>mzgUiw`za
+inoremap <c-w> <esc>mzgUiw`za
 " like emacs
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
-inoremap <C-U> <C-G>u<C-U>
-" yank to end
+inoremap <C-u> <C-G>u<C-U>
 " easy align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
