@@ -74,6 +74,7 @@ nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
+nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
 nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
@@ -88,14 +89,13 @@ function! s:unite_my_settings()
   imap <buffer> <TAB>   <Plug>(unite_select_next_line)
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  nmap <buffer> <C-h>   <c-w>h
-  nmap <buffer> <C-k>   <c-w>k
   nmap <buffer> <C-r>   <Plug>(unite_restart)
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> H       <Plug>(unite_quick_help)
   nmap <buffer> i       <plug>(unite_append_end)
   let unite = unite#get_current_unite()
+  nnoremap <silent><buffer><expr> e     unite#do_action('edit')
   if unite.profile_name ==# 'gitlog'
     nnoremap <silent><buffer><expr> r     unite#do_action('reset')
   else

@@ -141,7 +141,7 @@ let g:vim_run_command_map = {
 
 " easygit {{
   let g:easygit_enable_command = 1
-  "let g:easygit_auto_lcd = 1
+  let g:easygit_auto_lcd = 1
 "}}
 
 " vim-iterm-start {{

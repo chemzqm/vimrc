@@ -120,7 +120,7 @@ augroup statusline
   autocmd!
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call s:SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call s:SetStatusLine()
-  autocmd CursorHold,ShellCmdPost,FileWritePost * unlet! b:git_branch
+  autocmd ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end
 
 call s:SetStatusLine()
