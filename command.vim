@@ -29,6 +29,8 @@ function! s:LoadTestFile()
 endfunction
 
 function! g:Quickfix(type, ...)
+  " clear existing list
+  execute 'cex []'
   if a:type ==# 'ag'
     let pattern = s:FindPattern(a:000)
     let list = deepcopy(a:000)
