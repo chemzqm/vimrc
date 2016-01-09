@@ -7,6 +7,7 @@ if executable('ag')
   let g:unite_source_rec_min_cache_files = 1200
 endif
 
+let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']
 let g:neomru#follow_links = 1
 call unite#filters#matcher_default#use(['matcher_regexp'])
 call unite#custom#source(
@@ -15,7 +16,7 @@ call unite#custom#source(
   \  split(&wildignore, ',')
   \ )
 call unite#custom#source(
-  \  'file_mru,buffer,outline,func,command', 'matchers', ['matcher_fuzzy']
+  \  'file_mru,buffer,outline,func,command,project', 'matchers', ['matcher_fuzzy']
   \ )
 call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
@@ -57,11 +58,15 @@ call unite#custom#profile('buffer', 'context', {
   \ })
 call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
-  \  'quick_match': 1,
+  \  'start_insert': 1,
+  \ })
+call unite#custom#profile('project', 'context', {
+  \  'start_insert': 1,
   \ })
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
+nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
