@@ -12,6 +12,7 @@ nnoremap <M-k> <c-w>k
 nnoremap <silent> <c-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap <D-d> :bdelete!<cr>
 nnoremap gca :Gcommit -a -v<CR>
+nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
 
 "inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
@@ -26,12 +27,11 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " fix section movemont {{
-  noremap <silent> [[ ?{<CR>w99[{
-  noremap <silent> ][ /}<CR>b99]}
-  noremap <silent> ]] j0[[%/{<CR>
-  noremap <silent> [] k$][%?}<CR>
+noremap <silent> [[ ?{<CR>w99[{
+noremap <silent> ][ /}<CR>b99]}
+noremap <silent> ]] j0[[%/{<CR>
+noremap <silent> [] k$][%?}<CR>
 " }}
-
 " tabs {{
   noremap  <D-1>      1gt
   noremap  <D-2>      2gt
