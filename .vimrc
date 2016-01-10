@@ -1,17 +1,22 @@
 filetype off
-if &shell =~# 'fish$'
-  set shell=bash
-endif
+
+function! RebaseToMe(info)
+  if a:info.status ==# 'updated' || a:info.force
+    !git checkout me
+    !git rebase origin/master
+  endif
+endfunction
 
 call plug#begin('~/.vim/bundle')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite-outline'
-Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim', {'do': function('RebaseToMe')}
 Plug 'Shougo/vimproc', {'do': 'yse \| make'}
-Plug 'SirVer/ultisnips', {'do': 'yes \| git checkout me'}
+Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
 Plug 'airblade/vim-gitgutter'
+Plug 'othree/yajs.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-css-color'
 Plug 'dag/vim-fish', {'for': 'fish'}
@@ -20,13 +25,12 @@ Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'heavenshell/vim-jsdoc'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/vim-easy-align'
-Plug 'marijnh/tern_for_vim', {'do': 'yes \| npm update --upgradeAll'}
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'othree/xml.vim'
 Plug 'rizzatti/dash.vim'
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic', {'do': function('RebaseToMe')}
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-surround'
@@ -34,6 +38,10 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
+Plug 'marijnh/tern_for_vim', {
+      \'do': 'yes \| npm update --upgradeAll',
+      \'for': 'javascript'
+      \}
 call plug#end()
 
 " developing plugins
@@ -51,6 +59,7 @@ iabbrev @G chemzqm@gmail.com
 iabbrev @C Copyright 2015 Qiming Zhao, all rights reserved
 iabbrev mocah mocha
 iabbrev fi if
+
 
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
