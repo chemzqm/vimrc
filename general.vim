@@ -1,4 +1,5 @@
 " General options {{
+set shell=bash
 set hidden " allow buffer switch without saving
 set history=1000
 set wildmenu
@@ -45,6 +46,8 @@ set expandtab
 set shiftround
 set autoindent
 set wrap
+set guioptions-=e
+set guioptions-=r
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
