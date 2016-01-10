@@ -17,6 +17,7 @@ Plug 'Shougo/vimproc', {'do': 'yse \| make'}
 Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
 Plug 'airblade/vim-gitgutter'
 "Plug 'othree/yajs.vim'
+Plug 'othree/html5.vim', {'do': function('RebaseToMe')}
 Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-css-color'
 Plug 'dag/vim-fish', {'for': 'fish'}

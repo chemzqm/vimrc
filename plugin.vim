@@ -147,3 +147,10 @@ let g:vim_run_command_map = {
 " vim-iterm-start {{
   let g:iterm_start_growl_enable = 1
 " }}
+
+" html5.vim {{
+  let g:html5_event_handler_attributes_complete = 0
+  let g:html5_rdfa_attributes_complete = 0
+  let g:html5_microdata_attributes_complete = 0
+  let g:html5_aria_attributes_complete = 0
+" }}
