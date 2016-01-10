@@ -9,11 +9,11 @@ function! MyStatusLine()
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%{MyStatusReadonly()}%*"
         \. "%3* %{MyStatusSyntasticError()} %*"
-        \. "%=%-{&ft} %{MyStatusBufnr()}"
+        \. "%=%-{&ft} %l, %c "
 "%{&fenc}
 endfunction
 
-function! MyStatusBufnr()
+function! MyStatusBuf()
   if s:IsTempFile() | return '' | endif
   return bufnr('%') . ' '
 endfunction

@@ -14,6 +14,9 @@ let g:mapleader = ','
   nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
+  nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}
 
 " content edit {{
