@@ -126,12 +126,3 @@ function! s:ToggleUnite()
   endfor
   UniteResume
 endfunction
-
-function! GetUniteWinnr()
-  for i in range(1, winnr('$'))
-    let name = bufname(winbufnr(i))
-    if match(name, '^\[unite\]') == 0
-      return i
-    endif
-  endfor
-endfunction
