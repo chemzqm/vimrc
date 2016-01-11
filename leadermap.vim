@@ -2,6 +2,7 @@
 let g:mapleader = ','
 
 " basic {{
+  nnoremap <leader>v :V2toggle<cr>
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
   " Reload vimrc file
