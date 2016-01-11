@@ -13,7 +13,7 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite.vim', {'do': function('RebaseToMe')}
-Plug 'Shougo/vimproc', {'do': 'yse \| make'}
+Plug 'Shougo/vimproc', {'do': 'yes \| make'}
 Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
 Plug 'airblade/vim-gitgutter'
 "Plug 'othree/yajs.vim'
