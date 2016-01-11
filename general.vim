@@ -46,7 +46,6 @@ set expandtab
 set shiftround
 set autoindent
 set wrap
-set guioptions-=e
 set guioptions-=r
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
@@ -71,7 +70,7 @@ if has('gui_running')
   else
     set background=light
   endif
-  colorscheme yowish
+  colorscheme solarized
   set guifont=Source\ Code\ Pro:h13
   set transparency=5
   set macmeta
@@ -89,11 +88,11 @@ endif
 " Syntax related {{
 " improve performance
 syntax sync minlines=200
-"hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-"hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-"hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-" change default search highlight
-"hi Search guibg=#333333 guifg=#C5B569
+hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+ change default search highlight
+hi Search guibg=#333333 guifg=#C5B569
 hi StatusLine    guifg=#CECECE guibg=#333333 gui=none
 hi StatusLine    ctermfg=253   ctermbg=16    cterm=none
 hi StatusLineNC  guifg=#111111 guibg=#465457 gui=none
