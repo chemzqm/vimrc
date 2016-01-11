@@ -55,6 +55,7 @@ function! MyStatusGit() abort
   if v:shell_error |
     call s:PrintError(output)
     exe 'lcd ' . cwd
+    let b:git_branch = '?'
     return ''
   else
     let more = ' ' . system('git-status')
