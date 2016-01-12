@@ -69,7 +69,7 @@ let g:notes_title_sync = 'rename_file'
 " }}
 
 " vim-shell {{
-  let g:shell_mappings_enabled = 0
+let g:shell_mappings_enabled = 0
 " }}
 
 " vim-gitgutter {{
@@ -87,7 +87,7 @@ let g:tern_show_argument_hints = 'on_hold'
   " <c-y>A Make quoted text from URL
   let g:user_emmet_expandabbr_key = '<D-y>'
   let g:user_emmet_next_key = '<C-y>n'
-  let g:user_emmet_prev_key = '<C-y>N'
+  let g:user_emmet_prev_key = '<C-y>p'
   "内部全选
   let g:user_emmet_balancetaginward_key = '<C-y>i'
   let g:user_emmet_balancetagoutward_key = '<C-y>o'
@@ -153,4 +153,12 @@ let g:vim_run_command_map = {
   let g:html5_rdfa_attributes_complete = 0
   let g:html5_microdata_attributes_complete = 0
   let g:html5_aria_attributes_complete = 0
+" }}
+
+" fastfold {{
+  let g:fastfold_savehook = 1
+  let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C']
+  let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+  let g:vimsyn_folding='af'
+  let g:xml_syntax_folding = 1
 " }}

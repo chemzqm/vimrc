@@ -82,3 +82,31 @@ noremap <silent> [] k$][%?}<CR>
     let       @" = l:saved_reg
   endfunction
 " }}
+
+" improved ultisnip complete {{
+inoremap <c-l> <C-R>=SnipComplete()<CR>
+func! SnipComplete()
+  let line = getline('.')
+  let start = col('.') - 1
+  while start > 0 && line[start - 1] =~# '\k'
+    let start -= 1
+  endwhile
+  let suggestions = []
+  for item in UltiSnips#SnippetsInCurrentScope()
+    let trigger = item[0]
+    let menu = fnamemodify(item[2], ':t:r')
+    let entry = {'word': trigger, 'menu': menu, 'info': item[1]}
+    call add(suggestions, entry)
+  endfor
+  if empty(suggestions)
+    echohl Error | echon 'no match' | echohl None
+  elseif len(suggestions) == 1
+    let delCurrWord = (getline(".")[col(".")-1] ==# " ") ? "" : "diw"
+    exe "normal " . delCurrWord . "a" . trigger . " "
+    call UltiSnips#ExpandSnippet()
+  else
+    call complete(start + 1, suggestions)
+  endif
+  return ''
+endfunc
+" }}

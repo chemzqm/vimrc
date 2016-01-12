@@ -27,6 +27,7 @@ set sessionoptions+=winpos
 set sessionoptions-=help
 set sessionoptions-=blank
 set sessionoptions-=options
+set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=100
 set tabpagemax=10
@@ -103,29 +104,5 @@ hi StatusLineNC  ctermfg=253   ctermbg=16    cterm=none
 set complete+=k
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
-" set <c-x><c-u> user complete to ultisnip trigger complete
-set completefunc=SnipComplete
-function! SnipComplete(findstart, base)
-  if a:findstart
-    let line = getline('.')
-    let start = col('.') - 1
-    while start > 0 && line[start - 1] =~# '\a'
-      let start -= 1
-    endwhile
-    return start
-  else
-    let suggestions = []
-    for item in UltiSnips#SnippetsInCurrentScope()
-      let trigger = item[0]
-      if trigger =~ '^' . a:base
-        let menu = fnamemodify(item[2], ':t:r')
-        let entry = {'word': trigger, 'menu': menu, 'info': item[1]}
-        call add(suggestions, entry)
-      endif
-    endfor
-    return suggestions
-  endif
-endfunction
 " }}
-
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
