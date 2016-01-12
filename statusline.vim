@@ -66,10 +66,12 @@ function! MyStatusGit() abort
   endif
 endfunction
 
-function! s:SetStatusLine()
+function! SetStatusLine()
+  let g:time = strftime('%X')
   if &previewwindow | return | endif
   if &buftype ==# 'nofile' | return | endif
   if exists('b:git_branch') | unlet b:git_branch | endif
+
   setl statusline=%!MyStatusLine()
   call s:highlight()
 endfunction
@@ -119,11 +121,12 @@ let s:mode_map = {
 
 augroup statusline
   autocmd!
-  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call s:SetStatusLine()
-  autocmd FileChangedShellPost,ColorScheme * call s:SetStatusLine()
-  autocmd ShellCmdPost,FileWritePost * unlet! b:git_branch
+  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
+  autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
+  autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end
 
-call s:SetStatusLine()
+
+call SetStatusLine()
 
 " vim:set et sw=2 ts=2 tw=78:

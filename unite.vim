@@ -55,6 +55,8 @@ call unite#custom#profile('outline', 'context', {
   \  'winheight': 15,
   \ })
 call unite#custom#profile('buffer', 'context', {
+  \  'winheight': 15,
+  \  'quick_match': 1,
   \ })
 call unite#custom#profile('yank', 'context', {
   \  'no_split': 1,
