@@ -16,7 +16,6 @@ Plug 'Shougo/unite.vim', {'do': function('RebaseToMe')}
 Plug 'Shougo/vimproc', {'do': 'yes \| make'}
 Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
 Plug 'airblade/vim-gitgutter'
-"Plug 'othree/yajs.vim'
 Plug 'othree/html5.vim', {'do': function('RebaseToMe')}
 Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-css-color'
@@ -39,6 +38,8 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
+Plug 'kopischke/vim-stay'
+Plug 'Konfekt/FastFold'
 Plug 'marijnh/tern_for_vim', {
       \'do': 'yes \| npm update --upgradeAll',
       \'for': 'javascript'
@@ -74,6 +75,7 @@ call SetupCommandAbbrs('Gt', 'GdiffThis')
 call SetupCommandAbbrs('Gs', 'Gedit')
 call SetupCommandAbbrs('Gc', 'GcommitCurrent')
 call SetupCommandAbbrs('Gci', 'Gcommit -v')
+call SetupCommandAbbrs('Gst', 'Gstatus')
 call SetupCommandAbbrs('Gca', 'Gcommit -a -v')
 call SetupCommandAbbrs('Gco', 'Gcheckout')
 call SetupCommandAbbrs('Grm', 'Gremove')
