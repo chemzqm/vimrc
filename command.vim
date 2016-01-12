@@ -89,6 +89,7 @@ function! ListModules(A, L, p)
   let res = s:Dependencies()
   return join(res, "\n")
 endfunction
+
 " Remove hidden buffers and cd to current dir
 function! s:StatusReset()
   let gitdir = easygit#gitdir(expand('%'), 1)
