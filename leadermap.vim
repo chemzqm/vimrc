@@ -82,7 +82,11 @@ function! s:GrepFromSelected(type)
   endif
   let word = substitute(@@, '\n$', '', 'g')
   let word = escape(word, '|')
-  call g:Quickfix('ag', "-Q -s", word)
+  if g:grep_using_git
+    call g:Quickfix('ag ', word)
+  else
+    call g:Quickfix('ag', "-Q -s", word)
+  endif
   let @@ = saved_unnamed_register
 endfunction
 " }}
