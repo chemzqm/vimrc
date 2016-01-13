@@ -101,6 +101,7 @@ hi StatusLineNC  ctermfg=253   ctermbg=16    cterm=none
 " }}
 
 " Complete config {{
+set complete-=i
 set complete+=k
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview

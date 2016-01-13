@@ -53,10 +53,9 @@ function! MyStatusGit() abort
   let cmd = 'git rev-parse --abbrev-ref HEAD'
   let output = system(cmd)
   if v:shell_error |
-    call s:PrintError(output)
     exe 'lcd ' . cwd
     let b:git_branch = '?'
-    return ''
+    return '?'
   else
     let more = ' ' . system('git-status')
     let b:git_branch = '   ' . substitute(output, '\v\n', '', '')
