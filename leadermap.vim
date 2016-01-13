@@ -9,8 +9,6 @@ let g:mapleader = ','
   nnoremap <leader>rl :source ~/.vimrc<cr>
   " Search with grep
   nnoremap <leader>/ :Ag<SPACE>
-  " remap <cr> when completing
-  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
   " generate doc
   nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
   " clean some dirty charactors

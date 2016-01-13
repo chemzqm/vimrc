@@ -184,7 +184,6 @@ function! s:Jsongen()
   exe 'wincmd p'
 endfunction
 
-
 " npm update -g js-beautify
 " npm update -g cssfmt
 " brew update tidy-html5

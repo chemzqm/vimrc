@@ -33,12 +33,8 @@ endfunction
 " auto cloase preview{{
 augroup complete
   autocmd!
-  autocmd CompleteDone * call AutoClosePreviewWindow()
+  autocmd CompleteDone * pclose
 augroup end
-
-function! AutoClosePreviewWindow()
-  if !&l:previewwindow | pclose | endif
-endfunction
 " }}
 
 " javascript {{
