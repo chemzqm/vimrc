@@ -1,16 +1,16 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " add dictionary
-command! -nargs=0 -bar Node     execute 'setl dictionary+=~/.vim/dict/node.dict'
-command! -nargs=0 -bar Dom      execute 'setl dictionary+=~/.vim/dict/dom.dict'
-command! -nargs=0 -bar Koa      execute 'setl dictionary+=~/.vim/dict/koa.dict'
-command! -nargs=0 -bar Canvas   execute 'setl dictionary+=~/.vim/dict/canvas.dict'
-command! -nargs=0 -bar Express  execute 'setl dictionary+=~/.vim/dict/express.dict'
-command! -nargs=0 -bar Pretty   :call s:PrettyFile()
-command! -nargs=0 -bar Jsongen  :call s:Jsongen()
-command! -nargs=0 -bar Reset    :call s:StatusReset()
-command! -nargs=0 -bar Color    :call s:HighlightColor()
-command! -nargs=0 -bar Standard execute '!standard --format %:p'
+command! -nargs=0 Node     execute 'setl dictionary+=~/.vim/dict/node.dict'
+command! -nargs=0 Dom      execute 'setl dictionary+=~/.vim/dict/dom.dict'
+command! -nargs=0 Koa      execute 'setl dictionary+=~/.vim/dict/koa.dict'
+command! -nargs=0 Canvas   execute 'setl dictionary+=~/.vim/dict/canvas.dict'
+command! -nargs=0 Express  execute 'setl dictionary+=~/.vim/dict/express.dict'
+command! -nargs=0 Pretty   :call s:PrettyFile()
+command! -nargs=0 Jsongen  :call s:Jsongen()
+command! -nargs=0 Reset    :call s:StatusReset()
+command! -nargs=0 Color    :call s:HighlightColor()
+command! -nargs=0 Standard execute '!standard --format %:p'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
@@ -159,6 +159,7 @@ function! s:Dependencies()
 endfunction
 
 function! s:HighlightColor()
+  redraw
   if &ft ==# 'vim'
     call css_color#init('hex', 'none', 'vimHiGuiRgb,vimComment,vimLineComment')
   elseif &ft =~# '\v(css|html)'
