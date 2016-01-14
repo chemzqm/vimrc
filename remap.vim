@@ -29,10 +29,10 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " fix section movemont {{
-noremap <silent> [[ ?{<CR>w99[{
-noremap <silent> ][ /}<CR>b99]}
-noremap <silent> ]] j0[[%/{<CR>
-noremap <silent> [] k$][%?}<CR>
+"noremap <silent> [[ ?{<CR>w99[{
+"noremap <silent> ][ /}<CR>b99]}
+"noremap <silent> ]] j0[[%/{<CR>
+"noremap <silent> [] k$][%?}<CR>
 " }}
 
 " tabs {{
