@@ -63,6 +63,8 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
+  " Dash.vim
+  nnoremap <silent> <leader>ds :Dash<cr>
 " }}
 
 " grep by motion {{

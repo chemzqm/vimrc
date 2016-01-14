@@ -162,3 +162,10 @@ let g:vim_run_command_map = {
   let g:vimsyn_folding='af'
   let g:xml_syntax_folding = 1
 " }}
+
+" dash.vim {{
+  let g:dash_map = {
+  \ 'javascript': ['javascript', 'NodeJS'],
+  \ 'html': ['html', 'svg'],
+  \}
+" }}
