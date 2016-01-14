@@ -8,6 +8,8 @@ function! RebaseToMe(info)
 endfunction
 
 call plug#begin('~/.vim/bundle')
+Plug 'mjbrownie/browser.vim'
+Plug 'tomasr/molokai'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
@@ -15,8 +17,6 @@ Plug 'Shougo/vimproc', {'do': 'yes \| make'}
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-css-color'
-Plug 'dag/vim-fish', {'for': 'fish'}
-Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'heavenshell/vim-jsdoc'
 Plug 'janko-m/vim-test'
@@ -32,6 +32,8 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'Konfekt/FastFold'
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'dag/vim-fish', {'do': function('RebaseToMe')}
 Plug 'rizzatti/dash.vim', {'do': function('RebaseToMe')}
 Plug 'othree/html5.vim', {'do': function('RebaseToMe')}
 Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
