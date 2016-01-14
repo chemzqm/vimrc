@@ -9,6 +9,7 @@ command! -nargs=0 -bar Express  execute 'setl dictionary+=~/.vim/dict/express.di
 command! -nargs=0 -bar Pretty   :call s:PrettyFile()
 command! -nargs=0 -bar Jsongen  :call s:Jsongen()
 command! -nargs=0 -bar Reset    :call s:StatusReset()
+command! -nargs=0 -bar Color    :call s:HighlightColor()
 command! -nargs=0 -bar Standard execute '!standard --format %:p'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
@@ -155,6 +156,14 @@ function! s:Dependencies()
     endif
   endfor
   return deps
+endfunction
+
+function! s:HighlightColor()
+  if &ft ==# 'vim'
+    call css_color#init('hex', 'none', 'vimHiGuiRgb,vimComment,vimLineComment')
+  elseif &ft =~# '\v(css|html)'
+    call css_color#init('css', 'extended', 'cssMediaBlock,cssFunction,cssDefinition,cssAttrRegion,cssComment')
+  endif
 endfunction
 
 function! s:Jsongen()
