@@ -5,6 +5,7 @@ augroup common
   autocmd!
   autocmd BufReadPost *.log normal! G
   autocmd BufEnter * call OnBufEnter()
+  autocmd CompleteDone * pclose
 augroup end
 
 function! OnBufEnter()
@@ -28,13 +29,6 @@ function! OnBufLeave()
     execute 'silent bdelete ' . expand('<abuf>')
   endif
 endfunction
-" }}
-
-" auto cloase preview{{
-augroup complete
-  autocmd!
-  autocmd CompleteDone * pclose
-augroup end
 " }}
 
 " javascript {{
@@ -63,18 +57,5 @@ function! s:LoadFunctions(type, ...)
     execute 'Unite func -buffer-name=func -custom-func-type=' . type
             \. ' -input=' . input
   endif
-endfunction
-" }}
-
-" html {{
-augroup html
-  autocmd!
-  autocmd FileType html : call s:SetHtml()
-augroup end
-
-function! s:SetHtml()
-  setl nowrap
-  setl foldmethod=manual
-  exec 'UltiSnipsAddFiletypes html.css'
 endfunction
 " }}
