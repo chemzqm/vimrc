@@ -40,7 +40,7 @@ function! MyStatusReadonly()
 endfunction
 
 function! MyStatusModifySymbol()
-  return &mod ? '✨' : ''
+  return &mod ? '⚡' : ''
 endfunction
 
 function! MyStatusGit() abort
@@ -94,6 +94,10 @@ function! s:highlight()
   hi User4         ctermbg=16    cterm=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
+  hi StatusLine    guifg=#CECECE guibg=#333333 gui=none
+  hi StatusLine    ctermfg=253   ctermbg=16    cterm=none
+  hi StatusLineNC  guifg=#111111 guibg=#465457 gui=none
+  hi StatusLineNC  ctermfg=253   ctermbg=16    cterm=none
 endfunction
 
 function! MyStatusSyntasticError()

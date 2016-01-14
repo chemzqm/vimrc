@@ -98,6 +98,7 @@ function! s:ToggleBackground()
   else
     set background=light
   endif
+  call SetStatusLine()
 endfunction
 
 function! s:NumberToggle()
