@@ -15,10 +15,10 @@ command! -nargs=0 Prefixer execute 'silent !autoprefixer %'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,ListModules ModuleMain :call s:PreviewModule('<args>')
-command! -nargs=1 -complete=custom,ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,ListModules ModuleHelp :call s:PreviewModule('<args>', 'doc')
-command! -nargs=? -bang -complete=custom,s:ListVimrc  E  :call s:EditVimrc(<q-bang>, <f-args>)
+command! -nargs=1 -complete=custom,s:Dependencies ModuleMain :call s:PreviewModule('<args>')
+command! -nargs=1 -complete=custom,s:Dependencies ModuleJson :call s:PreviewModule('<args>', 'json')
+command! -nargs=1 -complete=custom,s:Dependencies ModuleHelp :call s:PreviewModule('<args>', 'doc')
+command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
 
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 Publish    :call s:Publish()
@@ -61,12 +61,10 @@ function! s:ListVimrc(...)
 endfunction
 
 function! s:EditVimrc(...)
-  let edit = empty(a:1) ? 'edit' : 'tabedit'
-  if a:0 < 2
-    execute edit . ' ~/.vimrc'
+  if a:0 == 0
+    execute 'edit ~/.vimrc'
   else
-    execute 'lcd ' . '~/.vim/vimrc'
-    execute edit . ' ' . a:2
+    execute 'edit ~/.vim/vimrc/' . a:1
   endif
 endfunction
 
@@ -76,11 +74,6 @@ function! s:ShowGitlog(arg)
   let input = get(args, 0, '')
   let arg = get(args, 1, '') . ':' . get(args, 2, '')
   execute 'Unite gitlog:' . arg . ' -input=' . input . ' -buffer-name=gitlog'
-endfunction
-
-function! ListModules(A, L, p)
-  let res = s:Dependencies()
-  return join(res, "\n")
 endfunction
 
 " Remove hidden buffers and cd to current dir
@@ -136,7 +129,7 @@ function! s:GetPackageDir()
   return fnamemodify(file, ':h')
 endfunction
 
-function! s:Dependencies()
+function! s:Dependencies(...) abort
   let dir = s:GetPackageDir()
   let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
   let browser = exists('obj.browser')
