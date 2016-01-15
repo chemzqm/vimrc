@@ -28,11 +28,10 @@ inoremap <C-u> <C-G>u<C-U>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" fix section movemont {{
-"noremap <silent> [[ ?{<CR>w99[{
-"noremap <silent> ][ /}<CR>b99]}
-"noremap <silent> ]] j0[[%/{<CR>
-"noremap <silent> [] k$][%?}<CR>
+" osx {{
+nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
+nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
+nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
 " }}
 
 " tabs {{
