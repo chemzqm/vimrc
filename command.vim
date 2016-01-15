@@ -1,17 +1,22 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " add dictionary
-command! -nargs=0 Node     execute 'setl dictionary+=~/.vim/dict/node.dict'
-command! -nargs=0 Dom      execute 'setl dictionary+=~/.vim/dict/dom.dict'
-command! -nargs=0 Koa      execute 'setl dictionary+=~/.vim/dict/koa.dict'
-command! -nargs=0 Canvas   execute 'setl dictionary+=~/.vim/dict/canvas.dict'
-command! -nargs=0 Express  execute 'setl dictionary+=~/.vim/dict/express.dict'
-command! -nargs=0 Pretty   :call s:PrettyFile()
-command! -nargs=0 Jsongen  :call s:Jsongen()
-command! -nargs=0 Reset    :call s:StatusReset()
-command! -nargs=0 Color    :call s:HighlightColor()
-command! -nargs=0 Standard execute '!standard --format %:p'
-command! -nargs=0 Prefixer execute 'silent !autoprefixer %'
+command! -nargs=0 Node       execute 'setl dictionary+=~/.vim/dict/node.dict'
+command! -nargs=0 Dom        execute 'setl dictionary+=~/.vim/dict/dom.dict'
+command! -nargs=0 Koa        execute 'setl dictionary+=~/.vim/dict/koa.dict'
+command! -nargs=0 Canvas     execute 'setl dictionary+=~/.vim/dict/canvas.dict'
+command! -nargs=0 Express    execute 'setl dictionary+=~/.vim/dict/express.dict'
+command! -nargs=0 Pretty     :call s:PrettyFile()
+command! -nargs=0 Jsongen    :call s:Jsongen()
+command! -nargs=0 Reset      :call s:StatusReset()
+command! -nargs=0 Color      :call s:HighlightColor()
+command! -nargs=0 Standard   execute '!standard --format %:p'
+command! -nargs=0 Prefixer   execute 'silent !autoprefixer %'
+command! -nargs=0 Publish    :call s:Publish()
+command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
+command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
+command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
+command! -nargs=+ NoteSearch :silent SearchNote! <args>
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 " preview module files main/package.json/Readme.md
@@ -20,15 +25,9 @@ command! -nargs=1 -complete=custom,s:Dependencies ModuleJson :call s:PreviewModu
 command! -nargs=1 -complete=custom,s:Dependencies ModuleHelp :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
 
-command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
-command! -nargs=0 Publish    :call s:Publish()
-command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
-command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
-command! -nargs=+ NoteSearch :silent SearchNote! <args>
-
 function! g:Quickfix(type, ...)
   " clear existing list
-  execute 'cex []'
+  cex []
   let pattern = s:FindPattern(a:000)
   let list = deepcopy(a:000)
   let g:grep_word = pattern[0]
@@ -79,8 +78,8 @@ endfunction
 " Remove hidden buffers and cd to current dir
 function! s:StatusReset()
   let gitdir = easygit#gitdir(expand('%'), 1)
-  if empty(gitdir) 
-    let dir = fnameescape(expand('%:p:h')) 
+  if empty(gitdir)
+    let dir = fnameescape(expand('%:p:h'))
   else
     let dir = fnamemodify(gitdir, ':h')
   endif
@@ -89,7 +88,7 @@ function! s:StatusReset()
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
   for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-      silent execute 'bwipeout' buf
+    silent execute 'bwipeout' buf
   endfor
 endf
 
