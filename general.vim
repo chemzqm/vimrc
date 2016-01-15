@@ -24,6 +24,7 @@ set display+=lastline
 set formatoptions+=j
 set diffopt=vertical
 set sessionoptions+=winpos
+set sessionoptions+=resize
 set sessionoptions-=help
 set sessionoptions-=blank
 set sessionoptions-=options
