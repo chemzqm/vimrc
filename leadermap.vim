@@ -94,7 +94,8 @@ endfunction
 function! s:SessionSave()
   if !empty(v:this_session)
     execute 'silent UniteSessionSave'
-    echo 'done'
+    let path = empty(v:this_session) ? 'default' : v:this_session
+    echo 'Saved session: ' . fnamemodify(path, ':t:r')
   else
     call feedkeys(':UniteSessionSave ')
   endif
@@ -115,7 +116,7 @@ endfunction
 
 function! s:Restart()
   execute 'wa'
-  execute 'UniteSessionSave default'
+  execute 'RestartVim'
 endfunction
 
 " Simple clean utility
