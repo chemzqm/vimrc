@@ -6,7 +6,7 @@ if executable('ag')
     \  '--depth', '10', '-g', '']
   let g:unite_source_rec_min_cache_files = 1200
 endif
-
+let g:neomru#do_validate = 0
 let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']
 let g:neomru#follow_links = 1
 call unite#filters#matcher_default#use(['matcher_regexp'])
