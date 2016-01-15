@@ -14,7 +14,7 @@ command! -nargs=0 Standard execute '!standard --format %:p'
 command! -nargs=0 Prefixer execute 'silent !autoprefixer %'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
-command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
+command! -nargs=+                NoteSearch :silent SearchNote! <args>
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,ListModules ModuleMain :call s:PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
@@ -33,16 +33,11 @@ endfunction
 function! g:Quickfix(type, ...)
   " clear existing list
   execute 'cex []'
-  if a:type ==# 'ag'
-    let pattern = s:FindPattern(a:000)
-    let list = deepcopy(a:000)
-    let g:grep_word = pattern[0]
-    let list[pattern[1]] = shellescape(g:grep_word, 1)
-    execute "silent grep! " . join(list, ' ')
-  elseif a:type ==# 'note'
-    let g:grep_word = a:1
-    execute "silent SearchNote! " . join(a:000, ' ')
-  endif
+  let pattern = s:FindPattern(a:000)
+  let list = deepcopy(a:000)
+  let g:grep_word = pattern[0]
+  let list[pattern[1]] = shellescape(g:grep_word, 1)
+  execute "silent grep! " . join(list, ' ')
   execute "silent Unite -buffer-name=quickfix quickfix"
 endfunction
 

@@ -8,7 +8,6 @@ function! RebaseToMe(info)
 endfunction
 
 call plug#begin('~/.vim/bundle')
-Plug 'mjbrownie/browser.vim'
 Plug 'tomasr/molokai'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/neomru.vim'
@@ -28,12 +27,13 @@ Plug 'othree/xml.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'Konfekt/FastFold'
+Plug 'kopischke/vim-stay'
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'dag/vim-fish', {'do': function('RebaseToMe')}
+Plug 'xolox/vim-notes', {'do': function('RebaseToMe')}
 Plug 'rizzatti/dash.vim', {'do': function('RebaseToMe')}
 Plug 'othree/html5.vim', {'do': function('RebaseToMe')}
 Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
@@ -48,7 +48,7 @@ Plug 'marijnh/tern_for_vim', {
 let s:dev_plugins = ['comment.vim', 'snippets', 'unite-js-func',
       \'vim-run', 'easygit', 'unite-extra', 'unite-location',
       \'vim-v2ex', 'jscheck', 'unite-git-log', 'vim-iterm2-start',
-      \]
+      \'vim-macos']
 for s:name in s:dev_plugins
   exe "Plug '" . expand('~') . "/vim-dev/" . s:name . "'"
 endfor
@@ -75,10 +75,9 @@ endfunction
 call SetupCommandAbbrs('C', 'Glcd')
 call SetupCommandAbbrs('Gd', 'Gdiff')
 call SetupCommandAbbrs('Gt', 'GdiffThis')
-call SetupCommandAbbrs('Gs', 'Gedit')
+call SetupCommandAbbrs('Gs', 'Gstatus')
 call SetupCommandAbbrs('Gc', 'GcommitCurrent')
 call SetupCommandAbbrs('Gci', 'Gcommit -v')
-call SetupCommandAbbrs('Gst', 'Gstatus')
 call SetupCommandAbbrs('Gca', 'Gcommit -a -v')
 call SetupCommandAbbrs('Gco', 'Gcheckout')
 call SetupCommandAbbrs('Grm', 'Gremove')
@@ -87,6 +86,7 @@ call SetupCommandAbbrs('Gp', 'Gpush')
 call SetupCommandAbbrs('U', 'Update')
 call SetupCommandAbbrs('P', 'Publish')
 call SetupCommandAbbrs('N', 'Note')
+call SetupCommandAbbrs('Ns', 'NoteSearch')
 call SetupCommandAbbrs('T', 'tabe')
 call SetupCommandAbbrs('R', 'Reset')
 call SetupCommandAbbrs('H', 'ModuleHelp')
