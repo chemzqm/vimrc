@@ -25,19 +25,9 @@
   let g:syntastic_vim_checkers = ['vint']
 " }}
 
-" vim-session {{
-  let g:session_default_overwrite =1
-  let g:session_default_to_last=1
-  let g:session_command_aliases = 1
-  let g:session_menu = 0
-
-  if (has('gui_running'))
-    let g:session_autosave='yes'
-    let g:session_autoload='yes'
-  else
-    let g:session_autosave='no'
-    let g:session_autoload='no'
-  endif
+" unite-session {{
+  let g:unite_source_session_path = expand('~') . '/.vim/sessions'
+  let g:unite_source_session_options = &sessionoptions
 " }}
 
 " gist-vim {{

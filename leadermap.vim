@@ -43,10 +43,8 @@ let g:mapleader = ','
   " vim-test
   nmap <silent> <leader>t :TestNearest<CR>
   nmap <silent> <leader>ta :TestFile<CR>
-  " vim-session
-  "nmap <leader>sl :OpenSession
-  "nmap <leader>sd :CloseSession<cr>
-  nmap <leader>ss :SaveSession
+  " unite-session
+  nmap <leader>ss :call <SID>SessionSave()<cr>
   nmap <leader>sr :call <SID>Restart()<cr>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
@@ -93,6 +91,15 @@ endfunction
 " }}
 
 " functions {{
+function! s:SessionSave()
+  if !empty(v:this_session)
+    execute 'silent UniteSessionSave'
+    echo 'done'
+  else
+    call feedkeys(':UniteSessionSave ')
+  endif
+endfunction
+
 function! s:ToggleBackground()
   if &background ==# 'light'
     set background=dark
@@ -108,7 +115,7 @@ endfunction
 
 function! s:Restart()
   execute 'wa'
-  execute 'RestartVim'
+  execute 'UniteSessionSave default'
 endfunction
 
 " Simple clean utility

@@ -129,7 +129,4 @@ augroup statusline
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end
 
-
 call SetStatusLine()
-
-" vim:set et sw=2 ts=2 tw=78:
