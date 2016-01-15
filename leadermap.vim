@@ -5,6 +5,8 @@ let g:mapleader = ','
   nnoremap <leader>v :V2toggle<cr>
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
+  " Replace all of current word
+  nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<cr>
   " Search with grep
@@ -14,13 +16,12 @@ let g:mapleader = ','
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
   nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-" }}
-
-" content edit {{
-  nnoremap <leader>au :!autoprefixer %<cr>
-  nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+  " Iterm open folder of current file
+  nnoremap <leader>to :call macos#ItermOpen(expand('%:p:h'))<cr>
+  " Finder open folder of current file
+  nnoremap <leader>fo :call macos#open(expand('%:p:h'))<cr>
 " }}
 
 " setting switch {{
@@ -43,10 +44,10 @@ let g:mapleader = ','
   nmap <silent> <leader>t :TestNearest<CR>
   nmap <silent> <leader>ta :TestFile<CR>
   " vim-session
-  nmap <leader>sl :OpenSession
+  "nmap <leader>sl :OpenSession
+  "nmap <leader>sd :CloseSession<cr>
   nmap <leader>ss :SaveSession
   nmap <leader>sr :call <SID>Restart()<cr>
-  nmap <leader>sd :CloseSession<cr>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   " Gundo
