@@ -14,21 +14,17 @@ command! -nargs=0 Standard execute '!standard --format %:p'
 command! -nargs=0 Prefixer execute 'silent !autoprefixer %'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
-command! -nargs=+                NoteSearch :silent SearchNote! <args>
 " preview module files main/package.json/Readme.md
 command! -nargs=1 -complete=custom,ListModules ModuleMain :call s:PreviewModule('<args>')
 command! -nargs=1 -complete=custom,ListModules ModuleJson :call s:PreviewModule('<args>', 'json')
 command! -nargs=1 -complete=custom,ListModules ModuleHelp :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -bang -complete=custom,s:ListVimrc  E  :call s:EditVimrc(<q-bang>, <f-args>)
 
-command! -nargs=* -bar Update  execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
-command! -nargs=0 -bar Publish :call s:Publish()
-command! -nargs=? -bar L       :call s:ShowGitlog('<args>')
-command! -nargs=? -bar S       :call s:LoadTestFile()
-
-function! s:LoadTestFile()
-  exe 'source ~/.vim/test.vim'
-endfunction
+command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
+command! -nargs=0 Publish    :call s:Publish()
+command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
+command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
+command! -nargs=+ NoteSearch :silent SearchNote! <args>
 
 function! g:Quickfix(type, ...)
   " clear existing list
@@ -45,7 +41,7 @@ function! s:FindPattern(list)
   let l = len(a:list)
   for i in range(l)
     let word = a:list[i]
-    if word !~# '^-'
+    if word !~# '\v^\s*-'
       return [word, i]
     endif
   endfor
