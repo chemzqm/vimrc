@@ -11,7 +11,7 @@ command! -nargs=0 Jsongen  :call s:Jsongen()
 command! -nargs=0 Reset    :call s:StatusReset()
 command! -nargs=0 Color    :call s:HighlightColor()
 command! -nargs=0 Standard execute '!standard --format %:p'
-command! -nargs=0 Prefixer execute '!autoprefixer %'
+command! -nargs=0 Prefixer execute 'silent !autoprefixer %'
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=+                Ns call g:Quickfix('note', <f-args>)
