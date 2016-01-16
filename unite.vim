@@ -1,29 +1,39 @@
+" Config ag for file_rec source
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup'
   let g:unite_source_rec_async_command =
     \ ['ag', '--nocolor', '--nogroup',
     \  '--depth', '10', '-g', '']
+  " ag is quite fast, so we increase this number
   let g:unite_source_rec_min_cache_files = 1200
 endif
+" Neomru validate could affect vim startup speed
 let g:neomru#do_validate = 0
-let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']
 let g:neomru#follow_links = 1
+" Project folders for Unite project
+let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']
+" Use regexp match as default matcher
 call unite#filters#matcher_default#use(['matcher_regexp'])
+" Ignore files by wildignore option
 call unite#custom#source(
   \  'file_rec,file_rec/async,file_mru,file,buffer',
   \  'ignore_globs',
   \  split(&wildignore, ',')
   \ )
+" Some source use fuzzy match would be better
 call unite#custom#source(
   \  'file_mru,buffer,outline,func,command,project', 'matchers', ['matcher_fuzzy']
   \ )
+" Converter the path of files, not be too long!
 call unite#custom#source(
   \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
+" Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
-  \  'buffer,file_rec', 'sorters', 'sorter_selecta'
+  \  'buffer,file_rec,project,command,func', 'sorters', 'sorter_selecta'
   \)
+" Limit max candidates
 call unite#custom#source(
   \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
   \ )
@@ -58,10 +68,6 @@ call unite#custom#profile('buffer', 'context', {
   \  'winheight': 15,
   \  'quick_match': 1,
   \ })
-call unite#custom#profile('yank', 'context', {
-  \  'no_split': 1,
-  \  'start_insert': 1,
-  \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
   \ })
@@ -85,6 +91,7 @@ nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
+" Quickly navigate through candidates
 nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
 nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
 " Custom mappings for the unite buffer
