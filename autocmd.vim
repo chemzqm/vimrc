@@ -6,14 +6,7 @@ augroup common
   autocmd BufReadPost *.log normal! G
   autocmd BufEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
-  autocmd VimEnter * call LoadSession()
 augroup end
-
-function! LoadSession()
-  if has('gui_running')
-    "UniteSessionLoad
-  endif
-endfunction
 
 function! OnBufEnter()
   let name = bufname(+expand('<abuf>'))
@@ -28,13 +21,6 @@ function! OnBufEnter()
     setl bufhidden=delete
   endif
   unlet name
-endfunction
-
-function! OnBufLeave()
-  " Delete no name buffer on leave
-  if empty(bufname(+expand('<abuf>')))
-    execute 'silent bdelete ' . expand('<abuf>')
-  endif
 endfunction
 " }}
 

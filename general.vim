@@ -30,6 +30,7 @@ set sessionoptions-=blank
 set sessionoptions-=options
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
+set ttimeoutlen=500
 set ttimeoutlen=100
 set tabpagemax=10
 set scrolloff=3
