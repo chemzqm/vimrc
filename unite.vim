@@ -87,6 +87,7 @@ nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
 nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
+nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
 
@@ -107,12 +108,15 @@ function! s:unite_my_settings()
   nmap <buffer> <C-r>   <Plug>(unite_restart)
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)
-  nmap <buffer> h       <Plug>(unite_quick_help)
   nmap <buffer> i       <plug>(unite_append_end)
   let unite = unite#get_current_unite()
   nnoremap <silent><buffer><expr> e     unite#do_action('edit')
   if unite.profile_name ==# 'gitlog'
     nnoremap <silent><buffer><expr> r     unite#do_action('reset')
+  elseif unite.profile_name ==# 'node'
+    nnoremap <silent><buffer><expr> m     unite#do_action('main')
+    nnoremap <silent><buffer><expr> h     unite#do_action('help')
+    nnoremap <silent><buffer><expr> b     unite#do_action('browser')
   else
     nnoremap <silent><buffer><expr> r     unite#do_action('rename')
   endif

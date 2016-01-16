@@ -20,9 +20,6 @@ command! -nargs=+ NoteSearch :silent SearchNote! <args>
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 " preview module files main/package.json/Readme.md
-command! -nargs=1 -complete=custom,s:Dependencies ModuleMain :call s:PreviewModule('<args>')
-command! -nargs=1 -complete=custom,s:Dependencies ModuleJson :call s:PreviewModule('<args>', 'json')
-command! -nargs=1 -complete=custom,s:Dependencies ModuleHelp :call s:PreviewModule('<args>', 'doc')
 command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
 
 function! g:Quickfix(type, ...)
@@ -91,56 +88,6 @@ function! s:StatusReset()
     silent execute 'bwipeout' buf
   endfor
 endf
-
-function! s:PreviewModule(name, ...)
-  let dir = s:GetPackageDir()
-  if empty(dir) | return | endif
-  let content = webapi#json#decode(join(readfile(dir . '/package.json')))
-  if !exists('content.browser') | let content.browser = [] | endif
-  let name = get(content.browser, a:name, a:name)
-  let dir = dir . '/node_modules/' . name
-  if !isdirectory(dir) | echo 'module not found' | return | endif
-  let content = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
-  if empty(a:000)
-    " fix main field
-    let main = exists('content.main') ? content.main : 'index.js'
-    let main = main =~# '\v\.js$' ? main : main . '.js'
-    let file = dir . '/' . substitute(main, '\v^(./)?', '', '')
-  else
-    let type = a:000[0]
-    if type ==? 'doc'
-      let list = filter(split(glob(dir . '/*.md'), '\n'), 'v:val =~? "readme\.md"')
-      if len(list) |let file = list[0] |endif
-    elseif type ==? 'json'
-      let file = dir . '/package.json'
-    endif
-  endif
-  if !exists('file') | echon 'not found' | return | endif
-  execute 'silent keepalt split ' . file
-endfunction
-
-function! s:GetPackageDir()
-  let file = findfile('package.json', '.;')
-  if empty(file)
-    echohl Error | echon 'project root not found' | echohl None
-    return
-  endif
-  return fnamemodify(file, ':h')
-endfunction
-
-function! s:Dependencies(...) abort
-  let dir = s:GetPackageDir()
-  let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
-  let browser = exists('obj.browser')
-  let deps = browser ? keys(obj.browser) : []
-  let vals = browser ? values(obj.browser) : []
-  for key in keys(obj.dependencies)
-    if index(vals, key) == -1
-      call add(deps, key)
-    endif
-  endfor
-  return deps
-endfunction
 
 function! s:HighlightColor()
   redraw
