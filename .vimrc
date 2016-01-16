@@ -23,9 +23,8 @@ Plug 'othree/xml.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-surround'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-shell'
 Plug 'Konfekt/FastFold'
-Plug 'kopischke/vim-stay'
+"Plug 'kopischke/vim-stay'
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'ap/vim-css-color', {'do': function('RebaseToMe')}
 Plug 'dag/vim-fish', {'do': function('RebaseToMe')}
@@ -87,10 +86,11 @@ call SetupCommandAbbrs('P', 'Publish')
 call SetupCommandAbbrs('N', 'Note')
 call SetupCommandAbbrs('Ns', 'NoteSearch')
 call SetupCommandAbbrs('T', 'tabe')
+call SetupCommandAbbrs('D', 'Dash')
 call SetupCommandAbbrs('R', 'Reset')
+call SetupCommandAbbrs('M', 'Mdir')
 call SetupCommandAbbrs('H', 'ModuleHelp')
 call SetupCommandAbbrs('E', 'EditVimrc')
-call SetupCommandAbbrs('S', 'UniteSessionSave')
-call SetupCommandAbbrs('St', 'SourceTest')
+call SetupCommandAbbrs('S', 'SourceTest')
 
 " vim: set sw=2 ts=2 sts=2 et tw=78;

@@ -15,6 +15,7 @@ let g:mapleader = ','
   nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
+  " show vim highlight group under cursor
   nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -26,7 +27,6 @@ let g:mapleader = ','
 
 " setting switch {{
   nnoremap <leader>sc :setl spell!<cr>
-  nnoremap <leader>hl :set hls!<cr>
   nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
@@ -50,10 +50,6 @@ let g:mapleader = ','
   noremap <leader>snip :UltiSnipsEdit<cr>
   " Gundo
   nnoremap <D-u> :GundoToggle<CR>
-  " vim-shell
-  nnoremap <Leader>o :Open<CR>
-  imap <2-LeftMouse> <C-o>:Open<CR>
-  nmap <2-LeftMouse> :Open<CR>
   " tern
   nnoremap <leader>tb :TernDocBrowse<cr>
   nnoremap <leader>tt :TernType<cr>
@@ -62,8 +58,6 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
-  " Dash.vim
-  nnoremap <silent> <leader>ds :Dash<cr>
 " }}
 
 " grep by motion {{
