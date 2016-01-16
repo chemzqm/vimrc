@@ -6,7 +6,7 @@ function! RebaseToMe(info)
 endfunction
 
 call plug#begin('~/.vim/bundle')
-Plug 'Lokaltog/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimproc', {'do': 'yes \| make'}
@@ -40,13 +40,8 @@ Plug 'marijnh/tern_for_vim', {
       \'for': 'javascript'
       \}
 " developing plugins
-let s:dev_plugins = ['comment.vim', 'snippets', 'unite-js-func',
-  \'vim-run', 'easygit', 'unite-extra', 'unite-location',
-  \'vim-v2ex', 'jscheck', 'unite-git-log', 'vim-iterm2-start',
-  \'vim-macos', 'unite-session']
-
-for s:name in s:dev_plugins
-  exe "Plug '" . expand('~') . "/vim-dev/" . s:name . "'"
+for s:path in split(glob('~/vim-dev/*'), '\n')
+  exe "Plug '" . s:path . "'"
 endfor
 call plug#end()
 

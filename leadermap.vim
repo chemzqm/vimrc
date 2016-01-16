@@ -2,7 +2,6 @@
 let g:mapleader = ','
 
 " basic {{
-  nnoremap <leader>v :V2toggle<cr>
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
@@ -35,9 +34,9 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
-  " easy-motion improved
-  nmap <leader>f \\f
-  nmap <leader>F \\F
+  " vim-sneak
+  nmap <leader>f <Plug>Sneak_s
+  nmap <leader>F <Plug>Sneak_S
   " bbye
   nnoremap <leader>q :Bdelete<cr>
   " vim-test
@@ -58,6 +57,8 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
+  " vim-v2ex
+  nmap <leader>v <Plug>(V2exToggle)
 " }}
 
 " grep by motion {{

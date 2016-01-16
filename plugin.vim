@@ -37,11 +37,6 @@
   let g:gist_show_privates = 1
 " }}
 
-" easy motion {{
-  let g:EasyMotion_leader_key = '\\'
-  "nnoremap \\ <Plug>(easymotion-prefix)
-" }}
-
 " ultisnips {{
   let g:UltiSnipsExpandTrigger='<C-j>'
   let g:UltiSnipsJumpForwardTrigger='<C-j>'
