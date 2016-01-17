@@ -1,49 +1,46 @@
-function! RebaseToMe(info)
-  if a:info.status ==# 'updated' || a:info.force
-    !git checkout me
-    !git rebase origin/master
-  endif
-endfunction
+set nocompatible
+filetype off
 
-call plug#begin('~/.vim/bundle')
-Plug 'justinmk/vim-sneak'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/vimproc', {'do': 'yes \| make'}
-Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
-Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'heavenshell/vim-jsdoc'
-Plug 'janko-m/vim-test'
-Plug 'junegunn/vim-easy-align'
-Plug 'mattn/emmet-vim'
-Plug 'mattn/gist-vim'
-Plug 'mattn/webapi-vim'
-Plug 'othree/xml.vim'
-Plug 'tommcdo/vim-exchange'
-Plug 'tpope/vim-surround'
-Plug 'xolox/vim-misc'
-Plug 'Konfekt/FastFold'
-"Plug 'kopischke/vim-stay'
-Plug 'elzr/vim-json', {'for': 'json'}
-Plug 'ap/vim-css-color', {'do': function('RebaseToMe')}
-Plug 'dag/vim-fish', {'do': function('RebaseToMe')}
-Plug 'xolox/vim-notes', {'do': function('RebaseToMe')}
-Plug 'rizzatti/dash.vim', {'do': function('RebaseToMe')}
-Plug 'othree/html5.vim', {'do': function('RebaseToMe')}
-Plug 'SirVer/ultisnips', {'do': function('RebaseToMe')}
-Plug 'Shougo/unite.vim', {'do': function('RebaseToMe')}
-Plug 'scrooloose/syntastic', {'do': function('RebaseToMe')}
-Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
-Plug 'marijnh/tern_for_vim', {
-      \'do': 'yes \| npm update --upgradeAll',
-      \'for': 'javascript'
-      \}
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'justinmk/vim-sneak'
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite-outline'
+Plugin 'Shougo/vimproc'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fatih/vim-go'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'janko-m/vim-test'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'mattn/emmet-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'othree/xml.vim'
+Plugin 'tommcdo/vim-exchange'
+Plugin 'tpope/vim-surround'
+Plugin 'Konfekt/FastFold'
+"Plugin 'kopischke/vim-stay'
+Plugin 'elzr/vim-json'
+Plugin 'ap/vim-css-color'
+Plugin 'dag/vim-fish'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+Plugin 'rizzatti/dash.vim'
+Plugin 'othree/html5.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'Shougo/unite.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'sjl/gundo.vim'
+Plugin 'marijnh/tern_for_vim'
+call vundle#end()
+
 " developing plugins
 for s:path in split(glob('~/vim-dev/*'), '\n')
-  exe "Plug '" . s:path . "'"
+  exe "set rtp+=" . s:path
 endfor
-call plug#end()
+filetype plugin indent on
+syntax on
 
 let s:names = ["general", "remap", "autocmd", "leadermap"
   \, "command", "plugin", "statusline", "unite"]
