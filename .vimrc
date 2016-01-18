@@ -1,52 +1,48 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'justinmk/vim-sneak'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/unite-outline'
-Plugin 'Shougo/vimproc'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fatih/vim-go'
-Plugin 'heavenshell/vim-jsdoc'
-Plugin 'janko-m/vim-test'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'mattn/emmet-vim'
-Plugin 'mattn/gist-vim'
-Plugin 'mattn/webapi-vim'
-Plugin 'othree/xml.vim'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'tpope/vim-surround'
-Plugin 'Konfekt/FastFold'
+set rtp^=~/.vim/bundle/plug.vim
+call plug#begin()
+Plug 'FastFold'
+Plug 'dash.vim'
+Plug 'emmet-vim'
+Plug 'gist-vim'
+Plug 'gundo.vim'
+Plug 'html5.vim'
+Plug 'janko-vim-test'
+Plug 'neomru.vim'
+Plug 'syntastic'
+Plug 'tern_for_vim', 1
+Plug 'ultisnips', 1
+Plug 'unite-outline'
+Plug 'unite.vim'
+Plug 'vim-colors-solarized'
+Plug 'vim-css-color', 1
+Plug 'vim-easy-align'
+Plug 'vim-exchange'
+Plug 'vim-fish'
+Plug 'vim-gitgutter'
+Plug 'vim-go'
+Plug 'vim-jsdoc'
+Plug 'vim-json'
+Plug 'vim-surround'
+Plug 'vimproc'
+Plug 'webapi-vim'
+Plug 'xml.vim'
+Plug 'vim-sneak'
 "Plugin 'kopischke/vim-stay'
-Plugin 'elzr/vim-json'
-Plugin 'ap/vim-css-color'
-Plugin 'dag/vim-fish'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
-Plugin 'rizzatti/dash.vim'
-Plugin 'othree/html5.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'Shougo/unite.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'sjl/gundo.vim'
-Plugin 'marijnh/tern_for_vim'
-call vundle#end()
+call plug#end()
 
 " developing plugins
-for s:path in split(glob('~/vim-dev/*'), '\n')
-  exe "set rtp+=" . s:path
-endfor
+let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
+exe "set rtp^=".fnameescape(s:path)
+
 filetype plugin indent on
 syntax on
 
-let s:names = ["general", "remap", "autocmd", "leadermap"
-  \, "command", "plugin", "statusline", "unite"]
-let s:base = expand('~') . '/.vim/vimrc/'
-for s:name in s:names
-  exe 'source ' . s:base . s:name . '.vim'
+" vimrc files
+for path in split(glob('~/.vim/vimrc/*.vim'), "\n")
+  exe 'source ' . path
 endfor
 
 iabbrev @G chemzqm@gmail.com
