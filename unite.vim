@@ -76,7 +76,6 @@ nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
-nnoremap <silent> [unite]y  :<C-u>Unite -buffer-name=yank      history/yank<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
