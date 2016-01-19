@@ -6,8 +6,7 @@ if executable('ag')
   " ag is quite fast, so we increase this number
   let g:unite_source_rec_min_cache_files = 1200
 endif
-" Neomru validate could affect vim startup speed
-let g:neomru#do_validate = 0
+let g:neomru#do_validate = 1
 let g:neomru#follow_links = 1
 " Project folders for Unite project
 let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']

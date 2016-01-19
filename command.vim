@@ -12,19 +12,17 @@ command! -nargs=0 Reset      :call s:StatusReset()
 command! -nargs=0 Color      :call s:HighlightColor()
 command! -nargs=0 Standard   execute '!standard --format %:p'
 command! -nargs=0 Prefixer   execute 'silent !autoprefixer %'
-command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -bar -nargs=? Imd   :set imd | set noimd
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
-" preview module files main/package.json/Readme.md
 command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
 
 function! g:Quickfix(type, ...)
   " clear existing list
-  cex []
+  cexpr []
   let pattern = s:FindPattern(a:000)
   let list = deepcopy(a:000)
   let g:grep_word = pattern[0]
@@ -41,13 +39,6 @@ function! s:FindPattern(list)
       return [word, i]
     endif
   endfor
-endfunction
-
-" module publish
-function! s:Publish()
-  " file at ~/bin/publish
-  let dir = s:GetPackageDir()
-  execute 'ItermStartTab! -dir=' . dir . ' -title=publish publish'
 endfunction
 
 function! s:ListVimrc(...)

@@ -3,6 +3,7 @@
 " remap <cr> when completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Visual shifting (does not exit Visual mode)
+nnoremap <C-p> :PreviewAuto<CR>
 nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
