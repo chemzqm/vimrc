@@ -14,7 +14,6 @@ nnoremap <M-j> <c-w>j
 nnoremap <M-k> <c-w>k
 " clear highhigh reset diff
 nnoremap <silent> <c-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
-nnoremap <D-d> :bdelete!<cr>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
@@ -28,10 +27,11 @@ inoremap <C-u> <C-G>u<C-U>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" osx {{
+" macvim {{
 nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
 nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
 nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
+nnoremap <D-d> :bdelete!<cr>
 " }}
 
 " tabs {{
