@@ -16,6 +16,7 @@ command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
+command! -bar -nargs=? Imd   :set imd | set noimd
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 " preview module files main/package.json/Readme.md

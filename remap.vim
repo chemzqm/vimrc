@@ -28,10 +28,12 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " macvim {{
-nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
-nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
-nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
-nnoremap <D-d> :bdelete!<cr>
+if has('gui_macvim')
+  nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
+  nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
+  nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
+  nnoremap <D-d> :bdelete!<cr>
+endif
 " }}
 
 " tabs {{
