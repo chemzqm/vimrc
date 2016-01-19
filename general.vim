@@ -1,5 +1,5 @@
 " General options {{
-set shell=bash
+set shell=bash\ -i
 set hidden " allow buffer switch without saving
 set history=1000
 set wildmenu
