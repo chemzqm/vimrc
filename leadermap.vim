@@ -44,6 +44,7 @@ let g:mapleader = ','
   nmap <silent> <leader>ta :TestFile<CR>
   " unite-session
   nmap <leader>ss :call <SID>SessionSave()<cr>
+  nmap <leader>sl :<C-u>SessionLoad 
   nmap <leader>sr :call <SID>Restart()<cr>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
@@ -88,11 +89,9 @@ endfunction
 " functions {{
 function! s:SessionSave()
   if !empty(v:this_session)
-    execute 'silent UniteSessionSave'
-    let path = empty(v:this_session) ? 'default' : v:this_session
-    echo 'Saved session: ' . fnamemodify(path, ':t:r')
+    execute 'SessionSave'
   else
-    call feedkeys(':UniteSessionSave ')
+    call feedkeys(':SessionSave ')
   endif
 endfunction
 
