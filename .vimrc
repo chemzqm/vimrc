@@ -1,10 +1,3 @@
-if v:version < 704
-  set shell=bash
-  filetype plugin indent on
-  syntax on
-  finish
-endif
-
 set nocompatible
 filetype off
 if &shell =~# 'fish$'
