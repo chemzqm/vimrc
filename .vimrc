@@ -1,5 +1,8 @@
 set nocompatible
 filetype off
+if &shell =~# 'fish$'
+  set shell=sh
+endif
 
 set rtp^=~/.vim/bundle/plug.vim
 call plug#begin()
@@ -57,6 +60,7 @@ function! SetupCommandAbbrs(from, to)
 endfunction
 
 call SetupCommandAbbrs('C', 'Glcd')
+call SetupCommandAbbrs('Co', 'Copy')
 call SetupCommandAbbrs('Gd', 'Gdiff')
 call SetupCommandAbbrs('Gt', 'GdiffThis')
 call SetupCommandAbbrs('Gs', 'Gstatus')

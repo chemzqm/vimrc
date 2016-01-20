@@ -9,10 +9,6 @@ vnoremap < <gv
 vnoremap > >gv
 " yank to end
 nnoremap Y y$
-nnoremap <M-l> <c-w>l
-nnoremap <M-h> <c-w>h
-nnoremap <M-j> <c-w>j
-nnoremap <M-k> <c-w>k
 " clear highhigh reset diff
 nnoremap <silent> <c-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
@@ -30,14 +26,14 @@ nmap ga <Plug>(EasyAlign)
 
 " macvim {{
 if has('gui_macvim')
+  nnoremap <M-l> <c-w>l
+  nnoremap <M-h> <c-w>h
+  nnoremap <M-j> <c-w>j
+  nnoremap <M-k> <c-w>k
   nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
   nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
   nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
   nnoremap <D-d> :bdelete!<cr>
-endif
-" }}
-
-" tabs {{
   noremap  <D-1>      1gt
   noremap  <D-2>      2gt
   noremap  <D-3>      3gt
@@ -48,7 +44,9 @@ endif
   inoremap <D-3> <C-o>3gt
   inoremap <D-4> <C-o>4gt
   inoremap <D-5> <C-o>5gt
+endif
 " }}
+
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
