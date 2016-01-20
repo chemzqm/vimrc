@@ -4,6 +4,9 @@ if &shell =~# 'fish$'
   set shell=sh
 endif
 
+" developing plugins
+let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
+exe "set rtp^=".fnameescape(s:path)
 set rtp^=~/.vim/bundle/plug.vim
 call plug#begin()
 Plug 'FastFold'
@@ -35,10 +38,6 @@ Plug 'vim-sneak'
 Plug 'ultisnips', 1
 "Plugin 'kopischke/vim-stay'
 call plug#end()
-
-" developing plugins
-let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
-exe "set rtp^=".fnameescape(s:path)
 
 filetype plugin indent on
 syntax on
