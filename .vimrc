@@ -1,5 +1,5 @@
 if v:version < 704
-  set shell=sh
+  set shell=bash
   filetype plugin indent on
   syntax on
   finish
