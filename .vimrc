@@ -1,3 +1,10 @@
+if v:version < 704
+  set shell=sh
+  filetype plugin indent on
+  syntax on
+  finish
+endif
+
 set nocompatible
 filetype off
 if &shell =~# 'fish$'
@@ -16,7 +23,6 @@ Plug 'janko-vim-test'
 Plug 'neomru.vim'
 Plug 'syntastic'
 Plug 'tern_for_vim', 1
-Plug 'ultisnips', 1
 Plug 'unite-outline'
 Plug 'unite.vim'
 Plug 'vim-colors-solarized'
@@ -33,6 +39,7 @@ Plug 'vimproc'
 Plug 'webapi-vim'
 Plug 'xml.vim'
 Plug 'vim-sneak'
+Plug 'ultisnips', 1
 "Plugin 'kopischke/vim-stay'
 call plug#end()
 
