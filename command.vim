@@ -1,11 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 " add dictionary
-command! -nargs=0 Node       execute 'setl dictionary+=~/.vim/dict/node.dict'
-command! -nargs=0 Dom        execute 'setl dictionary+=~/.vim/dict/dom.dict'
-command! -nargs=0 Koa        execute 'setl dictionary+=~/.vim/dict/koa.dict'
-command! -nargs=0 Canvas     execute 'setl dictionary+=~/.vim/dict/canvas.dict'
-command! -nargs=0 Express    execute 'setl dictionary+=~/.vim/dict/express.dict'
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
 command! -nargs=0 Reset      :call s:StatusReset()
@@ -18,6 +13,12 @@ command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
+
+let dict_list = ['node', 'dom', 'koa', 'canvas', 'express']
+for name in dict_list
+  let cmd = toupper(name[0]) . name[1:-1]
+  execute 'command! -nargs=0 '.cmd.' execute "setl dictionary+=~/.vim/dict/'.name.'.dict"'
+endfor
 
 function! g:Quickfix(type, ...)
   " clear existing list
