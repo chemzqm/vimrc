@@ -4,12 +4,13 @@
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
 command! -nargs=0 Reset      :call s:StatusReset()
+" vim color highlight for current buffer
 command! -nargs=0 Color      :call s:HighlightColor()
 command! -nargs=0 Standard   execute '!standard --format %:p'
-command! -nargs=0 Prefixer   execute 'silent !autoprefixer %'
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
+command! -nargs=0 -range=% Prefixer call s:Prefixer(<line1>, <line2>)
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
@@ -19,6 +20,20 @@ for name in dict_list
   let cmd = toupper(name[0]) . name[1:-1]
   execute 'command! -nargs=0 '.cmd.' execute "setl dictionary+=~/.vim/dict/'.name.'.dict"'
 endfor
+
+function! s:Prefixer(line1, line2)
+  let input = join(getline(a:line1, a:line2), "\n")
+  let g:input = input
+  let output = system('autoprefixer', input)
+  if v:shell_error && output !=# ""
+    echohl Error | echon output | echohl None
+    return
+  endif
+  let win_view = winsaveview()
+  execute a:line1.','.a:line2.'d'
+  call append(a:line1 - 1, split(output, "\n"))
+  call winrestview(win_view)
+endfunction
 
 function! g:Quickfix(type, ...)
   " clear existing list
