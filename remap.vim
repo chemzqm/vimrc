@@ -1,5 +1,4 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
-
 " remap <cr> when completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Visual shifting (does not exit Visual mode)
@@ -15,7 +14,7 @@ nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
 "inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
-inoremap <c-w> <esc>mzgUiw`za
+inoremap <C-w> <esc>mzgUiw`za
 " like emacs
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
@@ -46,7 +45,6 @@ if has('gui_macvim')
   inoremap <D-5> <C-o>5gt
 endif
 " }}
-
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
@@ -111,4 +109,17 @@ func! SnipComplete()
   endif
   return ''
 endfunc
+" }}
+
+" Imd reset {{
+nnoremap <silent> <C-i> :set imd<Bar>set noimd<CR>
+inoremap <silent> <C-space> <esc>:call ImdRestore()<CR>
+
+function! ImdRestore()
+  let pos = getcurpos()
+  call macos#keycodes('command', 'space')
+  set imd
+  set noimd
+  call setpos('.', pos)
+endfunction
 " }}

@@ -154,3 +154,7 @@ let g:vim_run_command_map = {
   \ 'html': ['html', 'svg'],
   \}
 " }}
+
+" macdown.vim {{
+  let g:macdown_marked_programme = 'misaka'
+" }}

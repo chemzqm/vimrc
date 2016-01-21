@@ -97,6 +97,8 @@ augroup unite
 augroup end
 
 function! s:unite_my_settings()
+  set imd
+  set noimd
   imap <buffer> <TAB>   <Plug>(unite_select_next_line)
   " Enable navigation with control-j and control-k in insert mode
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
