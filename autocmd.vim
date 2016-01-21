@@ -6,6 +6,8 @@ augroup common
   autocmd BufReadPost *.log normal! G
   autocmd BufEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
+  autocmd WinEnter * set imd|set noimd
+  autocmd TabEnter * set imd|set noimd
 augroup end
 
 function! OnBufEnter()
