@@ -2,6 +2,7 @@ set nocompatible
 filetype off
 if &shell =~# 'fish$'
   set shell=sh
+  let $TMPDIR = '/tmp'
 endif
 
 " developing plugins
@@ -82,6 +83,8 @@ call SetupCommandAbbrs('R', 'Reset')
 call SetupCommandAbbrs('M', 'Mdir')
 call SetupCommandAbbrs('H', 'ModuleHelp')
 call SetupCommandAbbrs('E', 'EditVimrc')
+call SetupCommandAbbrs('V', 'version')
 call SetupCommandAbbrs('S', 'SourceTest')
+call SetupCommandAbbrs('Done', 'Unite todo:done')
 
 " vim: set sw=2 ts=2 sts=2 et tw=78;
