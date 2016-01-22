@@ -68,6 +68,9 @@ call unite#custom#profile('buffer', 'context', {
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
   \ })
+call unite#custom#profile('todo', 'context', {
+  \  'winheight': 10,
+  \ })
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
@@ -86,6 +89,7 @@ nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
 nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
+nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
 " Quickly navigate through candidates
@@ -97,8 +101,6 @@ augroup unite
 augroup end
 
 function! s:unite_my_settings()
-  set imd
-  set noimd
   imap <buffer> <TAB>   <Plug>(unite_select_next_line)
   " Enable navigation with control-j and control-k in insert mode
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
@@ -109,7 +111,9 @@ function! s:unite_my_settings()
   nmap <buffer> i       <plug>(unite_append_end)
   let unite = unite#get_current_unite()
   nnoremap <silent><buffer><expr> e     unite#do_action('edit')
-  if unite.profile_name ==# 'gitlog'
+  if unite.profile_name ==# 'todo'
+    nnoremap <silent><buffer><expr> n     unite#do_action('new')
+  elseif unite.profile_name ==# 'gitlog'
     nnoremap <silent><buffer><expr> r     unite#do_action('reset')
   elseif unite.profile_name ==# 'node'
     nnoremap <silent><buffer><expr> m     unite#do_action('main')
