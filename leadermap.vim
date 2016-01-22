@@ -19,9 +19,9 @@ let g:mapleader = ','
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
   " Iterm open folder of current file
-  nnoremap <leader>to :call macos#ItermOpen(expand('%:p:h'))<cr>
+  nnoremap <leader>to :call macos#ItermOpen(getcwd())<cr>
   " Finder open folder of current file
-  nnoremap <leader>fo :call macos#open(expand('%:p:h'))<cr>
+  nnoremap <leader>fo :call macos#open(getcwd())<cr>
 " }}
 
 " setting switch {{
