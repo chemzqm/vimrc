@@ -158,3 +158,7 @@ let g:vim_run_command_map = {
 " macdown.vim {{
   let g:macdown_marked_programme = 'misaka'
 " }}
+
+" vim-v2ex {{
+  let g:v2ex_render_comment = 1
+" }}
