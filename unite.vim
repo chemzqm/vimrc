@@ -16,7 +16,7 @@ call unite#filters#matcher_default#use(['matcher_regexp'])
 call unite#custom#source(
   \  'file_rec,file_rec/async,file_mru,file,buffer',
   \  'ignore_globs',
-  \  split(&wildignore, ',')
+  \  split(&wildignore, ',') + ['todo://']
   \ )
 " Some source use fuzzy match would be better
 call unite#custom#source(
@@ -63,7 +63,6 @@ call unite#custom#profile('outline', 'context', {
   \ })
 call unite#custom#profile('buffer', 'context', {
   \  'winheight': 15,
-  \  'quick_match': 1,
   \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
