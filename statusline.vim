@@ -101,10 +101,10 @@ function! s:highlight()
 endfunction
 
 function! MyStatusSyntasticError()
-   let errors = g:SyntasticLoclist.current().errors()
-   if empty(errors) | return '' | endif
-   let error = errors[0]
-   return error.lnum . ' ' . error.text
+  let errors = g:SyntasticLoclist.current().errors()
+  if empty(errors) | return '' | endif
+  let error = errors[0]
+  return error.lnum . ' ' . error.text
 endfunction
 
 let s:mode_map = {
