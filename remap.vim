@@ -101,8 +101,15 @@ func! SnipComplete()
   if empty(suggestions)
     echohl Error | echon 'no match' | echohl None
   elseif len(suggestions) == 1
-    let delCurrWord = (getline(".")[col(".")-1] ==# " ") ? "" : "diw"
-    exe "normal " . delCurrWord . "a" . trigger . " "
+    let pos = getcurpos()
+    if start == 0
+      let str = trigger
+    else
+      let str = line[0:start - 1] . trigger
+    endif
+    call setline('.', str)
+    let pos[2] = len(str) + 1
+    call setpos('.', pos)
     call UltiSnips#ExpandSnippet()
   else
     call complete(start + 1, suggestions)
