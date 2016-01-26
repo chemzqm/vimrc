@@ -2,7 +2,6 @@ set nocompatible
 filetype off
 if &shell =~# 'fish$'
   set shell=sh
-  let $TMPDIR = '/tmp'
 endif
 
 " developing plugins
@@ -70,6 +69,7 @@ call SetupCommandAbbrs('Gca', 'Gcommit -a -v')
 call SetupCommandAbbrs('Gcaa', 'Gcommit --amend -a -v')
 call SetupCommandAbbrs('Gco', 'Gcheckout')
 call SetupCommandAbbrs('Grm', 'Gremove')
+call SetupCommandAbbrs('Grh', 'Greset HEAD')
 call SetupCommandAbbrs('Gmv', 'Gmove')
 call SetupCommandAbbrs('Gp', 'Gpush')
 call SetupCommandAbbrs('L', 'Gitlog')
@@ -86,5 +86,6 @@ call SetupCommandAbbrs('E', 'EditVimrc')
 call SetupCommandAbbrs('V', 'version')
 call SetupCommandAbbrs('S', 'SourceTest')
 call SetupCommandAbbrs('Done', 'Unite todo:done')
+call SetupCommandAbbrs('A', 'TodoAdd')
 
 " vim: set sw=2 ts=2 sts=2 et tw=78;
