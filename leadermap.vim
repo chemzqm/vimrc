@@ -173,7 +173,7 @@ function! s:GenDoc()
   else
     let lnum = getpos('.')[1]
     let ind = matchstr(getline('.'), '\v\s*')
-    call append(lnum - 1, ind, '# ')
+    call append(lnum - 1, ind. '# ')
     exe "normal! k$"
     startinsert!
   endif

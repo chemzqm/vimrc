@@ -36,7 +36,7 @@ Plug 'webapi-vim'
 Plug 'xml.vim'
 Plug 'vim-sneak'
 Plug 'ultisnips', 1
-"Plugin 'kopischke/vim-stay'
+"Plug 'kopischke/vim-stay'
 call plug#end()
 
 filetype plugin indent on
