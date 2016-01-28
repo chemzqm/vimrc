@@ -9,6 +9,7 @@ command! -nargs=0 Color      :call s:HighlightColor()
 command! -nargs=0 Standard   execute '!standard --format %:p'
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
+command! -nargs=0 Post       execute "ItermStartTab! -dir=/Users/chemzqm/lib/blog make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 -range=% Prefixer call s:Prefixer(<line1>, <line2>)
 command! -nargs=? ToggleCheck :call s:ToggleCheck()
