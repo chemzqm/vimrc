@@ -30,6 +30,9 @@ call unite#custom#source(
 call unite#custom#source(
   \  'buffer,file_rec,project,command,func', 'sorters', 'sorter_selecta'
   \)
+call unite#custom#source(
+  \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
+  \)
 " Limit max candidates
 call unite#custom#source(
   \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
