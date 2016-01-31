@@ -162,3 +162,7 @@ let g:vim_run_command_map = {
 " vim-v2ex {{
   let g:v2ex_render_comment = 1
 " }}
+
+" macnote.vim {{
+  let g:note_unite_quickfix = 1
+" }}
