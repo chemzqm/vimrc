@@ -15,7 +15,8 @@ command! -nargs=0 -range=% Prefixer call s:Prefixer(<line1>, <line2>)
 command! -nargs=? ToggleCheck :call s:ToggleCheck()
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
-command! -nargs=? -complete=custom,s:ListVimrc    EditVimrc  :call s:EditVimrc(<f-args>)
+command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
+command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
 
 function! s:ToggleCheck()
   if get(b:, 'syntastic_check_disabled', 0)
@@ -27,11 +28,20 @@ function! s:ToggleCheck()
   endif
 endfunction
 
-let dict_list = ['node', 'dom', 'koa', 'canvas', 'express']
-for name in dict_list
-  let cmd = toupper(name[0]) . name[1:-1]
-  execute 'command! -nargs=0 '.cmd.' execute "setl dictionary+=~/.vim/dict/'.name.'.dict"'
-endfor
+function! s:ListDict(A, L, P)
+  let output = system('ls ~/.vim/dict/')
+  return join(map(split(output, "\n"), 'substitute(v:val, ".dict", "", "")'), "\n")
+endfunction
+
+function! s:ToggleDictionary(...)
+  for name in a:000
+    if stridx(&dictionary, name) != -1
+      execute 'setl dictionary-=~/.vim/dict/'.name.'.dict'
+    else
+      execute 'setl dictionary+=~/.vim/dict/'.name.'.dict'
+    endif
+  endfor
+endfunction
 
 function! s:Prefixer(line1, line2)
   let input = join(getline(a:line1, a:line2), "\n")
