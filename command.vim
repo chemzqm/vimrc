@@ -65,7 +65,7 @@ function! g:Quickfix(type, ...)
   let g:grep_word = pattern[0]
   let list[pattern[1]] = shellescape(g:grep_word, 1)
   execute "silent grep! " . join(list, ' ')
-  execute "silent Unite -buffer-name=quickfix quickfix"
+  execute "Unite -buffer-name=quickfix quickfix"
 endfunction
 
 function! s:FindPattern(list)
