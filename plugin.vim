@@ -164,5 +164,5 @@ let g:vim_run_command_map = {
 " }}
 
 " macnote.vim {{
-  let g:note_unite_quickfix = 1
+  let g:macnote_unite_quickfix = 1
 " }}
