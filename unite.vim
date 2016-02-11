@@ -92,6 +92,7 @@ nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
 nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
+nnoremap <silent> [unite]w  :<C-u>exec 'Unite -input=\<'. expand('<cword>') .'\> -no-start-insert line:buffers'<cr>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
 " Quickly navigate through candidates

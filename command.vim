@@ -11,12 +11,21 @@ command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 Post       execute "ItermStartTab! -dir=/Users/chemzqm/lib/blog make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
+command! -nargs=0 AutoExe    :call s:ToggleExecute()
 command! -nargs=0 -range=% Prefixer call s:Prefixer(<line1>, <line2>)
 command! -nargs=? ToggleCheck :call s:ToggleCheck()
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
+
+function! s:ToggleExecute()
+  if get(b:, 'auto_execute', 0) == 1
+    let b:auto_execute = 0
+  else
+    let b:auto_execute = 1
+  endif
+endfunction
 
 function! s:ToggleCheck()
   if get(b:, 'syntastic_check_disabled', 0)
