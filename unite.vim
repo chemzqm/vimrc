@@ -64,14 +64,14 @@ call unite#custom#profile('gitlog', 'context', {
 call unite#custom#profile('outline', 'context', {
   \  'winheight': 15,
   \ })
-call unite#custom#profile('buffer', 'context', {
-  \  'winheight': 15,
-  \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
   \ })
 call unite#custom#profile('todo', 'context', {
   \  'winheight': 10,
+  \ })
+call unite#custom#profile('buffer', 'context', {
+  \  'auto_resize': 1,
   \ })
 
 nnoremap [unite] <Nop>
