@@ -22,6 +22,7 @@ let g:mapleader = ','
   nnoremap <leader>to :call macos#ItermOpen(getcwd())<cr>
   " Finder open folder of current file
   nnoremap <leader>fo :call macos#open(getcwd())<cr>
+  nnoremap <leader>p "+]p`]
 " }}
 
 " setting switch {{
