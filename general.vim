@@ -36,7 +36,8 @@ set tabpagemax=10
 set scrolloff=3
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,__*,*/tmp/*
+set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
+set keywordprg=
 set showtabline=1
 set laststatus=2
 set showmode
