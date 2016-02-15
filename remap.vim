@@ -1,6 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 " remap <cr> when completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+map <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Visual shifting (does not exit Visual mode)
 nnoremap <C-p> :PreviewAuto<CR>
 nnoremap Q <Nop>
