@@ -3,7 +3,6 @@ function! MyStatusSyntaxItem()
 endfunction
 
 function! MyStatusLine()
-   "%2*%3.3{MyStatusModeMap()}%*"
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
@@ -16,11 +15,6 @@ endfunction
 function! MyStatusBuf()
   if s:IsTempFile() | return '' | endif
   return bufnr('%') . ' '
-endfunction
-
-function! MyStatusModeMap()
-  if s:IsTempFile() | return '' | endif
-  return s:mode_map[mode()] . " "
 endfunction
 
 function! s:IsTempFile()
@@ -106,21 +100,6 @@ function! MyStatusSyntasticError()
   let error = errors[0]
   return error.lnum . ' ' . error.text
 endfunction
-
-let s:mode_map = {
-\ '__' : '-',
-\ 'n'  : 'N',
-\ 'i'  : 'I',
-\ 'r'  : 'R',
-\ 'R'  : 'R',
-\ 'c'  : 'C',
-\ 'v'  : 'V',
-\ 'V'  : 'V',
-\ '' : 'V',
-\ 's'  : 'S',
-\ 'S'  : 'S',
-\ '' : 'S',
-\ }
 
 augroup statusline
   autocmd!
