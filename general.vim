@@ -51,6 +51,8 @@ set shiftround
 set autoindent
 set wrap
 set guioptions-=r
+set number
+set relativenumber
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
@@ -80,8 +82,6 @@ if has('gui_running')
   set macmeta
   " better font render on Retina screen
   set antialias
-  set number
-  set relativenumber
 else
   let g:solarized_termcolors=256
   set background=dark
