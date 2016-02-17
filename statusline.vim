@@ -91,7 +91,7 @@ function! s:highlight()
   hi StatusLine    guifg=#CECECE guibg=#333333 gui=none
   hi StatusLine    ctermfg=253   ctermbg=16    cterm=none
   hi StatusLineNC  guifg=#111111 guibg=#465457 gui=none
-  hi StatusLineNC  ctermfg=253   ctermbg=16    cterm=none
+  hi StatusLineNC  ctermfg=253   ctermbg=7    cterm=none
 endfunction
 
 function! MyStatusSyntasticError()
