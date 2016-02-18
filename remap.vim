@@ -10,7 +10,7 @@ vnoremap > >gv
 " yank to end
 nnoremap Y y$
 " clear highhigh reset diff
-nnoremap <silent> <c-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+nnoremap <silent> <c-l> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
@@ -41,15 +41,6 @@ if has('gui_macvim')
   inoremap <D-4> <C-o>4gt
   inoremap <D-5> <C-o>5gt
 endif
-nnoremap <M-l> <c-w>l
-nnoremap <M-h> <c-w>h
-nnoremap <M-j> <c-w>j
-nnoremap <M-k> <c-w>k
-noremap  <M-1> 1gt
-noremap  <M-2> 2gt
-noremap  <M-3> 3gt
-noremap  <M-4> 4gt
-noremap  <M-5> 5gt
 " }}
 
 " command line alias {{
@@ -137,4 +128,17 @@ function! ImdRestore()
   set noimd
   call setpos('.', pos)
 endfunction
+" }}
+
+" meta keys {{
+  nnoremap <M-s> :w<cr>
+  nnoremap <M-l> <c-w>l
+  nnoremap <M-h> <c-w>h
+  nnoremap <M-j> <c-w>j
+  nnoremap <M-k> <c-w>k
+  noremap  <M-1> 1gt
+  noremap  <M-2> 2gt
+  noremap  <M-3> 3gt
+  noremap  <M-4> 4gt
+  noremap  <M-5> 5gt
 " }}
