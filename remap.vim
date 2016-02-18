@@ -90,7 +90,7 @@ noremap  <M-5>      5gt
 " }}
 
 " improved ultisnip complete {{
-inoremap <c-l> <C-R>=SnipComplete()<CR>
+inoremap <C-l> <C-R>=SnipComplete()<CR>
 func! SnipComplete()
   let line = getline('.')
   let start = col('.') - 1
