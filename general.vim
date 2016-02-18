@@ -84,7 +84,9 @@ if has('gui_running')
   " better font render on Retina screen
   set antialias
 else
-  let g:solarized_termcolors=256
+  if !has('nvim')
+    let g:solarized_termcolors=256
+  endif
   set background=dark
   colorscheme solarized
 endif
