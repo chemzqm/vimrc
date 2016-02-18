@@ -18,7 +18,7 @@ function! MyStatusBuf()
 endfunction
 
 function! s:IsTempFile()
-  if &buftype =~# '\v(help|nofile)' | return 1 | endif
+  if &buftype =~# '\v(help|nofile|terminal)' | return 1 | endif
   if &filetype ==# 'gitcommit' | return 1 | endif
   if expand('%:p') =~# '^/tmp' | return 1 | endif
 endfunction
@@ -60,9 +60,8 @@ function! MyStatusGit() abort
 endfunction
 
 function! SetStatusLine()
-  let g:time = strftime('%X')
   if &previewwindow | return | endif
-  if &buftype ==# 'nofile' | return | endif
+  if &buftype =~# '\v(nofile|terminal)' | return | endif
   if exists('b:git_branch') | unlet b:git_branch | endif
 
   setl statusline=%!MyStatusLine()
