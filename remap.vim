@@ -45,6 +45,11 @@ if has('gui_macvim')
   inoremap <D-4> <C-o>4gt
   inoremap <D-5> <C-o>5gt
 endif
+noremap  <M-1>      1gt
+noremap  <M-2>      2gt
+noremap  <M-3>      3gt
+noremap  <M-4>      4gt
+noremap  <M-5>      5gt
 " }}
 
 " command line alias {{
