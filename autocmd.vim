@@ -14,7 +14,7 @@ augroup end
 function! OnBufEnter()
   let name = bufname(+expand('<abuf>'))
   " quickly leave those temporary buffers
-  if &previewwindow || name =~# '^__run'
+  if &previewwindow || name =~# '^__run' || name =~# '^term://'
     if !mapcheck('q', 'n')
       nnoremap <buffer> q :<C-U>bd!<CR>
     endif
