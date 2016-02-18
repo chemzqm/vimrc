@@ -41,6 +41,7 @@ set showtabline=1
 set laststatus=2
 set showmode
 set updatetime=2000
+set splitright
 " Formatting
 set smarttab
 set shiftwidth=2
