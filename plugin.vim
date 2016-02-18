@@ -48,15 +48,6 @@
   let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " }}
 
-" vim-notes {{
-  let g:notes_directories = ['~/Documents/notes']
-  let g:notes_title_sync = 'rename_file'
-" }}
-
-" vim-shell {{
-  let g:shell_mappings_enabled = 0
-" }}
-
 " vim-gitgutter {{
   let g:gitgutter_max_signs = 999
 " }}
@@ -80,7 +71,7 @@
 " }}
 
 " vim-run {{
-let g:vim_run_command_map = {
+  let g:vim_run_command_map = {
   \'javascript': 'node',
   \}
 " }}
