@@ -9,7 +9,6 @@ set autowrite
 set autoread
 set hlsearch
 set incsearch
-"set smartcase
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
@@ -23,8 +22,8 @@ set fileformats=unix,dos
 set display+=lastline
 set formatoptions+=j
 set diffopt=vertical
-set sessionoptions+=winpos
-set sessionoptions+=resize
+"set sessionoptions+=winpos
+"set sessionoptions+=resize
 set sessionoptions-=help
 set sessionoptions-=blank
 set sessionoptions-=options
@@ -45,6 +44,7 @@ set updatetime=2000
 " Formatting
 set smarttab
 set shiftwidth=2
+set tabstop=2
 set expandtab
 set shiftround
 set autoindent
