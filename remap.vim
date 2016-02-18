@@ -26,10 +26,6 @@ nmap ga <Plug>(EasyAlign)
 
 " macvim {{
 if has('gui_macvim')
-  nnoremap <M-l> <c-w>l
-  nnoremap <M-h> <c-w>h
-  nnoremap <M-j> <c-w>j
-  nnoremap <M-k> <c-w>k
   nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
   nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
   nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
@@ -45,17 +41,23 @@ if has('gui_macvim')
   inoremap <D-4> <C-o>4gt
   inoremap <D-5> <C-o>5gt
 endif
-noremap  <M-1>      1gt
-noremap  <M-2>      2gt
-noremap  <M-3>      3gt
-noremap  <M-4>      4gt
-noremap  <M-5>      5gt
+nnoremap <M-l> <c-w>l
+nnoremap <M-h> <c-w>h
+nnoremap <M-j> <c-w>j
+nnoremap <M-k> <c-w>k
+noremap  <M-1> 1gt
+noremap  <M-2> 2gt
+noremap  <M-3> 3gt
+noremap  <M-4> 4gt
+noremap  <M-5> 5gt
 " }}
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
   cnoremap $v ~/.vimrc
   cnoremap $h <C-R>=expand('%:p:h').'/'<cr>
+  cnoremap <C-p> <up>
+  cnoremap <C-n> <down>
 " }}
 
 " command line emacs shortcut, same as shell {{
