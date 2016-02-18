@@ -131,14 +131,27 @@ endfunction
 " }}
 
 " meta keys {{
-  nnoremap <M-s> :w<cr>
-  nnoremap <M-l> <c-w>l
-  nnoremap <M-h> <c-w>h
-  nnoremap <M-j> <c-w>j
-  nnoremap <M-k> <c-w>k
-  noremap  <M-1> 1gt
-  noremap  <M-2> 2gt
-  noremap  <M-3> 3gt
-  noremap  <M-4> 4gt
-  noremap  <M-5> 5gt
+  vnoremap  <M-c> "+y
+  nnoremap  <M-v> "+p
+  inoremap  <M-v> <C-o>"+p
+  nnoremap  <M-s> :w<cr>
+  inoremap  <M-s> <C-o>:w<cr>
+  nnoremap  <M-l> <c-w>l
+  nnoremap  <M-h> <c-w>h
+  nnoremap  <M-j> <c-w>j
+  nnoremap  <M-k> <c-w>k
+  inoremap  <M-l> <C-o><c-w>l
+  inoremap  <M-h> <C-o><c-w>h
+  inoremap  <M-j> <C-o><c-w>j
+  inoremap  <M-k> <C-o><c-w>k
+  nnoremap  <M-1> 1gt
+  nnoremap  <M-2> 2gt
+  nnoremap  <M-3> 3gt
+  nnoremap  <M-4> 4gt
+  nnoremap  <M-5> 5gt
+  inoremap  <C-o><M-1> 1gt
+  inoremap  <C-o><M-2> 2gt
+  inoremap  <C-o><M-3> 3gt
+  inoremap  <C-o><M-4> 4gt
+  inoremap  <C-o><M-5> 5gt
 " }}
