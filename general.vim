@@ -9,7 +9,7 @@ set autowrite
 set autoread
 set hlsearch
 set incsearch
-set smartcase
+"set smartcase
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
@@ -43,8 +43,7 @@ set laststatus=2
 set showmode
 set updatetime=2000
 " Formatting
-set tabstop=2
-set softtabstop=2
+set smarttab
 set shiftwidth=2
 set expandtab
 set shiftround
@@ -53,6 +52,7 @@ set wrap
 set guioptions-=r
 set number
 set relativenumber
+set ttyfast
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
