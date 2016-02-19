@@ -16,6 +16,15 @@
   let g:unite_source_session_options = &sessionoptions
 " }}
 
+" neomake {{
+  "let g:neomake_javascript_enabled_makers = ['eshint']
+  let g:neomake_vim_enabled_makers = ['vint']
+  let g:neomake_error_sign = {'text': '❌'}
+  let g:neomake_warning_sign = {'text': '⚠'}
+  "call neomake#utils#RedefineErrorSign()
+  "call neomake#utils#RedefineWarningSign()
+" }}
+
 " gist-vim {{
   let g:gist_clip_command = 'pbcopy'
   let g:gist_detect_filetype = 1

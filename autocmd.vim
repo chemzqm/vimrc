@@ -9,6 +9,7 @@ augroup common
   autocmd WinEnter * set imd|set noimd
   autocmd TabEnter * set imd|set noimd
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
+  autocmd BufWritePost * Neomake
 augroup end
 
 function! OnBufEnter()
