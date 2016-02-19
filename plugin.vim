@@ -21,6 +21,8 @@
   let g:neomake_vim_enabled_makers = ['vint']
   let g:neomake_error_sign = {'text': '❌'}
   let g:neomake_warning_sign = {'text': '⚠'}
+  let g:neomake_verbose = 0
+  let g:neomake_airline = 0
   "call neomake#utils#RedefineErrorSign()
   "call neomake#utils#RedefineWarningSign()
 " }}
