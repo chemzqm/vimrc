@@ -1,5 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
+command! -nargs=0 V          :vs +term
 command! -nargs=0 Q          :qa!
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()

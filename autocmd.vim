@@ -18,6 +18,8 @@ function! OnBufEnter()
     if !mapcheck('q', 'n')
       nnoremap <buffer> q :<C-U>bd!<CR>
     endif
+  elseif &buftype ==# 'terminal'
+    nnoremap <buffer> q :<C-U>bd!<CR>
   elseif &buftype ==# 'help'
     nnoremap <buffer> q :helpc<cr>
   elseif name =~# '/tmp/'
