@@ -94,10 +94,7 @@ function! s:highlight()
 endfunction
 
 function! MyStatusSyntasticError()
-  let errors = g:SyntasticLoclist.current().errors()
-  if empty(errors) | return '' | endif
-  let error = errors[0]
-  return error.lnum . ' ' . error.text
+  return ''
 endfunction
 
 augroup statusline
@@ -105,6 +102,5 @@ augroup statusline
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
+  autocmd VimEnter * call SetStatusLine()
 augroup end
-
-call SetStatusLine()
