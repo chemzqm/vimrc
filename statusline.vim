@@ -34,7 +34,7 @@ function! MyStatusReadonly()
 endfunction
 
 function! MyStatusModifySymbol()
-  return &mod ? '⚡' : ''
+  return &modified ? '⚡' : ''
 endfunction
 
 function! MyStatusGit() abort
@@ -79,7 +79,7 @@ function! s:highlight()
   hi User2         ctermfg=253   ctermbg=144   cterm=none
   hi User3         guifg=#FF001E guibg=#333333 gui=none
   hi User3         ctermfg=160   ctermbg=16    cterm=none
-  if &bg ==# 'light'
+  if &background ==# 'light'
     hi User4         guifg=#111111 guibg=#fdf6e3 gui=none
   else
     hi User4         guifg=#eee8d5 guibg=#222222 gui=none
