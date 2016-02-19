@@ -7,7 +7,7 @@ function! MyStatusLine()
         \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%{MyStatusReadonly()}%*"
-        \. "%3* %{MyStatusSyntasticError()} %*"
+        \. "%3* %{MyStatusLocError()} %*"
         \. "%=%-{&ft} %l, %c "
 "%{&fenc}
 endfunction
@@ -93,8 +93,13 @@ function! s:highlight()
   hi StatusLineNC  ctermfg=253   ctermbg=7    cterm=none
 endfunction
 
-function! MyStatusSyntasticError()
-  return ''
+function! MyStatusLocError()
+  let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
+  if len(list)
+    return string(list[0].lnum) . ' ' . list[0].text
+  else
+    return ''
+  endif
 endfunction
 
 augroup statusline
