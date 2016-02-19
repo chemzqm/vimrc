@@ -15,7 +15,6 @@ endfunction
 
 function! s:CommitCallback(job_id, status) dict
   if a:status == 0
-    let g:c = 1
     call SetStatusLine()
   endif
 endfunction
