@@ -18,3 +18,25 @@ function! s:CommitCallback(job_id, status) dict
     call SetStatusLine()
   endif
 endfunction
+
+function! s:OnTermClose(buf)
+  if getbufvar(a:buf, '&buftype') ==# 'terminal'
+    call jobstart('sleep 0.1', {
+      \ 'buffer_nr': a:buf,
+      \ 'on_exit': function('s:TerminalCallback'),
+      \})
+  endif
+endfunction
+
+function! s:TerminalCallback() dict
+  let nr = self.buffer_nr
+  let lines = filter(getbufline(nr, 1, '$'), '!empty(v:val)')
+  if lines[-1] ==# '[Process exited 0]'
+    execute 'silent！ bd! ' . nr
+  endif
+endfunction
+
+augroup neovim
+  autocmd!
+  autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
+augroup end
