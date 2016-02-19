@@ -11,20 +11,6 @@
   let g:test#strategy = 'start'
 " }}
 
-" syntastic {{
-  let g:syntastic_always_populate_loc_list=1
-  let g:syntastic_enable_balloons = 0
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_warning_symbol='⚠'
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_mode_map = {
-      \ "mode": "active",
-      \ "active_filetypes": ["vim", "ruby", "php"],
-      \ "passive_filetypes": ["javascript", "html"] }
-  let g:syntastic_vim_checkers = ['vint']
-" }}
-
 " unite-session {{
   let g:unite_source_session_path = expand('~') . '/.vim/sessions'
   let g:unite_source_session_options = &sessionoptions
