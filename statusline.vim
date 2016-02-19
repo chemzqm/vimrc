@@ -96,7 +96,7 @@ endfunction
 function! MyStatusLocError()
   let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
   if len(list)
-    return string(list[0].lnum) . ' ' . list[0].text
+    return ' ' . string(list[0].lnum) . ' ' . list[0].text
   else
     return ''
   endif

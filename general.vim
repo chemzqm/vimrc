@@ -85,7 +85,7 @@ if has('gui_running')
   set antialias
 else
   if !has('nvim')
-    let g:solarized_termcolors=256
+  let g:solarized_termcolors=256
   endif
   set background=dark
   colorscheme solarized
