@@ -99,6 +99,7 @@ nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
 nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
 " Custom mappings for the unite buffer
 augroup unite
+  autocmd!
   autocmd FileType unite call s:unite_my_settings()
 augroup end
 

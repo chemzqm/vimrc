@@ -10,7 +10,7 @@ command! -nargs=0 Color      :call s:HighlightColor()
 command! -nargs=0 Standard   execute '!standard --format %:p'
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "ItermStartTab! ~/.vim/vimrc/publish '<args>'"
-command! -nargs=0 Post       execute "ItermStartTab! -dir=/Users/chemzqm/lib/blog make remote"
+command! -nargs=0 Post       execute "ItermStartTab! -dir=".expand('~')."/lib/blog make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 AutoExe    :call s:ToggleExecute()
 command! -nargs=0 -range=% Prefixer call s:Prefixer(<line1>, <line2>)
@@ -73,6 +73,7 @@ function! g:Quickfix(type, ...)
   let pattern = s:FindPattern(a:000)
   let list = deepcopy(a:000)
   let g:grep_word = pattern[0]
+  let g:grep_command = 'grep '. join(list, ' ')
   let list[pattern[1]] = shellescape(g:grep_word, 1)
   execute "silent grep! " . join(list, ' ')
   execute "Unite -buffer-name=quickfix quickfix"

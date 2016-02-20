@@ -1,14 +1,19 @@
 set nocompatible
 filetype off
-if &shell =~# 'fish$'
-  set shell=sh
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  let g:python3_host_skip_check=1
 endif
-
 " developing plugins
+let g:jscheck_loaded = 1
 let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
-exe "set rtp^=".fnameescape(s:path)
-set rtp^=~/.vim/bundle/plug.vim
+exe 'set rtp^='.fnameescape(s:path)
+set runtimepath^=~/.vim/bundle/plug.vim
 call plug#begin()
+if v:version >= 704
+  Plug 'ultisnips', 1
+endif
 Plug 'FastFold'
 Plug 'dash.vim'
 Plug 'emmet-vim'
@@ -17,7 +22,7 @@ Plug 'gundo.vim'
 Plug 'html5.vim'
 Plug 'janko-vim-test'
 Plug 'neomru.vim'
-Plug 'syntastic'
+Plug 'neomake'
 Plug 'tern_for_vim', 1
 Plug 'unite-outline'
 Plug 'unite.vim'
@@ -35,22 +40,20 @@ Plug 'vimproc'
 Plug 'webapi-vim'
 Plug 'xml.vim'
 Plug 'vim-sneak'
-Plug 'ultisnips', 1
-"Plug 'kopischke/vim-stay'
+Plug 'kopischke/vim-stay'
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
 " vimrc files
-for path in split(glob('~/.vim/vimrc/*.vim'), "\n")
-  exe 'source ' . path
+for s:path in split(glob('~/.vim/vimrc/*.vim'), "\n")
+  exe 'source ' . s:path
 endfor
 
-iabbrev @G chemzqm@gmail.com
-iabbrev @C Copyright 2016 Qiming Zhao, all rights reserved
 iabbrev mocah mocha
-iabbrev fi if
+iabbrev Licence License
+iabbrev accross across
 
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
@@ -81,11 +84,10 @@ call SetupCommandAbbrs('T', 'tabe')
 call SetupCommandAbbrs('D', 'Dash')
 call SetupCommandAbbrs('R', 'Reset')
 call SetupCommandAbbrs('M', 'Mdir')
-call SetupCommandAbbrs('H', 'ModuleHelp')
 call SetupCommandAbbrs('E', 'EditVimrc')
-call SetupCommandAbbrs('V', 'version')
 call SetupCommandAbbrs('S', 'SourceTest')
 call SetupCommandAbbrs('Done', 'Unite todo:done')
 call SetupCommandAbbrs('A', 'TodoAdd')
+call SetupCommandAbbrs('Ex', 'Execute')
 
 " vim: set sw=2 ts=2 sts=2 et tw=78;
