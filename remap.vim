@@ -48,17 +48,16 @@ endif
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
-" }}
-
-" command line emacs shortcut, same as shell {{
-  cmap <C-k> <Up>
-  cmap <C-j> <Down>
-  cmap <C-b> <Left>
-  cmap <C-f> <Right>
-  cmap <C-a> <Home>
-  cmap <C-e> <End>
-  cmap <C-d> <Del>
-  cmap <C-h> <BS>
+  cnoremap <C-k> <Up>
+  cnoremap <C-j> <Down>
+  cnoremap <C-b> <Left>
+  cnoremap <C-f> <Right>
+  cnoremap <C-a> <Home>
+  cnoremap <C-e> <End>
+  cnoremap <C-d> <Del>
+  cnoremap <C-h> <BS>
+  cnoremap <M-b> <S-Left>
+  cnoremap <M-f> <S-Right>
 " }}
 
 " visual search {{
