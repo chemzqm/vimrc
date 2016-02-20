@@ -39,5 +39,4 @@ endfunction
 augroup neovim
   autocmd!
   autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
-  autocmd TermOpen * :startinsert
 augroup end
