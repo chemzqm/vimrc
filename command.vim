@@ -1,6 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
-command! -nargs=0 -bar V          :vs +term | startinsert
+command! -nargs=0 -bar V     :vs +term | startinsert
 command! -nargs=0 Q          :qa!
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
@@ -123,7 +123,7 @@ function! s:StatusReset()
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
   for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-    silent execute 'bwipeout' buf
+    silent execute 'bwipeout! '. buf
   endfor
 endf
 
