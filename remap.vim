@@ -1,25 +1,28 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
-" remap <cr> when completing
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 map <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Visual shifting (does not exit Visual mode)
 nnoremap <C-p> :PreviewAuto<CR>
+" no enter ex mode
 nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
 " yank to end
 nnoremap Y y$
 " clear highhigh reset diff
-nnoremap <silent> <c-l> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
-"inoremap <C-u> <esc>:Unite -buffer-name=ultisnips ultisnips<cr>
+" remap <cr> when completing
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <C-w> <esc>mzgUiw`za
-" like emacs
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 inoremap <C-u> <C-G>u<C-U>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 " easy align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -45,10 +48,6 @@ endif
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
-  cnoremap $v ~/.vimrc
-  cnoremap $h <C-R>=expand('%:p:h').'/'<cr>
-  cnoremap <C-p> <up>
-  cnoremap <C-n> <down>
 " }}
 
 " command line emacs shortcut, same as shell {{
@@ -124,8 +123,8 @@ inoremap <silent> <C-space> <esc>:call ImdRestore()<CR>
 function! ImdRestore()
   let pos = getcurpos()
   call macos#keycodes('command', 'space')
-  set imd
-  set noimd
+  set imdisable
+  set noimdisable
   call setpos('.', pos)
 endfunction
 " }}
@@ -134,22 +133,18 @@ endfunction
   vnoremap <C-c> "+y
   nnoremap <M-s> :w<cr>
   inoremap <M-s> <C-o>:w<cr>
-  nnoremap <M-l> <c-w>l
-  nnoremap <M-h> <c-w>h
-  nnoremap <M-j> <c-w>j
-  nnoremap <M-k> <c-w>k
-  inoremap <M-l> <C-o><c-w>l
-  inoremap <M-h> <C-o><c-w>h
-  inoremap <M-j> <C-o><c-w>j
-  inoremap <M-k> <C-o><c-w>k
+  nnoremap <C-l> <c-w>l
+  nnoremap <C-h> <c-w>h
+  nnoremap <C-j> <c-w>j
+  nnoremap <C-k> <c-w>k
   nnoremap <M-1> 1gt
   nnoremap <M-2> 2gt
   nnoremap <M-3> 3gt
   nnoremap <M-4> 4gt
   nnoremap <M-5> 5gt
-  inoremap <C-o><M-1> 1gt
-  inoremap <C-o><M-2> 2gt
-  inoremap <C-o><M-3> 3gt
-  inoremap <C-o><M-4> 4gt
-  inoremap <C-o><M-5> 5gt
+  inoremap <M-1> <C-o>1gt
+  inoremap <M-2> <C-o>2gt
+  inoremap <M-3> <C-o>3gt
+  inoremap <M-4> <C-o>4gt
+  inoremap <M-5> <C-o>5gt
 " }}
