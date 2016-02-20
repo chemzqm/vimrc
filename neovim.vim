@@ -44,8 +44,14 @@ endfunction
 
 augroup neovim
   autocmd!
-  autocmd InsertEnter * :call macos#keycodes('shift')
-  autocmd InsertLeave * :call macos#keycodes('shift')
+  autocmd InsertEnter *
+       \ if get(b:, 'imd', 0)|
+       \   call macos#keycodes('shift')|
+       \ endif
+  autocmd InsertLeave *
+       \ if get(b:, 'imd', 0)|
+       \   call macos#keycodes('shift')|
+       \ endif
   autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
   autocmd TermOpen *  :call s:OnTermOpen(+expand('<abuf>'))
   autocmd WinEnter term://*
