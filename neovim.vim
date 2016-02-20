@@ -46,4 +46,8 @@ augroup neovim
   autocmd!
   autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
   autocmd TermOpen *  :call s:OnTermOpen(+expand('<abuf>'))
+  autocmd WinEnter term://*
+        \ if getbufvar(expand('<abuf>'), 'is_autorun') != 1 |
+        \   startinsert |
+        \ endif
 augroup end
