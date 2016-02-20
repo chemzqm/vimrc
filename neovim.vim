@@ -19,7 +19,7 @@ function! s:CommitCallback(job_id, status) dict
 endfunction
 
 function! s:OnTermOpen(buf)
-  if getbufvar(a:buf, '&buftype') ==# 'terminal'
+  if &buftype ==# 'terminal'
     nnoremap <buffer> q :<C-U>bd!<CR>
   endif
 endfunction
