@@ -40,6 +40,7 @@ endfunction
 function! MyStatusGit() abort
   if s:IsTempFile() | return '' | endif
   if exists('b:git_branch') | return b:git_branch | endif
+  if !exists('*easygit#smartRoot') | return | endif
   let root = easygit#smartRoot(1)
   if empty(root) | return '' | endif
   let cwd = getcwd()
