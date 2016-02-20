@@ -1,7 +1,6 @@
 if !has('nvim') | finish | endif
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-l> <C-\><C-n><C-w>l
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 hi normal guibg=NONE
@@ -16,6 +15,12 @@ endfunction
 function! s:CommitCallback(job_id, status) dict
   if a:status == 0
     call SetStatusLine()
+  endif
+endfunction
+
+function! s:OnTermOpen(buf)
+  if getbufvar(a:buf, '&buftype') ==# 'terminal'
+    nnoremap <buffer> q :<C-U>bd!<CR>
   endif
 endfunction
 
@@ -39,4 +44,5 @@ endfunction
 augroup neovim
   autocmd!
   autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
+  autocmd TermOpen *  :call s:OnTermOpen(+expand('<abuf>'))
 augroup end
