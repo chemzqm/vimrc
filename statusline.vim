@@ -95,6 +95,7 @@ function! s:highlight()
 endfunction
 
 function! MyStatusLocError()
+  if s:IsTempFile() | return ''| endif
   let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
   if len(list)
     return ' ' . string(list[0].lnum) . ' ' . list[0].text
