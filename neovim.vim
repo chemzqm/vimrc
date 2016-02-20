@@ -1,9 +1,9 @@
 if !has('nvim') | finish | endif
 tnoremap <Esc> <C-\><C-n>
-tnoremap <M-h> <C-\><C-n><C-w>h
-tnoremap <M-j> <C-\><C-n><C-w>j
-tnoremap <M-k> <C-\><C-n><C-w>k
-tnoremap <M-l> <C-\><C-n><C-w>l
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
 hi normal guibg=NONE
 
 " need this hack to reset statusline
@@ -32,11 +32,12 @@ function! s:TerminalCallback() dict
   let nr = self.buffer_nr
   let lines = filter(getbufline(nr, 1, '$'), '!empty(v:val)')
   if lines[-1] ==# '[Process exited 0]'
-    execute 'silent！ bd! ' . nr
+    execute 'bd! ' . nr
   endif
 endfunction
 
 augroup neovim
   autocmd!
   autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
+  autocmd TermOpen * :startinsert
 augroup end
