@@ -1,16 +1,5 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" vim-test {{
-  let g:test#javascript#mocha#file_pattern = '\.js'
-  let g:test#javascript#mocha#options = '-c'
-  function! s:StartTest(cmd)
-    execute 'ItermStartTab! ' . a:cmd . '| error-parser'
-  endfunction
-
-  let g:test#custom_strategies = {'start': function('s:StartTest')}
-  let g:test#strategy = 'start'
-" }}
-
 " unite-session {{
   let g:unite_source_session_path = expand('~') . '/.vim/sessions'
   let g:unite_source_session_options = &sessionoptions
