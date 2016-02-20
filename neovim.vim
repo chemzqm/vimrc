@@ -36,6 +36,7 @@ endfunction
 function! s:TerminalCallback() dict
   let nr = self.buffer_nr
   let lines = filter(getbufline(nr, 1, '$'), '!empty(v:val)')
+  if empty(lines) | return | endif
   if lines[-1] ==# '[Process exited 0]'
     execute 'bd! ' . nr
   endif
