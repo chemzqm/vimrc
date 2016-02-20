@@ -12,8 +12,8 @@ set incsearch
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
-set nowb
-set noimd
+set nowritebackup
+set noimdisable
 set noswapfile
 set nobackup
 set undodir=~/.undodir
