@@ -6,8 +6,6 @@ augroup common
   autocmd BufReadPost *.log normal! G
   autocmd BufEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
-  autocmd WinEnter * set imd|set noimd
-  autocmd TabEnter * set imd|set noimd
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufWritePost * Neomake
 augroup end
