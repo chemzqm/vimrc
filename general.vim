@@ -79,7 +79,7 @@ if has('gui_running')
   endif
   colorscheme solarized
   set guifont=Source\ Code\ Pro:h13
-  set transparency=5
+  set transparency=10
   set macmeta
   " better font render on Retina screen
   set antialias
