@@ -24,9 +24,9 @@ set formatoptions+=j
 set diffopt=vertical
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
-set sessionoptions-=help
-set sessionoptions-=blank
-set sessionoptions-=options
+set sessionoptions+=winsize
+"set sessionoptions-=blank
+"set sessionoptions-=options
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=500
@@ -72,7 +72,7 @@ if has('gui_running')
     if h >= 17 || h < 8
       set background=dark
     else
-      set background=light
+      set background=dark
     endif
   else
     set background=light
@@ -84,9 +84,7 @@ if has('gui_running')
   " better font render on Retina screen
   set antialias
 else
-  if !has('nvim')
   let g:solarized_termcolors=256
-  endif
   set background=dark
   colorscheme solarized
 endif

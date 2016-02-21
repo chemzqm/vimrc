@@ -4,6 +4,7 @@ map <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
 nnoremap Q <Nop>
+vnoremap <C-c> "+y
 vnoremap < <gv
 vnoremap > >gv
 " yank to end
@@ -44,6 +45,13 @@ if has('gui_macvim')
   inoremap <D-4> <C-o>4gt
   inoremap <D-5> <C-o>5gt
 endif
+" }}
+
+" window navigate {{
+  nnoremap <C-l> <c-w>l
+  nnoremap <C-h> <c-w>h
+  nnoremap <C-j> <c-w>j
+  nnoremap <C-k> <c-w>k
 " }}
 
 " command line alias {{
@@ -129,13 +137,9 @@ endfunction
 " }}
 
 " meta keys {{
-  vnoremap <C-c> "+y
+  nnoremap <M-q> :qa!<cr>
   nnoremap <M-s> :w<cr>
   inoremap <M-s> <C-o>:w<cr>
-  nnoremap <C-l> <c-w>l
-  nnoremap <C-h> <c-w>h
-  nnoremap <C-j> <c-w>j
-  nnoremap <C-k> <c-w>k
   nnoremap <M-1> 1gt
   nnoremap <M-2> 2gt
   nnoremap <M-3> 3gt
