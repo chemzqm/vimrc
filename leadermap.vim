@@ -39,7 +39,7 @@ let g:mapleader = ','
   nmap <leader>f <Plug>Sneak_s
   nmap <leader>F <Plug>Sneak_S
   " bbye
-  nnoremap <leader>q :Bdelete<cr>
+  nnoremap <leader>q :Bdelete!<cr>
   " vim-test
   nmap <silent> <leader>t :TestNearest<CR>
   nmap <silent> <leader>ta :TestFile<CR>
