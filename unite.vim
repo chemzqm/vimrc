@@ -6,21 +6,19 @@ if executable('ag')
   " ag is quite fast, so we increase this number
   let g:unite_source_rec_min_cache_files = 1200
 endif
-let g:neomru#do_validate = 1
-let g:neomru#follow_links = 1
 " Project folders for Unite project
 let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']
 " Use regexp match as default matcher
 call unite#filters#matcher_default#use(['matcher_regexp'])
 " Ignore files by wildignore option
 call unite#custom#source(
-  \  'file_rec,file_rec/async,file_mru,file,buffer',
+  \  'file_rec,file_rec/async,file,buffer',
   \  'ignore_globs',
   \  split(&wildignore, ',') + ['todo://']
   \ )
 " Some source use fuzzy match would be better
 call unite#custom#source(
-  \  'file_mru,buffer,outline,func,command,project', 'matchers', ['matcher_fuzzy']
+  \  'redismru,buffer,outline,func,command,project', 'matchers', ['matcher_fuzzy']
   \ )
 " Converter the path of files, not be too long!
 call unite#custom#source(
@@ -35,14 +33,14 @@ call unite#custom#source(
   \)
 " Limit max candidates
 call unite#custom#source(
-  \  'file_mru,file_rec,file_rec/async,quickfix', 'max_candidates', 500
+  \  'file_rec,file_rec/async,quickfix', 'max_candidates', 200
   \ )
 call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
   \  'no_empty': 1,
   \ })
-call unite#custom#profile('file_mru', 'context', {
-  \  'winheight': 20,
+call unite#custom#profile('redismru', 'context', {
+  \  'winheight': 15,
   \ })
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 10,
@@ -78,7 +76,7 @@ nmap <space>  [unite]
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
-nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=file_mru  file_mru<cr>
+nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=redismru  redismru<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
@@ -113,6 +111,7 @@ function! s:unite_my_settings()
   nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> i       <plug>(unite_append_end)
   let unite = unite#get_current_unite()
+  nnoremap <silent><buffer><expr> s     unite#do_action('split')
   nnoremap <silent><buffer><expr> e     unite#do_action('edit')
   if unite.profile_name ==# 'todo'
     nnoremap <silent><buffer><expr> n     unite#do_action('new')
