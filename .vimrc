@@ -3,17 +3,22 @@ filetype off
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  let g:loaded_python_provider = 1
+  let g:python_host_skip_check=1
   let g:python3_host_skip_check=1
+  let g:python3_host_prog = '/usr/local/bin/python3'
 endif
-" developing plugins
+let g:did_v2ex_plugin_loaded = 1
 let g:jscheck_loaded = 1
+" developing plugins
 let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
 exe 'set rtp^='.fnameescape(s:path)
 set runtimepath^=~/.vim/bundle/plug.vim
 call plug#begin()
-if v:version >= 704
-  Plug 'ultisnips', 1
+if has('nvim')
+  "Plug 'ultisnips', 1
 endif
+Plug 'enabler_vim'
 Plug 'FastFold'
 Plug 'dash.vim'
 Plug 'emmet-vim'
@@ -40,7 +45,6 @@ Plug 'vimproc'
 Plug 'webapi-vim'
 Plug 'xml.vim'
 Plug 'vim-sneak'
-Plug 'kopischke/vim-stay'
 call plug#end()
 
 filetype plugin indent on
