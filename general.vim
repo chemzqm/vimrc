@@ -25,8 +25,8 @@ set diffopt=vertical
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
 set sessionoptions+=winsize
-"set sessionoptions-=blank
-"set sessionoptions-=options
+set sessionoptions-=blank
+set sessionoptions-=options
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=500
@@ -41,7 +41,6 @@ set showtabline=1
 set laststatus=2
 set showmode
 set updatetime=2000
-set splitright
 " Formatting
 set smarttab
 set shiftwidth=2

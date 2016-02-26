@@ -1,4 +1,5 @@
 set nocompatible
+
 filetype off
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -8,7 +9,6 @@ if has('nvim')
   let g:python3_host_skip_check=1
   let g:python3_host_prog = '/usr/local/bin/python3'
 endif
-let g:did_v2ex_plugin_loaded = 1
 let g:jscheck_loaded = 1
 " developing plugins
 let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
@@ -16,9 +16,8 @@ exe 'set rtp^='.fnameescape(s:path)
 set runtimepath^=~/.vim/bundle/plug.vim
 call plug#begin()
 if has('nvim')
-  "Plug 'ultisnips', 1
+  Plug 'ultisnips', 1
 endif
-Plug 'enabler_vim'
 Plug 'FastFold'
 Plug 'dash.vim'
 Plug 'emmet-vim'
@@ -26,7 +25,6 @@ Plug 'gist-vim'
 Plug 'gundo.vim'
 Plug 'html5.vim'
 Plug 'janko-vim-test'
-Plug 'neomru.vim'
 Plug 'neomake'
 Plug 'tern_for_vim', 1
 Plug 'unite-outline'
@@ -45,6 +43,7 @@ Plug 'vimproc'
 Plug 'webapi-vim'
 Plug 'xml.vim'
 Plug 'vim-sneak'
+Plug 'vim-stay'
 call plug#end()
 
 filetype plugin indent on
@@ -71,6 +70,7 @@ call SetupCommandAbbrs('Gd', 'Gdiff')
 call SetupCommandAbbrs('Gt', 'GdiffThis')
 call SetupCommandAbbrs('Gs', 'Gstatus')
 call SetupCommandAbbrs('Gc', 'GcommitCurrent')
+call SetupCommandAbbrs('Gp', 'Gpush')
 call SetupCommandAbbrs('Gci', 'Gcommit -v')
 call SetupCommandAbbrs('Gca', 'Gcommit -a -v')
 call SetupCommandAbbrs('Gcaa', 'Gcommit --amend -a -v')
@@ -78,20 +78,19 @@ call SetupCommandAbbrs('Gco', 'Gcheckout')
 call SetupCommandAbbrs('Grm', 'Gremove')
 call SetupCommandAbbrs('Grh', 'Greset HEAD')
 call SetupCommandAbbrs('Gmv', 'Gmove')
-call SetupCommandAbbrs('Gp', 'Gpush')
 call SetupCommandAbbrs('L', 'Gitlog')
-call SetupCommandAbbrs('U', 'Update')
+call SetupCommandAbbrs('U', 'Ultisnips')
 call SetupCommandAbbrs('P', 'Publish')
 call SetupCommandAbbrs('N', 'Note')
-call SetupCommandAbbrs('Ns', 'NoteSearch')
 call SetupCommandAbbrs('T', 'tabe')
 call SetupCommandAbbrs('D', 'Dash')
 call SetupCommandAbbrs('R', 'Reset')
 call SetupCommandAbbrs('M', 'Mdir')
 call SetupCommandAbbrs('E', 'EditVimrc')
 call SetupCommandAbbrs('S', 'SourceTest')
-call SetupCommandAbbrs('Done', 'Unite todo:done')
 call SetupCommandAbbrs('A', 'TodoAdd')
 call SetupCommandAbbrs('Ex', 'Execute')
+call SetupCommandAbbrs('Ns', 'NoteSearch')
+call SetupCommandAbbrs('Done', 'Unite todo:done')
 
 " vim: set sw=2 ts=2 sts=2 et tw=78;
