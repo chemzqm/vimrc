@@ -49,7 +49,7 @@
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
   " <c-y>a Make anchor from URL
   " <c-y>A Make quoted text from URL
-  let g:user_emmet_expandabbr_key = '<D-y>'
+  let g:user_emmet_expandabbr_key = '<M-y>'
   let g:user_emmet_next_key = '<C-y>n'
   let g:user_emmet_prev_key = '<C-y>p'
   "内部全选
