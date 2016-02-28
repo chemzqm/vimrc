@@ -4,7 +4,6 @@ map <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
 nnoremap Q <Nop>
-vnoremap <C-c> "+y
 vnoremap < <gv
 vnoremap > >gv
 " yank to end
@@ -137,6 +136,8 @@ endfunction
 " }}
 
 " meta keys {{
+  vnoremap <M-c> "+y
+  vnoremap <M-v> "+p
   nnoremap <M-q> :qa!<cr>
   nnoremap <M-s> :w<cr>
   inoremap <M-s> <C-o>:w<cr>
