@@ -3,6 +3,11 @@ tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <M-1> <C-\><C-n>1gt
+tnoremap <M-2> <C-\><C-n>2gt
+tnoremap <M-3> <C-\><C-n>3gt
+tnoremap <M-4> <C-\><C-n>4gt
+tnoremap <M-5> <C-\><C-n>5gt
 hi normal guibg=NONE
 
 " need this hack to reset statusline
