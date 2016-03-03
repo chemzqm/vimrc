@@ -1,6 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
-command! -nargs=0 V          :belowright vs +term
+command! -nargs=0 V          :call s:OpenTerminal()
 command! -nargs=0 Q          :qa!
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
@@ -25,6 +25,21 @@ function! s:ToggleExecute()
     let b:auto_execute = 0
   else
     let b:auto_execute = 1
+  endif
+endfunction
+
+function! s:OpenTerminal()
+  let bn = bufnr('%')
+  if exists('b:terminal') && !buflisted(get(b:, 'terminal'))
+    unlet b:terminal
+  endif
+  if !exists('b:terminal')
+    belowright vs +term
+    call setbufvar(bn, 'terminal', bufnr('%'))
+  else
+    execute 'belowright vertical sb '.get(b:, 'terminal', '')
+    startinsert
+    call feedkeys("\<C-l>", 'n')
   endif
 endfunction
 

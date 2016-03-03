@@ -59,7 +59,6 @@ call unite#custom#profile('gitlog', 'context', {
   \  'vertical_preview': 1,
   \ })
 call unite#custom#profile('outline', 'context', {
-  \  'winheight': 15,
   \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
@@ -110,6 +109,7 @@ function! s:unite_my_settings()
   nmap <buffer> <Esc>   :UniteClose<cr>
   nmap <buffer> q       <Plug>(unite_exit)
   nmap <buffer> i       <plug>(unite_append_end)
+  nmap <buffer> <C-h>   <C-w>h
   let unite = unite#get_current_unite()
   nnoremap <silent><buffer><expr> s     unite#do_action('vsplit')
   nnoremap <silent><buffer><expr> e     unite#do_action('edit')
