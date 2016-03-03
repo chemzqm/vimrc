@@ -138,8 +138,9 @@ endfunction
 " meta keys {{
   vnoremap <M-c> "+y
   vnoremap <M-v> "+p
+  inoremap <M-v> <C-o>"+p
   nnoremap <M-q> :qa!<cr>
-  nnoremap <M-s> :w<cr>
+  nnoremap <M-s> :wa<cr>
   inoremap <M-s> <C-o>:w<cr>
   nnoremap <M-1> 1gt
   nnoremap <M-2> 2gt
