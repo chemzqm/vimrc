@@ -64,7 +64,6 @@ function! SetupCommandAbbrs(from, to)
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
-call SetupCommandAbbrs('C', 'Glcd')
 call SetupCommandAbbrs('Co', 'Copy')
 call SetupCommandAbbrs('Gd', 'Gdiff')
 call SetupCommandAbbrs('Gt', 'GdiffThis')

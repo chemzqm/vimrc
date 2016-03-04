@@ -1,6 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
 command! -nargs=0 V          :call s:OpenTerminal()
+command! -nargs=0 C          :call s:Gcd()
 command! -nargs=0 Q          :qa!
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
@@ -19,6 +20,18 @@ command! -nargs=? ToggleCheck :call s:ToggleCheck()
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
+
+function! s:Gcd()
+  let dir = easygit#gitdir(expand('%'))
+  if empty(dir)
+    let dir = expand('%:p:h')
+  else
+    let dir = fnamemodify(dir, ':h')
+  endif
+  if !empty(dir)
+    execute 'lcd ' . dir
+  endif
+endfunction
 
 function! s:ToggleExecute()
   if get(b:, 'auto_execute', 0) == 1
