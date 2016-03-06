@@ -3,6 +3,7 @@
 command! -nargs=0 V          :call s:OpenTerminal()
 command! -nargs=0 C          :call s:Gcd()
 command! -nargs=0 Q          :qa!
+command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
 command! -nargs=0 Reset      :call s:StatusReset()
@@ -225,3 +226,12 @@ function! s:PrettyFile()
   exe 'silent lcd ' . old_cwd
   call winrestview(win_view)
 endfunction
+
+function! s:ToggleMouse()
+  if empty(&mouse)
+    set mouse=a
+  else
+    set mouse=
+  endif
+endfunction
+
