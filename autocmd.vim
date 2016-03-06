@@ -10,6 +10,12 @@ augroup common
   autocmd BufWritePost * Neomake
 augroup end
 
+augroup stay_no_lcd
+  autocmd!
+  autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
+  autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
+augroup END
+
 function! OnBufEnter()
   let name = bufname(+expand('<abuf>'))
   " quickly leave those temporary buffers
