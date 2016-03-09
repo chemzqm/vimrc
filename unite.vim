@@ -72,6 +72,7 @@ call unite#custom#profile('buffer', 'context', {
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
+nnoremap <silent> \r        :<C-u>Unite -buffer-name=redismru  redismru:.<cr>
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
