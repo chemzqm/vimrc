@@ -12,7 +12,7 @@ let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim
 call unite#filters#matcher_default#use(['matcher_regexp'])
 " Ignore files by wildignore option
 call unite#custom#source(
-  \  'file_rec,file_rec/async,file,buffer',
+  \  'file_rec,file_rec/neovim,file,buffer',
   \  'ignore_globs',
   \  split(&wildignore, ',') + ['todo://']
   \ )
@@ -22,7 +22,7 @@ call unite#custom#source(
   \ )
 " Converter the path of files, not be too long!
 call unite#custom#source(
-  \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
+  \  'file_rec,file_rec/neovim', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
 " Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
@@ -33,7 +33,7 @@ call unite#custom#source(
   \)
 " Limit max candidates
 call unite#custom#source(
-  \  'file_rec,file_rec/async,quickfix', 'max_candidates', 200
+  \  'file_rec,file_rec/neovim,quickfix', 'max_candidates', 300
   \ )
 call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
@@ -74,7 +74,7 @@ nnoremap [unite] <Nop>
 nmap <space>  [unite]
 nnoremap <silent> \r        :<C-u>Unite -buffer-name=redismru  redismru:.<cr>
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
-nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
+nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/neovm.<cr>
 nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=redismru  redismru<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
