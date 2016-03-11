@@ -24,9 +24,10 @@ set formatoptions+=j
 set diffopt=vertical
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
+"set sessionoptions+=winsize
 set sessionoptions+=winsize
 set sessionoptions-=blank
-set sessionoptions-=options
+set sessionoptions+=localoptions
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=500
