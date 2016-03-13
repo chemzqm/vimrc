@@ -38,7 +38,7 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 set keywordprg=
-set showtabline=1
+set showtabline=2
 set laststatus=2
 set showmode
 set updatetime=2000
