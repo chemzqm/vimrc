@@ -8,6 +8,8 @@ augroup common
   autocmd CompleteDone * pclose
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufWritePost * Neomake
+  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 augroup end
 
 augroup stay_no_lcd
