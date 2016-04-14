@@ -145,3 +145,7 @@
 " macnote.vim {{
   let g:macnote_unite_quickfix = 1
 " }}
+
+" redismru.vim {{
+  let g:redismru_disable_auto_validate = 1
+" }}

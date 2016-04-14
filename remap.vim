@@ -25,10 +25,8 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
 " for rails
-nnoremap \c :e app/controllers/
 nnoremap \v :e app/views/
 nnoremap \s :e app/assets/stylesheets/
-nnoremap \j :e client/
 
 " easy align
 xmap ga <Plug>(EasyAlign)
