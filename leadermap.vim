@@ -4,6 +4,7 @@ let g:mapleader = ','
 " basic {{
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>t :tabe <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
   nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
@@ -41,8 +42,7 @@ let g:mapleader = ','
   " bbye
   nnoremap <leader>q :Bdelete!<cr>
   " vim-test
-  nmap <silent> <leader>t :TestNearest<CR>
-  nmap <silent> <leader>ta :TestFile<CR>
+  "nmap <silent> <leader>ta :TestFile<CR>
   " unite-session
   nmap <leader>ss :call <SID>SessionSave()<cr>
   nmap <leader>sl :<C-u>SessionLoad 
