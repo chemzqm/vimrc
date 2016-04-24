@@ -8,6 +8,7 @@ function! MyStatusLine()
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%{MyStatusReadonly()}%*"
         \. "%3* %{MyStatusLocError()} %*"
+        \. "%5* %{MyStatusLintStatus()} %*"
         \. "%=%-{&ft} %l, %c "
 "%{&fenc}
 endfunction
@@ -86,6 +87,8 @@ function! s:highlight()
     hi User4         guifg=#eee8d5 guibg=#222222 gui=none
   endif
   hi User4         ctermbg=16    cterm=none
+  hi User5         ctermfg=81    ctermbg=16    cterm=none
+  hi User5         guifg=#5CC9F5 guibg=#333333 gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
   hi StatusLine    guifg=#CECECE guibg=#333333 gui=none
@@ -103,6 +106,11 @@ function! MyStatusLocError()
   else
     return ''
   endif
+endfunction
+
+function! MyStatusLintStatus()
+  if s:IsTempFile() | return ''| endif
+  return neomake#statusline#GetRunningStatus()
 endfunction
 
 augroup statusline

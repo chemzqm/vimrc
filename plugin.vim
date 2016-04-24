@@ -10,6 +10,7 @@
 " }}
 
 " neomake {{
+  let g:neomake_echo_current_error = 1
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_vim_enabled_makers = ['vint']
   let g:neomake_error_sign = {'text': '❌'}
