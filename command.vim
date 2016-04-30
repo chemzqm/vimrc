@@ -6,6 +6,7 @@ command! -nargs=0 Q          :qa!
 command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
+command! -nargs=0 Cp    :call s:CopyJson()
 command! -nargs=0 Reset      :call s:StatusReset()
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call s:HighlightColor()
@@ -40,6 +41,12 @@ function! s:ToggleExecute()
   else
     let b:auto_execute = 1
   endif
+endfunction
+
+function! s:CopyJson()
+  setf json
+  execute 'Pretty'
+  execute 'Copy'
 endfunction
 
 function! s:OpenTerminal()
@@ -197,8 +204,10 @@ endfunction
 " npm update -g cssfmt
 " brew update tidy-html5
 let g:Pretty_commmand_map = {
+    \ "json": "json",
     \ "css": "cssfmt",
     \ "html": "tidy -i -q -w 160",
+    \ "xml": " xmllint --format -encode utf8 -",
     \ "javascript": "js-beautify -s 2 -p -f -",
     \}
 function! s:PrettyFile()
