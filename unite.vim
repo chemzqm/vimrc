@@ -59,7 +59,7 @@ call unite#custom#profile('gitlog', 'context', {
   \  'vertical_preview': 1,
   \ })
 call unite#custom#profile('outline', 'context', {
-  \  'start_insert': 1,
+  \  'start_insert': 0
   \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,

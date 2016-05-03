@@ -17,7 +17,6 @@ command! -nargs=0 Post       execute "Nrun cd ".expand('~')."/lib/blog;and make 
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 AutoExe    :call s:ToggleExecute()
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
-command! -nargs=? ToggleCheck :call s:ToggleCheck()
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
@@ -61,16 +60,6 @@ function! s:OpenTerminal()
     execute 'belowright vertical sb '.get(b:, 'terminal', '')
     startinsert
     call feedkeys("\<C-l>", 'n')
-  endif
-endfunction
-
-function! s:ToggleCheck()
-  if get(b:, 'syntastic_check_disabled', 0)
-    let b:syntastic_check_disabled = 0
-    echohl MoreMsg | echon 'syntastic enabled' | echohl None
-  else
-    let b:syntastic_check_disabled = 1
-    echohl MoreMsg | echon 'syntastic disabled' | echohl None
   endif
 endfunction
 
