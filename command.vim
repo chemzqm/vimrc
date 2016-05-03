@@ -16,7 +16,7 @@ command! -nargs=* Update     execute "Nrun ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 Post       execute "Nrun cd ".expand('~')."/lib/blog;and make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 AutoExe    :call s:ToggleExecute()
-command! -nargs=0 -range=% Prefixer call s:Prefixer(<line1>, <line2>)
+command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 command! -nargs=? ToggleCheck :call s:ToggleCheck()
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
