@@ -67,3 +67,31 @@ function! s:LoadFunctions(type, ...)
   endif
 endfunction
 " }}
+
+function! s:GetPackageDir()
+  let file = findfile('package.json', '.;')
+  if empty(file)
+    echohl Error | echon 'project root not found' | echohl None
+    return
+  endif
+  return fnamemodify(file, ':h')
+endfunction
+
+function! ListModules(A, L, P) abort
+  let dir = s:GetPackageDir()
+  if empty(dir) | return | endif
+  let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
+  let browser = exists('obj.browser')
+  let list = []
+  let deps = browser ? keys(obj.browser) : []
+  let vals = browser ? values(obj.browser) : []
+  for key in keys(obj.dependencies)
+    let i = index(vals, key)
+    if i == -1
+      call add(list, key)
+    else
+      call add(list, deps[i])
+    endif
+  endfor
+  return join(list, "\n")
+endfunction

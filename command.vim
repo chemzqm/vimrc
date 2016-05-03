@@ -6,7 +6,7 @@ command! -nargs=0 Q          :qa!
 command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
-command! -nargs=0 Cp    :call s:CopyJson()
+command! -nargs=0 Cp         :call s:CopyJson()
 command! -nargs=0 Reset      :call s:StatusReset()
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call s:HighlightColor()
@@ -232,4 +232,3 @@ function! s:ToggleMouse()
     set mouse=
   endif
 endfunction
-
