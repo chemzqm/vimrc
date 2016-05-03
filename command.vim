@@ -92,7 +92,7 @@ endfunction
 function! s:Prefixer(line1, line2)
   let input = join(getline(a:line1, a:line2), "\n")
   let g:input = input
-  let output = system('autoprefixer', input)
+  let output = system('postcss --use postcss-cssnext', input)
   if v:shell_error && output !=# ""
     echohl Error | echon output | echohl None
     return
