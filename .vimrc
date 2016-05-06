@@ -18,6 +18,7 @@ call plug#begin()
 if has('nvim')
   Plug 'ultisnips', 1
 endif
+"Plug 'yajs.vim'
 Plug 'FastFold'
 Plug 'dash.vim'
 Plug 'emmet-vim'
@@ -82,7 +83,7 @@ call SetupCommandAbbrs('U', 'Ultisnips')
 call SetupCommandAbbrs('P', 'Publish')
 call SetupCommandAbbrs('N', 'Note')
 call SetupCommandAbbrs('T', 'tabe')
-call SetupCommandAbbrs('D', 'Dash')
+call SetupCommandAbbrs('D', 'Dict')
 call SetupCommandAbbrs('R', 'Reset')
 call SetupCommandAbbrs('M', 'Mdir')
 call SetupCommandAbbrs('E', 'EditVimrc')

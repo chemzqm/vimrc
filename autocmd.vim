@@ -51,7 +51,7 @@ function! s:SetLoadFunctions()
   command! -nargs=? -bar -buffer Fr call <SID>LoadFunctions("r", <f-args>)
   command! -nargs=? -bar -buffer Fa call <SID>LoadFunctions("a", <f-args>)
   command! -nargs=? -bar -buffer Fe call <SID>LoadFunctions("e", <f-args>)
-  command! -nargs=+ -bar -buffer -complete=custom,ListModules Fm call <SID>LoadFunctions("m", <f-args>)
+  command! -nargs=+ -bar -buffer -complete=custom,s:ListModules Fm call <SID>LoadFunctions("m", <f-args>)
 endfunction
 
 function! s:LoadFunctions(type, ...)
@@ -77,7 +77,7 @@ function! s:GetPackageDir()
   return fnamemodify(file, ':h')
 endfunction
 
-function! ListModules(A, L, P) abort
+function! s:ListModules(A, L, P) abort
   let dir = s:GetPackageDir()
   if empty(dir) | return | endif
   let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
