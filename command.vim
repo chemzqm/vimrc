@@ -1,5 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 
+command! -nargs=0 Jsx        :call s:SetJsx()
 command! -nargs=0 V          :call s:OpenTerminal()
 command! -nargs=0 C          :call s:Gcd()
 command! -nargs=0 Q          :qa!
@@ -231,4 +232,10 @@ function! s:ToggleMouse()
   else
     set mouse=
   endif
+endfunction
+
+function! s:SetJsx()
+  let b:match_ignorecase = 0
+  let b:match_words = '(:),\[:\],{:},<:>,' .
+        \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endfunction

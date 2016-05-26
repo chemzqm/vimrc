@@ -74,31 +74,37 @@
   \   'type': ' {Function} ',
   \   'description': 'Callback function'
   \ },
-  \ 'n': {
+  \ '^n$': {
   \   'type': ' {Number} '
   \ },
-  \ 'arr': {
+  \ '^i$': {
+  \   'type': ' {Number} '
+  \ },
+  \ '^arr$': {
   \   'type': ' {Array} '
   \ },
   \ 'str': {
   \   'type': ' {String} '
   \ },
-  \ 'el$': {
-  \   'type': ' {Element} '
-  \ },
-  \ 'e': {
+  \ '^e$': {
   \   'type': ' {Event} '
   \ },
-  \ 'node': {
+  \ '^el$': {
   \   'type': ' {Element} '
   \ },
-  \ 'obj': {
+  \ '^node$': {
+  \   'type': ' {Element} '
+  \ },
+  \ '^o$': {
   \   'type': ' {Object} '
   \ },
-  \ 'fn': {
+  \ '^obj$': {
+  \   'type': ' {Object} '
+  \ },
+  \ '^fn$': {
   \   'type': ' {Function} '
   \ },
-  \ 'cb': {
+  \ '^cb$': {
   \   'type': ' {Function} '
   \ }
   \}

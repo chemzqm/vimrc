@@ -46,6 +46,7 @@ call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 10,
   \ })
 call unite#custom#profile('files', 'context', {
+  \  'start_insert': 1
   \ })
 call unite#custom#profile('quickfix', 'context', {
   \  'no_quit': 1,
