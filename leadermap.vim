@@ -5,6 +5,7 @@ let g:mapleader = ','
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>t :tabe <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>v :vs <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
   nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
@@ -41,8 +42,6 @@ let g:mapleader = ','
   nmap <leader>F <Plug>Sneak_S
   " bbye
   nnoremap <leader>q :Bdelete!<cr>
-  " vim-test
-  "nmap <silent> <leader>ta :TestFile<CR>
   " unite-session
   nmap <leader>ss :call <SID>SessionSave()<cr>
   nmap <leader>sl :<C-u>SessionLoad 
@@ -50,7 +49,7 @@ let g:mapleader = ','
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   " Gundo
-  nnoremap <D-u> :GundoToggle<CR>
+  "nnoremap <D-u> :GundoToggle<CR>
   " tern
   nnoremap <leader>tb :TernDocBrowse<cr>
   nnoremap <leader>tt :TernType<cr>
@@ -59,8 +58,6 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
-  " vim-v2ex
-  nmap <leader>v <Plug>(V2exToggle)
 " }}
 
 " grep by motion {{
