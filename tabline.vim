@@ -119,6 +119,7 @@ let s:file_node_pattern_matches = {
 set tabline=%!MyTabLine()
 
 function! GetFileIcon(path)
+  let g:path = a:path
   let file = fnamemodify(a:path, ':t')
   if has_key(s:file_node_exact_matches, file)
     return s:file_node_exact_matches[file]
@@ -136,6 +137,7 @@ function! GetFileIcon(path)
 endfunction
 
 function! MyTabLine()
+  if &buftype =~# '\v(help|nofile|terminal)' | return '' | endif
   let s = ''
   for i in range(tabpagenr('$'))
     " select the highlighting

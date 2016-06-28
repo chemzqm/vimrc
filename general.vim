@@ -1,4 +1,5 @@
 " General options {{
+set termguicolors
 set hidden " allow buffer switch without saving
 set history=1000
 set wildmenu
@@ -77,7 +78,7 @@ if has('gui_running')
   else
     set background=light
   endif
-  colorscheme solarized
+  colorscheme gruvbox
   set guifont=Source\ Code\ Pro:h13
   set transparency=10
   set macmeta
@@ -86,7 +87,7 @@ if has('gui_running')
 else
   let g:solarized_termcolors=256
   set background=dark
-  colorscheme solarized
+  colorscheme gruvbox
 endif
 " }}
 

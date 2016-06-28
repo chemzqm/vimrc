@@ -95,8 +95,8 @@ nnoremap <silent> [unite]w  :<C-u>exec 'Unite -input=\<'. expand('<cword>') .'\>
 
 nmap <leader>u :call <SID>ToggleUnite()<cr>
 " Quickly navigate through candidates
-nmap [unite]j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
-nmap [unite]k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
+nmap <leader>j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
+nmap <leader>k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
 " Custom mappings for the unite buffer
 augroup unite
   autocmd!
