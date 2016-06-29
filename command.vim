@@ -59,7 +59,6 @@ function! s:OpenTerminal()
     call setbufvar(bn, 'terminal', bufnr('%'))
   else
     execute 'belowright vertical sb '.get(b:, 'terminal', '')
-    startinsert
     call feedkeys("\<C-l>", 'n')
   endif
 endfunction
