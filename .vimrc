@@ -10,6 +10,7 @@ if has('nvim')
   let g:python3_host_skip_check=1
   let g:python3_host_prog = '/usr/local/bin/python3'
 endif
+let g:gruvbox_italic=1
 let g:jscheck_loaded = 1
 let g:did_v2ex_plugin_loaded = 1
 " developing plugins
