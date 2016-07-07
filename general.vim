@@ -1,5 +1,7 @@
 " General options {{
-set termguicolors
+if has('nvim') && !has("gui_running")
+  set termguicolors
+end
 set hidden " allow buffer switch without saving
 set history=1000
 set wildmenu
@@ -10,6 +12,7 @@ set autowrite
 set autoread
 set hlsearch
 set incsearch
+set regexpengine=2
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide

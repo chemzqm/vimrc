@@ -26,7 +26,7 @@ call unite#custom#source(
   \ )
 " Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
-  \  'buffer,file_rec,project,command,func', 'sorters', 'sorter_selecta'
+  \  'redismru,buffer,file_rec,project,command,func', 'sorters', 'sorter_selecta'
   \)
 call unite#custom#source(
   \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']

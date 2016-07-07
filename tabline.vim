@@ -137,7 +137,7 @@ function! GetFileIcon(path)
 endfunction
 
 function! MyTabLine()
-  if &buftype =~# '\v(help|nofile|terminal)' | return '' | endif
+  "if &buftype =~# '\v(help|nofile|terminal)' | return '' | endif
   let s = ''
   for i in range(tabpagenr('$'))
     " select the highlighting
