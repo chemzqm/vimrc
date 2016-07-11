@@ -122,7 +122,8 @@ function! s:unite_my_settings()
   elseif unite.profile_name ==# 'gitlog'
     nnoremap <silent><buffer><expr> r     unite#do_action('reset')
   elseif unite.profile_name ==# 'node'
-    nnoremap <silent><buffer><expr> m     unite#do_action('main')
+    nnoremap <silent><buffer><expr> u     unite#do_action('update')
+    nnoremap <silent><buffer><expr> o     unite#do_action('open')
     nnoremap <silent><buffer><expr> h     unite#do_action('help')
     nnoremap <silent><buffer><expr> b     unite#do_action('browser')
   else

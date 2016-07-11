@@ -115,6 +115,7 @@ endfunction
 
 augroup statusline
   autocmd!
+  "autocmd User#NeomakeCountsChanged * call SetStatusLine()
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
