@@ -1,9 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
-
-command! -nargs=0 Jsx        :call s:SetJsx()
+command! -nargs=0 Q          :qa!
 command! -nargs=0 V          :call s:OpenTerminal()
 command! -nargs=0 C          :call s:Gcd()
-command! -nargs=0 Q          :qa!
 command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
@@ -23,6 +21,7 @@ command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
 
+" lcd to current git root
 function! s:Gcd()
   let dir = easygit#gitdir(expand('%'))
   if empty(dir)
@@ -35,6 +34,7 @@ function! s:Gcd()
   endif
 endfunction
 
+" toggle auto execute current file
 function! s:ToggleExecute()
   if get(b:, 'auto_execute', 0) == 1
     let b:auto_execute = 0
@@ -43,12 +43,14 @@ function! s:ToggleExecute()
   endif
 endfunction
 
+" Copy pretty json to system clipboard
 function! s:CopyJson()
   setf json
   execute 'Pretty'
   execute 'Copy'
 endfunction
 
+" Open vertical spit terminal with current parent directory
 function! s:OpenTerminal()
   let bn = bufnr('%')
   let dir = expand('%:p:h')
@@ -71,6 +73,7 @@ function! s:ListDict(A, L, P)
   return join(map(split(output, "\n"), 'substitute(v:val, ".dict", "", "")'), "\n")
 endfunction
 
+" Toggle dictionary list
 function! s:ToggleDictionary(...)
   for name in a:000
     if stridx(&dictionary, name) != -1
@@ -81,6 +84,7 @@ function! s:ToggleDictionary(...)
   endfor
 endfunction
 
+" Prefix css code with postcss and cssnext
 function! s:Prefixer(line1, line2)
   let input = join(getline(a:line1, a:line2), "\n")
   let g:input = input
@@ -165,9 +169,10 @@ function! s:HighlightColor()
   endif
 endfunction
 
+" Generate json from handlebars template
 function! s:Jsongen()
   let file = expand('%:p')
-  if !&filetype =~? 'handlebars$'
+  if &filetype !~ 'handlebars$'
     echoerr 'file type should be handlebars'
     return
   endif
@@ -234,10 +239,4 @@ function! s:ToggleMouse()
   else
     set mouse=
   endif
-endfunction
-
-function! s:SetJsx()
-  let b:match_ignorecase = 0
-  let b:match_words = '(:),\[:\],{:},<:>,' .
-        \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endfunction
