@@ -7,6 +7,7 @@ command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
 command! -nargs=0 Cp         :call s:CopyJson()
 command! -nargs=0 Reset      :call s:StatusReset()
+command! -nargs=0 Publish    :call s:Publish()
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call s:HighlightColor()
 command! -nargs=0 Standard   execute '!standard --format %:p'
@@ -20,6 +21,16 @@ command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
+
+" module publish
+function! s:Publish()
+  let old_dir = getcwd()
+  " file at ~/bin/publish
+  let dir = fnamemodify(findfile('package.json', '.;'), ':p:h')
+  execute 'lcd' . dir
+  execute 'Nrun publish'
+  execute 'lcd' . old_dir
+endfunction
 
 " lcd to current git root
 function! s:Gcd()
