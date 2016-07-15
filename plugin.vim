@@ -58,6 +58,13 @@
   let g:user_emmet_balancetaginward_key = '<C-y>i'
   let g:user_emmet_balancetagoutward_key = '<C-y>o'
   let g:user_emmet_mode='a'
+  let g:emmet_html5 = 0
+  let g:user_emmet_settings = {
+  \ 'javascript': {
+  \   'extends': 'html',
+  \   'attribute_name': {'class': 'className', 'for': 'htmlFor'},
+  \ },
+  \}
 " }}
 
 " vim-run {{
