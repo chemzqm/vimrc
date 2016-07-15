@@ -8,6 +8,7 @@ command! -nargs=0 Jsongen    :call s:Jsongen()
 command! -nargs=0 Cp         :call s:CopyJson()
 command! -nargs=0 Reset      :call s:StatusReset()
 command! -nargs=0 Publish    :call s:Publish()
+command! -nargs=* Exe        :call s:Execute(<q-args>)
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call s:HighlightColor()
 command! -nargs=0 Standard   execute '!standard --format %:p'
@@ -15,12 +16,25 @@ command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "Nrun ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 Post       execute "Nrun cd ".expand('~')."/lib/blog;and make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
-command! -nargs=0 AutoExe    :call s:ToggleExecute()
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 " search with ag and open quickfix window
 command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
+
+let s:cmd_map = {
+      \'javascript': 'babel-node',
+      \'python': 'python',
+      \'ruby': 'ruby'
+      \}
+
+function! s:Execute(args)
+  let dir = expand('%:p:h')
+  let file = expand('%:t')
+  let command = get(b:, 'command', s:cmd_map[&filetype])
+  let cmd = "rewatch ".file." -c '".command." ".shellescape(file)." ".a:args." '"
+  execute 'Nrun ' . cmd
+endfunction
 
 " module publish
 function! s:Publish()
@@ -42,15 +56,6 @@ function! s:Gcd()
   endif
   if !empty(dir)
     execute 'lcd ' . dir
-  endif
-endfunction
-
-" toggle auto execute current file
-function! s:ToggleExecute()
-  if get(b:, 'auto_execute', 0) == 1
-    let b:auto_execute = 0
-  else
-    let b:auto_execute = 1
   endif
 endfunction
 
