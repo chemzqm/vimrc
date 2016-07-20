@@ -10,7 +10,7 @@ command! -nargs=0 Reset      :call s:StatusReset()
 command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=* Exe        :call s:Execute(<q-args>)
 " vim color highlight for current buffer
-command! -nargs=0 Color      :call s:HighlightColor()
+command! -nargs=0 Color      :call css_color#toggle()
 command! -nargs=0 Standard   execute '!standard --format %:p'
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=* Update     execute "Nrun ~/.vim/vimrc/publish '<args>'"
