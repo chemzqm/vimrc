@@ -44,7 +44,7 @@ set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 set keywordprg=
 set showtabline=2
 set laststatus=2
-set showmode
+set noshowmode
 set updatetime=1000
 " Formatting
 set smarttab
