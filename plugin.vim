@@ -165,3 +165,9 @@
 " redismru.vim {{
   let g:redismru_disable_auto_validate = 1
 " }}
+
+" deoplete
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#omni_patterns = {}
+  let g:deoplete#omni_patterns.javascript = []
+"
