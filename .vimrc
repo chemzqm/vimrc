@@ -18,6 +18,9 @@ let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
 exe 'set rtp^='.fnameescape(s:path)
 set runtimepath^=~/.vim/bundle/plug.vim
 call plug#begin()
+if has('nvim')
+  Plug 'deoplete.nvim'
+endif
 Plug 'ultisnips', 1
 "Plug 'yajs.vim'
 Plug 'FastFold'
