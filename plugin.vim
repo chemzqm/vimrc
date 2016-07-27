@@ -166,8 +166,10 @@
   let g:redismru_disable_auto_validate = 1
 " }}
 
-" deoplete
+" deoplete {{
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#omni_patterns = {}
-  let g:deoplete#omni_patterns.javascript = []
-"
+  if !exists('g:necovim#complete_functions')
+    let g:necovim#complete_functions = {}
+  endif
+  let g:necovim#complete_functions.Ref = 'ref#complete'
+" }}
