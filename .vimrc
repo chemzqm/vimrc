@@ -19,6 +19,8 @@ exe 'set rtp^='.fnameescape(s:path)
 set runtimepath^=~/.vim/bundle/plug.vim
 call plug#begin()
 if has('nvim')
+  Plug 'neco-vim'
+  Plug 'deoplete-ruby'
   Plug 'deoplete.nvim'
 endif
 Plug 'ultisnips', 1
