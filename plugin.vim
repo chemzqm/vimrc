@@ -124,10 +124,6 @@
   let g:easygit_auto_lcd = 1
 "}}
 
-" vim-iterm-start {{
-  let g:iterm_start_growl_enable = 1
-" }}
-
 " html5.vim {{
   let g:html5_event_handler_attributes_complete = 0
   let g:html5_rdfa_attributes_complete = 0
@@ -167,9 +163,16 @@
 " }}
 
 " deoplete {{
-  let g:deoplete#enable_at_startup = 1
+  "let g:deoplete#enable_at_startup = 1
   if !exists('g:necovim#complete_functions')
     let g:necovim#complete_functions = {}
   endif
   let g:necovim#complete_functions.Ref = 'ref#complete'
+" }}
+
+" ruby complete {{
+" }}
+
+" vim-stay {{
+  let g:volatile_ftypes = ['scss', 'css']
 " }}
