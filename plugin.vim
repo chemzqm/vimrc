@@ -11,6 +11,7 @@
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_css_enabled_makers = ['stylelint']
   let g:neomake_wxss_enabled_makers = ['stylelint']
+  let g:neomake_wxml_enabled_makers = ['tidy']
   let g:neomake_vim_enabled_makers = ['vint']
   let g:neomake_error_sign = {'text': '❌'}
   let g:neomake_warning_sign = {'text': '⚠'}
