@@ -58,6 +58,9 @@ let g:mapleader = ','
   nnoremap <leader>tp :TernDefPreview<cr>
   nnoremap <leader>tr :TernRename<cr>
   nnoremap <leader>ts :TernRefs<cr>
+
+  nmap <leader>se <Plug>SvgEdit
+  nmap <leader>sp <Plug>SvgPreview
 " }}
 
 " grep by motion {{

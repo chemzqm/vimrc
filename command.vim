@@ -93,8 +93,10 @@ endfunction
 function! s:ToggleDictionary(...)
   for name in a:000
     if stridx(&dictionary, name) != -1
+      echo 'remove dict '.name
       execute 'setl dictionary-=~/.vim/dict/'.name.'.dict'
     else
+      echo 'add dict '.name
       execute 'setl dictionary+=~/.vim/dict/'.name.'.dict'
     endif
   endfor

@@ -1,5 +1,13 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+augroup rubycomplete
+  autocmd!
+  "autocmd FileType ruby,eruby call rubycomplete#Init()
+  autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+augroup end
+
 " common file autocmd {{
 augroup common
   autocmd!
@@ -11,6 +19,7 @@ augroup common
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter term://* startinsert
+  autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
 augroup end
 
 augroup stay_no_lcd
@@ -18,6 +27,16 @@ augroup stay_no_lcd
   autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
 augroup END
+
+function! s:SetWxapp()
+  if &ft ==# 'javascript'
+    setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
+  elseif &ft ==# 'wxml'
+    setl dictionary+=~/vim-dev/wxapp.vim/dict/wxml.dict
+  elseif &ft ==# 'wxss'
+    setl dictionary+=~/vim-dev/wxapp.vim/dict/wxss.dict
+  endif
+endfunction
 
 function! OnBufEnter()
   let name = bufname(+expand('<abuf>'))

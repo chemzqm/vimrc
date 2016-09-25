@@ -12,7 +12,7 @@ set autowrite
 set autoread
 set hlsearch
 set incsearch
-set regexpengine=2
+"set regexpengine=2
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
@@ -57,7 +57,7 @@ set wrap
 set guioptions-=r
 set number
 set relativenumber
-set ttyfast
+"set ttyfast
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
@@ -105,7 +105,7 @@ hi Search guibg=#333333 guifg=#C5B569
 " }}
 
 " Complete config {{
-set complete-=i
+set complete+=i
 set complete+=k
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview

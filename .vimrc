@@ -2,7 +2,6 @@ set nocompatible
 
 filetype off
 if has('nvim')
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   let g:loaded_python_provider = 1
   let g:python_host_skip_check=1
@@ -23,6 +22,11 @@ if has('nvim')
   Plug 'deoplete-ruby'
   Plug 'deoplete.nvim'
 endif
+Plug 'vim-operator-user'
+Plug 'vim-operator-flashy'
+Plug 'vim-bundler'
+Plug 'vim-rails'
+Plug 'rubycomplete.vim'
 Plug 'ultisnips', 1
 "Plug 'yajs.vim'
 Plug 'FastFold'
@@ -31,12 +35,11 @@ Plug 'emmet-vim'
 Plug 'gist-vim'
 Plug 'gundo.vim'
 Plug 'html5.vim'
-Plug 'janko-vim-test'
 Plug 'neomake'
 Plug 'tern_for_vim', 1
 Plug 'unite.vim'
 Plug 'unite-outline'
-"Plug 'unite-tag'
+Plug 'unite-tag'
 Plug 'vim-colors-solarized'
 Plug 'vim-css-color', 1
 Plug 'vim-easy-align'

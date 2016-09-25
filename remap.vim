@@ -1,4 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
 map <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Visual shifting (does not exit Visual mode)
 nnoremap <C-p> :PreviewAuto<CR>
@@ -128,7 +130,6 @@ endfunc
 " }}
 
 " Imd reset {{
-nnoremap <silent> <C-i> :set imd<Bar>set noimd<CR>
 inoremap <silent> <C-space> <esc>:call ImdRestore()<CR>
 
 function! ImdRestore()
