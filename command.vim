@@ -221,7 +221,9 @@ endfunction
 let g:Pretty_commmand_map = {
     \ "json": "json",
     \ "css": "cssfmt",
+    \ "wxss": "cssfmt",
     \ "html": "tidy -i -q -w 160",
+    \ "wxml": "tidy -i -q -w 160",
     \ "xml": " xmllint --format -encode utf8 -",
     \ "javascript": "js-beautify -s 2 -p -f -",
     \}
