@@ -13,7 +13,7 @@ let g:mapleader = ','
   " Search with grep
   nnoremap <leader>/ :Ag<SPACE>
   " generate doc
-  nnoremap <silent> <leader>d :call <SID>GenDoc()<cr>
+  nnoremap <silent> <leader>d :<C-u>call <SID>GenDoc()<cr>
   " clean some dirty charactors
   nnoremap <silent> <leader>cl :<C-u>call <SID>Clean()<cr>
   " show vim highlight group under cursor
@@ -37,6 +37,8 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
+  " Relaod wechatapp dev tooles
+  nmap <leader>ar <Plug>WxappReload
   " vim-sneak
   nmap <leader>f <Plug>Sneak_s
   nmap <leader>F <Plug>Sneak_S

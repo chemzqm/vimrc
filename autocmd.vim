@@ -20,6 +20,8 @@ augroup common
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter term://* startinsert
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
+  autocmd BufWritePost *.wxml call macos#keycodes('command', 'shift', 'r')
+  autocmd BufWritePost *.wxss call macos#keycodes('command', 'shift', 'r')
 augroup end
 
 augroup stay_no_lcd
