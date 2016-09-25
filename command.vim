@@ -223,7 +223,7 @@ let g:Pretty_commmand_map = {
     \ "css": "cssfmt",
     \ "wxss": "cssfmt",
     \ "html": "tidy -i -q -w 160",
-    \ "wxml": "tidy -i -q -w 160",
+    \ "wxml": "tidy -i -q -w 160 -xml",
     \ "xml": " xmllint --format -encode utf8 -",
     \ "javascript": "js-beautify -s 2 -p -f -",
     \}
