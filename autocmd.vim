@@ -31,6 +31,7 @@ augroup stay_no_lcd
 augroup END
 
 function! s:SetWxapp()
+  command! -nargs=0 Start :call wxapp#start()
   if &ft ==# 'javascript'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
   elseif &ft ==# 'wxml'
