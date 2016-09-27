@@ -22,6 +22,7 @@ augroup common
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd BufWritePost *.wxml call macos#keycodes('command', 'shift', 'r')
   autocmd BufWritePost *.wxss call macos#keycodes('command', 'shift', 'r')
+  autocmd BufWritePost ~/wechat-dev/**/*.js call macos#keycodes('command', 'shift', 'b')
 augroup end
 
 augroup stay_no_lcd
