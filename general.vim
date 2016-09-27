@@ -81,7 +81,7 @@ if has('gui_running')
   else
     set background=light
   endif
-  colorscheme gruvbox
+  colorscheme gotham
   set guifont=Source\ Code\ Pro:h13
   set transparency=10
   set macmeta
@@ -90,7 +90,7 @@ if has('gui_running')
 else
   let g:solarized_termcolors=256
   set background=dark
-  colorscheme gruvbox
+  colorscheme gotham
 endif
 " }}
 
