@@ -198,7 +198,14 @@
   if !exists('g:necovim#complete_functions')
     let g:necovim#complete_functions = {}
   endif
-  let g:necovim#complete_functions.Ref = 'ref#complete'
+  let g:deoplete#sources = {}
+  "let g:deoplete#sources.wxml = ['omni']
+  "let g:deoplete#sources.wxss = ['omni']
+  "let g:deoplete#sources.css = ['omni']
+  "let g:deoplete#delimiters = ['/', '.', '::', '#'] 
+  "let g:deoplete#omni_patterns = {}
+  "let g:deoplete#omni_patterns.wxml = '\w*'
+  "let g:necovim#complete_functions.Ref = 'ref#complete'
 " }}
 
 " ruby complete {{
