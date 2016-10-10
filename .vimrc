@@ -12,6 +12,7 @@ endif
 let g:gruvbox_italic=1
 let g:jscheck_loaded = 1
 let g:did_v2ex_plugin_loaded = 1
+let g:xml_syntax_folding=1
 " developing plugins
 let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
 exe 'set rtp^='.fnameescape(s:path)
