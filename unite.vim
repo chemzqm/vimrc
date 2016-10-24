@@ -7,7 +7,7 @@ if executable('ag')
   let g:unite_source_rec_min_cache_files = 1200
 endif
 " Project folders for Unite project
-let g:project_folders = ['~/component-dev', '~/nodejs-dev', '~/vim-dev', '~/.vim/bundle']
+let g:project_folders = ['~/wechat-dev', '~/component-dev', '~/vim-dev']
 " Use regexp match as default matcher
 call unite#filters#matcher_default#use(['matcher_regexp'])
 " Ignore files by wildignore option
@@ -26,7 +26,7 @@ call unite#custom#source(
   \ )
 " Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
-  \  'redismru,buffer,file_rec,project,command,func', 'sorters', 'sorter_selecta'
+  \  'redismru,buffer,file_rec/async,file_rec,project,command,func', 'sorters', 'sorter_selecta'
   \)
 call unite#custom#source(
   \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']

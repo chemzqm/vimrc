@@ -9,6 +9,8 @@ command! -nargs=0 Cp         :call s:CopyJson()
 command! -nargs=0 Reset      :call s:StatusReset()
 command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=* Exe        :call s:Execute(<q-args>)
+command! -nargs=0 Wept       :call s:StartWept()
+command! -nargs=0 Make       :call s:RunMake()
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call css_color#toggle()
 command! -nargs=0 Standard   execute '!standard --format %:p'
@@ -34,6 +36,37 @@ function! s:Execute(args)
   let command = get(b:, 'command', s:cmd_map[&filetype])
   let cmd = "rewatch ".file." -c '".command." ".shellescape(file)." ".a:args." '"
   execute 'Nrun ' . cmd
+endfunction
+
+function! s:StartWept()
+  let dir = s:FileDir('app.json')
+  let g:a = dir
+  if !empty(dir)
+    let old_dir = getcwd()
+    execute 'lcd' . dir
+    execute 'Nrun wept -o'
+    execute 'lcd' . old_dir
+  endif
+endfunction
+
+function! s:RunMake()
+  let dir = s:FileDir('Makefile')
+  if !empty(dir)
+    let old_dir = getcwd()
+    execute 'lcd' . dir
+    execute 'Nrun make'
+    execute 'lcd' . old_dir
+  endif
+endfunction
+
+
+function! s:FileDir(filename)
+  let file = findfile(a:filename, '.;')
+  if empty(file)
+    echohl Error | echon a:filename . ' not found' | echohl None
+    return
+  endif
+  return fnamemodify(file, ':h')
 endfunction
 
 " module publish

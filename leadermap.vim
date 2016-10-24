@@ -4,6 +4,8 @@ let g:mapleader = ','
 " basic {{
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>rm :Rm <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>mk :Mkdir <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>t :tabe <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>v :vs <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
@@ -40,8 +42,8 @@ let g:mapleader = ','
   " Relaod wechatapp dev tooles
   nmap <leader>ar <Plug>WxappReload
   " vim-sneak
-  nmap <leader>f <Plug>Sneak_s
-  nmap <leader>F <Plug>Sneak_S
+  nmap s <Plug>Sneak_s
+  nmap S <Plug>Sneak_S
   " bbye
   nnoremap <leader>q :Bdelete!<cr>
   " unite-session
