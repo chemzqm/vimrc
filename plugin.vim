@@ -214,3 +214,7 @@
 " vim-stay {{
   let g:volatile_ftypes = ['scss', 'css']
 " }}
+
+" vim-flow {{
+  let g:flow#autoclose = 1
+" }}

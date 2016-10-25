@@ -12,7 +12,7 @@ augroup end
 augroup common
   autocmd!
   autocmd BufReadPost *.log normal! G
-  autocmd BufEnter * call OnBufEnter()
+  autocmd BufWinEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufWritePost * Neomake
@@ -20,6 +20,7 @@ augroup common
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter term://* startinsert
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
+  autocmd FileType qf nnoremap <buffer> q :<C-U>ccl<CR>
 augroup end
 
 augroup stay_no_lcd
@@ -52,7 +53,7 @@ function! OnBufEnter()
   elseif &buftype ==# 'terminal'
     nnoremap <buffer> q :<C-U>bd!<CR>
   elseif &buftype ==# 'help'
-    nnoremap <buffer> q :helpc<cr>
+    nnoremap <buffer> q :<C-U>helpc<cr>
   elseif name =~# '/tmp/'
     setl bufhidden=delete
   endif

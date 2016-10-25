@@ -163,9 +163,13 @@ endfunction
 function! MyTabLabel(n)
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
-  let full_path = fnamemodify(bufname(buflist[winnr - 1]), ':p')
+  let name = bufname(buflist[winnr - 1])
+  let full_path = fnamemodify(name, ':p')
   let base = fnamemodify(full_path, ':h:h:h')
-  if base ==# '/' | return full_path | endif
   let icon = GetFileIcon(full_path)
-  return icon.' '.full_path[len(base) + 1:]
+  if empty(name)
+    return '[No Name]'
+  else
+    return icon.' '.fnamemodify(name, ':t')
+  endif
 endfunction
