@@ -7,8 +7,7 @@ function! MyStatusLine()
         \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
         \. "%1*%{MyStatusReadonly()}%*"
-        \. "%3* %{MyStatusLocError()} %*"
-        \. "%5* %{MyStatusLintStatus()} %*"
+        \. "%3* %{ALEGetStatusLine()} %*"
         \. "%=%-{&ft} %l, %c "
 "%{&fenc}
 endfunction
@@ -99,18 +98,13 @@ endfunction
 
 function! MyStatusLocError()
   if s:IsTempFile() | return ''| endif
-  if neomake#statusline#LoclistCounts() == {}| return '' |endif
-  let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
-  if len(list)
-    return ' ' . string(list[0].lnum) . ' ' . list[0].text
-  else
-    return ''
-  endif
-endfunction
-
-function! MyStatusLintStatus()
-  if s:IsTempFile() | return ''| endif
-  return neomake#statusline#GetRunningStatus()
+  "if neomake#statusline#LoclistCounts() == {}| return '' |endif
+  "let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
+  "if len(list)
+  "  return ' ' . string(list[0].lnum) . ' ' . list[0].text
+  "else
+  "  return ''
+  "endif
 endfunction
 
 augroup statusline

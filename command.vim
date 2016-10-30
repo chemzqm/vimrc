@@ -11,7 +11,6 @@ command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=* Exe        :call s:Execute(<q-args>)
 command! -nargs=0 Wept       :call s:StartWept()
 command! -nargs=0 Make       :call s:RunMake()
-command! -nargs=1 Open       :call s:Open(<q-args>)
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call css_color#toggle()
 command! -nargs=0 Standard   execute '!standard --format %:p'
@@ -38,19 +37,6 @@ function! s:Execute(args)
   let cmd = "rewatch ".file." -c '".command." ".shellescape(file)." ".a:args." '"
   execute 'Nrun ' . cmd
 endfunction
-
-function! s:Open(file)
-  if empty(a:file) | return | endif
-  if s:IsBinary(a:file)
-    call system('open ' . shellescape(a:file))
-  else
-    execute 'tabe ' . a:file
-  endif
-endfunction
-
-function! s:IsBinary(file)
-    return system('file -I ' . shellescape(a:file)) =~# 'charset=binary'
-endfun
 
 function! s:StartWept()
   let dir = s:FileDir('app.json')

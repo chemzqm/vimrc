@@ -6,16 +6,23 @@
 " }}
 
 " neomake {{
-  let g:neomake_echo_current_error = 1
-  let g:neomake_html_enabled_makers = []
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_css_enabled_makers = ['stylelint']
-  let g:neomake_wxss_enabled_makers = ['stylelint']
-  let g:neomake_wxml_enabled_makers = ['tidy']
-  let g:neomake_vim_enabled_makers = ['vint']
-  let g:neomake_error_sign = {'text': '❌'}
-  let g:neomake_warning_sign = {'text': '⚠'}
-  let g:neomake_verbose = 0
+" }}
+
+" ale {{
+  let g:ale_linters = {
+  \   'javascript': ['eslint'],
+  \   'html': ['tidy'],
+  \   'typescript': ['tslint'],
+  \   'json': ['jsonlint'],
+  \   'ruby': ['rubocop'],
+  \}
+  let g:ale_sign_column_always = 1
+  let g:ale_sign_error = '❌'
+  let g:ale_sign_warning = '⚠'
+  let g:ale_echo_msg_error_str = 'E'
+  let g:ale_echo_msg_warning_str = 'W'
+  let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " }}
 
 " gist-vim {{

@@ -34,6 +34,10 @@ nnoremap \s :e app/assets/stylesheets/
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+" ale
+nmap <silent> [k <Plug>(ale_previous_wrap)
+nmap <silent> [j <Plug>(ale_next_wrap)
+
 " macvim {{
 if has('gui_macvim')
   nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
