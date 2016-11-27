@@ -6,8 +6,8 @@ function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
-        \. "%1*%{MyStatusReadonly()}%*"
-        \. "%3* %{ALEGetStatusLine()} %*"
+        \. " %{MyStatusReadonly()}"
+        \. " %3*%{MyStatusLocError()}%* "
         \. "%=%-{&ft} %l, %c "
 "%{&fenc}
 endfunction
@@ -30,7 +30,7 @@ endfunction
 
 function! MyStatusReadonly()
   if !&readonly | return '' |endif
-  return "   "
+  return "  "
 endfunction
 
 function! MyStatusModifySymbol()
@@ -74,37 +74,20 @@ function! s:PrintError(msg)
 endfunction
 
 function! s:highlight()
-  hi User1         guifg=#66d9ef guibg=#11151c gui=none
-  hi User1         ctermfg=81    ctermbg=67    cterm=none
-  hi User2         guifg=#111111 guibg=#e6db74 gui=none
-  hi User2         ctermfg=253   ctermbg=144   cterm=none
-  hi User3         guifg=#FF001E guibg=#11151c gui=none
-  hi User3         ctermfg=160   ctermbg=16    cterm=none
-  if &background ==# 'light'
-    hi User4         guifg=#111111 guibg=#fdf6e3 gui=none
-  else
-    hi User4         guifg=#d3ebe9 guibg=#195466 gui=none
-  endif
-  hi User4         ctermbg=16    cterm=none
-  hi User5         ctermfg=81    ctermbg=16    cterm=none
-  hi User5         guifg=#5CC9F5 guibg=#11151c gui=none
+  hi User3         guifg=#FF001E guibg=#111111    gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
-  hi StatusLine    guifg=#599cab guibg=#11151c gui=none
-  hi StatusLine    ctermfg=253   ctermbg=16    cterm=none
-  hi StatusLineNC  guifg=#245361 guibg=#11151c gui=none
-  hi StatusLineNC  ctermfg=253   ctermbg=7    cterm=none
+  hi user4 guifg=#f8f8ff guibg=#000000
 endfunction
 
 function! MyStatusLocError()
   if s:IsTempFile() | return ''| endif
-  "if neomake#statusline#LoclistCounts() == {}| return '' |endif
-  "let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
-  "if len(list)
-  "  return ' ' . string(list[0].lnum) . ' ' . list[0].text
-  "else
-  "  return ''
-  "endif
+  let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
+  if len(list)
+    return ' ' . string(list[0].lnum) . ' ' . list[0].text
+  else
+    return ''
+  endif
 endfunction
 
 augroup statusline

@@ -8,7 +8,27 @@ tnoremap <M-2> <C-\><C-n>2gt
 tnoremap <M-3> <C-\><C-n>3gt
 tnoremap <M-4> <C-\><C-n>4gt
 tnoremap <M-5> <C-\><C-n>5gt
-hi normal guibg=NONE
+if !exists('g:nyaovim_version')
+  hi normal guibg=NONE
+endif
+
+" Neovim :terminal colors.
+let g:terminal_color_0  = '#1b1d1e'
+let g:terminal_color_1  = '#f92672'
+let g:terminal_color_2  = '#a6e22e'
+let g:terminal_color_3  = '#fd971f'
+let g:terminal_color_4  = '#66d9ef'
+let g:terminal_color_5  = '#9e6ffe'
+let g:terminal_color_6  = '#5e7175'
+let g:terminal_color_7  = '#ccccc6'
+let g:terminal_color_8  = '#505354'
+let g:terminal_color_9  = '#ff669d'
+let g:terminal_color_10 = '#beed5f'
+let g:terminal_color_11 = '#e6db74'
+let g:terminal_color_12 = '#66d9ef'
+let g:terminal_color_13 = '#9e6ffe'
+let g:terminal_color_14 = '#a3babf'
+let g:terminal_color_15 = '#f8f8f2'
 
 " need this hack to reset statusline
 function! EasygitCommitCallback()
@@ -49,14 +69,6 @@ endfunction
 
 augroup neovim
   autocmd!
-  autocmd InsertEnter *
-       \ if get(b:, 'imd', 0)|
-       \   call macos#keycodes('shift')|
-       \ endif
-  autocmd InsertLeave *
-       \ if get(b:, 'imd', 0)|
-       \   call macos#keycodes('shift')|
-       \ endif
   autocmd TermClose * :call s:OnTermClose(+expand('<abuf>'))
   autocmd TermOpen *  :call s:OnTermOpen(+expand('<abuf>'))
   autocmd WinEnter term://*

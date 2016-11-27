@@ -1,5 +1,13 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" vim-jsx {{
+  let g:jsx_ext_required = 0
+" }}
+
+" xml.vim {{
+  let g:xml_syntax_folding = 1
+" }}
+
 " unite-session {{
   let g:unite_source_session_path = expand('~') . '/.vim/sessions'
   let g:unite_source_session_options = &sessionoptions
@@ -11,10 +19,12 @@
 " ale {{
   let g:ale_linters = {
   \   'javascript': ['eslint'],
-  \   'html': ['tidy'],
+  \   'html': [],
+  \   'css': [],
+  \   'scss': [],
   \   'typescript': ['tslint'],
   \   'json': ['jsonlint'],
-  \   'ruby': ['rubocop'],
+  \   'ruby': [],
   \}
   let g:ale_sign_column_always = 1
   let g:ale_sign_error = '❌'

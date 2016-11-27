@@ -30,6 +30,7 @@ set diffopt=vertical
 "set sessionoptions+=resize
 "set sessionoptions+=winsize
 set sessionoptions+=winsize
+set sessionoptions+=resize
 set sessionoptions-=blank
 set sessionoptions+=localoptions
 set viewoptions=cursor,folds,slash,unix
@@ -57,6 +58,7 @@ set wrap
 set guioptions-=r
 set number
 set relativenumber
+set termguicolors
 "set ttyfast
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
@@ -88,15 +90,16 @@ if has('gui_running')
   " better font render on Retina screen
   set antialias
 else
-  let g:solarized_termcolors=256
   set background=dark
-  colorscheme gotham
+  let g:gruvbox_bold=0
+  let g:gruvbox_invert_selection=0
+  colorscheme gruvbox
 endif
 " }}
 
 " Syntax related {{
 " improve performance
-"syntax sync minlines=300
+syntax sync minlines=300
 hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE

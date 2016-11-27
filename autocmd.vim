@@ -11,6 +11,8 @@ augroup end
 " common file autocmd {{
 augroup common
   autocmd!
+  "autocmd OptionSet * call s:OnOptionSet(expand('<amatch>'))
+  "autocmd CursorHold,CursorHoldI * checktime
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
@@ -30,11 +32,11 @@ augroup END
 
 function! s:SetWxapp()
   command! -nargs=0 Start :call wxapp#start()
-  if &ft ==# 'javascript'
+  if &filetype ==# 'javascript'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
-  elseif &ft ==# 'wxml'
+  elseif &filetype ==# 'wxml'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxml.dict
-  elseif &ft ==# 'wxss'
+  elseif &filetype ==# 'wxss'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxss.dict
   endif
 endfunction

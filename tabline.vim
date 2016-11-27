@@ -167,7 +167,6 @@ function! MyTabLabel(n)
   let winnr = tabpagewinnr(a:n)
   let name = bufname(buflist[winnr - 1])
   let full_path = fnamemodify(name, ':p')
-  let base = fnamemodify(full_path, ':h:h:h')
   let icon = GetFileIcon(full_path)
   if empty(name)
     return '[No Name]'
