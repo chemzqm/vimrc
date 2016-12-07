@@ -1,4 +1,15 @@
 if !has('nvim') | finish | endif
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let g:python_host_skip_check=1
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_skip_check=1
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:loaded_ruby_provider = 1
+set termguicolors
+if !exists('g:nyaovim_version')
+  hi normal guibg=NONE
+endif
+
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
@@ -8,9 +19,6 @@ tnoremap <M-2> <C-\><C-n>2gt
 tnoremap <M-3> <C-\><C-n>3gt
 tnoremap <M-4> <C-\><C-n>4gt
 tnoremap <M-5> <C-\><C-n>5gt
-if !exists('g:nyaovim_version')
-  hi normal guibg=NONE
-endif
 
 " Neovim :terminal colors.
 let g:terminal_color_0  = '#1b1d1e'

@@ -1,9 +1,5 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" vim-jsx {{
-  let g:jsx_ext_required = 0
-" }}
-
 " xml.vim {{
   let g:xml_syntax_folding = 1
 " }}
@@ -59,8 +55,9 @@
 " }}
 
 " tern_for_vim {{
+  let g:tern_request_timeout = 5
   let g:tern_show_argument_hints = 'on_hold'
-  let g:tern#command = ['node', expand('~').'/lib/tern/bin/tern', '--no-port-file']
+  let g:tern#command = ['node', expand('~').'/lib/tern/bin/tern']
   "let g:tern_show_signature_in_pum = 1
 "}}
 

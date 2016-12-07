@@ -15,7 +15,6 @@ command! -nargs=0 Make       :call s:RunMake()
 command! -nargs=0 Color      :call css_color#toggle()
 command! -nargs=0 Standard   execute '!standard --format %:p'
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
-command! -nargs=* Update     execute "Nrun ~/.vim/vimrc/publish '<args>'"
 command! -nargs=0 Post       execute "Nrun cd ".expand('~')."/lib/blog;and make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)

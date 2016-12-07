@@ -4,10 +4,10 @@ let g:mapleader = ','
 " basic {{
   " Edit file in current file folder
   nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>v :vs <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>rm :Rm <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>mk :Mkdir <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>t :tabe <C-R>=expand('%:p:h').'/'<cr>
-  nnoremap <leader>v :vs <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
   nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
@@ -54,10 +54,10 @@ let g:mapleader = ','
   nnoremap <leader>tb :TernDocBrowse<cr>
   nnoremap <leader>tt :TernType<cr>
   nnoremap <leader>tf :TernDef<cr>
-  nnoremap <leader>td :TernDoc<cr>
   nnoremap <leader>tp :TernDefPreview<cr>
-  nnoremap <leader>tr :TernRename<cr>
-  nnoremap <leader>ts :TernRefs<cr>
+  nnoremap <leader>td :TernDoc<cr>
+  nnoremap <leader>tr :TernRefs<cr>
+  nnoremap <leader>tR :TernRename<cr>
 
   nmap <leader>se <Plug>SvgEdit
   nmap <leader>sp <Plug>SvgPreview

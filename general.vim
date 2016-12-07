@@ -1,7 +1,4 @@
 " General options {{
-if has('nvim') && !has("gui_running")
-  set termguicolors
-end
 set hidden " allow buffer switch without saving
 set history=1000
 set wildmenu
@@ -12,7 +9,7 @@ set autowrite
 set autoread
 set hlsearch
 set incsearch
-"set regexpengine=2
+set regexpengine=2
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
@@ -25,6 +22,7 @@ set undofile
 set fileformats=unix,dos
 set display+=lastline
 set formatoptions+=j
+set formatoptions+=o
 set diffopt=vertical
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
@@ -32,7 +30,7 @@ set diffopt=vertical
 set sessionoptions+=winsize
 set sessionoptions+=resize
 set sessionoptions-=blank
-set sessionoptions+=localoptions
+set sessionoptions-=localoptions
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=500
@@ -58,7 +56,6 @@ set wrap
 set guioptions-=r
 set number
 set relativenumber
-set termguicolors
 "set ttyfast
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*

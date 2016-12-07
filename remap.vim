@@ -108,10 +108,10 @@ func! SnipComplete()
     let start -= 1
   endwhile
   let suggestions = []
-  for item in UltiSnips#SnippetsInCurrentScope()
-    let trigger = item[0]
-    let menu = fnamemodify(item[2], ':t:r')
-    let entry = {'word': trigger, 'menu': menu, 'info': item[1]}
+  let snips =  UltiSnips#SnippetsInCurrentScope(0)
+  for [key, value] in items(snips)
+    let trigger = key
+    let entry = {'word': key, 'menu': value}
     call add(suggestions, entry)
   endfor
   if empty(suggestions)
