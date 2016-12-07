@@ -3,11 +3,12 @@ function! MyStatusSyntaxItem()
 endfunction
 
 function! MyStatusLine()
+  let errorMsg = has('nvim') ? "%= %3*%{MyStatusLocError()}%* %=" : ""
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. " %f %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
-        \. " %3*%{MyStatusLocError()}%* "
+        \. errorMsg
         \. "%=%-{&ft} %l, %c "
 "%{&fenc}
 endfunction
@@ -92,7 +93,6 @@ endfunction
 
 augroup statusline
   autocmd!
-  "autocmd User#NeomakeCountsChanged * call SetStatusLine()
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
