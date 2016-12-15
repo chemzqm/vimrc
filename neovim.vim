@@ -42,20 +42,19 @@ function! s:OnTermOpen(buf)
 endfunction
 
 function! s:OnTermClose(buf)
-  if getbufvar(a:buf, '&buftype') ==# 'terminal'
-    call jobstart('sleep 0.1', {
-      \ 'buffer_nr': a:buf,
-      \ 'on_exit': function('s:TerminalCallback'),
-      \})
-  endif
-endfunction
+  let s:nr = a:buf
 
-function! s:TerminalCallback() dict
-  let nr = self.buffer_nr
-  let lines = filter(getbufline(nr, 1, '$'), '!empty(v:val)')
-  if empty(lines) | return | endif
-  if lines[-1] ==# '[Process exited 0]'
-    execute 'bd! ' . nr
+  function! Callback(id)
+    let lines = filter(getbufline(s:nr, 1, '$'), '!empty(v:val)')
+    if empty(lines) | return | endif
+    if lines[-1] ==# '[Process exited 0]'
+      execute 'silent! bd! ' . s:nr
+    endif
+  endfunction
+
+  if getbufvar(a:buf, '&buftype') ==# 'terminal'
+    call timer_start(100, 'Callback',
+          \ {'repeat': 1})
   endif
 endfunction
 
