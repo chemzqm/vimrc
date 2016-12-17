@@ -43,18 +43,17 @@ endfunction
 
 function! s:OnTermClose(buf)
 
-  function! Callback(id, nr)
-    let g:n = a:nr
+  function! Callback(nr, id)
     let lines = filter(getbufline(a:nr, 1, '$'), '!empty(v:val)')
-    if empty(lines) | return | endif
-    if lines[-1] ==# '[Process exited 0]'
-      execute 'silent! bd! ' . a:nr
+    if empty(lines) || lines[-1] ==# '[Process exited 0]'
+      if bufexists(a:nr)
+        execute 'silent! bd! ' . a:nr
+      endif
     endif
   endfunction
 
   if getbufvar(a:buf, '&buftype') ==# 'terminal'
-    call timer_start(100, function('Callback', [a:buf]),
-          \ {'repeat': 1})
+    call timer_start(100, function('Callback', [a:buf]))
   endif
 endfunction
 

@@ -1,5 +1,10 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" vim-jsx-improve {{
+  let javascript_plugin_jsdoc = 1
+  let javascript_plugin_flow = 1
+" }}
+
 " xml.vim {{
   let g:xml_syntax_folding = 1
 " }}
@@ -47,7 +52,12 @@
 " }}
 
 " Netrw {{
-  let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+  let g:netrw_banner=0
+  let g:netrw_browse_split=4
+  let g:netrw_altv=1
+  let g:netrw_liststyle=3
+  let g:netrw_list_hide = netrw_gitignore#Hide()
+  let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
 " }}
 
 " vim-gitgutter {{
@@ -207,28 +217,10 @@
   let g:redismru_disable_auto_validate = 1
 " }}
 
-" deoplete {{
-  "let g:deoplete#enable_at_startup = 1
-  if !exists('g:necovim#complete_functions')
-    let g:necovim#complete_functions = {}
-  endif
-  let g:deoplete#sources = {}
-  "let g:deoplete#sources.wxml = ['omni']
-  "let g:deoplete#sources.wxss = ['omni']
-  "let g:deoplete#sources.css = ['omni']
-  "let g:deoplete#delimiters = ['/', '.', '::', '#'] 
-  "let g:deoplete#omni_patterns = {}
-  "let g:deoplete#omni_patterns.wxml = '\w*'
-  "let g:necovim#complete_functions.Ref = 'ref#complete'
-" }}
-
-" ruby complete {{
-" }}
-
 " vim-stay {{
   let g:volatile_ftypes = ['scss', 'css']
 " }}
 
 " vim-flow {{
-  let g:flow#autoclose = 1
+  "let g:flow#autoclose = 1
 " }}

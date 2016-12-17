@@ -24,6 +24,9 @@ set display+=lastline
 set formatoptions+=j
 set formatoptions+=o
 set diffopt=vertical
+set path+=**
+set tags+=gems.tags,stdlib.tags
+set wildignore+=*/node_modules/*
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
 "set sessionoptions+=winsize
@@ -102,6 +105,7 @@ hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=ligh
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 " change default search highlight
 hi Search guibg=#333333 guifg=#C5B569
+hi normal guibg=NONE
 " }}
 
 " Complete config {{

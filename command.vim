@@ -11,6 +11,7 @@ command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=* Exe        :call s:Execute(<q-args>)
 command! -nargs=0 Wept       :call s:StartWept()
 command! -nargs=0 Make       :call s:RunMake()
+command! -nargs=0 MakeTags   :execute 'Nrun ctags -R .'
 " vim color highlight for current buffer
 command! -nargs=0 Color      :call css_color#toggle()
 command! -nargs=0 Standard   execute '!standard --format %:p'
@@ -158,7 +159,7 @@ function! g:Quickfix(type, ...)
   let g:grep_command = 'grep '. join(list, ' ')
   let list[pattern[1]] = shellescape(g:grep_word, 1)
   execute "silent grep! " . join(list, ' ')
-  execute "Unite -buffer-name=quickfix quickfix"
+  execute "Denite -mode=normal -auto-resize quickfix"
 endfunction
 
 function! s:FindPattern(list)

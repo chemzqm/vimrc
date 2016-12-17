@@ -1,28 +1,10 @@
-" Config ag for file_rec source
-if executable('ag')
-  let g:unite_source_rec_async_command =
-    \ ['ag', '--nocolor', '--nogroup',
-    \  '--depth', '10', '-g', '']
-  " ag is quite fast, so we increase this number
-  let g:unite_source_rec_min_cache_files = 1200
-endif
 " Project folders for Unite project
 let g:project_folders = ['~/wechat-dev', '~/component-dev', '~/vim-dev']
 " Use regexp match as default matcher
 call unite#filters#matcher_default#use(['matcher_regexp'])
-" Ignore files by wildignore option
-call unite#custom#source(
-  \  'file_rec,file_rec/async,file,buffer',
-  \  'ignore_globs',
-  \  split(&wildignore, ',') + ['todo://']
-  \ )
 " Some source use fuzzy match would be better
 call unite#custom#source(
   \  'redismru,buffer,outline,func,command,project', 'matchers', ['matcher_fuzzy']
-  \ )
-" Converter the path of files, not be too long!
-call unite#custom#source(
-  \  'file_rec,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy']
   \ )
 " Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
@@ -39,21 +21,11 @@ call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
   \  'no_empty': 1,
   \ })
-call unite#custom#profile('redismru', 'context', {
-  \  'winheight': 15,
-  \ })
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 10,
   \ })
 call unite#custom#profile('files', 'context', {
   \  'start_insert': 1
-  \ })
-call unite#custom#profile('quickfix', 'context', {
-  \  'no_quit': 1,
-  \ })
-call unite#custom#profile('location', 'context', {
-  \  'no_quit': 1,
-  \  'winheight': 5,
   \ })
 call unite#custom#profile('gitlog', 'context', {
   \  'no_quit': 1,
@@ -74,26 +46,17 @@ call unite#custom#profile('buffer', 'context', {
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
-nnoremap <silent> \r        :<C-u>Unite -buffer-name=redismru  redismru:.<cr>
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
-nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files     file_rec/async:.<cr>
-nnoremap <silent> [unite]e  :<C-u>Unite -buffer-name=buffer    buffer<cr>
-nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=redismru  redismru<cr>
 nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
-nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
-nnoremap <silent> [unite]p  :<C-u>Unite -buffer-name=process   process<cr>
-nnoremap <silent> [unite]q  :<C-u>Unite -buffer-name=quickfix  quickfix<cr>
-nnoremap <silent> [unite]l  :<C-u>Unite -buffer-name=location  location_list<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
 nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
+nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
-nnoremap <silent> [unite]w  :<C-u>exec 'Unite -input=\<'. expand('<cword>') .'\> -no-start-insert line:buffers'<cr>
 
-nmap <leader>u :call <SID>ToggleUnite()<cr>
 " Quickly navigate through candidates
 nmap <leader>j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
 nmap <leader>k :<C-u>call <SID>Jump(v:count1, 'Previous')<cr>
@@ -137,15 +100,4 @@ function! s:Jump(count, dir)
   else
     execute a:count . 'Unite' . a:dir
   endif
-endfunction
-
-function! s:ToggleUnite()
-  for i in range(1, winnr('$'))
-    let name = bufname(winbufnr(i))
-    if match(name, '^\[unite\]') == 0
-      UniteClose
-      return
-    endif
-  endfor
-  UniteResume
 endfunction
