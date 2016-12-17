@@ -109,9 +109,9 @@ func! SnipComplete()
   endwhile
   let suggestions = []
   let snips =  UltiSnips#SnippetsInCurrentScope(0)
-  for [key, value] in items(snips)
-    let trigger = key
-    let entry = {'word': key, 'menu': value}
+  for item in snips
+    let trigger = item.key
+    let entry = {'word': item.key, 'menu': item.description}
     call add(suggestions, entry)
   endfor
   if empty(suggestions)
@@ -132,18 +132,6 @@ func! SnipComplete()
   endif
   return ''
 endfunc
-" }}
-
-" Imd reset {{
-inoremap <silent> <C-space> <esc>:call ImdRestore()<CR>
-
-function! ImdRestore()
-  let pos = getcurpos()
-  call macos#keycodes('command', 'space')
-  set imdisable
-  set noimdisable
-  call setpos('.', pos)
-endfunction
 " }}
 
 " meta keys {{
