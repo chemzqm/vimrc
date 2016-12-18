@@ -1,48 +1,46 @@
 set nocompatible
 
-filetype off
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  let g:loaded_python_provider = 1
-  let g:python_host_skip_check=1
-  let g:python_host_prog = '/usr/local/bin/python'
-  let g:python3_host_skip_check=1
-  let g:python3_host_prog = '/usr/local/bin/python3'
-endif
 let g:gruvbox_italic=1
-let g:jscheck_loaded = 1
-let g:did_v2ex_plugin_loaded = 1
-let g:xml_syntax_folding=1
-" developing plugins
-let s:path = join(split(glob('~/vim-dev/*'), '\n'), ',')
-exe 'set rtp^='.fnameescape(s:path)
 set runtimepath^=~/.vim/bundle/plug.vim
 call plug#begin()
-if has('nvim')
-  Plug 'neco-vim'
-  Plug 'deoplete-ruby'
-  Plug 'deoplete.nvim'
-endif
+"Plug 'FastFold'
+"Plug 'vim-bundler'
+"Plug 'yajs.vim'
+"Plug 'neosnips', 1
+"Plug 'vim-stay'
+Plug 'vim-jsx-improve', 1
+Plug 'comment.vim', 1
+Plug 'easygit', 1
+Plug 'macdown.vim', 1
+Plug 'macnote.vim', 1
+Plug 'redismru.vim', 1
+Plug 'smartim', 1
+Plug 'snippets', 1
+Plug 'tern-neovim', 1
+Plug 'todoapp.vim', 1
+Plug 'ultisnips', 1
+Plug 'unite-extra', 1
+Plug 'unite-git-log', 1
+Plug 'unite-js-func', 1
+Plug 'unite-location', 1
+Plug 'unite-session', 1
+Plug 'vim-macos', 1
+Plug 'vim-run', 1
+Plug 'wxapp.vim', 1
+Plug 'nvim-api-viewer'
+Plug 'ale'
 Plug 'vim-operator-user'
 Plug 'vim-operator-flashy'
-Plug 'vim-bundler'
 Plug 'vim-rails'
-Plug 'rubycomplete.vim'
-Plug 'ultisnips', 1
-"Plug 'yajs.vim'
-Plug 'FastFold'
+Plug 'gundo.vim'
 Plug 'dash.vim'
 Plug 'emmet-vim'
 Plug 'gist-vim'
-Plug 'gundo.vim'
 Plug 'html5.vim'
-Plug 'neomake'
-Plug 'tern_for_vim', 1
 Plug 'unite.vim'
 Plug 'unite-outline'
 Plug 'unite-tag'
-Plug 'vim-colors-solarized'
-Plug 'vim-css-color', 1
+Plug 'vim-css-color'
 Plug 'vim-easy-align'
 Plug 'vim-exchange'
 Plug 'vim-fish'
@@ -52,10 +50,10 @@ Plug 'vim-jsdoc'
 Plug 'vim-json'
 Plug 'vim-surround'
 Plug 'vimproc'
-Plug 'webapi-vim'
 Plug 'xml.vim'
 Plug 'vim-sneak'
-Plug 'vim-stay'
+Plug 'denite.nvim'
+Plug 'cpsm'
 call plug#end()
 
 filetype plugin indent on
@@ -69,6 +67,7 @@ endfor
 iabbrev mocah mocha
 iabbrev Licence License
 iabbrev accross across
+iabbrev cosnt const
 
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
@@ -77,6 +76,7 @@ function! SetupCommandAbbrs(from, to)
 endfunction
 
 call SetupCommandAbbrs('Co', 'Copy')
+call SetupCommandAbbrs('G', 'GundoToggle')
 call SetupCommandAbbrs('Gd', 'Gdiff')
 call SetupCommandAbbrs('Gt', 'GdiffThis')
 call SetupCommandAbbrs('Gs', 'Gstatus')
@@ -90,7 +90,7 @@ call SetupCommandAbbrs('Grm', 'Gremove')
 call SetupCommandAbbrs('Grh', 'Greset HEAD')
 call SetupCommandAbbrs('Gmv', 'Gmove')
 call SetupCommandAbbrs('L', 'Gitlog')
-call SetupCommandAbbrs('U', 'Ultisnips')
+call SetupCommandAbbrs('U', 'UltiSnipsEdit')
 call SetupCommandAbbrs('P', 'Publish')
 call SetupCommandAbbrs('N', 'Note')
 call SetupCommandAbbrs('T', 'tabe')

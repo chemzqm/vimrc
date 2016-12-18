@@ -1,5 +1,9 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
-""
+
+" gundo.vim {{
+  let g:gundo_prefer_python3 = 1
+" }}
+
 " vim-jsx-improve {{
   let javascript_plugin_jsdoc = 1
   let javascript_plugin_flow = 1
