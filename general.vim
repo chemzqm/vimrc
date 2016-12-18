@@ -10,7 +10,6 @@ set autoread
 set hlsearch
 set incsearch
 set regexpengine=2
-let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
 set nowritebackup
@@ -60,15 +59,9 @@ set guioptions-=r
 set number
 set relativenumber
 "set ttyfast
-if executable('ag')
-  set grepprg=ag\ --vimgrep\ $*
-  set grepformat=%f:%l:%c:%m
-  let g:grep_using_git = 0
-elseif executable('grepprg')
-  set grepprg=grepprg\ $*
-  set grepformat=%f:%l:%c:%m
-  let g:grep_using_git = 1
-endif
+set grepprg=ag\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
+let g:grep_using_git = 0
 " }}
 
 " Special options for macvim {{
@@ -99,7 +92,7 @@ endif
 
 " Syntax related {{
 " improve performance
-syntax sync minlines=300
+"syntax sync minlines=300
 hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
