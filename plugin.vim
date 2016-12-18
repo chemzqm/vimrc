@@ -1,5 +1,5 @@
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
-
+""" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
+""
 " vim-jsx-improve {{
   let javascript_plugin_jsdoc = 1
   let javascript_plugin_flow = 1
@@ -14,9 +14,6 @@
   let g:unite_source_session_options = &sessionoptions
 " }}
 
-" neomake {{
-" }}
-
 " ale {{
   let g:ale_linters = {
   \   'javascript': ['eslint'],
@@ -27,7 +24,6 @@
   \   'json': ['jsonlint'],
   \   'ruby': [],
   \}
-  let g:ale_sign_column_always = 1
   let g:ale_sign_error = '❌'
   let g:ale_sign_warning = '⚠'
   let g:ale_echo_msg_error_str = 'E'
@@ -54,10 +50,8 @@
 " Netrw {{
   let g:netrw_banner=0
   let g:netrw_browse_split=4
-  let g:netrw_altv=1
   let g:netrw_liststyle=3
-  let g:netrw_list_hide = netrw_gitignore#Hide()
-  let g:netrw_list_hide .= ',\(^\|\s\s\)\zs\.\S\+'
+  let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 " }}
 
 " vim-gitgutter {{
@@ -123,12 +117,6 @@
   \}
 " }}
 
-" vim-run {{
-  let g:vim_run_command_map = {
-  \'javascript': 'node',
-  \}
-" }}
-
 " jsdoc settings {{
   let g:jsdoc_allow_input_prompt = 0
   let g:jsdoc_enable_es6 = 1
@@ -186,14 +174,6 @@
   let g:html5_aria_attributes_complete = 0
 " }}
 
-" fastfold {{
-  let g:fastfold_savehook = 1
-  let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C']
-  let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-  let g:vimsyn_folding='af'
-  let g:xml_syntax_folding = 1
-" }}
-
 " dash.vim {{
   let g:dash_map = {
   \ 'javascript': ['javascript', 'NodeJS'],
@@ -218,7 +198,7 @@
 " }}
 
 " vim-stay {{
-  let g:volatile_ftypes = ['scss', 'css']
+  "let g:volatile_ftypes = ['scss', 'css']
 " }}
 
 " vim-flow {{

@@ -43,10 +43,6 @@ endfunction
 
 function! OnBufEnter()
   let name = bufname(+expand('<abuf>'))
-  " quickly leave those temporary buffers
-  if name =~# 'icons.scss$'
-    syntax clear
-  endif
   if &previewwindow || name =~# '^term://'
     if !mapcheck('q', 'n')
       nnoremap <buffer> q :<C-U>bd!<CR>
