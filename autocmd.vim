@@ -43,6 +43,10 @@ endfunction
 
 function! OnBufEnter()
   let name = bufname(+expand('<abuf>'))
+  " quickly leave those temporary buffers
+  if name =~# 'icons.scss$'
+    syntax clear
+  endif
   if &previewwindow || name =~# '^term://'
     if !mapcheck('q', 'n')
       nnoremap <buffer> q :<C-U>bd!<CR>
@@ -65,7 +69,7 @@ augroup javascript
 augroup end
 
 function! s:SetLoadFunctions()
-  command! -nargs=? -bar -buffer F  call <SID>LoadFunctions("c", <f-args>)
+  command! -nargs=? -bar -buffer -complete=custom,s:LocalFunctions F call <SID>LoadFunctions("c", <f-args>)
   command! -nargs=? -bar -buffer Ft call <SID>LoadFunctions("t", <f-args>)
   command! -nargs=? -bar -buffer Fr call <SID>LoadFunctions("r", <f-args>)
   command! -nargs=? -bar -buffer Fa call <SID>LoadFunctions("a", <f-args>)
@@ -77,13 +81,17 @@ function! s:LoadFunctions(type, ...)
   let type = a:type ==# 'a' ? 'm' : a:type
   if a:type ==# 'm'
     let input = a:0 > 1 ? a:2 : ''
-    execute 'Unite func -buffer-name=func -custom-func-type=' . type
-            \. ' -custom-func-name=' . a:1 . ' -input=' . input
+    execute 'Unite -immediately -ignorecase func:m:'.a:1.' -input='.input
   else
     let input = a:0 ? a:1 : ''
-    execute 'Unite func -buffer-name=func -custom-func-type=' . type
-            \. ' -input=' . input
+    execute 'Unite -immediately -ignorecase func:'.type.' -input='.input
   endif
+endfunction
+
+function! s:LocalFunctions(A, ...)
+  let lines = getline(1, '$')
+  let res = system("parsefunc", lines)
+  return join(map(split(res, '\n'), 'split(v:val, ":")[-1]'), "\n")
 endfunction
 " }}
 
@@ -99,8 +107,8 @@ endfunction
 function! s:ListModules(A, L, P) abort
   let dir = s:GetPackageDir()
   if empty(dir) | return | endif
-  let obj = webapi#json#decode(join(readfile(dir . '/package.json'), ''))
-  let browser = exists('obj.browser')
+  let obj = json_decode(join(readfile(dir . '/package.json'), ''))
+  let browser = exists('obj.browser') && type(obj.browser) == 4
   let list = []
   let deps = browser ? keys(obj.browser) : []
   let vals = browser ? values(obj.browser) : []
