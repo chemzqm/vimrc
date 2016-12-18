@@ -5,7 +5,6 @@ command! -nargs=0 C          :call s:Gcd()
 command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
-command! -nargs=0 Cp         :call s:CopyJson()
 command! -nargs=0 Reset      :call s:StatusReset()
 command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=* Exe        :call s:Execute(<q-args>)
@@ -90,13 +89,6 @@ function! s:Gcd()
   if !empty(dir)
     execute 'lcd ' . dir
   endif
-endfunction
-
-" Copy pretty json to system clipboard
-function! s:CopyJson()
-  setf json
-  execute 'Pretty'
-  execute 'Copy'
 endfunction
 
 " Open vertical spit terminal with current parent directory
@@ -210,15 +202,6 @@ function! s:StatusReset()
     silent execute 'bwipeout! '. buf
   endfor
 endf
-
-function! s:HighlightColor()
-  redraw
-  if &ft ==# 'vim'
-    call css_color#init('hex', 'none', 'vimHiGuiRgb,vimComment,vimLineComment')
-  elseif &ft =~# '\v(css|html)'
-    call css_color#init('css', 'extended', 'cssMediaBlock,cssFunction,cssDefinition,cssAttrRegion,cssComment')
-  endif
-endfunction
 
 " Generate json from handlebars template
 function! s:Jsongen()
