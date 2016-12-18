@@ -1,3 +1,5 @@
+let s:job_status = {}
+
 function! MyStatusSyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
@@ -41,24 +43,45 @@ endfunction
 function! MyStatusGit() abort
   if s:IsTempFile() | return '' | endif
   if exists('b:git_branch') | return b:git_branch | endif
-  if !exists('*easygit#smartRoot') | return | endif
+  if !exists('*easygit#smartRoot') | return '' | endif
+  if !exists('*jobstart') | return '' | endif
+  let roots = values(s:job_status)
   let root = easygit#smartRoot(1)
+  if index(roots, root) >= 0 | return '' | endif
   if empty(root) | return '' | endif
-  let cwd = getcwd()
-  exe 'lcd ' . root
-  let cmd = 'git rev-parse --abbrev-ref HEAD'
-  let output = system(cmd)
-  if v:shell_error |
-    exe 'lcd ' . cwd
-    let b:git_branch = '?'
-    return '?'
+  let nr = bufnr('%')
+  let job_id = jobstart(['git-status'], {
+    \ 'cwd': root,
+    \ 'on_stdout': function('s:JobHandler', [root]),
+    \ 'on_stderr': function('s:JobHandler', [root]),
+    \ 'on_exit': function('s:JobHandler', [root])
+    \})
+  if job_id == 0 || job_id == -1 | return '' | endif
+  let s:job_status[job_id] = root
+  return ''
+endfunction
+
+function! s:JobHandler(root, job_id, data, event)
+  if !has_key(s:job_status, a:job_id) | return | endif
+  if a:event ==# 'stdout'
+    let output = join(a:data)
+    call s:SetGitStatus(a:root, ' '.output.' ')
+  elseif a:event ==# 'stderr'
+    echohl Error | echon join(a:data) | echohl None
   else
-    let more = ' ' . system('git-status')
-    let b:git_branch = '   ' . substitute(output, '\v\n', '', '')
-        \. more . ' '
-    exe 'lcd ' . cwd
-    return b:git_branch
+    call remove(s:job_status, a:job_id)
   endif
+endfunction
+
+function! s:SetGitStatus(root, str)
+  let buf_list = filter(range(1, bufnr('$')), 'bufexists(v:val)')
+  for nr in buf_list
+    let path = fnamemodify(bufname(nr), ':p')
+    if match(path, a:root) >= 0
+      call setbufvar(nr, 'git_branch', a:str)
+    endif
+  endfor
+  redraws!
 endfunction
 
 function! SetStatusLine()
@@ -96,5 +119,4 @@ augroup statusline
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
-  autocmd VimEnter * call SetStatusLine()
 augroup end
