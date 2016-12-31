@@ -36,6 +36,7 @@ let g:terminal_color_14 = '#a3babf'
 let g:terminal_color_15 = '#f8f8f2'
 
 function! s:OnTermOpen(buf)
+  setlocal nolist
   if &buftype ==# 'terminal'
     nnoremap <buffer> q :<C-U>bd!<CR>
   endif
@@ -59,7 +60,6 @@ endfunction
 
 augroup neovim
   autocmd!
-  autocmd TermOpen  *  setlocal nolist
   autocmd TermClose *  :call s:OnTermClose(+expand('<abuf>'))
   autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
   autocmd WinEnter term://*

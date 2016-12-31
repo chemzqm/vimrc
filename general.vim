@@ -35,7 +35,6 @@ set sessionoptions-=blank
 set sessionoptions-=localoptions
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
-set ttimeoutlen=500
 set ttimeoutlen=100
 set tabpagemax=10
 set scrolloff=3
@@ -99,6 +98,8 @@ hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=da
 " change default search highlight
 hi Search guibg=#333333 guifg=#C5B569
 hi normal guibg=NONE
+highlight ColorColumn ctermbg=magenta guibg=ff5f00
+call matchadd('ColorColumn', '\%81v', 100)
 " }}
 
 " Complete config {{

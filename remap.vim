@@ -1,7 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
-map <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
+nnoremap <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Visual shifting (does not exit Visual mode)
 nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
@@ -136,7 +136,7 @@ endfunc
 
 " meta keys {{
   vnoremap <M-c> "+y
-  inoremap <M-v> <C-o>"+p
+  inoremap <M-v> <C-o>"+]p
   nnoremap <M-q> :qa!<cr>
   nnoremap <M-s> :wa<cr>
   inoremap <M-s> <C-o>:w<cr>

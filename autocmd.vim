@@ -19,7 +19,6 @@ augroup common
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
-  autocmd BufEnter term://* startinsert
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd FileType qf nnoremap <buffer> q :<C-U>ccl<CR>
 augroup end

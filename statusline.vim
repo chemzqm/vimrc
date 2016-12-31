@@ -43,10 +43,12 @@ endfunction
 function! MyStatusGit() abort
   if s:IsTempFile() | return '' | endif
   if exists('b:git_branch') | return b:git_branch | endif
+  " only support neovim
   if !exists('*easygit#smartRoot') | return '' | endif
   if !exists('*jobstart') | return '' | endif
   let roots = values(s:job_status)
   let root = easygit#smartRoot(1)
+  " it's running
   if index(roots, root) >= 0 | return '' | endif
   if empty(root) | return '' | endif
   let nr = bufnr('%')

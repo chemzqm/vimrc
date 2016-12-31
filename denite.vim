@@ -12,13 +12,15 @@ call denite#custom#var('file_rec', 'command',
 
 " Change file_rec matcher
 call denite#custom#source(
-  \ 'file_rec,redis_mru', 'matchers', ['matcher_cpsm'])
+  \ 'file_rec', 'matchers', ['matcher_cpsm'])
+call denite#custom#source(
+  \ 'redis_mru', 'matchers', ['matcher_fuzzy'])
 call denite#custom#source(
   \ 'line', 'matchers', ['matcher_fuzzy'])
 
 " Sorter of file_rec
 call denite#custom#source(
-  \ 'file_rec,redis_mru', 'sorters', ['sorter_sublime'])
+  \ 'file_rec', 'sorters', ['sorter_sublime'])
 
 " Change mappings.
 call denite#custom#map(
@@ -97,7 +99,7 @@ nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' 
 
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -auto-resize quickfix<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
-nnoremap <silent> <space>e  :<C-u>Denite -mode=normal -no-quit buffer<cr>
+nnoremap <silent> <space>e  :<C-u>Denite -mode=normal buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>
 nnoremap <silent> \r        :<C-u>Denite redis_mru:.<cr>

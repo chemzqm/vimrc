@@ -9,7 +9,7 @@ let g:mapleader = ','
   nnoremap <leader>mk :Mkdir <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>t :tabe <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
-  nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<left><left>
+  nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<cr>
   " Search with grep
