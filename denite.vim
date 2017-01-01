@@ -1,6 +1,7 @@
 call denite#custom#option('default', 'prompt', '>')
-call denite#custom#option('default', 'direction', 'top')
+"call denite#custom#option('default', 'direction', 'bottom')
 call denite#custom#option('default', 'empty', 0)
+call denite#custom#option('default', 'auto_resize', 1)
 
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
   \ [ '.git/', '.ropeproject/', '__pycache__/',
@@ -16,7 +17,7 @@ call denite#custom#source(
 call denite#custom#source(
   \ 'redis_mru', 'matchers', ['matcher_fuzzy'])
 call denite#custom#source(
-  \ 'line', 'matchers', ['matcher_fuzzy'])
+  \ 'line', 'matchers', ['matcher_regexp'])
 
 " Sorter of file_rec
 call denite#custom#source(
@@ -60,20 +61,6 @@ call denite#custom#map(
 
 call denite#custom#map(
       \ 'normal',
-      \ '<PageUp>',
-      \ '<denite:scroll_page_backwards>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'normal',
-      \ '<PageDown>',
-      \ '<denite:scroll_page_forwards>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'normal',
       \ '<esc>',
       \ '<denite:quit>',
       \ 'noremap'
@@ -81,14 +68,14 @@ call denite#custom#map(
 
 call denite#custom#map(
       \ 'insert',
-      \ '<PageUp>',
+      \ '<C-b>',
       \ '<denite:scroll_page_backwards>',
       \ 'noremap'
       \)
 
 call denite#custom#map(
       \ 'insert',
-      \ '<PageDown>',
+      \ '<C-f>',
       \ '<denite:scroll_page_forwards>',
       \ 'noremap'
       \)
@@ -97,10 +84,10 @@ nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
 
-nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -auto-resize quickfix<CR>
-nnoremap <silent> <space>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
+nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
+nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
+nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>e  :<C-u>Denite -mode=normal buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>
 nnoremap <silent> \r        :<C-u>Denite redis_mru:.<cr>
-nnoremap <silent> <space>w  :<C-u>DeniteCursorWord line<CR>

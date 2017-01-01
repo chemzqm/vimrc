@@ -1,6 +1,6 @@
 " General options {{
 set hidden " allow buffer switch without saving
-set history=1000
+set history=2000
 set wildmenu
 set wildmode=list:longest,full
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too

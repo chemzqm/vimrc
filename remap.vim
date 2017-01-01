@@ -10,7 +10,7 @@ vnoremap < <gv
 vnoremap > >gv
 " yank to end
 nnoremap Y y$
-" clear highhigh reset diff
+" clear highlight reset diff
 nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
@@ -38,25 +38,6 @@ nmap ga <Plug>(EasyAlign)
 " ale
 nmap <silent> [k <Plug>(ale_previous_wrap)
 nmap <silent> [j <Plug>(ale_next_wrap)
-
-" macvim {{
-if has('gui_macvim')
-  nnoremap <silent> <D-[> :call macos#keycodes('option', 'command', 'left')<cr>
-  nnoremap <silent> <D-]> :call macos#keycodes('option', 'command', 'right')<cr>
-  nnoremap <silent> <D-i> :call macos#keycodes('option', 'command', 'space')<cr>
-  nnoremap <D-d> :bdelete!<cr>
-  noremap  <D-1>      1gt
-  noremap  <D-2>      2gt
-  noremap  <D-3>      3gt
-  noremap  <D-4>      4gt
-  noremap  <D-5>      5gt
-  inoremap <D-1> <C-o>1gt
-  inoremap <D-2> <C-o>2gt
-  inoremap <D-3> <C-o>3gt
-  inoremap <D-4> <C-o>4gt
-  inoremap <D-5> <C-o>5gt
-endif
-" }}
 
 " window navigate {{
   nnoremap <C-l> <c-w>l

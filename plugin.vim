@@ -1,7 +1,11 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" gundo.vim {{
+" gruvbox {{
   let g:gundo_prefer_python3 = 1
+" }}
+
+" gundo.vim {{
+  let g:gruvbox_italic=1
 " }}
 
 " vim-jsx-improve {{
@@ -32,7 +36,6 @@
   let g:ale_sign_warning = '⚠'
   let g:ale_echo_msg_error_str = 'E'
   let g:ale_echo_msg_warning_str = 'W'
-  let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " }}
 
