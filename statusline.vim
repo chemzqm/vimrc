@@ -90,7 +90,6 @@ function! SetStatusLine()
   if &previewwindow | return | endif
   if &buftype =~# '\v(nofile|terminal)' | return | endif
   if exists('b:git_branch') | unlet b:git_branch | endif
-
   setl statusline=%!MyStatusLine()
   call s:highlight()
 endfunction
@@ -100,7 +99,7 @@ function! s:PrintError(msg)
 endfunction
 
 function! s:highlight()
-  hi User3         guifg=#FF001E guibg=#111111    gui=none
+  hi User3         guifg=#e03131 guibg=#111111    gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
   hi user4 guifg=#f8f8ff guibg=#000000
