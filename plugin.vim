@@ -1,5 +1,10 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+"let g:deoplete#enable_at_startup = 1
+"let g:deoplete#omni_patterns = {}
+"let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+"let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
+
 " gruvbox {{
   let g:gundo_prefer_python3 = 1
 " }}
@@ -32,6 +37,7 @@
   \   'json': ['jsonlint'],
   \   'ruby': [],
   \}
+  let g:ale_sign_column_always = 1
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '⚠'
   let g:ale_echo_msg_error_str = 'E'

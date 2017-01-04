@@ -8,10 +8,12 @@ nnoremap <C-p> :PreviewAuto<CR>
 nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
+nnoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
 " yank to end
 nnoremap Y y$
 " clear highlight reset diff
-nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+nnoremap <silent> <C-u> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
@@ -48,16 +50,16 @@ nmap <silent> [j <Plug>(ale_next_wrap)
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
-  cnoremap <C-k> <Up>
-  cnoremap <C-j> <Down>
-  cnoremap <C-b> <Left>
-  cnoremap <C-f> <Right>
+  cnoremap <C-p> <Up>
+  cnoremap <C-n> <Down>
+  cnoremap <C-j> <Left>
+  cnoremap <C-k> <Right>
+  cnoremap <C-b> <S-Left>
+  cnoremap <C-f> <S-Right>
   cnoremap <C-a> <Home>
   cnoremap <C-e> <End>
   cnoremap <C-d> <Del>
   cnoremap <C-h> <BS>
-  cnoremap <M-b> <S-Left>
-  cnoremap <M-f> <S-Right>
 " }}
 
 " visual search {{

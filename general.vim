@@ -26,6 +26,7 @@ set diffopt=vertical
 set path+=**
 set tags+=gems.tags,stdlib.tags
 set wildignore+=*/node_modules/*
+set showbreak=↪ 
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
 "set sessionoptions+=winsize
