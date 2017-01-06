@@ -1,4 +1,6 @@
 " General options {{
+let g:echodoc_enable_at_startup = 1
+"set cmdheight=2
 set hidden " allow buffer switch without saving
 set history=2000
 set wildmenu

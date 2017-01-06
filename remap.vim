@@ -1,6 +1,9 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
+"map /  <Plug>(incsearch-forward)
+"map ?  <Plug>(incsearch-backward)
+"map g/ <Plug>(incsearch-stay)
 nnoremap <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Visual shifting (does not exit Visual mode)
 nnoremap <C-p> :PreviewAuto<CR>
@@ -13,7 +16,7 @@ nnoremap <expr> N  'nN'[v:searchforward]
 " yank to end
 nnoremap Y y$
 " clear highlight reset diff
-nnoremap <silent> <C-u> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+nnoremap <silent> <C-u> :nohlsearch<cr>:diffupdate<cr><c-l>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
