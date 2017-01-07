@@ -4,7 +4,7 @@ let g:project_folders = ['~/wechat-dev', '~/component-dev', '~/vim-dev']
 call unite#filters#matcher_default#use(['matcher_regexp'])
 " Some source use fuzzy match would be better
 call unite#custom#source(
-  \  'redismru,buffer,outline,func,command,project', 'matchers', ['matcher_fuzzy']
+  \  'redismru,buffer,func,command,project', 'matchers', ['matcher_fuzzy']
   \ )
 " Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
@@ -31,9 +31,6 @@ call unite#custom#profile('gitlog', 'context', {
   \  'no_quit': 1,
   \  'vertical_preview': 1,
   \ })
-call unite#custom#profile('outline', 'context', {
-  \  'start_insert': 0
-  \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
   \ })
@@ -47,7 +44,6 @@ call unite#custom#profile('buffer', 'context', {
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
-nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
