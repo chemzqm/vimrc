@@ -96,6 +96,6 @@ nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>e  :<C-u>Denite -mode=normal buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
-nnoremap <silent> <space>9  :<C-u>Denite outline<cr>
+nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>
 nnoremap <silent> \r        :<C-u>Denite redis_mru:.<cr>

@@ -37,21 +37,18 @@ call unite#custom#profile('project', 'context', {
 call unite#custom#profile('todo', 'context', {
   \  'winheight': 10,
   \ })
-call unite#custom#profile('buffer', 'context', {
-  \  'auto_resize': 1,
-  \ })
 
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
-nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
-nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gist      gist<cr>
-nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
+nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
+nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
+
+nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
+nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
-nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
-nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
 
 " Quickly navigate through candidates
 nmap <leader>j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
