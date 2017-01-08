@@ -60,6 +60,8 @@ set wrap
 set guioptions-=r
 set number
 set relativenumber
+set shortmess+=F
+set shortmess+=c
 "set ttyfast
 set grepprg=ag\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
@@ -101,8 +103,8 @@ hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=da
 " change default search highlight
 hi Search guibg=#333333 guifg=#C5B569
 hi normal guibg=NONE
-highlight ColorColumn ctermbg=magenta guibg=ff5f00
 call matchadd('ColorColumn', '\%81v', 100)
+hi ColorColumn ctermbg=magenta ctermfg=0 guibg=magenta guifg=#ffffff
 " }}
 
 " Complete config {{
