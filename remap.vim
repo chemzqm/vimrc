@@ -1,6 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
+"map y <Plug>(operator-flashy)
+"nmap Y <Plug>(operator-flashy)$
 "map /  <Plug>(incsearch-forward)
 "map ?  <Plug>(incsearch-backward)
 "map g/ <Plug>(incsearch-stay)
@@ -16,14 +16,14 @@ nnoremap <expr> N  'nN'[v:searchforward]
 " yank to end
 nnoremap Y y$
 " clear highlight reset diff
-nnoremap <silent> <C-u> :nohlsearch<cr>:diffupdate<cr><c-l>
+nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush<CR>
 "nnoremap <C-c> :echo 3<CR>
 " remap <cr> when completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <C-w> <esc>mzgUiw`za
+inoremap <C-w> <C-[>diwa
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 inoremap <C-u> <C-G>u<C-U>

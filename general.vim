@@ -1,6 +1,4 @@
 " General options {{
-let g:echodoc_enable_at_startup = 1
-"set cmdheight=2
 set hidden " allow buffer switch without saving
 set history=2000
 set wildmenu
@@ -14,6 +12,7 @@ set incsearch
 set regexpengine=2
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
+set mouse=a
 set nowritebackup
 set noimdisable
 set noswapfile
@@ -29,6 +28,8 @@ set path+=**
 set tags+=gems.tags,stdlib.tags
 set wildignore+=*/node_modules/*
 set showbreak=↪ 
+set shortmess=a
+set cmdheight=2
 "set sessionoptions+=winpos
 "set sessionoptions+=resize
 "set sessionoptions+=winsize
@@ -101,10 +102,11 @@ hi Pmenu  guifg=#333333 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 " change default search highlight
-hi Search guibg=#333333 guifg=#C5B569
+"hi Search guibg=#333333 guifg=#C5B569
 hi normal guibg=NONE
 call matchadd('ColorColumn', '\%81v', 100)
-hi ColorColumn ctermbg=magenta ctermfg=0 guibg=magenta guifg=#ffffff
+hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
+hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 " }}
 
 " Complete config {{

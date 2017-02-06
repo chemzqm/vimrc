@@ -44,7 +44,6 @@ function! MyStatusGit() abort
   if s:IsTempFile() | return '' | endif
   if exists('b:git_branch') | return b:git_branch | endif
   " only support neovim
-  if !exists('*easygit#smartRoot') | return '' | endif
   if !exists('*jobstart') | return '' | endif
   let roots = values(s:job_status)
   let root = easygit#smartRoot(1)
@@ -117,7 +116,7 @@ endfunction
 
 augroup statusline
   autocmd!
-  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
+  autocmd BufWinEnter,ShellCmdPost,BufWritePost,DirChanged * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end

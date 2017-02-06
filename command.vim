@@ -87,7 +87,7 @@ function! s:Gcd()
     let dir = fnamemodify(dir, ':h')
   endif
   if !empty(dir)
-    execute 'lcd ' . dir
+    execute 'tcd ' . dir
   endif
 endfunction
 
