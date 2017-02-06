@@ -3,11 +3,11 @@ let g:mapleader = ','
 
 " basic {{
   " Edit file in current file folder
-  nnoremap <leader>e :e <C-R>=expand('%:p:h').'/'<cr>
-  nnoremap <leader>v :vs <C-R>=expand('%:p:h').'/'<cr>
+  nnoremap <leader>e :e <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<cr>
+  nnoremap <leader>v :vs <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<cr>
+  nnoremap <leader>t :tabe <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<cr>
   nnoremap <leader>rm :Rm <C-R>=expand('%:p:h').'/'<cr>
   nnoremap <leader>mk :Mkdir <C-R>=expand('%:p:h').'/'<cr>
-  nnoremap <leader>t :tabe <C-R>=expand('%:p:h').'/'<cr>
   " Replace all of current word
   nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
