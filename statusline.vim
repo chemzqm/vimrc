@@ -37,6 +37,7 @@ function! MyStatusModifySymbol()
 endfunction
 
 function! MyStatusGitChanges() abort
+  if s:IsTempFile() | return '' | endif
   let changes = get(b:, 'modified_lines', [])
   let add_count = 0
   let modified_count = 0
@@ -58,13 +59,14 @@ endfunction
 
 function! MyStatusGit() abort
   if exists('b:git_branch') | return b:git_branch | endif
+  if s:IsTempFile() | return '' | endif
   " only support neovim
   if !exists('*jobstart') | return '' | endif
   let roots = values(s:job_status)
   let root = easygit#smartRoot(1)
   " it's running
-  if index(roots, root) >= 0 | return '' | endif
   if empty(root) | return '' | endif
+  if index(roots, root) >= 0 | return '' | endif
   let nr = bufnr('%')
   let job_id = jobstart(['git-status'], {
     \ 'cwd': root,
