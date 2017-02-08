@@ -122,7 +122,7 @@
   \     'span': 'text',
   \   },
   \   'default_attributes': {
-  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+  \     'block': [{'wx:for': '{{list}}','wx:key': '{{item.id}}'}],
   \     'navigator': [{'url': '', 'redirect': 'false'}],
   \     'scroll-view': [{'bindscroll': ''}],
   \     'swiper': [{'autoplay': 'false', 'current': '0'}],
@@ -141,8 +141,6 @@
   \     'slider': [{'value': ''}],
   \     'action-sheet': [{'bindchange': ''}],
   \     'modal': [{'title': ''}],
-  \     'loading': [{'bindchange': ''}],
-  \     'toast': [{'duration': '1500'}],
   \     'audio': [{'src': ''}],
   \     'video': [{'src': ''}],
   \     'image': [{'src': '', 'mode': 'scaleToFill'}],
@@ -155,27 +153,41 @@
   let g:jsdoc_allow_input_prompt = 0
   let g:jsdoc_enable_es6 = 1
   let g:jsdoc_access_descriptions = 2
+  let g:jsdoc_underscore_private = 1
+  let g:jsdoc_custom_args_regex_only = 1
   let g:jsdoc_custom_args_hook = {
-  \ 'callback\|cb': {
+  \ '^\(callback\|cb\)$': {
   \   'type': ' {Function} ',
   \   'description': 'Callback function'
   \ },
-  \ '^n$': {
+  \ '\(err\|error\)$': {
+  \   'type': '{Error}'
+  \ },
+  \ '^\(opt\|options\)$': {
+  \   'type': '{Object}'
+  \ },
+  \ 'handler$': {
+  \   'type': '{Function}'
+  \ },
+  \ '^\(n\|i\)$': {
   \   'type': ' {Number} '
   \ },
   \ '^i$': {
   \   'type': ' {Number} '
   \ },
+  \ '^_\?\(is\|has\)': {
+  \   'type': ' {Boolean} '
+  \ },
   \ '^arr$': {
   \   'type': ' {Array} '
   \ },
-  \ 'str': {
+  \ '^str$': {
   \   'type': ' {String} '
   \ },
   \ '^e$': {
   \   'type': ' {Event} '
   \ },
-  \ '^el$': {
+  \ 'el$': {
   \   'type': ' {Element} '
   \ },
   \ '^node$': {
@@ -190,9 +202,6 @@
   \ '^fn$': {
   \   'type': ' {Function} '
   \ },
-  \ '^cb$': {
-  \   'type': ' {Function} '
-  \ }
   \}
 " }}
 
