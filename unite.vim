@@ -49,6 +49,7 @@ nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
+nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gitstatus git_status<cr>
 
 " Quickly navigate through candidates
 nmap <leader>j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>
@@ -75,6 +76,10 @@ function! s:unite_my_settings()
   nnoremap <silent><buffer><expr> e     unite#do_action('edit')
   if unite.profile_name ==# 'todo'
     nnoremap <silent><buffer><expr> n     unite#do_action('new')
+  elseif unite.profile_name ==# 'gitstatus'
+    nnoremap <silent><buffer><expr> r     unite#do_action('reset')
+    nnoremap <silent><buffer><expr> a     unite#do_action('add')
+    nnoremap <silent><buffer><expr> c     unite#do_action('commit')
   elseif unite.profile_name ==# 'gitlog'
     nnoremap <silent><buffer><expr> r     unite#do_action('reset')
   elseif unite.profile_name ==# 'node'
