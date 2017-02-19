@@ -92,7 +92,7 @@ nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' 
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
 
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
-nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -resume -refresh quickfix<CR>
+nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -resume quickfix<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>

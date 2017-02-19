@@ -52,7 +52,8 @@
   let g:ale_linters = {
   \   'javascript': ['eslint'],
   \   'html': [],
-  \   'css': [],
+  \   'css': ['stylelint'],
+  \   'wxss': [''],
   \   'scss': [],
   \   'typescript': ['tslint'],
   \   'json': ['jsonlint'],
