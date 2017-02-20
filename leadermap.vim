@@ -13,7 +13,7 @@ let g:mapleader = ','
   " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<cr>
   " Search with grep
-  nnoremap <leader>/ :Ag<SPACE>
+  nnoremap <leader>/ :Ag<space>
   " generate doc
   nnoremap <silent> <leader>d :<C-u>call <SID>GenDoc()<cr>
   " clean some dirty charactors
@@ -78,11 +78,7 @@ function! s:GrepFromSelected(type)
   endif
   let word = substitute(@@, '\n$', '', 'g')
   let word = escape(word, '|')
-  if g:grep_using_git
-    call g:Quickfix('ag ', word)
-  else
-    call g:Quickfix('ag', "-Q -s", word)
-  endif
+  execute 'Denite grep::-Q\ -s:'.word
   let @@ = saved_unnamed_register
 endfunction
 " }}
