@@ -41,14 +41,14 @@ function! s:Grep(...)
   let revlist = reverse(copy(a:000))
   let l = len(revlist)
   if l == 1
-    execute 'Denite grep:::'.revlist[0]
+    execute 'Denite -no-empty grep:::'.revlist[0]
   else
     if revlist[0] !~ '^-' && revlist[1] !~ '^-'
       let opt = join(revlist[2:], '\ ')
-      execute 'Denite grep:'.revlist[0].':'.opt.':'.revlist[1]
+      execute 'Denite -no-empty grep:'.revlist[0].':'.opt.':'.revlist[1]
     elseif revlist[0] !~ '^-'
       let opt = join(revlist[1:], '\ ')
-      execute 'Denite grep::'.opt.':'.revlist[0]
+      execute 'Denite -no-empty grep::'.opt.':'.revlist[0]
     endif
   endif
 endfunction

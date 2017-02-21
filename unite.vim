@@ -13,19 +13,12 @@ call unite#custom#source(
 call unite#custom#source(
   \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
   \)
-" Limit max candidates
-call unite#custom#source(
-  \  'file_rec,file_rec/async,quickfix', 'max_candidates', 200
-  \ )
 call unite#custom#profile('default', 'context', {
   \  'winheight': 10,
   \  'no_empty': 1,
   \ })
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 10,
-  \ })
-call unite#custom#profile('files', 'context', {
-  \  'start_insert': 1
   \ })
 call unite#custom#profile('gitlog', 'context', {
   \  'no_quit': 1,

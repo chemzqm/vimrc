@@ -77,8 +77,9 @@ function! s:GrepFromSelected(type)
     return
   endif
   let word = substitute(@@, '\n$', '', 'g')
+  let word = substitute(word, '\s\+', '\ ', 'g')
   let word = escape(word, '|')
-  execute 'Denite grep::-Q\ -s:'.word
+  execute 'Denite -no-empty grep::-Q\ -s:'.word
   let @@ = saved_unnamed_register
 endfunction
 " }}
