@@ -52,12 +52,13 @@
   let g:ale_linters = {
   \   'javascript': ['eslint'],
   \   'html': [],
-  \   'css': ['stylelint'],
-  \   'wxss': [''],
+  \   'wxss': [],
+  \   'ruby': [],
   \   'scss': [],
+  \   'python': ['pylint'],
+  \   'css': ['stylelint'],
   \   'typescript': ['tslint'],
   \   'json': ['jsonlint'],
-  \   'ruby': [],
   \}
   let g:ale_sign_column_always = 1
   let g:ale_sign_error = '>>'

@@ -83,6 +83,13 @@ call denite#custom#map(
       \)
 
 call denite#custom#map(
+      \ 'normal',
+      \ 'd',
+      \ '<denite:do_action:delete>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
       \ 'insert',
       \ '<C-b>',
       \ '<denite:scroll_page_backwards>',
