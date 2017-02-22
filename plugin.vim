@@ -55,7 +55,7 @@
   \   'wxss': [],
   \   'ruby': [],
   \   'scss': [],
-  \   'python': ['pylint'],
+  \   'python': [],
   \   'css': ['stylelint'],
   \   'typescript': ['tslint'],
   \   'json': ['jsonlint'],

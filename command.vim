@@ -177,7 +177,7 @@ function! s:ShowGitlog(arg)
   let args = split(a:arg, ':', 1)
   let input = get(args, 0, '')
   let arg = get(args, 1, '') . ':' . get(args, 2, '')
-  execute 'Unite gitlog:' . arg . ' -input=' . input . ' -buffer-name=gitlog'
+  execute 'Denite -no-empty gitlog:' . arg . ' -input=' . input . ' -mode=normal'
 endfunction
 
 " Remove hidden buffers and cd to current dir
