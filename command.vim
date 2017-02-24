@@ -172,12 +172,11 @@ function! s:EditVimrc(...)
   endif
 endfunction
 
-" L input:[all:day]
+" L input:[all]
 function! s:ShowGitlog(arg)
   let args = split(a:arg, ':', 1)
   let input = get(args, 0, '')
-  let arg = get(args, 1, '') . ':' . get(args, 2, '')
-  execute 'Denite -no-empty gitlog:' . arg . ' -input=' . input . ' -mode=normal'
+  execute 'Denite -no-empty gitlog:' . get(args, 1, '') . ' -input=' . input . ' -mode=normal'
 endfunction
 
 " Remove hidden buffers and cd to current dir
