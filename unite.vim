@@ -20,10 +20,6 @@ call unite#custom#profile('default', 'context', {
 call unite#custom#profile('ultisnips', 'context', {
   \  'winheight': 10,
   \ })
-call unite#custom#profile('gitlog', 'context', {
-  \  'no_quit': 1,
-  \  'vertical_preview': 1,
-  \ })
 call unite#custom#profile('project', 'context', {
   \  'start_insert': 1,
   \ })
@@ -36,13 +32,11 @@ nmap <space>  [unite]
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
-
+nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
-nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
 nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
-nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
-nnoremap <silent> [unite]g  :<C-u>Unite -buffer-name=gitstatus git_status<cr>
+nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 
 " Quickly navigate through candidates
 nmap <leader>j :<C-u>call <SID>Jump(v:count1, 'Next')<cr>

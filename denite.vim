@@ -24,7 +24,7 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source(
   \ 'file_rec', 'matchers', ['matcher_cpsm'])
 call denite#custom#source(
-  \ 'redis_mru', 'matchers', ['matcher_fuzzy'])
+  \ 'redis_mru', 'matchers', ['matcher_regexp'])
 call denite#custom#source(
   \ 'line', 'matchers', ['matcher_regexp'])
 
@@ -76,20 +76,6 @@ call denite#custom#map(
       \)
 
 call denite#custom#map(
-      \ 'normal',
-      \ '<esc>',
-      \ '<denite:quit>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'normal',
-      \ 'd',
-      \ '<denite:do_action:delete>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
       \ 'insert',
       \ '<C-b>',
       \ '<denite:scroll_page_backwards>',
@@ -110,12 +96,48 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
+call denite#custom#map(
+      \ 'normal',
+      \ '<esc>',
+      \ '<denite:quit>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'a',
+      \ '<denite:do_action:add>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'd',
+      \ '<denite:do_action:delete>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'r',
+      \ '<denite:do_action:reset>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 's',
+      \ '<denite:do_action:vsplit>',
+      \ 'noremap'
+      \)
+
 nnoremap <silent> <space>q  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
 
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
+nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
