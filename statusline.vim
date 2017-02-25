@@ -38,23 +38,13 @@ endfunction
 
 function! MyStatusGitChanges() abort
   if s:IsTempFile() | return '' | endif
-  let changes = get(b:, 'modified_lines', [])
-  let add_count = 0
-  let modified_count = 0
-  let delete_count = 0
-  for item in changes
-    if item[1] == 'added'
-      let add_count = add_count + 1
-    elseif item[1] == 'removed'
-      let delete_count = delete_count + 1
-    else
-      let modified_count = modified_count + 1
-    endif
-  endfor
-  if add_count == 0 && delete_count == 0 && modified_count == 0
+  let gutter = get(b:, 'gitgutter', {})
+  if empty(gutter) | return '' | endif
+  let summary = gutter['summary']
+  if summary[0] == 0 && summary[1] == 0 && summary[2] == 0
     return ''
   endif
-  return '  +'.add_count.' ~'.modified_count.' -'.delete_count.' '
+  return '  +'.summary[0].' ~'.summary[1].' -'.summary[2].' '
 endfunction
 
 function! MyStatusGit() abort

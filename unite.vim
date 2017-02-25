@@ -8,7 +8,7 @@ call unite#custom#source(
   \ )
 " Sometimes selecta sorter would help to find the target quicker
 call unite#custom#source(
-  \  'redismru,buffer,file_rec/async,file_rec,project,command,func', 'sorters', 'sorter_selecta'
+  \  'project,command,func', 'sorters', 'sorter_selecta'
   \)
 call unite#custom#source(
   \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
@@ -30,6 +30,7 @@ call unite#custom#profile('todo', 'context', {
 nnoremap [unite] <Nop>
 nmap <space>  [unite]
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=emoji     emoji<cr>
+
 nnoremap <silent> [unite]n  :<C-u>Unite -buffer-name=note      note<cr>
 nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
