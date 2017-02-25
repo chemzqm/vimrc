@@ -30,7 +30,7 @@ call denite#custom#source(
 
 " Sorter of file_rec
 call denite#custom#source(
-  \ 'file_rec', 'sorters', ['sorter_sublime'])
+  \ 'file_rec', 'sorters', ['sorter_rank'])
 
 " Change mappings.
 call denite#custom#map(
@@ -136,6 +136,7 @@ nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' 
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
 
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
+nnoremap <silent> <space>c  :<C-u>Denite -mode=normal gitchanged<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>

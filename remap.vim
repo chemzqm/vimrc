@@ -5,7 +5,7 @@
 "map ?  <Plug>(incsearch-backward)
 "map g/ <Plug>(incsearch-stay)
 nnoremap <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
-" Visual shifting (does not exit Visual mode)
+" Preview markdown
 nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
 nnoremap Q <Nop>

@@ -36,7 +36,6 @@ nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=todo      todo<cr>
 nnoremap <silent> [unite]s  :<C-u>Unite -buffer-name=session   session<cr>
 nnoremap <silent> [unite]t  :<C-u>Unite -buffer-name=project   project<cr>
 nnoremap <silent> [unite]a  :<C-u>Unite -buffer-name=node      node<cr>
-nnoremap <silent> [unite]c  :<C-u>Unite -buffer-name=command   command<cr>
 nnoremap <silent> [unite]u  :<C-u>Unite -buffer-name=ultisnips ultisnips:all<cr>
 
 " Quickly navigate through candidates
