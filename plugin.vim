@@ -1,5 +1,16 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" jedi {{
+  let g:jedi#use_splits_not_buffers = "left"
+" }}
+
+" vim-run {{
+  let g:vim_run_command_map = {
+        \'javascript': 'node',
+        \'python': 'python3'
+        \}
+" }}
+
 " ruby-complete {{
   let g:rubycomplete_rails = 1
   let g:rubycomplete_buffer_loading = 1

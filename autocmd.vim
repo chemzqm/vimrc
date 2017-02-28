@@ -72,10 +72,10 @@ function! s:LoadFunctions(type, ...)
   let type = a:type ==# 'a' ? 'm' : a:type
   if a:type ==# 'm'
     let input = a:0 > 1 ? a:2 : ''
-    execute 'Unite -immediately -ignorecase func:m:'.a:1.' -input='.input
+    execute 'Denite func:m:'.a:1.' -input='.input
   else
     let input = a:0 ? a:1 : ''
-    execute 'Unite -immediately -ignorecase func:'.type.' -input='.input
+    execute 'Denite func:'.type.' -input='.input
   endif
 endfunction
 

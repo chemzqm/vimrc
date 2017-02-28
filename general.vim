@@ -26,7 +26,6 @@ set formatoptions+=o
 set diffopt=vertical
 set path+=**
 set tags+=gems.tags,stdlib.tags
-set wildignore+=*/node_modules/*
 set showbreak=↪ 
 set shortmess=a
 set cmdheight=2
@@ -44,7 +43,7 @@ set tabpagemax=10
 set scrolloff=3
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
+set wildignore+=*/node_modules/*,*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 set keywordprg=
 set showtabline=2
 set laststatus=2

@@ -1,3 +1,4 @@
+let g:project_folders = ['~/wechat-dev', '~/component-dev', '~/vim-dev']
 call denite#custom#option('default', 'prompt', '> ')
 "call denite#custom#option('default', 'direction', 'bottom')
 call denite#custom#option('default', 'empty', 0)
@@ -21,16 +22,10 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
 " Change file_rec matcher
-call denite#custom#source(
-  \ 'file_rec', 'matchers', ['matcher_cpsm'])
-call denite#custom#source(
-  \ 'redis_mru', 'matchers', ['matcher_regexp'])
-call denite#custom#source(
-  \ 'line', 'matchers', ['matcher_regexp'])
-
+call denite#custom#source('file_rec,redis_mru', 'matchers', ['matcher_cpsm'])
+call denite#custom#source('line', 'matchers', ['matcher_regexp'])
 " Sorter of file_rec
-call denite#custom#source(
-  \ 'file_rec', 'sorters', ['sorter_rank'])
+call denite#custom#source('file_rec,redis_mru,note', 'sorters', ['sorter_rank'])
 
 " Change mappings.
 call denite#custom#map(
@@ -131,6 +126,34 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
+call denite#custom#map(
+      \ 'normal',
+      \ 'e',
+      \ '<denite:do_action:edit>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'h',
+      \ '<denite:do_action:help>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'u',
+      \ '<denite:do_action:update>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'f',
+      \ '<denite:do_action:find>',
+      \ 'noremap'
+      \)
+
 nnoremap <silent> <space>q  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
@@ -139,7 +162,14 @@ nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
 nnoremap <silent> <space>c  :<C-u>Denite -mode=normal gitchanged<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
+nnoremap <silent> <space>d  :<C-u>Denite normal todo<cr>
+nnoremap <silent> <space>s  :<C-u>Denite session<cr>
+nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
+nnoremap <silent> <space>t  :<C-u>Denite project<cr>
+nnoremap <silent> <space>a  :<C-u>Denite node<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
+nnoremap <silent> <space>n  :<C-u>Denite note<cr>
+nnoremap <silent> <space>p  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>
