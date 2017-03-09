@@ -1,6 +1,7 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
 " jedi {{
+  let g:jedi#force_py_version = 3
   let g:jedi#use_splits_not_buffers = "left"
 " }}
 

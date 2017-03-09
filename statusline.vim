@@ -47,8 +47,9 @@ function! MyStatusGitChanges() abort
   return '  +'.summary[0].' ~'.summary[1].' -'.summary[2].' '
 endfunction
 
-function! MyStatusGit() abort
+function! MyStatusGit(...) abort
   if exists('b:git_branch') | return b:git_branch | endif
+  if !exists('*easygit#smartRoot') | return '' | endif
   if s:IsTempFile() | return '' | endif
   " only support neovim
   if !exists('*jobstart') | return '' | endif

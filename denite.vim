@@ -25,7 +25,7 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source('file_rec,redis_mru', 'matchers', ['matcher_cpsm'])
 call denite#custom#source('line', 'matchers', ['matcher_regexp'])
 " Sorter of file_rec
-call denite#custom#source('file_rec,redis_mru,note', 'sorters', ['sorter_rank'])
+call denite#custom#source('file_rec,outline,redis_mru,note', 'sorters', ['sorter_rank'])
 
 " Change mappings.
 call denite#custom#map(
@@ -169,6 +169,7 @@ nnoremap <silent> <space>t  :<C-u>Denite project<cr>
 nnoremap <silent> <space>a  :<C-u>Denite node<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>n  :<C-u>Denite note<cr>
+nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
 nnoremap <silent> <space>p  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>

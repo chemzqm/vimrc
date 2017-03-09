@@ -35,7 +35,7 @@ set cmdheight=2
 set sessionoptions+=winsize
 set sessionoptions+=resize
 set sessionoptions-=blank
-set sessionoptions-=localoptions
+set sessionoptions+=localoptions
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=100
