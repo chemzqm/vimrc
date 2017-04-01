@@ -18,8 +18,8 @@ nnoremap Y y$
 " clear highlight reset diff
 nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
-nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp  :Gpush --force<CR>
+nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 "nnoremap <C-c> :echo 3<CR>
 " remap <cr> when completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -31,6 +31,10 @@ inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
+
+nmap [g <Plug>GitGutterPrevHunk
+nmap ]g <Plug>GitGutterNextHunk
+
 
 " easy align
 xmap ga <Plug>(EasyAlign)

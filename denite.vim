@@ -11,6 +11,8 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
 " Change file_rec command.
 call denite#custom#var('file_rec', 'command',
   \ ['ag', '--depth', '10', '--follow', '--nocolor', '--nogroup', '-g', ''])
+" buffer
+call denite#custom#var('buffer', 'date_format', '')
 
 " Change grep options.
 call denite#custom#var('grep', 'command', ['ag'])

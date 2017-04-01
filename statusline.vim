@@ -125,7 +125,7 @@ endfunction
 augroup statusline
   autocmd!
   autocmd User GitGutter call SetStatusLine()
-  autocmd BufWinEnter,ShellCmdPost,BufWritePost,DirChanged * call SetStatusLine()
+  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
 augroup end

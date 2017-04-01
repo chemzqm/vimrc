@@ -61,10 +61,6 @@ let g:mapleader = ','
 
   nmap <leader>se <Plug>SvgEdit
   nmap <leader>sp <Plug>SvgPreview
-
-  " gutter
-  nmap <leader>gp <Plug>GitGutterPrevHunk
-  nmap <leader>gn <Plug>GitGutterNextHunk
 " }}
 
 " grep by motion {{
