@@ -77,9 +77,12 @@ function! s:GrepFromSelected(type)
     return
   endif
   let word = substitute(@@, '\n$', '', 'g')
-  let word = substitute(word, '\s\+', '\ ', 'g')
   let word = escape(word, '|')
-  execute 'Denite -no-empty grep::-Q\ -s:'.word
+  if g:grep_using_git
+    call g:Quickfix('ag ', word)
+  else
+    call g:Quickfix('ag', "-Q -s", word)
+  endif
   let @@ = saved_unnamed_register
 endfunction
 " }}

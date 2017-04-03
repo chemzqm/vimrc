@@ -19,7 +19,7 @@ command! -nargs=0 Post       execute "Nrun cd ".expand('~')."/lib/blog;and make 
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 " search with ag and open quickfix window
-command! -nargs=+ -complete=file Ag call s:Grep(<f-args>)
+command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
 
@@ -37,20 +37,26 @@ function! s:Execute(args)
   execute 'Nrun ' . cmd
 endfunction
 
-function! s:Grep(...)
-  let revlist = reverse(copy(a:000))
-  let l = len(revlist)
-  if l == 1
-    execute 'Denite -no-empty grep:::'.revlist[0]
-  else
-    if revlist[0] !~ '^-' && revlist[1] !~ '^-'
-      let opt = join(revlist[2:], '\ ')
-      execute 'Denite -no-empty grep:'.revlist[0].':'.opt.':'.revlist[1]
-    elseif revlist[0] !~ '^-'
-      let opt = join(revlist[1:], '\ ')
-      execute 'Denite -no-empty grep::'.opt.':'.revlist[0]
+function! g:Quickfix(type, ...)
+  " clear existing list
+  cexpr []
+  let pattern = s:FindPattern(a:000)
+  let list = deepcopy(a:000)
+  let g:grep_word = pattern[0]
+  let g:grep_command = 'grep '. join(list, ' ')
+  let list[pattern[1]] = shellescape(g:grep_word, 1)
+  execute "silent grep! " . join(list, ' ')
+  execute "Denite -mode=normal -no-quit -auto-resize quickfix"
+endfunction
+
+function! s:FindPattern(list)
+  let l = len(a:list)
+  for i in range(l)
+    let word = a:list[i]
+    if word !~# '\v^\s*-'
+      return [word, i]
     endif
-  endif
+  endfor
 endfunction
 
 function! s:StartWept()
@@ -176,7 +182,7 @@ endfunction
 function! s:ShowGitlog(arg)
   let args = split(a:arg, ':', 1)
   let input = get(args, 0, '')
-  execute 'Denite -no-empty gitlog:' . get(args, 1, '') . ' -input=' . input . ' -mode=normal'
+  execute 'Denite -no-quit -no-empty gitlog:' . get(args, 1, '') . ' -input=' . input . ' -mode=normal'
 endfunction
 
 " Remove hidden buffers and cd to current dir
