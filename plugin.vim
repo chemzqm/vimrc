@@ -3,6 +3,7 @@
 " jedi {{
   let g:jedi#force_py_version = 3
   let g:jedi#use_splits_not_buffers = "left"
+  let g:jedi#goto_assignments_command = "<leader>tf"
 " }}
 
 " vim-run {{
