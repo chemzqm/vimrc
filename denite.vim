@@ -164,7 +164,7 @@ nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
 nnoremap <silent> <space>c  :<C-u>Denite -mode=normal gitchanged<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
-nnoremap <silent> <space>d  :<C-u>Denite normal todo<cr>
+nnoremap <silent> <space>d  :<C-u>Denite -mode=normal todo<cr>
 nnoremap <silent> <space>s  :<C-u>Denite session<cr>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
 nnoremap <silent> <space>t  :<C-u>Denite project<cr>
