@@ -1,4 +1,7 @@
 " General options {{
+if exists('&termguicolors')
+  set termguicolors
+endif
 set hidden " allow buffer switch without saving
 set history=2000
 set wildmenu
@@ -90,7 +93,9 @@ else
   set background=dark
   let g:gruvbox_bold=0
   let g:gruvbox_invert_selection=0
-  colorscheme gruvbox
+  "colorscheme gruvbox
+  let g:deepspace_italics=1
+  colorscheme deep-space
 endif
 " }}
 
@@ -102,7 +107,7 @@ hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=ligh
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 " change default search highlight
 "hi Search guibg=#333333 guifg=#C5B569
-hi normal guibg=NONE
+"hi normal guibg=NONE
 call matchadd('ColorColumn', '\%81v', 100)
 hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
 hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A

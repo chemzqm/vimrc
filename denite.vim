@@ -156,7 +156,7 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
-nnoremap <silent> <space>q  :<C-u>Denite -resume<CR>
+nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
 
@@ -172,7 +172,7 @@ nnoremap <silent> <space>a  :<C-u>Denite node<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>n  :<C-u>Denite note<cr>
 nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
-nnoremap <silent> <space>p  :<C-u>Denite commands<cr>
+nnoremap <silent> <space>q  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>

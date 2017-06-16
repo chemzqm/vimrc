@@ -46,7 +46,7 @@ function! g:Quickfix(type, ...)
   let g:grep_command = 'grep '. join(list, ' ')
   let list[pattern[1]] = shellescape(g:grep_word, 1)
   execute "silent grep! " . join(list, ' ')
-  execute "Denite -mode=normal -no-quit -auto-resize quickfix"
+  execute "Denite -mode=normal -auto-resize quickfix"
 endfunction
 
 function! s:FindPattern(list)

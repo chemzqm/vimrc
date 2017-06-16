@@ -11,6 +11,8 @@ nnoremap <C-p> :PreviewAuto<CR>
 nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
+nnoremap <c-v> "+p
+vnoremap <c-c> "+y
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 " yank to end
