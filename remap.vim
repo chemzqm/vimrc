@@ -1,9 +1,9 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 "map y <Plug>(operator-flashy)
 "nmap Y <Plug>(operator-flashy)$
-"map /  <Plug>(incsearch-forward)
-"map ?  <Plug>(incsearch-backward)
-"map g/ <Plug>(incsearch-stay)
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 nnoremap <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Preview markdown
 nnoremap <C-p> :PreviewAuto<CR>
@@ -11,7 +11,7 @@ nnoremap <C-p> :PreviewAuto<CR>
 nnoremap Q <Nop>
 vnoremap < <gv
 vnoremap > >gv
-nnoremap <c-v> "+p
+"nnoremap <c-v> "+p
 vnoremap <c-c> "+y
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
@@ -20,8 +20,17 @@ nnoremap Y y$
 " clear highlight reset diff
 nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
-nnoremap gp  :Gpush --force<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
+"nnoremap gp  :Gpush --force<CR>
+
+nnoremap gp :call <SID>gpush()<CR>
+
+function! s:gpush()
+  let branch = system('git rev-parse --abbrev-ref HEAD')
+  if !v:shell_error
+    execute 'Gpush origin '. substitute(branch, "\n$", '', '').' --force'
+  endif
+endfunction
 "nnoremap <C-c> :echo 3<CR>
 " remap <cr> when completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

@@ -231,12 +231,13 @@ function! s:Jsongen()
 endfunction
 
 " npm update -g js-beautify
-" npm update -g cssfmt
+" npm install -g stylefmt
 " brew update tidy-html5
 let g:Pretty_commmand_map = {
     \ "json": "json",
-    \ "css": "cssfmt",
-    \ "wxss": "cssfmt",
+    \ "css": "stylefmt",
+    \ "wxss": "stylefmt",
+    \ "scss": "stylefmt",
     \ "html": "tidy -i -q -w 160",
     \ "wxml": "tidy -i -q -w 160 -xml",
     \ "xml": " xmllint --format -encode utf8 -",
