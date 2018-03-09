@@ -1,5 +1,4 @@
 if !has('nvim') | finish | endif
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_skip_check=1

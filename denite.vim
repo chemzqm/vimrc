@@ -168,7 +168,7 @@ nnoremap <silent> <space>d  :<C-u>Denite -mode=normal todo<cr>
 nnoremap <silent> <space>s  :<C-u>Denite session<cr>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
 nnoremap <silent> <space>t  :<C-u>Denite project<cr>
-nnoremap <silent> <space>a  :<C-u>Denite node<CR>
+nnoremap <silent> <space>a  :<C-u>Denite -mode=normal node<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>n  :<C-u>Denite note<cr>
 nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>

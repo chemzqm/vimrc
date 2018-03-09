@@ -28,7 +28,7 @@ nnoremap gp :call <SID>gpush()<CR>
 function! s:gpush()
   let branch = system('git rev-parse --abbrev-ref HEAD')
   if !v:shell_error
-    execute 'Gpush origin '. substitute(branch, "\n$", '', '').' --force'
+    execute 'Gpush origin '. substitute(branch, "\n$", '', '').' --force-with-lease'
   endif
 endfunction
 "nnoremap <C-c> :echo 3<CR>
@@ -148,3 +148,15 @@ endfunc
   inoremap <M-4> <C-o>4gt
   inoremap <M-5> <C-o>5gt
 " }}
+
+" vim-asterisk {{
+  "map *   <Plug>(asterisk-*)
+  "map #   <Plug>(asterisk-#)
+  "map g*  <Plug>(asterisk-g*)
+  "map g#  <Plug>(asterisk-g#)
+  "map z*  <Plug>(asterisk-z*)
+  "map gz* <Plug>(asterisk-gz*)
+  "map z#  <Plug>(asterisk-z#)
+  "map gz# <Plug>(asterisk-gz#)
+" }}
+

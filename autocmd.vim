@@ -12,7 +12,8 @@ augroup common
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
-  autocmd FileType qf nnoremap <buffer> q :<C-U>ccl<CR>
+  autocmd InsertLeave,WinEnter * set cursorline
+  autocmd InsertEnter,WinLeave * set nocursorline
 augroup end
 
 augroup stay_no_lcd
@@ -42,6 +43,8 @@ function! OnBufEnter()
     if !mapcheck('q', 'n')
       nnoremap <buffer> q :<C-U>bd!<CR>
     endif
+  elseif &buftype ==# 'quickfix'
+    nnoremap <buffer> q :<C-U>bd!<CR>
   elseif &buftype ==# 'terminal'
     nnoremap <buffer> q :<C-U>bd!<CR>
   elseif &buftype ==# 'help'

@@ -40,7 +40,9 @@ function! MyStatusGitChanges() abort
   if s:IsTempFile() | return '' | endif
   let gutter = get(b:, 'gitgutter', {})
   if empty(gutter) | return '' | endif
-  let summary = gutter['summary']
+  let summary = get(gutter, 'summary', [])
+  if empty(summary) | return '' | endif
+  let g:s = summary
   if summary[0] == 0 && summary[1] == 0 && summary[2] == 0
     return ''
   endif

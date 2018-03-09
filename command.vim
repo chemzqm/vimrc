@@ -2,6 +2,7 @@
 command! -nargs=0 Q          :qa!
 command! -nargs=0 V          :call s:OpenTerminal()
 command! -nargs=0 C          :call s:Gcd()
+command! -nargs=0 Todo       :Denite todo
 command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
@@ -230,18 +231,17 @@ function! s:Jsongen()
   exe 'wincmd p'
 endfunction
 
-" npm update -g js-beautify
+" npm install -g prettier prettier-eslint
 " npm install -g stylefmt
-" brew update tidy-html5
 let g:Pretty_commmand_map = {
-    \ "json": "json",
-    \ "css": "stylefmt",
+    \ "json": "prettier --stdin --stdin-filepath=\"t.json\"",
+    \ "css": "prettier --stdin --stdin-filepath=\"t.css\"",
+    \ "scss": "prettier --stdin --stdin-filepath=\"t.scss\"",
+    \ "html": "prettier --stdin --stdin-filepath=\"t.html\"",
     \ "wxss": "stylefmt",
-    \ "scss": "stylefmt",
-    \ "html": "tidy -i -q -w 160",
     \ "wxml": "tidy -i -q -w 160 -xml",
     \ "xml": " xmllint --format -encode utf8 -",
-    \ "javascript": "js-beautify -s 2 -p -f -",
+    \ "javascript": "prettier-eslint\ --stdin\ --no-semi\ --single-quote",
     \}
 function! s:PrettyFile()
   let cmd = get(g:Pretty_commmand_map, &filetype, '')

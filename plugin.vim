@@ -1,5 +1,17 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" vim-prettier {{
+  let g:prettier#config#semi = 'false'
+  let g:prettier#config#single_quote = 'true'
+  let g:prettier#config#bracket_spacing = 'false'
+  let g:prettier#config#jsx_bracket_same_line = 'true'
+" }}
+
+" autocomplete-swift {{
+  autocmd FileType swift imap <buffer> <C-n> <Plug>(autocomplete_swift_jump_to_placeholder)
+  autocmd FileType swift :call deoplete#enable()
+" }}
+
 " jedi {{
   let g:jedi#force_py_version = 3
   let g:jedi#use_splits_not_buffers = "left"
@@ -9,7 +21,9 @@
 " vim-run {{
   let g:vim_run_command_map = {
         \'javascript': 'node',
-        \'python': 'python3'
+        \'python': 'python3',
+        \'go': 'go run',
+        \'swift': 'swift'
         \}
 " }}
 
@@ -27,6 +41,8 @@
   "let g:deoplete#enable_at_startup = 1
   "let g:deoplete#omni_patterns = {}
   "let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
+  let g:deoplete#sources = {}
+  "let g:deoplete#sources._ = ['buffer', 'dictionary', 'omni', 'tag', 'snip']
 " }}
 
 " plug.nvim {{
@@ -72,7 +88,9 @@
   \   'css': ['stylelint'],
   \   'typescript': ['tslint'],
   \   'json': ['jsonlint'],
+  \   'swift': ['swiftlint'],
   \}
+  let g:ale_swift_swiftlint_use_defaults = 1
   let g:ale_warn_about_trailing_whitespace = 0
   let g:ale_sign_column_always = 1
   let g:ale_sign_error = '>>'
