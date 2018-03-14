@@ -1,3 +1,5 @@
+" Install ag with `brew install ag`
+" Install ripgrep with `brew install ripgrep`
 let g:project_folders = ['~/wechat-dev', '~/component-dev', '~/vim-dev']
 call denite#custom#option('default', 'prompt', '> ')
 "call denite#custom#option('default', 'direction', 'bottom')
@@ -15,7 +17,7 @@ call denite#custom#var('file_rec', 'command',
 call denite#custom#var('buffer', 'date_format', '')
 
 " Change grep options.
-call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
     \ ['-i', '--vimgrep'])
 call denite#custom#var('grep', 'recursive_opts', [])
@@ -95,6 +97,20 @@ call denite#custom#map(
 
 call denite#custom#map(
       \ 'normal',
+      \ '<C-j>',
+      \ '<denite:wincmd:j>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ '<C-k>',
+      \ '<denite:wincmd:k>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
       \ '<esc>',
       \ '<denite:quit>',
       \ 'noremap'
@@ -159,9 +175,8 @@ call denite#custom#map(
 nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
-
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
-nnoremap <silent> <space>c  :<C-u>Denite -mode=normal gitchanged<CR>
+nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
 nnoremap <silent> <space>d  :<C-u>Denite -mode=normal todo<cr>
@@ -172,7 +187,7 @@ nnoremap <silent> <space>a  :<C-u>Denite -mode=normal node<CR>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>n  :<C-u>Denite note<cr>
 nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
-nnoremap <silent> <space>q  :<C-u>Denite commands<cr>
+nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>

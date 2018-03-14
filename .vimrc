@@ -14,19 +14,19 @@ call plug#begin()
 "Plug 'vim-javascript'
 "Plug 'vim-jsx'
 "Plug 'vim-jsx-pretty'
-"Plug 'neco-vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'chemzqm/unite-location', {'dir': g:local, 'frozen': 1}
 "Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/unite.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'mitsuse/autocomplete-swift'
+Plug 'chemzqm/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/macdown.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/macnote.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/redismru.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/smartim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/todoapp.vim', {'dir': g:local, 'frozen': 1}

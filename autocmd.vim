@@ -12,8 +12,6 @@ augroup common
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
-  autocmd InsertLeave,WinEnter * set cursorline
-  autocmd InsertEnter,WinLeave * set nocursorline
 augroup end
 
 augroup stay_no_lcd

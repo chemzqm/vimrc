@@ -65,8 +65,9 @@ set number
 set relativenumber
 set shortmess+=F
 set shortmess+=c
+set inccommand=nosplit
 "set ttyfast
-set grepprg=ag\ --vimgrep\ $*
+set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
 let g:grep_using_git = 0
 " }}

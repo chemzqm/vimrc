@@ -42,7 +42,6 @@ function! MyStatusGitChanges() abort
   if empty(gutter) | return '' | endif
   let summary = get(gutter, 'summary', [])
   if empty(summary) | return '' | endif
-  let g:s = summary
   if summary[0] == 0 && summary[1] == 0 && summary[2] == 0
     return ''
   endif
