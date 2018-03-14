@@ -10,7 +10,6 @@ call plug#begin()
 "Plug 'vim-bundler'
 "Plug 'yajs.vim'
 "Plug 'neosnips', 1
-"Plug 'vim-stay'
 "Plug 'vim-javascript'
 "Plug 'vim-jsx'
 "Plug 'vim-jsx-pretty'
@@ -18,6 +17,7 @@ call plug#begin()
 "Plug 'chemzqm/unite-location', {'dir': g:local, 'frozen': 1}
 "Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/unite.vim'
+Plug 'kopischke/vim-stay'
 Plug 'chemzqm/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}

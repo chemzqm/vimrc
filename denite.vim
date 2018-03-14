@@ -19,7 +19,7 @@ call denite#custom#var('buffer', 'date_format', '')
 " Change grep options.
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
-    \ ['--vimgrep', '--no-heading'])
+    \ ['--vimgrep', '--no-follow'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
