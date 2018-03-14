@@ -1,8 +1,13 @@
 if !has('nvim') | finish | endif
+set inccommand=nosplit
+
+" speed up
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_skip_check=1
 let g:python3_host_prog = '/usr/local/bin/python3'
+let g:ruby_host_prog = exepath('neovim-ruby-host')
+let g:node_host_prog = '/usr/local/bin/neovim-node-host'
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
@@ -39,28 +44,7 @@ function! s:OnTermOpen(buf)
   endif
 endfunction
 
-function! s:OnTermClose(buf)
-
-  function! Callback(nr, id)
-    let lines = filter(getbufline(a:nr, 1, '$'), '!empty(v:val)')
-    if empty(lines) || lines[-1] ==# '[Process exited 0]'
-      if bufexists(a:nr)
-        execute 'silent! bd! ' . a:nr
-      endif
-    endif
-  endfunction
-
-  if getbufvar(a:buf, '&buftype') ==# 'terminal'
-    call timer_start(100, function('Callback', [a:buf]))
-  endif
-endfunction
-
 augroup neovim
   autocmd!
-  autocmd TermClose *  :call s:OnTermClose(+expand('<abuf>'))
   autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
-  autocmd WinEnter term://*
-        \ if getbufvar(expand('<abuf>'), 'is_autorun') != 1 |
-        \   startinsert |
-        \ endif
 augroup end

@@ -13,7 +13,7 @@ let g:mapleader = ','
   " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<cr>
   " Search with grep
-  nnoremap <leader>/ :Ag<space>
+  nnoremap <leader>/ :Rg<space>
   " generate doc
   nnoremap <silent> <leader>d :<C-u>call <SID>GenDoc()<cr>
   " clean some dirty charactors
@@ -23,6 +23,10 @@ let g:mapleader = ','
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
   nnoremap <leader>p "+]p`]
+
+  nnoremap <leader>o :call <SID>Open()<cr>
+  inoremap <2-LeftMouse> <C-o>:call <SID>Open()<CR>
+  nnoremap <2-LeftMouse> :call <SID>Open()<CR>
 " }}
 
 " setting switch {{
@@ -30,7 +34,6 @@ let g:mapleader = ','
   nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
-  nnoremap <leader>ag :call <SID>SwitchGrepCmd()<cr>
   nnoremap <leader>bg :call <SID>ToggleBackground()<cr>
 " }}
 
@@ -77,13 +80,9 @@ function! s:GrepFromSelected(type)
     return
   endif
   let word = substitute(@@, '\n$', '', 'g')
-  let word = escape(word, '|')
-  if g:grep_using_git
-    call g:Quickfix('ag ', word)
-  else
-    call g:Quickfix('ag', "-Q -s", word)
-  endif
+  let word = escape(word, '| ')
   let @@ = saved_unnamed_register
+  execute 'Denite grep:::'.word
 endfunction
 " }}
 
@@ -135,20 +134,6 @@ function! s:Clean()
   call winrestview(view)
 endfunction
 
-" Switch between `ag` and `git grep`, `grepprg` is a wrapper command
-" See https://gist.github.com/55a5246a5b218b9848dc
-function! s:SwitchGrepCmd()
-  if g:grep_using_git
-    set grepprg=ag\ --vimgrep\ $*
-    let g:grep_using_git = 0
-    echohl Identifier | echon 'grep by ag' | echohl None
-  else
-    set grepprg=grepprg\ $*
-    let g:grep_using_git = 1
-    echohl Identifier | echon 'grep by git' | echohl None
-  endif
-endfunction
-
 function! s:GenDoc()
   if &ft ==# 'javascript'
     exe "JsDoc"
@@ -177,6 +162,25 @@ function! s:GenDoc()
     call append(lnum - 1, ind. '# ')
     exe "normal! k$"
     startinsert!
+  endif
+endfunction
+
+function! s:Open()
+  let line = getline('.')
+  " match url
+  let url = matchstr(line, '\vhttps?:\/\/[^)\]''" ]+')
+  if !empty(url)
+    let output = system('open '. url)
+  else
+    let mail = matchstr(line, '\v([A-Za-z0-9_\.-]+)\@([A-Za-z0-9_\.-]+)\.([a-z\.]+)')
+    if !empty(mail)
+      let output = system('open mailto:' . mail)
+    else
+      let output = system('open ' . expand('%:p:h'))
+    endif
+  endif
+  if v:shell_error && output !=# ""
+    echoerr output
   endif
 endfunction
 " }}

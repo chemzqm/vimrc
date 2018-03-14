@@ -16,11 +16,10 @@ command! -nargs=0 MakeTags   :execute 'Nrun ctags -R .'
 command! -nargs=0 Color      :call css_color#toggle()
 command! -nargs=0 Standard   execute '!standard --format %:p'
 command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
-command! -nargs=0 Post       execute "Nrun cd ".expand('~')."/lib/blog;and make remote"
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 " search with ag and open quickfix window
-command! -nargs=+ -complete=file Ag call g:Quickfix('ag', <f-args>)
+command! -nargs=+ -complete=dir Rg call s:Grep(<f-args>)
 command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
 
@@ -38,16 +37,22 @@ function! s:Execute(args)
   execute 'Nrun ' . cmd
 endfunction
 
-function! g:Quickfix(type, ...)
-  " clear existing list
-  cexpr []
-  let pattern = s:FindPattern(a:000)
-  let list = deepcopy(a:000)
-  let g:grep_word = pattern[0]
-  let g:grep_command = 'grep '. join(list, ' ')
-  let list[pattern[1]] = shellescape(g:grep_word, 1)
-  execute "silent grep! " . join(list, ' ')
-  execute "Denite -mode=normal -auto-resize quickfix"
+function! s:Grep(...)
+  let arguments = deepcopy(a:000)
+  let opts = []
+  let strs = []
+  for str in arguments
+    if str =~ '\v^-'
+      call add(opts, str)
+    else
+      call add(strs, str)
+    endif
+  endfor
+  if empty(strs)
+    echoerr 'No pattern found'
+  endif
+  let path = get(strs, 1, '')
+  execute 'Denite grep:'.path.':'.join(opts, '\ ').':'.strs[0]
 endfunction
 
 function! s:FindPattern(list)

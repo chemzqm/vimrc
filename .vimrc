@@ -18,8 +18,6 @@ call plug#begin()
 "Plug 'chemzqm/unite-location', {'dir': g:local, 'frozen': 1}
 "Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/unite.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'mitsuse/autocomplete-swift'
 Plug 'chemzqm/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
@@ -37,6 +35,8 @@ Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/denite-git', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/denite-extra', {'dir': g:local, 'frozen': 1}
+Plug 'Shougo/deoplete.nvim'
+Plug 'mitsuse/autocomplete-swift'
 Plug 'davidhalter/jedi-vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Shougo/echodoc.vim'
