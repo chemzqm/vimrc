@@ -69,6 +69,7 @@ set shortmess+=c
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
 let g:grep_using_git = 0
+set title
 " }}
 
 " Special options for macvim {{

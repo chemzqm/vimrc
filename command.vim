@@ -20,8 +20,8 @@ command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 " search with ag and open quickfix window
 command! -nargs=+ -complete=dir Rg call s:Grep(<f-args>)
-command! -nargs=? -complete=custom,s:ListVimrc   EditVimrc  :call s:EditVimrc(<f-args>)
-command! -nargs=? -complete=custom,s:ListDict    Dict       :call s:ToggleDictionary(<f-args>)
+command! -nargs=? -complete=custom,s:ListVimrc  EditVimrc  :call s:EditVimrc(<f-args>)
+command! -nargs=? -complete=custom,s:ListDict   Dict       :call s:ToggleDictionary(<f-args>)
 
 let s:cmd_map = {
       \'javascript': 'babel-node',
@@ -178,7 +178,7 @@ endfunction
 
 function! s:EditVimrc(...)
   if a:0 == 0
-    execute 'edit ~/.vimrc'
+    execute 'edit ~/.vim/vimrc/.vimrc'
   else
     execute 'edit ~/.vim/vimrc/' . a:1
   endif

@@ -190,5 +190,5 @@ nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
 nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
-nnoremap <silent> <space>r  :<C-u>Denite redis_mru<cr>
-nnoremap <silent> \r        :<C-u>Denite redis_mru:.<cr>
+nnoremap <silent> \r  :<C-u>Denite redis_mru<cr>
+nnoremap <silent> <space>r        :<C-u>Denite redis_mru:.<cr>

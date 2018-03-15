@@ -8,13 +8,10 @@ set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 "Plug 'FastFold'
 "Plug 'vim-bundler'
-"Plug 'yajs.vim'
-"Plug 'neosnips', 1
 "Plug 'vim-javascript'
 "Plug 'vim-jsx'
 "Plug 'vim-jsx-pretty'
 "Plug 'scrooloose/nerdtree'
-"Plug 'chemzqm/unite-location', {'dir': g:local, 'frozen': 1}
 "Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/unite.vim'
 Plug 'kopischke/vim-stay'

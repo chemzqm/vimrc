@@ -12,6 +12,7 @@ augroup common
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
+  autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
 augroup end
 
 augroup stay_no_lcd
@@ -19,6 +20,10 @@ augroup stay_no_lcd
   autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
 augroup END
+
+function! s:ShortPath(p)
+  return pathshorten(substitute(a:p, $HOME, '~', ''))
+endfunction
 
 function! s:SetWxapp()
   command! -nargs=0 Start :call wxapp#start()
