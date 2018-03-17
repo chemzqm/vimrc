@@ -14,7 +14,7 @@ call plug#begin()
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/unite.vim'
-Plug 'kopischke/vim-stay'
+Plug 'chemzqm/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
@@ -56,7 +56,7 @@ Plug 'elzr/vim-json'
 Plug 'tpope/vim-surround'
 Plug 'othree/xml.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'nixprime/cpsm'
 Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
@@ -66,6 +66,7 @@ Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'prettier/vim-prettier'
 Plug 'cohama/lexima.vim'
+Plug 'kopischke/vim-stay'
 call plug#end()
 
 filetype plugin indent on

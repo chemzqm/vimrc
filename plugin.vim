@@ -47,8 +47,10 @@
 
 " plug.nvim {{
   let g:plug_rebase = 1
-  let g:plug_clean_command = 'rmtrash'
-  let g:plug_window = 'edit'
+" }}
+
+" npm.nvim {{
+  let g:npm_project_folders = ['~/nodejs-dev', '~/component-dev', '~/react-dev']
 " }}
 
 " vim-highlightedyank {{

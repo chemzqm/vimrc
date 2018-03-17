@@ -115,9 +115,7 @@ hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 " }}
 
 " Complete config {{
-set complete+=i
 set complete+=k
-set complete-=t
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
 " }}

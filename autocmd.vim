@@ -21,12 +21,15 @@ augroup stay_no_lcd
   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
 augroup END
 
+function! s:OnDeniteEnter()
+  call feedkeys('<enter>')
+endfunction
+
 function! s:ShortPath(p)
   return pathshorten(substitute(a:p, $HOME, '~', ''))
 endfunction
 
 function! s:SetWxapp()
-  command! -nargs=0 Start :call wxapp#start()
   if &filetype ==# 'javascript'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
   elseif &filetype ==# 'wxml'
