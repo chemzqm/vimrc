@@ -60,27 +60,27 @@ function! MyStatusGit(...) abort
   if empty(root) | return '' | endif
   if index(roots, root) >= 0 | return '' | endif
   let nr = bufnr('%')
-  let job_id = jobstart(['git-status'], {
+  let job_id = jobstart('git-status', {
     \ 'cwd': root,
-    \ 'on_stdout': function('s:JobHandler', [root]),
-    \ 'on_stderr': function('s:JobHandler', [root]),
-    \ 'on_exit': function('s:JobHandler', [root])
+    \ 'stdout_buffered': v:true,
+    \ 'stderr_buffered': v:true,
+    \ 'on_exit': function('s:JobHandler')
     \})
   if job_id == 0 || job_id == -1 | return '' | endif
   let s:job_status[job_id] = root
   return ''
 endfunction
 
-function! s:JobHandler(root, job_id, data, event)
+function! s:JobHandler(job_id, data, event) dict
   if !has_key(s:job_status, a:job_id) | return | endif
-  if a:event ==# 'stdout'
-    let output = join(a:data)
-    call s:SetGitStatus(a:root, ' '.output.' ')
-  elseif a:event ==# 'stderr'
-    echohl Error | echon join(a:data) | echohl None
+  let output = join(self.stdout)
+  if !empty(output)
+    call s:SetGitStatus(self.cwd, ' '.output.' ')
   else
-    call remove(s:job_status, a:job_id)
+    let errs = join(self.stderr)
+    if !empty(errs) | echoerr errs | endif
   endif
+  call remove(s:job_status, a:job_id)
 endfunction
 
 function! s:SetGitStatus(root, str)
