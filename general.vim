@@ -51,7 +51,7 @@ set keywordprg=
 set showtabline=2
 set laststatus=2
 set noshowmode
-set updatetime=1000
+set updatetime=100
 " Formatting
 set smarttab
 set shiftwidth=2

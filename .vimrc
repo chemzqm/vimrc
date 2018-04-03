@@ -6,32 +6,25 @@ let g:loaded_vimballPlugin = 1
 let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
-"Plug 'FastFold'
-"Plug 'vim-bundler'
-"Plug 'vim-javascript'
-"Plug 'vim-jsx'
-"Plug 'vim-jsx-pretty'
-"Plug 'scrooloose/nerdtree'
-"Plug 'tpope/vim-fugitive'
-"Plug 'Shougo/unite.vim'
+"Plug 'lifepillar/vim-mucomplete'
 Plug 'chemzqm/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/mycomment.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/macdown.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/macnote.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/smartim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/todoapp.vim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/ultisnips', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/denite-git', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/todoapp.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/ultisnips', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/denite-git', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/vim-easygit', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/denite-extra', {'dir': g:local, 'frozen': 1}
 Plug 'Shougo/deoplete.nvim'
 Plug 'mitsuse/autocomplete-swift'
 Plug 'davidhalter/jedi-vim'
@@ -65,7 +58,6 @@ Plug 'posva/vim-vue'
 Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'prettier/vim-prettier'
-Plug 'cohama/lexima.vim'
 Plug 'kopischke/vim-stay'
 call plug#end()
 

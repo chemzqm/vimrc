@@ -242,6 +242,7 @@
 " }}
 
 " easygit {{
+  let g:easygit_enable_root_rev_parse = 0
   let g:easygit_enable_command = 1
   let g:easygit_auto_tcd = 1
 "}}

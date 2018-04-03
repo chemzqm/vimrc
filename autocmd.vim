@@ -36,6 +36,8 @@ function! s:SetWxapp()
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxml.dict
   elseif &filetype ==# 'wxss'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxss.dict
+  elseif &filetype ==# 'json'
+    setl dictionary+=~/vim-dev/wxapp.vim/dict/json.dict
   endif
 endfunction
 

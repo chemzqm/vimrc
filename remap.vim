@@ -5,6 +5,9 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : lexima#expand('<CR>', 'i'))
+" optional, expand snippts with Ctrl+U
+
 nnoremap <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Preview markdown
 nnoremap <C-p> :PreviewAuto<CR>
