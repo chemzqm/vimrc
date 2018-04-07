@@ -7,8 +7,8 @@ let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 "Plug 'lifepillar/vim-mucomplete'
-Plug 'chemzqm/npm.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/keep.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
@@ -25,6 +25,7 @@ Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
+Plug 'romainl/vim-cool' " search improve
 Plug 'Shougo/deoplete.nvim'
 Plug 'mitsuse/autocomplete-swift'
 Plug 'davidhalter/jedi-vim'
@@ -54,7 +55,7 @@ Plug 'nixprime/cpsm'
 Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/incsearch.vim'
-Plug 'posva/vim-vue'
+"Plug 'posva/vim-vue'
 Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'prettier/vim-prettier'

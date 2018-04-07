@@ -261,6 +261,10 @@
   \}
 " }}
 
+" vim-cool {{
+  let g:CoolTotalMatches = 1
+" }}"
+
 " macdown.vim {{
   let g:macdown_marked_programme = 'misaka'
 " }}

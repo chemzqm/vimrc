@@ -174,7 +174,7 @@ call denite#custom#map(
 nnoremap <silent> <space>a  :<C-u>Denite -mode=normal npm<CR>
 nnoremap <silent> <space>b  :<C-u>Denite -mode=normal buffer<CR>
 nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
-nnoremap <silent> <space>d  :<C-u>Denite todo<cr>
+nnoremap <silent> <space>d  :<C-u>Denite directory<cr>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>g  :<C-u>Denite gitstatus<CR>
@@ -188,7 +188,7 @@ nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
 nnoremap <silent> <space>r        :<C-u>Denite redis_mru:.<cr>
 nnoremap <silent> <space>s  :<C-u>Denite session<cr>
-nnoremap <silent> <space>t  :<C-u>Denite directory<cr>
+nnoremap <silent> <space>t  :call execute('Denite file_rec:'.expand('%:p:h'))<CR>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
 nnoremap <silent> <space>v  :<C-u>Denite vim<cr>
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
