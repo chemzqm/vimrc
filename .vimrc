@@ -56,10 +56,12 @@ Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'prettier/vim-prettier'
 Plug 'kopischke/vim-stay'
+Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
 filetype plugin indent on

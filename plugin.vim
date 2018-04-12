@@ -158,7 +158,7 @@
   \     'span': 'text',
   \   },
   \   'default_attributes': {
-  \     'block': [{'wx:for': '{{list}}','wx:key': '{{item.id}}'}],
+  \     'block': [{'wx:if': '{{somevalue}}'}],
   \     'navigator': [{'url': '', 'redirect': 'false'}],
   \     'scroll-view': [{'bindscroll': ''}],
   \     'swiper': [{'autoplay': 'false', 'current': '0'}],
@@ -269,10 +269,6 @@
   let g:macdown_marked_programme = 'misaka'
 " }}
 
-" vim-v2ex {{
-  let g:v2ex_render_comment = 1
-" }}
-
 " macnote.vim {{
   let g:macnote_unite_quickfix = 1
 " }}
@@ -282,9 +278,13 @@
 " }}
 
 " vim-stay {{
-  "let g:volatile_ftypes = ['scss', 'css']
+  let g:volatile_ftypes = ['scss', 'css']
 " }}
 
 " vim-flow {{
   "let g:flow#autoclose = 1
 " }}
+
+" asyncrun.vim {{
+  let g:asyncrun_bell = 1
+" }}"

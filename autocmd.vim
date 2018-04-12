@@ -3,8 +3,7 @@
 " common file autocmd {{
 augroup common
   autocmd!
-  "autocmd OptionSet * call s:OnOptionSet(expand('<amatch>'))
-  "autocmd CursorHold,CursorHoldI * checktime
+  autocmd CursorHold,CursorHoldI * checktime
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
@@ -13,6 +12,9 @@ augroup common
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
+  autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+  " quickfix window will open when something adds to it
+  autocmd QuickFixCmdPost * botright copen 8
 augroup end
 
 augroup stay_no_lcd
