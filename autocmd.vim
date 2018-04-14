@@ -32,6 +32,7 @@ function! s:ShortPath(p)
 endfunction
 
 function! s:SetWxapp()
+  nmap <leader>r <Plug>(WxOpenRelated)
   if &filetype ==# 'javascript'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
   elseif &filetype ==# 'wxml'

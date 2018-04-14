@@ -172,7 +172,6 @@ call denite#custom#map(
       \)
 
 nnoremap <silent> <space>a  :<C-u>Denite -mode=normal npm<CR>
-nnoremap <silent> <space>b  :<C-u>Denite -mode=normal buffer<CR>
 nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>d  :<C-u>Denite directory<cr>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
