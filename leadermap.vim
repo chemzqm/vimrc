@@ -64,6 +64,8 @@ let g:mapleader = ','
   nnoremap <leader>tr :TernRefs<cr>
   nnoremap <leader>tR :TernRename<cr>
 
+  nmap <Leader>py <Plug>(Prettier)
+
   nmap <leader>se <Plug>SvgEdit
   nmap <leader>sp <Plug>SvgPreview
 " }}

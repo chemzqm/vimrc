@@ -59,9 +59,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'prettier/vim-prettier'
+Plug 'prettier/vim-prettier', {'do': 'yarn install'}
 Plug 'kopischke/vim-stay'
-Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
 filetype plugin indent on
