@@ -25,6 +25,7 @@ Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
+Plug 'chemzqm/json5.vim', {'dir': g:local, 'frozen': 1}
 Plug 'romainl/vim-cool' " search improve
 Plug 'Shougo/deoplete.nvim'
 Plug 'mitsuse/autocomplete-swift'
@@ -61,6 +62,13 @@ Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'prettier/vim-prettier', {'do': 'yarn install'}
 Plug 'kopischke/vim-stay'
+Plug 'leafgarland/typescript-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'majutsushi/tagbar'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'make release',
+    \ }
 call plug#end()
 
 filetype plugin indent on

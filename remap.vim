@@ -5,10 +5,14 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" LanguageClient-neovim
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> rn :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> rf :call LanguageClient#textDocument_references()<CR>
+
 imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : lexima#expand('<CR>', 'i'))
 " optional, expand snippts with Ctrl+U
-
-nnoremap <F5> mX:sp ~/.fortunes<CR>ggd/^--/<CR>Gp:wq<CR>'XGA<CR><Esc>p`X
 " Preview markdown
 nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
@@ -25,8 +29,6 @@ nnoremap Y y$
 nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
-"nnoremap gp  :Gpush --force<CR>
-
 nnoremap gp :call <SID>gpush()<CR>
 
 function! s:gpush()

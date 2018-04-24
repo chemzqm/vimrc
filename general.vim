@@ -116,7 +116,7 @@ hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 
 " Complete config {{
 set complete+=k
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
 " }}
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:

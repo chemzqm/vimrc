@@ -4,6 +4,7 @@
 augroup common
   autocmd!
   autocmd CursorHold,CursorHoldI * checktime
+  autocmd CursorHold,CursorHoldI * call s:SignatureHelp()
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
   autocmd CompleteDone * pclose
@@ -23,6 +24,12 @@ augroup stay_no_lcd
   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
 augroup END
 
+function! s:SignatureHelp()
+  if &ft == 'typescript' || &ft == 'javascript'
+    call LanguageClient#textDocument_signatureHelp()
+  endif
+endfunction
+
 function! s:OnDeniteEnter()
   call feedkeys('<enter>')
 endfunction
@@ -32,7 +39,8 @@ function! s:ShortPath(p)
 endfunction
 
 function! s:SetWxapp()
-  nmap <leader>r <Plug>(WxOpenRelated)
+  nmap <leader>sw <Plug>(WxOpenRelated)
+  nmap <leader>da <Plug>(WxOpenDash)
   if &filetype ==# 'javascript'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
   elseif &filetype ==# 'wxml'

@@ -38,7 +38,19 @@
 " }}
 
 " deoplete.nvim {{
-  "let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_at_startup = 1
+  call deoplete#custom#source('_',
+        \ 'matchers', ['matcher_fuzzy'])
+  call deoplete#custom#option('complete_method', 'omnifunc')
+  call deoplete#custom#source('_', 'converters',
+        \ ['converter_auto_delimiter', 'remove_overlap'])
+  call deoplete#custom#source('omni', 'input_patterns', {
+        \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+        \ 'java': '[^. *\t]\.\w*',
+        \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
+        \ 'javascript': '[^. *\t]\.\w*',
+        \ })
+
   "let g:deoplete#omni_patterns = {}
   "let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
   "let g:deoplete#sources = {}
@@ -74,11 +86,6 @@
   let g:xml_syntax_folding = 1
 " }}
 
-" unite-session {{
-  let g:unite_source_session_path = expand('~') . '/.vim/sessions'
-  let g:unite_source_session_options = &sessionoptions
-" }}
-
 " ale {{
   let g:ale_linters = {
   \   'javascript': ['eslint'],
@@ -88,7 +95,7 @@
   \   'scss': [],
   \   'python': ['pylint'],
   \   'css': ['stylelint'],
-  \   'typescript': ['tslint'],
+  \   'typescript': [],
   \   'json': ['jsonlint'],
   \   'swift': ['swiftlint'],
   \}
@@ -287,4 +294,22 @@
 
 " asyncrun.vim {{
   let g:asyncrun_bell = 1
+" }}
+
+" LanguageClient-neovim {{
+  let g:LanguageClient_serverCommands = {
+        \ 'javascript': ['javascript-typescript-stdio'],
+        \ 'typescript': ['javascript-typescript-stdio'],
+        \ 'vue': ['vls'],
+        \ }
+  let g:LanguageClient_diagnosticsEnable = 1
+" }}"
+
+" indentLine {{
+  let g:indentLine_fileTypeExclude = ['json']
+" }}"
+
+" denite-extra {{
+  let g:denite_source_session_path = '/Users/chemzqm/.vim/sessions'
+  let tern_set_omni_function = 0
 " }}"

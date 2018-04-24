@@ -40,8 +40,6 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
-  " Relaod wechatapp dev tooles
-  nmap <leader>ar <Plug>WxappReload
   " vim-sneak
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S

@@ -9,6 +9,7 @@ function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. "%5*%{MyStatusGitChanges()}%*"
+        \. "%5*%{MyStatusLanguageClientStatus()}%*"
         \. " %f %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. errorMsg
@@ -46,6 +47,13 @@ function! MyStatusGitChanges() abort
     return ''
   endif
   return '  +'.summary[0].' ~'.summary[1].' -'.summary[2].' '
+endfunction
+
+function! MyStatusLanguageClientStatus() abort
+  if !exists('*LanguageClient_statusLine') | return '' | endif
+  let status = LanguageClient_statusLine()
+  if empty(status) | return '' | endif
+  return ' 'status' '
 endfunction
 
 function! MyStatusGit(...) abort
