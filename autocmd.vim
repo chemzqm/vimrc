@@ -14,6 +14,7 @@ augroup common
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
   autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+  autocmd BufRead,BufNewFile package.json Vison
   " quickfix window will open when something adds to it
   autocmd QuickFixCmdPost * botright copen 8
 augroup end
@@ -49,6 +50,8 @@ function! s:SetWxapp()
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxss.dict
   elseif &filetype ==# 'json'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/json.dict
+  elseif &filetype ==# 'json5'
+    execute 'Vison wx-page.json'
   endif
 endfunction
 

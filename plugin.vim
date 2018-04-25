@@ -9,7 +9,6 @@
 
 " autocomplete-swift {{
   autocmd FileType swift imap <buffer> <C-n> <Plug>(autocomplete_swift_jump_to_placeholder)
-  autocmd FileType swift :call deoplete#enable()
 " }}
 
 " jedi {{
@@ -20,6 +19,7 @@
 
 " vim-run {{
   let g:vim_run_command_map = {
+        \'typescript': 'ts-node',
         \'javascript': 'node',
         \'python': 'python3',
         \'go': 'go run',
@@ -39,22 +39,20 @@
 
 " deoplete.nvim {{
   let g:deoplete#enable_at_startup = 1
-  call deoplete#custom#source('_',
-        \ 'matchers', ['matcher_fuzzy'])
-  call deoplete#custom#option('complete_method', 'omnifunc')
-  call deoplete#custom#source('_', 'converters',
-        \ ['converter_auto_delimiter', 'remove_overlap'])
-  call deoplete#custom#source('omni', 'input_patterns', {
-        \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-        \ 'java': '[^. *\t]\.\w*',
-        \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
-        \ 'javascript': '[^. *\t]\.\w*',
-        \ })
-
-  "let g:deoplete#omni_patterns = {}
-  "let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
-  "let g:deoplete#sources = {}
-  "let g:deoplete#sources._ = ['buffer', 'dictionary', 'omni', 'tag', 'snip']
+  "call deoplete#custom#option('complete_method', 'omnifunc')
+  if exists('*deoplete#custom#option')
+    call deoplete#custom#source('_', 'converters',
+          \ ['converter_auto_delimiter', 'remove_overlap'])
+    call deoplete#custom#source('omni', 'input_patterns', {
+          \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+          \ 'java': '[^. *\t]\.\w*',
+          \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
+          \ })
+    call deoplete#custom#option('sources', {
+          \ '_': ['buffer'],
+          \ 'javascript': ['omni', 'buffer'],
+          \})
+  endif
 " }}
 
 " plug.nvim {{
@@ -95,7 +93,7 @@
   \   'scss': [],
   \   'python': ['pylint'],
   \   'css': ['stylelint'],
-  \   'typescript': [],
+  \   'typescript': ['tslint'],
   \   'json': ['jsonlint'],
   \   'swift': ['swiftlint'],
   \}
@@ -122,6 +120,7 @@
   let g:UltiSnipsJumpForwardTrigger='<C-j>'
   let g:UltiSnipsJumpBackwardTrigger='<C-k>'
   let g:UltiSnipsEditSplit='vertical'
+  let g:UltiSnipsSnippetsDir='/Users/chemzqm/vim-dev/snippets/UltiSnips'
 " }}
 
 " Netrw {{

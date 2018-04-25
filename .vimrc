@@ -65,6 +65,7 @@ Plug 'kopischke/vim-stay'
 Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
+Plug 'Quramy/vison'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'make release',

@@ -8,8 +8,8 @@ map g/ <Plug>(incsearch-stay)
 " LanguageClient-neovim
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> rn :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> rf :call LanguageClient#textDocument_references()<CR>
+nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
 imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : lexima#expand('<CR>', 'i'))
 " optional, expand snippts with Ctrl+U
