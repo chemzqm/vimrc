@@ -53,7 +53,10 @@ function! MyStatusLanguageClientStatus() abort
   if !exists('*LanguageClient_statusLine') | return '' | endif
   let status = LanguageClient_statusLine()
   if empty(status) | return '' | endif
-  return ' 'status' '
+  let t = type(status)
+  if t == v:t_list | return ' '.status[0].' ' | endif
+  if t == v:t_string | return ' '.status.' ' | endif
+  return ''
 endfunction
 
 function! MyStatusGit(...) abort

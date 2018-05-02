@@ -37,6 +37,7 @@
   let g:echodoc_enable_at_startup = 1
 " }}
 
+
 " deoplete.nvim {{
   let g:deoplete#enable_at_startup = 1
   "call deoplete#custom#option('complete_method', 'omnifunc')
@@ -54,7 +55,6 @@
           \})
   endif
 " }}
-
 " plug.nvim {{
   let g:plug_rebase = 1
 " }}
@@ -87,8 +87,8 @@
 " ale {{
   let g:ale_linters = {
   \   'javascript': ['eslint'],
+  \   'wxss': ['stylelint'],
   \   'html': [],
-  \   'wxss': [],
   \   'ruby': [],
   \   'scss': [],
   \   'python': ['pylint'],
@@ -296,12 +296,22 @@
 " }}
 
 " LanguageClient-neovim {{
+  let g:LanguageClient_devel = 1
   let g:LanguageClient_serverCommands = {
         \ 'javascript': ['javascript-typescript-stdio'],
         \ 'typescript': ['javascript-typescript-stdio'],
+        \ 'wxml': ['wxml-langserver', '--debug'],
+        \ 'rust': ['rustup', 'run', 'stable', 'rls'],
         \ 'vue': ['vls'],
         \ }
+  " Only Error in vim echo area
+  let g:LanguageClient_windowLogMessageLevel = 'Error'
+  let g:LanguageClient_loggingLevel = 'INFO'
+  " diagnosticsEnable default to 1
   let g:LanguageClient_diagnosticsEnable = 1
+  let g:LanguageClient_settingsPath = expand('~')."/.vim/settings.json"
+  " loadSettings default to 1
+  let g:LanguageClient_loadSettings = 1
 " }}"
 
 " indentLine {{

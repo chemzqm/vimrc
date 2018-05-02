@@ -1,18 +1,11 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
+
 "map y <Plug>(operator-flashy)
 "nmap Y <Plug>(operator-flashy)$
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-" LanguageClient-neovim
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
-
-imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : lexima#expand('<CR>', 'i'))
-" optional, expand snippts with Ctrl+U
 " Preview markdown
 nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
@@ -37,9 +30,6 @@ function! s:gpush()
     execute 'Gpush origin '. substitute(branch, "\n$", '', '').' --force-with-lease'
   endif
 endfunction
-"nnoremap <C-c> :echo 3<CR>
-" remap <cr> when completing
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <C-w> <C-[>diwa
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
@@ -49,17 +39,32 @@ inoremap <C-f> <Right>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
-nmap [g <Plug>GitGutterPrevHunk
-nmap ]g <Plug>GitGutterNextHunk
+" plugins {{
+
+  " LanguageClient-neovim
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
 
-" easy align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+  " easy align
+  xmap ga <Plug>(EasyAlign)
+  nmap ga <Plug>(EasyAlign)
 
-" ale
-nmap <silent> [k <Plug>(ale_previous_wrap)
-nmap <silent> [j <Plug>(ale_next_wrap)
+  " gitgutter
+  nmap [g <Plug>GitGutterPrevHunk
+  nmap ]g <Plug>GitGutterNextHunk
+
+  " ale
+  nmap <silent> [a <Plug>(ale_previous_wrap)
+  nmap <silent> ]a <Plug>(ale_next_wrap)
+
+  " asynccomplete
+  imap <c-space> <Plug>(asyncomplete_force_refresh)
+  " remap for complete to use tab and <cr>
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" }}
 
 " window navigate {{
   nnoremap <C-l> <c-w>l
@@ -154,15 +159,3 @@ endfunc
   inoremap <M-4> <C-o>4gt
   inoremap <M-5> <C-o>5gt
 " }}
-
-" vim-asterisk {{
-  "map *   <Plug>(asterisk-*)
-  "map #   <Plug>(asterisk-#)
-  "map g*  <Plug>(asterisk-g*)
-  "map g#  <Plug>(asterisk-g#)
-  "map z*  <Plug>(asterisk-z*)
-  "map gz* <Plug>(asterisk-gz*)
-  "map z#  <Plug>(asterisk-z#)
-  "map gz# <Plug>(asterisk-gz#)
-" }}
-

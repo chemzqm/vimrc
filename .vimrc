@@ -10,7 +10,7 @@ call plug#begin()
 Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
+"Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
@@ -27,11 +27,8 @@ Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/json5.vim', {'dir': g:local, 'frozen': 1}
 Plug 'romainl/vim-cool' " search improve
-Plug 'Shougo/deoplete.nvim'
 Plug 'mitsuse/autocomplete-swift'
-Plug 'davidhalter/jedi-vim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'Shougo/echodoc.vim'
 Plug 'tweekmonster/nvim-api-viewer'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'tpope/vim-rails'
@@ -51,12 +48,12 @@ Plug 'elzr/vim-json'
 Plug 'tpope/vim-surround'
 Plug 'othree/xml.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'nixprime/cpsm'
 Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
+Plug 'Shougo/deoplete.nvim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -65,8 +62,9 @@ Plug 'kopischke/vim-stay'
 Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
-Plug 'Quramy/vison'
+Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'autozimu/LanguageClient-neovim', {
+    \ 'frozen': 1,
     \ 'branch': 'next',
     \ 'do': 'make release',
     \ }

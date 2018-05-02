@@ -51,7 +51,7 @@ set keywordprg=
 set showtabline=2
 set laststatus=2
 set noshowmode
-set updatetime=100
+set updatetime=300
 " Formatting
 set smarttab
 set shiftwidth=2
@@ -116,6 +116,7 @@ hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 
 " Complete config {{
 set complete+=k
+set complete-=t
 "set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
 " }}

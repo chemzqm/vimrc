@@ -185,7 +185,7 @@ nnoremap <silent> <space>n  :<C-u>Denite note<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>
 nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
-nnoremap <silent> <space>r        :<C-u>Denite redis_mru:.<cr>
+nnoremap <silent> <space>r  :<C-u>Denite redis_mru:.<cr>
 nnoremap <silent> <space>s  :<C-u>Denite session<cr>
 nnoremap <silent> <space>t  :call execute('Denite file_rec:'.expand('%:p:h'))<CR>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>

@@ -7,7 +7,6 @@ command! -nargs=0 Mouse      :call s:ToggleMouse()
 command! -nargs=0 Pretty     :call s:PrettyFile()
 command! -nargs=0 Jsongen    :call s:Jsongen()
 command! -nargs=0 Reset      :call s:StatusReset()
-command! -nargs=0 Publish    :call s:Publish()
 command! -nargs=* Exe        :call s:Execute(<q-args>)
 command! -nargs=0 Wept       :call s:StartWept()
 command! -nargs=0 Make       :call s:RunMake()
@@ -94,16 +93,6 @@ function! s:FileDir(filename)
     return
   endif
   return fnamemodify(file, ':h')
-endfunction
-
-" module publish
-function! s:Publish()
-  let old_dir = getcwd()
-  " file at ~/bin/publish
-  let dir = fnamemodify(findfile('package.json', '.;'), ':p:h')
-  execute 'lcd' . dir
-  execute 'Nrun publish'
-  execute 'lcd' . old_dir
 endfunction
 
 " lcd to current git root

@@ -3,18 +3,17 @@
 " common file autocmd {{
 augroup common
   autocmd!
-  autocmd CursorHold,CursorHoldI * checktime
-  autocmd CursorHold,CursorHoldI * call s:SignatureHelp()
+  autocmd CursorHold * call s:SignatureHelp()
+  autocmd User LanguageClientDiagnosticsChanged call s:SignatureHelp()
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
-  autocmd CompleteDone * pclose
+  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
   autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
-  autocmd BufRead,BufNewFile package.json Vison
   " quickfix window will open when something adds to it
   autocmd QuickFixCmdPost * botright copen 8
 augroup end
@@ -26,6 +25,7 @@ augroup stay_no_lcd
 augroup END
 
 function! s:SignatureHelp()
+  if !exists('*LanguageClient#textDocument_signatureHelp') | return | endif
   if &ft == 'typescript' || &ft == 'javascript'
     call LanguageClient#textDocument_signatureHelp()
   endif
@@ -42,11 +42,7 @@ endfunction
 function! s:SetWxapp()
   nmap <leader>sw <Plug>(WxOpenRelated)
   nmap <leader>da <Plug>(WxOpenDash)
-  if &filetype ==# 'javascript'
-    setl dictionary+=~/vim-dev/wxapp.vim/dict/js.dict
-  elseif &filetype ==# 'wxml'
-    setl dictionary+=~/vim-dev/wxapp.vim/dict/wxml.dict
-  elseif &filetype ==# 'wxss'
+  if &filetype ==# 'wxss'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxss.dict
   elseif &filetype ==# 'json'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/json.dict
