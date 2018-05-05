@@ -1,5 +1,11 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" complete.nvim {{
+  let g:complete_sources = ['buffer', 'dictionary', 'path', 'languageclient']
+  let g:complete_lcn_file_types = ['vim']
+  let g:complete_timeout = 600
+" }}"
+
 " vim-prettier {{
   let g:prettier#config#semi = 'false'
   let g:prettier#config#single_quote = 'true'
@@ -27,12 +33,6 @@
         \}
 " }}
 
-" ruby-complete {{
-  let g:rubycomplete_rails = 1
-  let g:rubycomplete_buffer_loading = 1
-  let g:rubycomplete_classes_in_global = 1
-" }}
-
 " echodoc {{
   let g:echodoc_enable_at_startup = 1
 " }}
@@ -55,6 +55,7 @@
           \})
   endif
 " }}
+
 " plug.nvim {{
   let g:plug_rebase = 1
 " }}

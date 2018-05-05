@@ -60,8 +60,20 @@ inoremap <C-e> <End>
   nmap <silent> [a <Plug>(ale_previous_wrap)
   nmap <silent> ]a <Plug>(ale_next_wrap)
 
-  " asynccomplete
-  imap <c-space> <Plug>(asyncomplete_force_refresh)
+  " complete.nvim
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ complete#refresh()
+  inoremap <silent><expr> <c-space> complete#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+  "imap <c-space> <Plug>(complete_start)
   " remap for complete to use tab and <cr>
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}

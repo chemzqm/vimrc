@@ -2,15 +2,15 @@ set nocompatible
 
 " specified to speed up neovim
 let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
-let g:loaded_vimballPlugin = 1
 let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 "Plug 'lifepillar/vim-mucomplete'
+"Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
-"Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/complete.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
@@ -53,7 +53,6 @@ Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
-Plug 'Shougo/deoplete.nvim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -66,7 +65,7 @@ Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'frozen': 1,
     \ 'branch': 'next',
-    \ 'do': 'make release',
+    \ 'do': 'make build',
     \ }
 call plug#end()
 
