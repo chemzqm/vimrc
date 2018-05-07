@@ -1,7 +1,4 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
-
-"map y <Plug>(operator-flashy)
-"nmap Y <Plug>(operator-flashy)$
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
@@ -42,11 +39,10 @@ inoremap <C-e> <End>
 " plugins {{
 
   " LanguageClient-neovim
-  nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent><expr> K <SID>LCN_support() ? ':call LanguageClient_textDocument_hover()<CR>' : 'K'
+  nnoremap <silent><expr> gd <SID>LCN_support() ? ':call LanguageClient_textDocument_definition()<CR>' : 'gd'
   nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
   nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
-
 
   " easy align
   xmap ga <Plug>(EasyAlign)
@@ -72,8 +68,6 @@ inoremap <C-e> <End>
         \ complete#refresh()
   inoremap <silent><expr> <c-space> complete#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-  "imap <c-space> <Plug>(complete_start)
   " remap for complete to use tab and <cr>
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}
@@ -171,3 +165,10 @@ endfunc
   inoremap <M-4> <C-o>4gt
   inoremap <M-5> <C-o>5gt
 " }}
+
+" check if supported by LanguageClient {{
+  function! s:LCN_support()
+    let types = keys(get(g:, 'LanguageClient_serverCommands', {}))
+    return index(types, &ft) >= 0
+  endfunction
+" }}"

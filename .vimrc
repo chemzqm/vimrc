@@ -7,10 +7,11 @@ set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 "Plug 'lifepillar/vim-mucomplete'
 "Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
+"Plug 'Shougo/deoplete.nvim'
+Plug 'neoclide/complete.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/complete.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}

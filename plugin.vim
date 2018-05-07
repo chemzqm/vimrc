@@ -2,8 +2,7 @@
 
 " complete.nvim {{
   let g:complete_sources = ['buffer', 'dictionary', 'path', 'languageclient']
-  let g:complete_lcn_file_types = ['vim']
-  let g:complete_timeout = 600
+  let g:complete_timeout = 300
 " }}"
 
 " vim-prettier {{

@@ -27,7 +27,7 @@ augroup END
 function! s:SignatureHelp()
   if !exists('*LanguageClient#textDocument_signatureHelp') | return | endif
   if &ft == 'typescript' || &ft == 'javascript'
-    call LanguageClient#textDocument_signatureHelp()
+    "call LanguageClient#textDocument_signatureHelp()
   endif
 endfunction
 
