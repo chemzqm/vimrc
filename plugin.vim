@@ -1,15 +1,14 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
 " complete.nvim {{
-  let g:complete_sources = ['buffer', 'dictionary', 'path', 'languageclient']
-  let g:complete_timeout = 300
+  let g:complete_timeout = 2000
+  let g:complete_source_disabled = ['languageclient']
 " }}"
 
 " vim-prettier {{
-  let g:prettier#config#semi = 'false'
-  let g:prettier#config#single_quote = 'true'
-  let g:prettier#config#bracket_spacing = 'false'
-  let g:prettier#config#jsx_bracket_same_line = 'true'
+  let g:prettier#exec_cmd_async = 1
+  let g:prettier#quickfix_enabled = 0
+  let g:prettier#config#use_tabs = 'false'
 " }}
 
 " autocomplete-swift {{
@@ -88,6 +87,7 @@
   let g:ale_linters = {
   \   'javascript': ['eslint'],
   \   'wxss': ['stylelint'],
+  \   'vim': ['vint'],
   \   'html': [],
   \   'ruby': [],
   \   'scss': [],
@@ -321,4 +321,9 @@
 " denite-extra {{
   let g:denite_source_session_path = '/Users/chemzqm/.vim/sessions'
   let tern_set_omni_function = 0
+" }}"
+
+" vim-lion {{
+  let g:lion_squeeze_spaces = 1
+  let g:lion_create_maps = 1
 " }}"

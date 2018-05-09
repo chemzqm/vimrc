@@ -44,10 +44,6 @@ inoremap <C-e> <End>
   nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
   nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
-  " easy align
-  xmap ga <Plug>(EasyAlign)
-  nmap ga <Plug>(EasyAlign)
-
   " gitgutter
   nmap [g <Plug>GitGutterPrevHunk
   nmap ]g <Plug>GitGutterNextHunk

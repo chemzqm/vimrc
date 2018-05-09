@@ -39,7 +39,6 @@ Plug 'rizzatti/dash.vim'
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
 Plug 'ap/vim-css-color'
-Plug 'junegunn/vim-easy-align'
 Plug 'tommcdo/vim-exchange'
 Plug 'dag/vim-fish'
 Plug 'airblade/vim-gitgutter'
@@ -52,7 +51,9 @@ Plug 'justinmk/vim-sneak'
 Plug 'nixprime/cpsm'
 Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
+Plug 'tommcdo/vim-lion'
 Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
 "Plug 'posva/vim-vue'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
@@ -69,10 +70,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'make build',
     \ }
 call plug#end()
-
 filetype plugin indent on
 syntax on
-
 " vimrc files
 for s:path in split(glob('~/.vim/vimrc/*.vim'), "\n")
   exe 'source ' . s:path

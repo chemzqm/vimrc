@@ -137,7 +137,7 @@ function! s:Clean()
 endfunction
 
 function! s:GenDoc()
-  if &ft ==# 'javascript'
+  if &ft ==# 'javascript' || &ft ==# 'typescript'
     exe "JsDoc"
   elseif &ft ==# 'css'
     let lines = ['/*', ' * ', ' */']
