@@ -44,6 +44,9 @@ inoremap <C-e> <End>
   nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
   nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
+  nmap <silent>gj <Plug>(coc-jump-definition)
+  nmap <C-,>  :call CocShowType()<CR>
+
   " gitgutter
   nmap [g <Plug>GitGutterPrevHunk
   nmap ]g <Plug>GitGutterNextHunk
@@ -61,8 +64,8 @@ inoremap <C-e> <End>
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
-        \ complete#refresh()
-  inoremap <silent><expr> <c-space> complete#refresh()
+        \ coc#refresh()
+  inoremap <silent><expr> <c-space> coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   " remap for complete to use tab and <cr>
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

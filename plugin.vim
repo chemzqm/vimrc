@@ -1,10 +1,5 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" complete.nvim {{
-  let g:complete_timeout = 2000
-  let g:complete_source_disabled = ['languageclient']
-" }}"
-
 " vim-prettier {{
   let g:prettier#exec_cmd_async = 1
   let g:prettier#quickfix_enabled = 0
@@ -13,12 +8,6 @@
 
 " autocomplete-swift {{
   autocmd FileType swift imap <buffer> <C-n> <Plug>(autocomplete_swift_jump_to_placeholder)
-" }}
-
-" jedi {{
-  let g:jedi#force_py_version = 3
-  let g:jedi#use_splits_not_buffers = "left"
-  let g:jedi#goto_assignments_command = "<leader>tf"
 " }}
 
 " vim-run {{
@@ -34,7 +23,6 @@
 " echodoc {{
   let g:echodoc_enable_at_startup = 1
 " }}
-
 
 " deoplete.nvim {{
   let g:deoplete#enable_at_startup = 1
@@ -88,12 +76,13 @@
   \   'javascript': ['eslint'],
   \   'wxss': ['stylelint'],
   \   'vim': ['vint'],
+  \   'markdown': [],
   \   'html': [],
   \   'ruby': [],
   \   'scss': [],
   \   'python': ['pylint'],
   \   'css': ['stylelint'],
-  \   'typescript': ['tslint'],
+  \   'typescript': ['tsserver'],
   \   'json': ['jsonlint'],
   \   'swift': ['swiftlint'],
   \}
@@ -298,7 +287,6 @@
 " LanguageClient-neovim {{
   let g:LanguageClient_devel = 1
   let g:LanguageClient_serverCommands = {
-        \ 'javascript': ['javascript-typescript-stdio'],
         \ 'typescript': ['javascript-typescript-stdio'],
         \ 'wxml': ['wxml-langserver', '--debug'],
         \ 'rust': ['rustup', 'run', 'stable', 'rls'],
@@ -326,4 +314,37 @@
 " vim-lion {{
   let g:lion_squeeze_spaces = 1
   let g:lion_create_maps = 1
+" }}"
+
+" complete.nvim {{
+  let g:coc_timeout = 300
+  let g:coc_ignore_git_ignore = 0
+  let g:coc_use_noselect = 1
+  let g:coc_chars_guifg = '#ffffff'
+  let g:coc_chars_guibg = '#b180a4'
+  let g:coc_increment_highlight = 1
+  let g:coc_source_config = {
+        \  'languageclient': {
+        \    'filetypes': ['typescript', 'wxml', 'vue'],
+        \    'disabled': 0,
+        \  },
+        \  'omni': {
+        \    'filetypes': ['css', 'html', 'wxss']
+        \  },
+        \  'file': {
+        \    'ignorePatterns': ['*.bundle.js']
+        \  },
+        \  'word': {
+        \    'filetypes': ['markdown']
+        \  },
+        \  'emoji': {
+        \    'filetypes': ['markdown']
+        \  },
+        \  'ultisnips': {
+        \    'filetypes': ['vim']
+        \  },
+        \  'tern': {
+        \    'ternRoot': expand('~/lib/tern'),
+        \  },
+        \}
 " }}"

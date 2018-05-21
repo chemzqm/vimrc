@@ -1,21 +1,20 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
-
 " common file autocmd {{
 augroup common
   autocmd!
-  autocmd CursorHold * call s:SignatureHelp()
-  autocmd User LanguageClientDiagnosticsChanged call s:SignatureHelp()
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call OnBufEnter()
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
-  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
   autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
   " quickfix window will open when something adds to it
   autocmd QuickFixCmdPost * botright copen 8
+  autocmd Filetype *
+        \ if &omnifunc == "" |
+        \    setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
 augroup end
 
 augroup stay_no_lcd
@@ -25,9 +24,8 @@ augroup stay_no_lcd
 augroup END
 
 function! s:SignatureHelp()
-  if !exists('*LanguageClient#textDocument_signatureHelp') | return | endif
-  if &ft == 'typescript' || &ft == 'javascript'
-    "call LanguageClient#textDocument_signatureHelp()
+  if &filetype ==# 'typescript'
+    call LanguageClient#textDocument_signatureHelp()
   endif
 endfunction
 
@@ -78,6 +76,7 @@ endfunction
 augroup javascript
   autocmd!
   au FileType javascript :call s:SetLoadFunctions()
+  autocmd CursorHold,CursorHoldI  <buffer> :call CocShowSignature()
 augroup end
 
 function! s:SetLoadFunctions()

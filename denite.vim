@@ -173,7 +173,7 @@ call denite#custom#map(
 
 nnoremap <silent> <space>a  :<C-u>Denite -mode=normal npm<CR>
 nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
-nnoremap <silent> <space>d  :<C-u>Denite directory<cr>
+nnoremap <silent> <space>d  :<C-u>Denite todo<cr>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>g  :<C-u>Denite gitstatus<CR>

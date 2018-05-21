@@ -6,9 +6,7 @@ let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 "Plug 'lifepillar/vim-mucomplete'
-"Plug 'neoclide/tern-neovim', {'dir': g:local, 'frozen': 1}
-"Plug 'Shougo/deoplete.nvim'
-Plug 'neoclide/complete.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
@@ -22,6 +20,7 @@ Plug 'neoclide/denite-git', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
+Plug 'chemzqm/gocode', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
@@ -53,7 +52,6 @@ Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
 "Plug 'posva/vim-vue'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
@@ -64,6 +62,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
+"Plug 'Shougo/neco-vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'frozen': 1,
     \ 'branch': 'next',

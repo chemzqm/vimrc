@@ -54,6 +54,7 @@ set noshowmode
 set updatetime=300
 " Formatting
 set smarttab
+set smartcase
 set shiftwidth=2
 set tabstop=2
 set expandtab
@@ -119,5 +120,6 @@ set complete+=k
 set complete-=t
 "set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
+"set completeopt=menuone,noinsert,noselect
 " }}
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
