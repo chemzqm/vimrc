@@ -47,6 +47,9 @@ function! s:Grep(...)
       call add(strs, str)
     endif
   endfor
+  if index(opts, '-e') < 0
+    call add(opts, '-F')
+  endif
   if empty(strs)
     echoerr 'No pattern found'
   endif

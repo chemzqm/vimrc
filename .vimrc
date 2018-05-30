@@ -5,7 +5,7 @@ let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
 let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
-"Plug 'lifepillar/vim-mucomplete'
+Plug 'neoclide/rename.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
@@ -62,7 +62,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
-"Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'frozen': 1,
     \ 'branch': 'next',

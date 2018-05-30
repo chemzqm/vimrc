@@ -39,13 +39,15 @@ inoremap <C-e> <End>
 " plugins {{
 
   " LanguageClient-neovim
+  " Current needed for typescript
   nnoremap <silent><expr> K <SID>LCN_support() ? ':call LanguageClient_textDocument_hover()<CR>' : 'K'
   nnoremap <silent><expr> gd <SID>LCN_support() ? ':call LanguageClient_textDocument_definition()<CR>' : 'gd'
   nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
   nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
+  " coc.nvim
   nmap <silent>gj <Plug>(coc-jump-definition)
-  nmap <C-,>  :call CocShowType()<CR>
+  nmap <leader>?  :call CocShowDefinition()<CR>
 
   " gitgutter
   nmap [g <Plug>GitGutterPrevHunk
@@ -69,6 +71,8 @@ inoremap <C-e> <End>
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   " remap for complete to use tab and <cr>
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <C-u> pumvisible() ? '<PageUp>' : '<C-u>'
+  inoremap <silent><expr> <C-d> pumvisible() ? '<PageDown>' : '<C-d>'
 " }}
 
 " window navigate {{

@@ -27,6 +27,7 @@ let g:mapleader = ','
   nnoremap <leader>o :call <SID>Open()<cr>
   inoremap <2-LeftMouse> <C-o>:call <SID>Open()<CR>
   nnoremap <2-LeftMouse> :call <SID>Open()<CR>
+  nnoremap <leader>sf :CtrlSF 
 " }}
 
 " setting switch {{
@@ -36,7 +37,6 @@ let g:mapleader = ','
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
   nnoremap <leader>bg :call <SID>ToggleBackground()<cr>
   nnoremap <leader>qf :call asyncrun#quickfix_toggle(8)<cr>
-
 " }}
 
 " plugin {{
@@ -124,7 +124,7 @@ function! s:Clean()
     silent! execute "%s/\<tab>/  /g"
   endif
   " replace tailing comma
-  if ft ==# 'javascript'
+  if ft ==# 'javascript' || ft ==# 'typescript'
     silent! execute '%s/;$//'
     " line should not starts with [ or (
     silent! execute '%s/^\s*\zs\([\[(]\)/;\1/'

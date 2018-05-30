@@ -76,7 +76,6 @@ endfunction
 augroup javascript
   autocmd!
   au FileType javascript :call s:SetLoadFunctions()
-  autocmd CursorHold,CursorHoldI  <buffer> :call CocShowSignature()
 augroup end
 
 function! s:SetLoadFunctions()

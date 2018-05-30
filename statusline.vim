@@ -84,6 +84,7 @@ endfunction
 
 function! s:JobHandler(job_id, data, event) dict
   if !has_key(s:job_status, a:job_id) | return | endif
+  if v:dying | return | endif
   let output = join(self.stdout)
   if !empty(output)
     call s:SetGitStatus(self.cwd, ' '.output.' ')

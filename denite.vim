@@ -178,8 +178,8 @@ nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>g  :<C-u>Denite gitstatus<CR>
 nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
-nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
-nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
+nnoremap <silent> <space>j  :Denite -resume -cursor-pos=+1 -immediately<CR>
+nnoremap <silent> <space>k  :Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>n  :<C-u>Denite note<cr>
 nnoremap <silent> <space>o  :<C-u>Denite outline<cr>

@@ -24,24 +24,6 @@
   let g:echodoc_enable_at_startup = 1
 " }}
 
-" deoplete.nvim {{
-  let g:deoplete#enable_at_startup = 1
-  "call deoplete#custom#option('complete_method', 'omnifunc')
-  if exists('*deoplete#custom#option')
-    call deoplete#custom#source('_', 'converters',
-          \ ['converter_auto_delimiter', 'remove_overlap'])
-    call deoplete#custom#source('omni', 'input_patterns', {
-          \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-          \ 'java': '[^. *\t]\.\w*',
-          \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
-          \ })
-    call deoplete#custom#option('sources', {
-          \ '_': ['buffer'],
-          \ 'javascript': ['omni', 'buffer'],
-          \})
-  endif
-" }}
-
 " plug.nvim {{
   let g:plug_rebase = 1
 " }}
@@ -122,13 +104,6 @@
 " vim-gitgutter {{
   let g:gitgutter_max_signs = 999
 " }}
-
-" tern_for_vim {{
-  let g:tern_request_timeout = 5
-  let g:tern_show_argument_hints = 'on_hold'
-  let g:tern#command = ['node', expand('~').'/lib/tern/bin/tern']
-  "let g:tern_show_signature_in_pum = 1
-"}}
 
 " emmet {{
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
@@ -295,8 +270,7 @@
   " Only Error in vim echo area
   let g:LanguageClient_windowLogMessageLevel = 'Error'
   let g:LanguageClient_loggingLevel = 'INFO'
-  " diagnosticsEnable default to 1
-  let g:LanguageClient_diagnosticsEnable = 1
+  let g:LanguageClient_diagnosticsEnable = 0
   let g:LanguageClient_settingsPath = expand('~')."/.vim/settings.json"
   " loadSettings default to 1
   let g:LanguageClient_loadSettings = 1
@@ -316,6 +290,16 @@
   let g:lion_create_maps = 1
 " }}"
 
+" ctrlsf.vim {{
+  let g:ctrlsf_ackprg = '/usr/local/bin/rg'
+  let g:ctrlsf_case_sensitive = 'yes'
+" }}"
+
+" rename.nvim {{
+  let g:rename_hl_guifg = '#ffffff'
+  let g:rename_hl_guibg = '#b180a4'
+" }}"
+
 " complete.nvim {{
   let g:coc_timeout = 300
   let g:coc_ignore_git_ignore = 0
@@ -329,22 +313,28 @@
         \    'disabled': 0,
         \  },
         \  'omni': {
-        \    'filetypes': ['css', 'html', 'wxss']
+        \    'filetypes': ['css', 'html', 'wxss'],
         \  },
         \  'file': {
-        \    'ignorePatterns': ['*.bundle.js']
+        \    'ignorePatterns': ['*.bundle.js'],
         \  },
         \  'word': {
-        \    'filetypes': ['markdown']
+        \    'filetypes': ['markdown'],
         \  },
         \  'emoji': {
-        \    'filetypes': ['markdown']
+        \    'filetypes': ['markdown'],
         \  },
         \  'ultisnips': {
-        \    'filetypes': ['vim']
+        \    'filetypes': ['vim'],
         \  },
         \  'tern': {
         \    'ternRoot': expand('~/lib/tern'),
+        \  },
+        \  'jedi': {
+        \    'settings': {
+        \       'dynamic_params': v:true,
+        \       'dynamic_params_for_other_modules': v:true
+        \    },
         \  },
         \}
 " }}"
