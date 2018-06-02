@@ -298,6 +298,7 @@
 " rename.nvim {{
   let g:rename_hl_guifg = '#ffffff'
   let g:rename_hl_guibg = '#b180a4'
+  let g:rename_search_execute = 'rg'
 " }}"
 
 " complete.nvim {{

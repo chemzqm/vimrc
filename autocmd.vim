@@ -8,7 +8,6 @@ augroup common
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
-  autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
   " quickfix window will open when something adds to it
   autocmd QuickFixCmdPost * botright copen 8
   autocmd Filetype *
@@ -17,11 +16,6 @@ augroup common
         \ endif
 augroup end
 
-augroup stay_no_lcd
-  autocmd!
-  autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
-  autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
-augroup END
 
 function! s:SignatureHelp()
   if &filetype ==# 'typescript'

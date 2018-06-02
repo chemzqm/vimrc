@@ -125,6 +125,7 @@ func! SnipComplete()
     let start -= 1
   endwhile
   let suggestions = []
+  " I've change the code of ultisnips
   let snips =  UltiSnips#SnippetsInCurrentScope(0)
   for item in snips
     let trigger = item.key

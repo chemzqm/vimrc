@@ -122,8 +122,8 @@ function! s:highlight()
   hi User3         guifg=#e03131 guibg=#111111    gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
-  hi user4 guifg=#f8f8ff guibg=#000000
-  hi user5 guifg=#f8f9fa guibg=#343a40
+  hi User4 guifg=#f8f8ff guibg=#000000
+  hi User5 guifg=#f8f9fa guibg=#343a40
 endfunction
 
 function! MyStatusLocError()

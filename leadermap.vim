@@ -22,17 +22,12 @@ let g:mapleader = ','
   nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-  nnoremap <leader>p "+]p`]
-
-  nnoremap <leader>o :call <SID>Open()<cr>
-  inoremap <2-LeftMouse> <C-o>:call <SID>Open()<CR>
-  nnoremap <2-LeftMouse> :call <SID>Open()<CR>
-  nnoremap <leader>sf :CtrlSF 
+  nnoremap <silent> <leader>pp "0p
+  nnoremap <silent> <leader>o :call <SID>Open()<cr>
 " }}
 
 " setting switch {{
   nnoremap <leader>sc :setl spell!<cr>
-  nnoremap <leader>hc :let @/ = ""<cr>
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
   nnoremap <leader>bg :call <SID>ToggleBackground()<cr>
@@ -43,29 +38,20 @@ let g:mapleader = ','
   " vim-sneak
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
+  " ctrlsf.vim
+  nnoremap <leader>sf :CtrlSF 
   " bbye
   nnoremap <leader>q :Bdelete!<cr>
-  " unite-session
+  " denite-extra session helper
   nmap <leader>ss :call <SID>SessionSave()<cr>
   nmap <leader>sl :<C-u>SessionLoad 
   nmap <leader>sr :call <SID>Restart()<cr>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   " Gundo
-  "nnoremap <D-u> :GundoToggle<CR>
-  " tern
-  nnoremap <leader>tb :TernDocBrowse<cr>
-  nnoremap <leader>tt :TernType<cr>
-  nnoremap <leader>tf :TernDef<cr>
-  nnoremap <leader>tp :TernDefPreview<cr>
-  nnoremap <leader>td :TernDoc<cr>
-  nnoremap <leader>tr :TernRefs<cr>
-  nnoremap <leader>tR :TernRename<cr>
-
-  nmap <Leader>py <Plug>(Prettier)
-
+  nnoremap <leader>Gt :GundoToggle<CR>
+  " svg.vim not used very often
   nmap <leader>se <Plug>SvgEdit
-  nmap <leader>sp <Plug>SvgPreview
 " }}
 
 " grep by motion {{
