@@ -1,7 +1,5 @@
 " General options {{
-if exists('&termguicolors')
-  set termguicolors
-endif
+set termguicolors
 set hidden " allow buffer switch without saving
 set history=2000
 set wildmenu
@@ -66,10 +64,8 @@ set number
 set relativenumber
 set shortmess+=F
 set shortmess+=c
-"set ttyfast
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
-let g:grep_using_git = 0
 set title
 " }}
 
@@ -118,7 +114,6 @@ hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 " Complete config {{
 set complete+=k
 set complete-=t
-"set omnifunc=syntaxcomplete#Complete
 set completeopt=menu,preview
 "set completeopt=menuone,noinsert,noselect
 " }}

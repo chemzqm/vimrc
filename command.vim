@@ -11,10 +11,6 @@ command! -nargs=* Exe        :call s:Execute(<q-args>)
 command! -nargs=0 Wept       :call s:StartWept()
 command! -nargs=0 Make       :call s:RunMake()
 command! -nargs=0 MakeTags   :execute 'Nrun ctags -R .'
-" vim color highlight for current buffer
-command! -nargs=0 Color      :call css_color#toggle()
-command! -nargs=0 Standard   execute '!standard --format %:p'
-command! -nargs=0 SourceTest execute 'source ~/.vim/test.vim'
 command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
 command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
 " search with ag and open quickfix window
@@ -27,6 +23,14 @@ let s:cmd_map = {
       \'python': 'python',
       \'ruby': 'ruby'
       \}
+
+function! s:ToggleMouse()
+  if empty(&mouse)
+    set mouse=a
+  else
+    set mouse=
+  endif
+endfunction
 
 function! s:Execute(args)
   let dir = expand('%:p:h')
@@ -264,12 +268,4 @@ function! s:PrettyFile()
   endif
   exe 'silent lcd ' . old_cwd
   call winrestview(win_view)
-endfunction
-
-function! s:ToggleMouse()
-  if empty(&mouse)
-    set mouse=a
-  else
-    set mouse=
-  endif
 endfunction

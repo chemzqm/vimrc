@@ -1,4 +1,3 @@
-" Install ag with `brew install ag`
 " Install ripgrep with `brew install ripgrep`
 let g:project_folders = ['~/wechat-dev', '~/component-dev']
 call denite#custom#option('default', 'prompt', '> ')
@@ -8,8 +7,7 @@ call denite#custom#option('default', 'auto_resize', 1)
 call denite#custom#option('default', 'auto_resume', 1)
 
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-  \ [ '.git/', '.ropeproject/', '__pycache__/',
-  \ '*.min.*', 'fonts/'])
+  \ [ '.git/', '.ropeproject/', '__pycache__/', '*.min.*', 'fonts/'])
 
 " Change file_rec command.
 call denite#custom#var('file_rec', 'command',
@@ -171,10 +169,9 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
-nnoremap <silent> <space>a  :<C-u>Denite -mode=normal npm<CR>
 nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
 nnoremap <silent> <space>d  :<C-u>Denite todo<cr>
-nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
+nnoremap <silent> <space>e  :<C-u>Denite -mode=normal buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
 nnoremap <silent> <space>g  :<C-u>Denite gitstatus<CR>
 nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>

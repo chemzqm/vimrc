@@ -13,7 +13,7 @@ function! MyStatusLine()
         \. " %f %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. errorMsg
-        \. "%=%-{&ft} %l, %c "
+        \. "%=%-{&ft} %l,%c %P "
 "%{&fenc}
 endfunction
 

@@ -17,6 +17,7 @@ nnoremap <expr> N  'nN'[v:searchforward]
 nnoremap Y y$
 " clear highlight reset diff
 nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+" some shortcut for git
 nnoremap gca :Gcommit -a -v<CR>
 nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp :call <SID>gpush()<CR>
@@ -27,6 +28,7 @@ function! s:gpush()
     execute 'Gpush origin '. substitute(branch, "\n$", '', '').' --force-with-lease'
   endif
 endfunction
+
 inoremap <C-w> <C-[>diwa
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
@@ -45,6 +47,11 @@ inoremap <C-e> <End>
   nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
   nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
+  function! s:LCN_support()
+    let types = keys(get(g:, 'LanguageClient_serverCommands', {}))
+    return index(types, &filetype) >= 0
+  endfunction
+
   " coc.nvim
   nmap <silent>gj <Plug>(coc-jump-definition)
   nmap <leader>?  :call CocShowDefinition()<CR>
@@ -57,12 +64,7 @@ inoremap <C-e> <End>
   nmap <silent> [a <Plug>(ale_previous_wrap)
   nmap <silent> ]a <Plug>(ale_next_wrap)
 
-  " complete.nvim
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-  endfunction
-
+  " coc.nvim
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
@@ -73,6 +75,11 @@ inoremap <C-e> <End>
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
   inoremap <silent><expr> <C-u> pumvisible() ? '<PageUp>' : '<C-u>'
   inoremap <silent><expr> <C-d> pumvisible() ? '<PageDown>' : '<C-d>'
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
 " }}
 
 " window navigate {{
@@ -169,10 +176,3 @@ endfunc
   inoremap <M-4> <C-o>4gt
   inoremap <M-5> <C-o>5gt
 " }}
-
-" check if supported by LanguageClient {{
-  function! s:LCN_support()
-    let types = keys(get(g:, 'LanguageClient_serverCommands', {}))
-    return index(types, &ft) >= 0
-  endfunction
-" }}"

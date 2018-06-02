@@ -82,6 +82,7 @@ let s:file_node_extensions = {
   \  'psd'      : '',
   \  'psb'      : '',
   \  'ts'       : '',
+  \  'tsx'      : '',
   \  'jl'       : ''
 \}
 

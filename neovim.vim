@@ -38,7 +38,7 @@ let g:terminal_color_14 = '#d6b765'
 let g:terminal_color_15 = '#f8f8f8'
 
 function! s:OnTermOpen(buf)
-  setlocal nolist
+  setl nolist norelativenumber nonumber
   if &buftype ==# 'terminal'
     nnoremap <buffer> q :<C-U>bd!<CR>
   endif

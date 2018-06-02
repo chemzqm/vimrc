@@ -78,13 +78,6 @@
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " }}
 
-" gist-vim {{
-  let g:gist_clip_command = 'pbcopy'
-  let g:gist_detect_filetype = 1
-  let g:gist_open_browser_after_post = 0
-  let g:gist_show_privates = 1
-" }}
-
 " ultisnips {{
   let g:UltiSnipsNoPythonWarning = 1
   let g:UltiSnipsExpandTrigger='<C-j>'
@@ -96,8 +89,6 @@
 
 " Netrw {{
   let g:netrw_banner=0
-  "let g:netrw_browse_split=4
-  "let g:netrw_liststyle=3
   let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 " }}
 
@@ -301,7 +292,7 @@
   let g:rename_search_execute = 'rg'
 " }}"
 
-" complete.nvim {{
+" coc.nvim {{
   let g:coc_timeout = 300
   let g:coc_ignore_git_ignore = 0
   let g:coc_use_noselect = 1
