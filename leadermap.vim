@@ -38,20 +38,20 @@ let g:mapleader = ','
   " vim-sneak
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
-  " ctrlsf.vim
-  nnoremap <leader>sf :CtrlSF 
   " bbye
   nnoremap <leader>q :Bdelete!<cr>
   " denite-extra session helper
   nmap <leader>ss :call <SID>SessionSave()<cr>
   nmap <leader>sl :<C-u>SessionLoad 
-  nmap <leader>sr :call <SID>Restart()<cr>
+  nmap <leader>rs :call <SID>Restart()<cr>
   " ultisnips
   noremap <leader>snip :UltiSnipsEdit<cr>
   " Gundo
   nnoremap <leader>Gt :GundoToggle<CR>
   " svg.vim not used very often
   nmap <leader>se <Plug>SvgEdit
+  " rename.nvim grep and replace
+  nmap <leader>sr <Plug>(rename-search-replace)
 " }}
 
 " grep by motion {{

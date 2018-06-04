@@ -55,7 +55,6 @@ Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
-Plug 'dyng/ctrlsf.vim'
 Plug 'prettier/vim-prettier', {'do': 'yarn install'}
 Plug 'kopischke/vim-stay'
 Plug 'leafgarland/typescript-vim'

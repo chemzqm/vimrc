@@ -281,11 +281,6 @@
   let g:lion_create_maps = 1
 " }}"
 
-" ctrlsf.vim {{
-  let g:ctrlsf_ackprg = '/usr/local/bin/rg'
-  let g:ctrlsf_case_sensitive = 'yes'
-" }}"
-
 " rename.nvim {{
   let g:rename_hl_guifg = '#ffffff'
   let g:rename_hl_guibg = '#b180a4'
