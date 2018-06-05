@@ -20,7 +20,7 @@ Plug 'neoclide/denite-git', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/gocode', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/tslint.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}

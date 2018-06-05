@@ -10,7 +10,7 @@ function! MyStatusLine()
         \. "%4*%{MyStatusGit()}%*"
         \. "%5*%{MyStatusGitChanges()}%*"
         \. "%5*%{MyStatusLanguageClientStatus()}%*"
-        \. " %f %{MyStatusModifySymbol()}"
+        \. " %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. errorMsg
         \. "%=%-{&ft} %l,%c %P "
@@ -31,6 +31,11 @@ endfunction
 function! MyStatusReadonly()
   if !&readonly | return '' |endif
   return "  "
+endfunction
+
+function! MyStatusRunningFrame()
+  let s = get(g:, 'tslint_frame', '')
+  return s
 endfunction
 
 function! MyStatusModifySymbol()

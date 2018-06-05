@@ -81,8 +81,8 @@
 " ultisnips {{
   let g:UltiSnipsNoPythonWarning = 1
   let g:UltiSnipsExpandTrigger='<C-j>'
-  let g:UltiSnipsJumpForwardTrigger='<C-j>'
-  let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+  let g:UltiSnipsJumpForwardTrigger='<C-n>'
+  let g:UltiSnipsJumpBackwardTrigger='<C-p>'
   let g:UltiSnipsEditSplit='vertical'
   let g:UltiSnipsSnippetsDir='/Users/chemzqm/vim-dev/snippets/UltiSnips'
 " }}
