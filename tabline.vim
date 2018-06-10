@@ -122,7 +122,6 @@ let s:file_node_pattern_matches = {
 set tabline=%!MyTabLine()
 
 function! GetFileIcon(path)
-  let g:path = a:path
   let file = fnamemodify(a:path, ':t')
   if has_key(s:file_node_exact_matches, file)
     return s:file_node_exact_matches[file]

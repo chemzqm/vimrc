@@ -27,7 +27,9 @@ Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/json5.vim', {'dir': g:local, 'frozen': 1}
+Plug 'tpope/vim-fugitive'
 Plug 'romainl/vim-cool' " search improve
+Plug 'ap/vim-buftabline'
 Plug 'mitsuse/autocomplete-swift'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tweekmonster/nvim-api-viewer'
@@ -49,19 +51,18 @@ Plug 'tpope/vim-surround'
 Plug 'othree/xml.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'nixprime/cpsm'
-Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
-Plug 'prettier/vim-prettier', {'do': 'yarn install', 'branch': 'release/1.x'}
-Plug 'kopischke/vim-stay'
 Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
+Plug 'prettier/vim-prettier', {'do': 'yarn install', 'branch': 'release/1.x'}
+Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/echodoc'
 Plug 'autozimu/LanguageClient-neovim', {

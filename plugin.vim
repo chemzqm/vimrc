@@ -1,5 +1,11 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" buftabline {{
+  let g:buftabline_numbers = 2
+  let g:buftabline_indicators = 'on'
+  let g:buftabline_separators = 'on'
+" }}"
+
 " vim-prettier {{
   let g:prettier#exec_cmd_async = 1
   let g:prettier#quickfix_enabled = 0
@@ -201,8 +207,7 @@
 
 " easygit {{
   let g:easygit_enable_root_rev_parse = 0
-  let g:easygit_enable_command = 1
-  let g:easygit_auto_tcd = 1
+  let g:easygit_enable_command = 0
 "}}
 
 " html5.vim {{
@@ -250,7 +255,6 @@
 " LanguageClient-neovim {{
   let g:LanguageClient_devel = 1
   let g:LanguageClient_serverCommands = {
-        \ 'typescript': ['javascript-typescript-stdio'],
         \ 'wxml': ['wxml-langserver', '--debug'],
         \ 'rust': ['rustup', 'run', 'stable', 'rls'],
         \ 'vue': ['vls'],
@@ -293,7 +297,7 @@
   let g:coc_increment_highlight = 1
   let g:coc_source_config = {
         \  'languageclient': {
-        \    'filetypes': ['typescript', 'wxml', 'vue'],
+        \    'filetypes': ['wxml', 'vue'],
         \    'disabled': 0,
         \  },
         \  'omni': {

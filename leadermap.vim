@@ -31,10 +31,11 @@ let g:mapleader = ','
   nnoremap <leader>pt :set paste!<cr>
   nnoremap <leader>nu :call <SID>NumberToggle()<cr>
   nnoremap <leader>bg :call <SID>ToggleBackground()<cr>
-  nnoremap <leader>qf :call asyncrun#quickfix_toggle(8)<cr>
 " }}
 
 " plugin {{
+  " ALE
+  nmap <leader>t :ALEHover<cr>
   " vim-sneak
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S

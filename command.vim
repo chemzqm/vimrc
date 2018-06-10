@@ -1,22 +1,22 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
-command! -nargs=0 Q          :qa!
-command! -nargs=0 V          :call s:OpenTerminal()
-command! -nargs=0 C          :call s:Gcd()
-command! -nargs=0 Todo       :Denite todo
-command! -nargs=0 Mouse      :call s:ToggleMouse()
-command! -nargs=0 Pretty     :call s:PrettyFile()
-command! -nargs=0 Jsongen    :call s:Jsongen()
-command! -nargs=0 Reset      :call s:StatusReset()
-command! -nargs=* Exe        :call s:Execute(<q-args>)
-command! -nargs=0 Wept       :call s:StartWept()
-command! -nargs=0 Make       :call s:RunMake()
-command! -nargs=0 MakeTags   :execute 'Nrun ctags -R .'
-command! -nargs=? Gitlog     :call s:ShowGitlog('<args>')
-command! -nargs=0 -range=%   Prefixer call s:Prefixer(<line1>, <line2>)
-" search with ag and open quickfix window
-command! -nargs=+ -complete=dir Rg call s:Grep(<f-args>)
-command! -nargs=? -complete=custom,s:ListVimrc  EditVimrc  :call s:EditVimrc(<f-args>)
-command! -nargs=? -complete=custom,s:ListDict   Dict       :call s:ToggleDictionary(<f-args>)
+command! -nargs=0 Q                                    :qa!
+command! -nargs=0 V                                    :call     s:OpenTerminal()
+command! -nargs=0 C                                    :call     s:Gcd()
+command! -nargs=0 Todo                                 :Denite   todo
+command! -nargs=0 Mouse                                :call     s:ToggleMouse()
+command! -nargs=0 Pretty                               :call     s:PrettyFile()
+command! -nargs=0 Jsongen                              :call     s:Jsongen()
+command! -nargs=0 Reset                                :call     s:StatusReset()
+command! -nargs=* Exe                                  :call     s:Execute(<q-args>)
+command! -nargs=0 Wept                                 :call     s:StartWept()
+command! -nargs=0 Make                                 :call     s:RunMake()
+command! -nargs=0 MakeTags                             :execute  'Nrun ctags -R .'
+command! -nargs=? Gitlog                               :call     s:ShowGitlog('<args>')
+command! -nargs=0 -range=%                             Prefixer  call  s:Prefixer(<line1>, <line2>)
+command! -nargs=+ -complete=dir                        Rg        call  s:Grep(<f-args>)
+command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
+command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
+command! -nargs=* -complete=custom,easygit#completeAdd Gadd      :call easygit#add(<f-args>)
 
 let s:cmd_map = {
       \'javascript': 'babel-node',

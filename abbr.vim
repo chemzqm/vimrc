@@ -11,7 +11,7 @@ endfunction
 
 call SetupCommandAbbrs('Co', 'Copy')
 call SetupCommandAbbrs('B', 'BlogNew')
-call SetupCommandAbbrs('T', 'tabe')
+call SetupCommandAbbrs('T', 'Todo')
 call SetupCommandAbbrs('Gd', 'Gdiff')
 call SetupCommandAbbrs('Gt', 'GdiffThis')
 call SetupCommandAbbrs('Gst', 'Denite gitstatus')

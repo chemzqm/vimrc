@@ -9,7 +9,6 @@ function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. "%5*%{MyStatusGitChanges()}%*"
-        \. "%5*%{MyStatusLanguageClientStatus()}%*"
         \. " %{MyStatusTsc()} %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. errorMsg
@@ -69,26 +68,18 @@ function! MyStatusGitChanges() abort
   return '  +'.summary[0].' ~'.summary[1].' -'.summary[2].' '
 endfunction
 
-function! MyStatusLanguageClientStatus() abort
-  if !exists('*LanguageClient_statusLine') | return '' | endif
-  let status = LanguageClient_statusLine()
-  if empty(status) | return '' | endif
-  let t = type(status)
-  if t == v:t_list | return ' '.status[0].' ' | endif
-  if t == v:t_string | return ' '.status.' ' | endif
-  return ''
-endfunction
-
 function! MyStatusGit(...) abort
-  if exists('b:git_branch') | return b:git_branch | endif
-  if !exists('*easygit#smartRoot') | return '' | endif
+  let reload = get(a:, 1, 0) == 1
+  if exists('b:git_branch') && !reload | return b:git_branch | endif
+  if !exists('*FugitiveExtractGitDir') | return '' | endif
   if s:IsTempFile() | return '' | endif
   " only support neovim
   if !exists('*jobstart') | return '' | endif
   let roots = values(s:job_status)
-  let root = easygit#smartRoot(1)
-  " it's running
-  if empty(root) | return '' | endif
+  let dir = get(b:, 'git_dir', FugitiveExtractGitDir(resolve(expand('%:p'))))
+  if empty(dir) | return '' | endif
+  let b:git_dir = dir
+  let root = fnamemodify(dir, ':h')
   if index(roots, root) >= 0 | return '' | endif
   let nr = bufnr('%')
   let job_id = jobstart('git-status', {
@@ -129,7 +120,7 @@ endfunction
 function! SetStatusLine()
   if &previewwindow | return | endif
   if s:IsTempFile() | return | endif
-  if exists('b:git_branch') | unlet b:git_branch | endif
+  call MyStatusGit(1)
   setl statusline=%!MyStatusLine()
   call s:highlight()
 endfunction
@@ -160,5 +151,5 @@ augroup statusline
   autocmd User GitGutter call SetStatusLine()
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
-  autocmd FileReadPre,ShellCmdPost,FileWritePost * unlet! b:git_branch
+  autocmd FileReadPre,ShellCmdPost,FileWritePost * call SetStatusLine()
 augroup end

@@ -7,7 +7,7 @@ augroup common
   autocmd BufWinEnter * call OnBufEnter()
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
-  autocmd BufEnter * let &titlestring = s:ShortPath(getcwd())
+  autocmd DirChanged,VimEnter * let &titlestring = s:ShortPath(getcwd())
   " quickfix window will open when something adds to it
   autocmd QuickFixCmdPost * botright copen 8
   " set up default omnifunc
@@ -16,12 +16,6 @@ augroup common
         \    setlocal omnifunc=syntaxcomplete#Complete |
         \ endif
 augroup end
-
-function! s:SignatureHelp()
-  if &filetype ==# 'typescript'
-    call LanguageClient#textDocument_signatureHelp()
-  endif
-endfunction
 
 function! s:OnDeniteEnter()
   call feedkeys('<enter>')
@@ -48,12 +42,6 @@ function! OnBufEnter()
     if !mapcheck('q', 'n')
       nnoremap <buffer> q :<C-U>bd!<CR>
     endif
-  elseif &buftype ==# 'quickfix'
-    nnoremap <buffer> q :<C-U>bd!<CR>
-  elseif &buftype ==# 'terminal'
-    nnoremap <buffer> q :<C-U>bd!<CR>
-  elseif &buftype ==# 'help'
-    nnoremap <buffer> q :<C-U>helpc<cr>
   elseif name =~# '/tmp/'
     setl bufhidden=delete
   endif
