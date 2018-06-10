@@ -5,13 +5,13 @@ let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
 let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
+Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/rename.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/todoapp.vim', {'dir': g:local, 'frozen': 1}
@@ -21,6 +21,7 @@ Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tslint.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/tsc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
@@ -48,20 +49,21 @@ Plug 'tpope/vim-surround'
 Plug 'othree/xml.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'nixprime/cpsm'
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
-Plug 'prettier/vim-prettier', {'do': 'yarn install'}
+Plug 'prettier/vim-prettier', {'do': 'yarn install', 'branch': 'release/1.x'}
 Plug 'kopischke/vim-stay'
 Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'Shougo/neco-vim'
+Plug 'Shougo/echodoc'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'frozen': 1,
     \ 'branch': 'next',

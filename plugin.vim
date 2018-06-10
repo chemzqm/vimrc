@@ -6,10 +6,6 @@
   let g:prettier#config#use_tabs = 'false'
 " }}
 
-" autocomplete-swift {{
-  autocmd FileType swift imap <buffer> <C-n> <Plug>(autocomplete_swift_jump_to_placeholder)
-" }}
-
 " vim-run {{
   let g:vim_run_command_map = {
         \'typescript': 'ts-node',
@@ -65,13 +61,14 @@
   \   'python': ['pylint'],
   \   'css': ['stylelint'],
   \   'typescript': ['tsserver'],
-  \   'json': ['jsonlint'],
+  \   'json': ['json5'],
   \   'swift': ['swiftlint'],
   \}
   let g:ale_swift_swiftlint_use_defaults = 1
   let g:ale_warn_about_trailing_whitespace = 0
   let g:ale_sign_column_always = 1
   let g:ale_sign_error = '>>'
+  let g:ale_sign_info = '💡'
   let g:ale_sign_warning = '⚠'
   let g:ale_echo_msg_error_str = 'E'
   let g:ale_echo_msg_warning_str = 'W'
@@ -304,15 +301,6 @@
         \  },
         \  'file': {
         \    'ignorePatterns': ['*.bundle.js'],
-        \  },
-        \  'word': {
-        \    'filetypes': ['markdown'],
-        \  },
-        \  'emoji': {
-        \    'filetypes': ['markdown'],
-        \  },
-        \  'ultisnips': {
-        \    'filetypes': ['vim'],
         \  },
         \  'tern': {
         \    'ternRoot': expand('~/lib/tern'),

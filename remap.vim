@@ -3,8 +3,6 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-" Preview markdown
-nnoremap <C-p> :PreviewAuto<CR>
 " no enter ex mode
 nnoremap Q <Nop>
 vnoremap < <gv

@@ -10,7 +10,7 @@ function! MyStatusLine()
         \. "%4*%{MyStatusGit()}%*"
         \. "%5*%{MyStatusGitChanges()}%*"
         \. "%5*%{MyStatusLanguageClientStatus()}%*"
-        \. " %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
+        \. " %{MyStatusTsc()} %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. errorMsg
         \. "%=%-{&ft} %l,%c %P "
@@ -36,6 +36,21 @@ endfunction
 function! MyStatusRunningFrame()
   let s = get(g:, 'tslint_frame', '')
   return s
+endfunction
+
+function! MyStatusTsc()
+  if s:IsTempFile() | return '' | endif
+  let s = get(g:, 'tsc_status', '')
+  if s ==? 'init'
+    return ''
+  elseif s ==? 'running'
+    return '🌴'
+  elseif s ==? 'stopped'
+    return '⚪️'
+  elseif s ==? 'error'
+    return '🔴'
+  endif
+  return ''
 endfunction
 
 function! MyStatusModifySymbol()
