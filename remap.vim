@@ -29,9 +29,12 @@ nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp :call <SID>gpush()<CR>
 
 function! s:gpush()
-  let branch = system('git rev-parse --abbrev-ref HEAD')
-  if !v:shell_error
-    execute 'Gpush origin '. substitute(branch, "\n$", '', '').' --force-with-lease'
+  if empty(get(b:, 'git_dir', '')) | return | endif
+  let branch = system('git --git-dir='.b:git_dir.' rev-parse --abbrev-ref HEAD')
+  if !v:shell_error && !empty(branch)
+    let old_cwd = getcwd()
+    execute 'lcd ' . fnamemodify(b:git_dir, ':h')
+    execute 'Nrun git push origin '.substitute(branch, "\n$", '', ''). ' --force-with-lease'
   endif
 endfunction
 
