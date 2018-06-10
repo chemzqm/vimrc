@@ -8,8 +8,6 @@ command! -nargs=0 Pretty                               :call     s:PrettyFile()
 command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()
 command! -nargs=* Exe                                  :call     s:Execute(<q-args>)
-command! -nargs=0 Wept                                 :call     s:StartWept()
-command! -nargs=0 Make                                 :call     s:RunMake()
 command! -nargs=0 MakeTags                             :execute  'Nrun ctags -R .'
 command! -nargs=? Gitlog                               :call     s:ShowGitlog('<args>')
 command! -nargs=0 -range=%                             Prefixer  call  s:Prefixer(<line1>, <line2>)
@@ -71,28 +69,6 @@ function! s:FindPattern(list)
   endfor
 endfunction
 
-function! s:StartWept()
-  let dir = s:FileDir('app.json')
-  let g:a = dir
-  if !empty(dir)
-    let old_dir = getcwd()
-    execute 'lcd' . dir
-    execute 'Nrun wept -o'
-    execute 'lcd' . old_dir
-  endif
-endfunction
-
-function! s:RunMake()
-  let dir = s:FileDir('Makefile')
-  if !empty(dir)
-    let old_dir = getcwd()
-    execute 'lcd' . dir
-    execute 'Nrun make'
-    execute 'lcd' . old_dir
-  endif
-endfunction
-
-
 function! s:FileDir(filename)
   let file = findfile(a:filename, '.;')
   if empty(file)
@@ -104,15 +80,8 @@ endfunction
 
 " lcd to current git root
 function! s:Gcd()
-  let dir = easygit#gitdir(expand('%'))
-  if empty(dir)
-    let dir = expand('%:p:h')
-  else
-    let dir = fnamemodify(dir, ':h')
-  endif
-  if !empty(dir)
-    execute 'tcd ' . dir
-  endif
+  if empty(get(b:, 'git_dir', '')) | return | endif
+  execute 'cd '.fnamemodify(b:git_dir, ':h')
 endfunction
 
 " Open vertical spit terminal with current parent directory
