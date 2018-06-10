@@ -1,5 +1,6 @@
 set nocompatible
 
+
 " specified to speed up neovim
 let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
 let g:local = expand('~/vim-dev')

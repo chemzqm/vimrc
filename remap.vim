@@ -8,7 +8,7 @@
   nnoremap <S-TAB> :bprev<CR>
   " no enter ex mode
   nnoremap Q <Nop>
-  nnoremap q :silent! write<Bar>bd<CR>
+  nnoremap q :bd<CR>
   vnoremap < <gv
   vnoremap > >gv
   inoremap <C-v> "+p
