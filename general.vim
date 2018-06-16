@@ -14,6 +14,7 @@ set regexpengine=2
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
 set mouse=a
+set novisualbell
 set nowritebackup
 set noimdisable
 set noswapfile
@@ -71,18 +72,9 @@ set title
 
 " Special options for macvim {{
 if has('gui_running')
-  if exists("*strftime")
-    let h = strftime('%H')
-    if h >= 17 || h < 8
-      set background=dark
-    else
-      set background=dark
-    endif
-  else
-    set background=light
-  endif
-  colorscheme gotham
-  "set guifont=Source\ Code\ Pro:h13
+  colorscheme solarized
+  set guifont=Source\ Code\ Pro:h14
+  set background=light
   set transparency=10
   set macmeta
   " better font render on Retina screen
@@ -105,7 +97,7 @@ hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=ligh
 hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 " change default search highlight
 hi Search guibg=#111111 guifg=#C5B569
-hi normal guibg=NONE
+if !has('gui_running') | hi normal guibg=NONE | endif
 call matchadd('ColorColumn', '\%81v', 100)
 hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
 hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
@@ -115,6 +107,18 @@ hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 set complete+=k
 set complete-=t
 set completeopt=menu,preview
+
+if !has('nvim')
+  set balloonevalterm
+  set ballooneval
+  "function! MyBalloonExpr()
+  "  return 'Cursor is at line ' . v:beval_lnum .
+  "        \', column ' . v:beval_col .
+  "        \ ' of file ' .  bufname(v:beval_bufnr) .
+  "        \ ' on word "' . v:beval_text . '"'
+  "endfunction
+  "set balloonexpr=MyBalloonExpr()
+endif
 "set completeopt=menuone,noinsert,noselect
 " }}
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:

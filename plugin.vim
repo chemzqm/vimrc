@@ -1,11 +1,5 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" buftabline {{
-  let g:buftabline_numbers = 2
-  let g:buftabline_indicators = 'on'
-  let g:buftabline_separators = 'on'
-" }}"
-
 " vim-prettier {{
   let g:prettier#exec_cmd_async = 1
   let g:prettier#quickfix_enabled = 0
@@ -84,7 +78,7 @@
 " ultisnips {{
   let g:UltiSnipsNoPythonWarning = 1
   let g:UltiSnipsExpandTrigger='<C-j>'
-  let g:UltiSnipsJumpForwardTrigger='<C-n>'
+  let g:UltiSnipsJumpForwardTrigger='<C-j>'
   let g:UltiSnipsJumpBackwardTrigger='<C-p>'
   let g:UltiSnipsEditSplit='vertical'
   let g:UltiSnipsSnippetsDir='/Users/chemzqm/vim-dev/snippets/UltiSnips'
@@ -103,12 +97,9 @@
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
   " <c-y>a Make anchor from URL
   " <c-y>A Make quoted text from URL
+  let g:user_emmet_leader_key = '<C-e>'
   let g:user_emmet_expandabbr_key = '<M-y>'
-  let g:user_emmet_next_key = '<C-y>n'
-  let g:user_emmet_prev_key = '<C-y>p'
   "内部全选
-  let g:user_emmet_balancetaginward_key = '<C-y>i'
-  let g:user_emmet_balancetagoutward_key = '<C-y>o'
   let g:user_emmet_mode='a'
   let g:emmet_html5 = 0
   let g:user_emmet_settings = {
@@ -294,7 +285,7 @@
   let g:coc_use_noselect = 1
   let g:coc_chars_guifg = '#ffffff'
   let g:coc_chars_guibg = '#b180a4'
-  let g:coc_increment_highlight = 1
+  let g:coc_increment_highlight = 0
   let g:coc_source_config = {
         \  'languageclient': {
         \    'filetypes': ['wxml', 'vue'],

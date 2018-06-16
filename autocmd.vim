@@ -8,6 +8,7 @@ augroup common
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd DirChanged,VimEnter * let &titlestring = s:ShortPath(getcwd())
+  autocmd CursorHold,CursorHoldI * call s:CursorHold()
   " quickfix window will open when something adds to it
   autocmd QuickFixCmdPost * botright copen 8
   " set up default omnifunc
@@ -16,6 +17,12 @@ augroup common
         \    setlocal omnifunc=syntaxcomplete#Complete |
         \ endif
 augroup end
+
+function! s:CursorHold()
+  "if &filetype ==# 'typescript'
+  "  execute 'ALEHover'
+  "endif
+endfunction
 
 function! s:OnDeniteEnter()
   call feedkeys('<enter>')

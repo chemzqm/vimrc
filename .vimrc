@@ -1,6 +1,5 @@
 set nocompatible
 
-
 " specified to speed up neovim
 let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
 let g:local = expand('~/vim-dev')
@@ -9,7 +8,7 @@ call plug#begin()
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/rename.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
+"Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
@@ -30,7 +29,6 @@ Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/json5.vim', {'dir': g:local, 'frozen': 1}
 Plug 'tpope/vim-fugitive'
 Plug 'romainl/vim-cool' " search improve
-Plug 'ap/vim-buftabline'
 Plug 'mitsuse/autocomplete-swift'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tweekmonster/nvim-api-viewer'
@@ -56,6 +54,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
+Plug 'kopischke/vim-stay'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'leafgarland/typescript-vim'
@@ -66,11 +65,12 @@ Plug 'prettier/vim-prettier', {'do': 'yarn install', 'branch': 'release/1.x'}
 Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/echodoc'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'frozen': 1,
-    \ 'branch': 'next',
-    \ 'do': 'make build',
-    \ }
+Plug 'mzlogin/vim-markdown-toc'
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'frozen': 1,
+"    \ 'branch': 'next',
+"    \ 'do': 'make build',
+"    \ }
 call plug#end()
 filetype plugin indent on
 syntax on

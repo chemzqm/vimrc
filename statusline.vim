@@ -69,6 +69,7 @@ function! MyStatusGitChanges() abort
 endfunction
 
 function! MyStatusGit(...) abort
+  if s:IsTempFile() | return '' | endif
   let reload = get(a:, 1, 0) == 1
   if exists('b:git_branch') && !reload | return b:git_branch | endif
   if !exists('*FugitiveExtractGitDir') | return '' | endif

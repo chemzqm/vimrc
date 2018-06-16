@@ -5,16 +5,14 @@ call denite#custom#option('default', 'prompt', '> ')
 call denite#custom#option('default', 'empty', 0)
 call denite#custom#option('default', 'auto_resize', 1)
 call denite#custom#option('default', 'auto_resume', 1)
-
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
   \ [ '.git/', '.ropeproject/', '__pycache__/', '*.min.*', 'fonts/'])
-
 " Change file_rec command.
 call denite#custom#var('file_rec', 'command',
   \ ['rg', '--color', 'never', '--files'])
 " buffer
 call denite#custom#var('buffer', 'date_format', '')
-
+call denite#custom#source('buffer', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
 " Change grep options.
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
@@ -23,10 +21,10 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-
 " Change file_rec matcher
 call denite#custom#source('line', 'matchers', ['matcher_regexp'])
 call denite#custom#source('file_rec, redis_mru', 'sorters', ['sorter/sublime'])
+
 
 " Change mappings.
 call denite#custom#map(
@@ -184,7 +182,7 @@ nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru:.<cr>
 nnoremap <silent> <space>s  :<C-u>Denite session<cr>
-nnoremap <silent> <space>t  :call execute('Denite file_rec:'.expand('%:p:h'))<CR>
+nnoremap <silent> <space>t  :execute 'Denite file_rec:'.expand('%:p:h')<CR>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
 nnoremap <silent> <space>v  :<C-u>Denite vim<cr>
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>

@@ -4,8 +4,8 @@
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
-  nnoremap <TAB> :bnext<CR>
-  nnoremap <S-TAB> :bprev<CR>
+  nnoremap <TAB> :bprev<CR>
+  nnoremap <S-TAB> :bnext<CR>
   " no enter ex mode
   nnoremap Q <Nop>
   nnoremap q :bd<CR>
@@ -77,21 +77,18 @@
 
 " plugins {{
   " buftabline
-  nmap <leader>1 <Plug>BufTabLine.Go(1)
-  nmap <leader>2 <Plug>BufTabLine.Go(2)
-  nmap <leader>3 <Plug>BufTabLine.Go(3)
-  nmap <leader>4 <Plug>BufTabLine.Go(4)
-  nmap <leader>5 <Plug>BufTabLine.Go(5)
-  nmap <leader>6 <Plug>BufTabLine.Go(6)
-  nmap <leader>7 <Plug>BufTabLine.Go(7)
-  nmap <leader>8 <Plug>BufTabLine.Go(8)
-  nmap <leader>9 <Plug>BufTabLine.Go(9)
-  nmap <leader>0 <Plug>BufTabLine.Go(10)
+  nmap <leader>1 1gt
+  nmap <leader>2 2gt
+  nmap <leader>3 3gt
+  nmap <leader>4 4gt
+  nmap <leader>5 5gt
+  nmap <leader>6 6gt
+  nmap <leader>7 7gt
+  nmap <leader>8 8gt
 
   " LanguageClient-neovim
   " Current needed for typescript
-  nnoremap <silent><expr> K <SID>ALE_support() ? ':call LanguageClient_textDocument_hover()<CR>' : 'K'
-  nnoremap <silent><expr> gd <SID>ALE_support() ? ':call LanguageClient_textDocument_definition()<CR>' : 'gd'
+  "nnoremap <silent> gd ':ALEGoToDefinition<CR>' : 'gd'
   nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
   nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
 
@@ -119,6 +116,7 @@
 
   " ultisnip complete
   inoremap <C-l> <C-R>=SnipComplete()<CR>
+
 " }}
 
 " visual search {{
@@ -128,6 +126,7 @@
 " }}
 
 " functions {{
+
 function!   s:visualSearch(direction)
   let       l:saved_reg = @"
   execute   'normal! vgvy'
