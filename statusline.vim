@@ -5,13 +5,12 @@ function! MyStatusSyntaxItem()
 endfunction
 
 function! MyStatusLine()
-  let errorMsg = has('nvim') ? "%= %3*%{MyStatusLocError()}%* %=" : ""
+  "let errorMsg = has('nvim') ? "%= %3*%{MyStatusLocError()}%* %=" : ""
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. "%5*%{MyStatusGitChanges()}%*"
         \. " %{MyStatusTsc()} %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
-        \. errorMsg
         \. "%=%-{&ft} %l,%c %P "
 "%{&fenc}
 endfunction
@@ -42,8 +41,10 @@ function! MyStatusTsc()
   let s = get(g:, 'tsc_status', '')
   if s ==? 'init'
     return ''
+  elseif s ==? 'compiling'
+    return '🏃'
   elseif s ==? 'running'
-    return '🌴'
+    return '🐳'
   elseif s ==? 'stopped'
     return '⚪️'
   elseif s ==? 'error'
@@ -136,15 +137,6 @@ function! s:highlight()
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
   hi User4 guifg=#f8f8ff guibg=#000000
   hi User5 guifg=#f8f9fa guibg=#343a40
-endfunction
-
-function! MyStatusLocError()
-  let list = filter(getloclist('%'), 'v:val["type"] ==# "E"')
-  if len(list)
-    return ' ' . string(list[0].lnum) . ' ' . list[0].text
-  else
-    return ''
-  endif
 endfunction
 
 augroup statusline

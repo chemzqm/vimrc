@@ -35,8 +35,6 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
-  " ALE
-  nmap <leader>t :ALEHover<CR>
   " vim-sneak
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
@@ -177,7 +175,7 @@ function! s:Open()
 endfunction
 
 function! s:CopyFilePath()
-  call system('pbcopy', expand('%:p'))
+  call system('pbcopy', expand('%'))
   echohl MoreMsg | echon 'copied!' | echohl None
 endfunction
 " }}

@@ -13,6 +13,7 @@ set incsearch
 set regexpengine=2
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
+set mousemodel=popup
 set mouse=a
 set novisualbell
 set nowritebackup
@@ -111,6 +112,13 @@ set completeopt=menu,preview
 if !has('nvim')
   set balloonevalterm
   set ballooneval
+  " cursor shape of vim
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  " make <M-s> for saving
+  execute "set <M-s>=\es"
+  execute "set <M-c>=\ec"
   "function! MyBalloonExpr()
   "  return 'Cursor is at line ' . v:beval_lnum .
   "        \', column ' . v:beval_col .
@@ -118,6 +126,9 @@ if !has('nvim')
   "        \ ' on word "' . v:beval_text . '"'
   "endfunction
   "set balloonexpr=MyBalloonExpr()
+else
+  set fillchars+=msgsep:-
+  highlight link MsgSeparator MoreMsg
 endif
 "set completeopt=menuone,noinsert,noselect
 " }}

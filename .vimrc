@@ -1,5 +1,4 @@
 set nocompatible
-
 " specified to speed up neovim
 let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
 let g:local = expand('~/vim-dev')
@@ -8,7 +7,7 @@ call plug#begin()
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/rename.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
-"Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
@@ -20,18 +19,18 @@ Plug 'neoclide/denite-git', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/tslint.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/tsc.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/tstool.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/json5.vim', {'dir': g:local, 'frozen': 1}
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'romainl/vim-cool' " search improve
 Plug 'mitsuse/autocomplete-swift'
 Plug 'machakann/vim-highlightedyank'
-Plug 'tweekmonster/nvim-api-viewer'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'tpope/vim-rails'
 Plug 'sjl/gundo.vim'
@@ -72,7 +71,6 @@ Plug 'mzlogin/vim-markdown-toc'
 "    \ 'do': 'make build',
 "    \ }
 call plug#end()
-filetype plugin indent on
 syntax on
 " vimrc files
 for s:path in split(glob('~/.vim/vimrc/*.vim'), "\n")
