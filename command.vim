@@ -158,25 +158,25 @@ endfunction
 
 " Remove hidden buffers and cd to current dir
 function! s:StatusReset()
-  let gitdir = easygit#gitdir(expand('%'), 1)
-  if empty(gitdir)
-    let dir = fnameescape(expand('%:p:h'))
-  else
+  let gitdir = get(b:, 'git_dir', 0)
+  if !empty(gitdir)
     let dir = fnamemodify(gitdir, ':h')
+    execute 'cd '.dir
   endif
-  execute 'cd '.dir
   " delete hidden buffers
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
   for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-    silent execute 'bdelete '. buf
+    if getbufvar(buf, '&buftype') !=? 'terminal'
+      silent execute 'bdelete '. buf
+    endif
   endfor
 endf
 
 " Generate json from handlebars template
 function! s:Jsongen()
   let file = expand('%:p')
-  if &filetype !~ 'handlebars$'
+  if &filetype !~# 'handlebars$'
     echoerr 'file type should be handlebars'
     return
   endif
