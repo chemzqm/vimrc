@@ -1,10 +1,10 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
+command! -nargs=0 Format                               :call     CocAction('format')
 command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
 command! -nargs=0 C                                    :call     s:Gcd()
 command! -nargs=0 Todo                                 :Denite   todo
 command! -nargs=0 Mouse                                :call     s:ToggleMouse()
-command! -nargs=0 Pretty                               :call     s:PrettyFile()
 command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()
 command! -nargs=* Exe                                  :call     s:Execute(<q-args>)
@@ -57,16 +57,6 @@ function! s:Grep(...)
   endif
   let path = get(strs, 1, '')
   execute 'Denite grep:'.path.':'.join(opts, '\ ').':'.strs[0]
-endfunction
-
-function! s:FindPattern(list)
-  let l = len(a:list)
-  for i in range(l)
-    let word = a:list[i]
-    if word !~# '\v^\s*-'
-      return [word, i]
-    endif
-  endfor
 endfunction
 
 function! s:FileDir(filename)
@@ -166,7 +156,7 @@ function! s:StatusReset()
   " delete hidden buffers
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+  for buf in filter(range(1, bufnr('$')), 'buflisted(v:val) && index(tpbl, v:val)==-1')
     if getbufvar(buf, '&buftype') !=? 'terminal'
       silent execute 'bdelete '. buf
     endif
@@ -199,42 +189,4 @@ function! s:Jsongen()
   endfor
   if !exist | execute 'keepalt belowright vs ' . out | endif
   exe 'wincmd p'
-endfunction
-
-" npm install -g prettier prettier-eslint
-" npm install -g stylefmt
-let g:Pretty_commmand_map = {
-    \ "json": "prettier --stdin --stdin-filepath=\"t.json\"",
-    \ "css": "prettier --stdin --stdin-filepath=\"t.css\"",
-    \ "scss": "prettier --stdin --stdin-filepath=\"t.scss\"",
-    \ "html": "prettier --stdin --stdin-filepath=\"t.html\"",
-    \ "wxss": "stylefmt",
-    \ "wxml": "tidy -i -q -w 160 -xml",
-    \ "xml": " xmllint --format -encode utf8 -",
-    \ "javascript": "prettier-eslint\ --stdin\ --no-semi\ --single-quote",
-    \}
-function! s:PrettyFile()
-  let cmd = get(g:Pretty_commmand_map, &filetype, '')
-  if !len(cmd)
-    echohl Error | echon 'Filetype not supported' | echohl None
-    return
-  endif
-  let win_view = winsaveview()
-  let old_cwd = getcwd()
-  " some tool may use project specified config
-  silent exe ':lcd ' . expand('%:p:h')
-  let output = system(cmd, join(getline(1,'$'), "\n"))
-  if v:shell_error
-    echohl Error | echon 'Got error during processing' | echohl None
-    echo output
-  else
-    silent exe 'normal! ggdG'
-    let list = split(output, "\n")
-    if len(list)
-      call setline(1, list[0])
-      call append(1, list[1:])
-    endif
-  endif
-  exe 'silent lcd ' . old_cwd
-  call winrestview(win_view)
 endfunction

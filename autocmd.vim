@@ -4,29 +4,23 @@ augroup common
   autocmd!
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd BufReadPost *.log normal! G
-  autocmd BufWinEnter * call OnBufEnter()
+  autocmd BufWinEnter * call s:OnBufEnter()
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd DirChanged,VimEnter * let &titlestring = s:ShortPath(getcwd())
-  autocmd CursorHold,CursorHoldI * call s:CursorHold()
-  " quickfix window will open when something adds to it
-  autocmd QuickFixCmdPost * botright copen 8
+  autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
+  autocmd User CocQuickfixChange :Denite -mode=normal quickfix
+  autocmd BufNewFile,BufReadPost *.json setf jsonc
   " set up default omnifunc
   autocmd Filetype *
         \ if &omnifunc == "" |
         \    setlocal omnifunc=syntaxcomplete#Complete |
         \ endif
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endi
 augroup end
-
-function! s:CursorHold()
-  "if &filetype ==# 'typescript'
-  "  execute 'ALEHover'
-  "endif
-endfunction
-
-function! s:OnDeniteEnter()
-  call feedkeys('<enter>')
-endfunction
 
 function! s:ShortPath(p)
   return pathshorten(substitute(a:p, $HOME, '~', ''))
@@ -37,12 +31,10 @@ function! s:SetWxapp()
     setl dictionary+=~/vim-dev/wxapp.vim/dict/wxss.dict
   elseif &filetype ==# 'json'
     setl dictionary+=~/vim-dev/wxapp.vim/dict/json.dict
-  elseif &filetype ==# 'json5'
-    execute 'Vison wx-page.json'
   endif
 endfunction
 
-function! OnBufEnter()
+function! s:OnBufEnter()
   let name = bufname(+expand('<abuf>'))
   " quickly leave those temporary buffers
   if &previewwindow || name =~# '^term://'

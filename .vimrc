@@ -24,15 +24,16 @@ Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/json5.vim', {'dir': g:local, 'frozen': 1}
+Plug 'chemzqm/jsonc.vim', {'dir': g:local, 'frozen': 1}
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-markdown'
 Plug 'romainl/vim-cool' " search improve
 Plug 'mitsuse/autocomplete-swift'
 Plug 'machakann/vim-highlightedyank'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'tpope/vim-rails'
 Plug 'sjl/gundo.vim'
 Plug 'othree/csscomplete.vim'
 Plug 'rizzatti/dash.vim'
@@ -45,7 +46,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
-Plug 'tpope/vim-surround'
 Plug 'othree/xml.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'nixprime/cpsm'
@@ -53,7 +53,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'posva/vim-vue'
-Plug 'kopischke/vim-stay'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'leafgarland/typescript-vim'
@@ -72,6 +71,7 @@ Plug 'mzlogin/vim-markdown-toc'
 "    \ }
 call plug#end()
 syntax on
+
 " vimrc files
 for s:path in split(glob('~/.vim/vimrc/*.vim'), "\n")
   exe 'source ' . s:path

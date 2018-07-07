@@ -6,6 +6,11 @@
   let g:prettier#config#use_tabs = 'false'
 " }}
 
+" vim-markdown {{
+  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json', 'typescript', 'ruby', 'sass', 'xml']
+  let g:markdown_syntax_conceal = 0
+" }}"
+
 " vim-run {{
   let g:vim_run_command_map = {
         \'typescript': 'ts-node',
@@ -51,18 +56,18 @@
 
 " ale {{
   let g:ale_linters = {
-  \   'javascript': ['eslint'],
-  \   'wxss': ['stylelint'],
+  \   'javascript': [],
+  \   'wxss': [],
   \   'vim': ['vint'],
   \   'markdown': [],
   \   'html': [],
   \   'ruby': [],
   \   'scss': [],
-  \   'python': ['pylint'],
-  \   'css': ['stylelint'],
-  \   'typescript': ['tsserver'],
-  \   'json': ['json5'],
+  \   'css': [],
+  \   'typescript': [],
+  \   'json': [],
   \   'swift': ['swiftlint'],
+  \   'python': ['pylint'],
   \}
   let g:ale_swift_swiftlint_use_defaults = 1
   let g:ale_warn_about_trailing_whitespace = 0
@@ -280,31 +285,5 @@
 " }}"
 
 " coc.nvim {{
-  let g:coc_timeout = 300
-  let g:coc_ignore_git_ignore = 0
-  let g:coc_use_noselect = 1
-  let g:coc_chars_guifg = '#ffffff'
-  let g:coc_chars_guibg = '#b180a4'
-  let g:coc_increment_highlight = 0
-  let g:coc_source_config = {
-        \  'languageclient': {
-        \    'filetypes': ['wxml', 'vue'],
-        \    'disabled': 0,
-        \  },
-        \  'omni': {
-        \    'filetypes': ['css', 'html', 'wxss'],
-        \  },
-        \  'file': {
-        \    'ignorePatterns': ['*.bundle.js'],
-        \  },
-        \  'tern': {
-        \    'ternRoot': expand('~/lib/tern'),
-        \  },
-        \  'jedi': {
-        \    'settings': {
-        \       'dynamic_params': v:true,
-        \       'dynamic_params_for_other_modules': v:true
-        \    },
-        \  },
-        \}
+  let g:coc_show_quickfix = 0
 " }}"

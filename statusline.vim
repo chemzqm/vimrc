@@ -5,10 +5,9 @@ function! MyStatusSyntaxItem()
 endfunction
 
 function! MyStatusLine()
-  "let errorMsg = has('nvim') ? "%= %3*%{MyStatusLocError()}%* %=" : ""
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
-        \. "%5*%{MyStatusGitChanges()}%*"
+        \. "%5*%{MyStatusGitChanges()}%* %6*%{MyStatusDiagnostic()}%*"
         \. " %{MyStatusTsc()} %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. "%=%-{&ft} %l,%c %P "
@@ -24,6 +23,20 @@ endfunction
 function! s:GetPaste()
   if !&paste | return '' |endif
   return "%#MyStatusPaste# paste %*"
+endfunction
+
+function! MyStatusDiagnostic() abort
+  if s:IsTempFile() | return '' | endif
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, '❌ ' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, '⚠️ ' . info['warning'])
+  endif
+  return join(msgs, ' ')
 endfunction
 
 function! MyStatusReadonly()
@@ -98,9 +111,11 @@ endfunction
 function! s:JobHandler(job_id, data, event) dict
   if !has_key(s:job_status, a:job_id) | return | endif
   if v:dying | return | endif
-  let output = join(self.stdout)
-  if !empty(output)
-    call s:SetGitStatus(self.cwd, ' '.output.' ')
+  if !empty(self.stdout)
+    let output = join(self.stdout)
+    if !empty(output)
+      call s:SetGitStatus(self.cwd, ' '.output.' ')
+    endif
   else
     let errs = join(self.stderr)
     if !empty(errs) | echoerr errs | endif
@@ -132,6 +147,7 @@ function! s:PrintError(msg)
 endfunction
 
 function! s:highlight()
+  hi User6         guifg=#fb4934 guibg=#282828 gui=none
   hi User3         guifg=#e03131 guibg=#111111    gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none

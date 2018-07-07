@@ -4,8 +4,6 @@
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
-  nnoremap <TAB> :bprev<CR>
-  nnoremap <S-TAB> :bnext<CR>
   " no enter ex mode
   nnoremap Q <Nop>
   nnoremap q :bd<CR>
@@ -15,6 +13,8 @@
   vnoremap <C-c> "+y
   nnoremap <expr> n  'Nn'[v:searchforward]
   nnoremap <expr> N  'nN'[v:searchforward]
+  nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+  nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
   " yank to end
   nnoremap Y y$
   " clear highlight reset diff
@@ -86,12 +86,6 @@
   nmap <leader>7 7gt
   nmap <leader>8 8gt
 
-  " LanguageClient-neovim
-  " Current needed for typescript
-  "nnoremap <silent> gd ':ALEGoToDefinition<CR>' : 'gd'
-  nnoremap <silent> <leader>rn :call LanguageClient_textDocument_rename()<CR>
-  nnoremap <silent> <leader>rf :call LanguageClient_textDocument_references()<CR>
-
   " gitgutter
   nmap [g <Plug>GitGutterPrevHunk
   nmap ]g <Plug>GitGutterNextHunk
@@ -101,8 +95,15 @@
   nmap <silent> ]a <Plug>(ale_next_wrap)
 
   " coc.nvim
-  nmap <silent>gj <Plug>(coc-jump-definition)
-  nmap <leader>?  :call CocShowDefinition()<CR>
+  nmap <silent> [c <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  " coc.nvim show hover info
+  nnoremap <silent> K :call CocAction('doHover')<CR>
+
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
@@ -116,7 +117,6 @@
 
   " ultisnip complete
   inoremap <C-l> <C-R>=SnipComplete()<CR>
-
 " }}
 
 " visual search {{
@@ -177,11 +177,6 @@ endfunc
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! s:ALE_support()
-  let types = keys(get(g:, 'LanguageClient_serverCommands', {}))
-  return index(types, &filetype) >= 0
 endfunction
 
 function! s:gpush()

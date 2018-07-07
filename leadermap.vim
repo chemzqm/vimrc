@@ -12,7 +12,6 @@ let g:mapleader = ','
   nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<left><left>
   " Reload vimrc file
   nnoremap <leader>rl :source ~/.vimrc<CR>
-  nnoremap <leader>i :ALEHover<CR>
   " Search with grep
   nnoremap <leader>/ :Rg<space>
   " generate doc
@@ -35,9 +34,6 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
-  " vim-sneak
-  nmap s <Plug>Sneak_s
-  nmap S <Plug>Sneak_S
   " bbye
   nnoremap <leader>q :Bdelete!<CR>
   " denite-extra session helper
@@ -52,8 +48,13 @@ let g:mapleader = ','
   nmap <leader>se <Plug>SvgEdit
   " rename.nvim grep and replace
   nmap <leader>rs <Plug>(rename-search-replace)
-  nmap <leader>fn :call <SID>CopyFilePath()<CR>
-
+  " coc.nvim
+  nmap <leader>rn <Plug>(coc-rename)
+  vmap <leader>f  <Plug>(coc-format-selected)
+  nmap <leader>f  <Plug>(coc-format-selected)
+  vmap <leader>a  <Plug>(coc-codeaction-selected)
+  nmap <leader>a  <Plug>(coc-codeaction-selected)
+  nmap <leader>ac  <Plug>(coc-codeaction)
 " }}
 
 " grep by motion {{
@@ -172,10 +173,5 @@ function! s:Open()
   if v:shell_error && output !=# ""
     echoerr output
   endif
-endfunction
-
-function! s:CopyFilePath()
-  call system('pbcopy', expand('%'))
-  echohl MoreMsg | echon 'copied!' | echohl None
 endfunction
 " }}

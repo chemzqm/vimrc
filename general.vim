@@ -3,6 +3,7 @@ set termguicolors
 set hidden " allow buffer switch without saving
 set history=2000
 set wildmenu
+set signcolumn=yes
 set wildmode=list:longest,full
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set backspace=2
@@ -32,9 +33,6 @@ set tags+=gems.tags,stdlib.tags
 set showbreak=↪ 
 set shortmess=a
 set cmdheight=2
-"set sessionoptions+=winpos
-"set sessionoptions+=resize
-"set sessionoptions+=winsize
 set sessionoptions+=winsize
 set sessionoptions+=resize
 set sessionoptions-=blank
@@ -85,8 +83,6 @@ else
   let g:gruvbox_bold=0
   let g:gruvbox_invert_selection=0
   colorscheme gruvbox
-  "let g:deepspace_italics=1
-  "colorscheme deep-space
 endif
 " }}
 
@@ -102,12 +98,18 @@ if !has('gui_running') | hi normal guibg=NONE | endif
 call matchadd('ColorColumn', '\%81v', 100)
 hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
 hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
+
+highlight link CocErrorSign   GruvboxRedSign
+highlight link CocWarningSign GruvboxYellowSign
+highlight link CocInfoSign    GruvboxYellowSign
+highlight link CocHintSign    GruvboxBlueSign
 " }}
 
 " Complete config {{
 set complete+=k
 set complete-=t
 set completeopt=menu,preview
+"set completeopt=menuone,noinsert,noselect
 
 if !has('nvim')
   set balloonevalterm
@@ -119,17 +121,9 @@ if !has('nvim')
   " make <M-s> for saving
   execute "set <M-s>=\es"
   execute "set <M-c>=\ec"
-  "function! MyBalloonExpr()
-  "  return 'Cursor is at line ' . v:beval_lnum .
-  "        \', column ' . v:beval_col .
-  "        \ ' of file ' .  bufname(v:beval_bufnr) .
-  "        \ ' on word "' . v:beval_text . '"'
-  "endfunction
-  "set balloonexpr=MyBalloonExpr()
 else
   set fillchars+=msgsep:-
   highlight link MsgSeparator MoreMsg
 endif
-"set completeopt=menuone,noinsert,noselect
 " }}
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
