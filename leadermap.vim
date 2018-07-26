@@ -48,6 +48,7 @@ let g:mapleader = ','
   nmap <leader>se <Plug>SvgEdit
   " rename.nvim grep and replace
   nmap <leader>rs <Plug>(rename-search-replace)
+
   " coc.nvim
   nmap <leader>rn <Plug>(coc-rename)
   vmap <leader>f  <Plug>(coc-format-selected)
@@ -115,8 +116,6 @@ function! s:Clean()
   " replace tailing comma
   if ft ==# 'javascript' || ft ==# 'typescript'
     silent! execute '%s/;$//'
-    " line should not starts with [ or (
-    silent! execute '%s/^\s*\zs\([\[(]\)/;\1/'
   endif
   " remove tailing white space
   silent! execute '%s/\s\+$//'

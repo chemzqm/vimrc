@@ -2,21 +2,23 @@ set nocompatible
 " specified to speed up neovim
 let $NVIM_RPLUGIN_MANIFEST = '~/.local/share/nvim/rplugin.vim'
 let g:local = expand('~/vim-dev')
+"let g:nvim_node_rpc_debug = 1
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
+if has('nvim')
+  Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
+endif
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/rename.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/keep.nvim', {'dir': g:local, 'frozen': 1}
+"Plug 'neoclide/npm.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/redismru.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/todoapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/ultisnips', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/denite-git', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/tstool.nvim', {'dir': g:local, 'frozen': 1}
@@ -38,8 +40,8 @@ Plug 'sjl/gundo.vim'
 Plug 'othree/csscomplete.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'mattn/emmet-vim'
-Plug 'othree/html5.vim'
 Plug 'ap/vim-css-color'
+Plug 'whiteinge/diffconflicts'
 Plug 'tommcdo/vim-exchange'
 Plug 'dag/vim-fish'
 Plug 'airblade/vim-gitgutter'
@@ -51,8 +53,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'nixprime/cpsm'
 Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
-Plug 'haya14busa/incsearch.vim'
-"Plug 'posva/vim-vue'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'keith/swift.vim'
 Plug 'leafgarland/typescript-vim'
@@ -60,15 +60,11 @@ Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'prettier/vim-prettier', {'do': 'yarn install', 'branch': 'release/1.x'}
-Plug 'w0rp/ale', {'branch': 'me'}
+"Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/echodoc'
 Plug 'mzlogin/vim-markdown-toc'
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'frozen': 1,
-"    \ 'branch': 'next',
-"    \ 'do': 'make build',
-"    \ }
+Plug 'posva/vim-vue'
 call plug#end()
 syntax on
 

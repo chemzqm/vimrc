@@ -1,15 +1,12 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
 " basic {{
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
   " no enter ex mode
   nnoremap Q <Nop>
   nnoremap q :bd<CR>
   vnoremap < <gv
   vnoremap > >gv
-  inoremap <C-v> "+p
+  inoremap <C-v> <C-o>"+]p
   vnoremap <C-c> "+y
   nnoremap <expr> n  'Nn'[v:searchforward]
   nnoremap <expr> N  'nN'[v:searchforward]
@@ -17,7 +14,7 @@
   nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
   " yank to end
   nnoremap Y y$
-  " clear highlight reset diff
+  " clear highlight update diff
   nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
   " some shortcut for git
   nnoremap gca :Gcommit -a -v<CR>
@@ -55,6 +52,7 @@
   cnoremap <C-e> <End>
   cnoremap <C-d> <Del>
   cnoremap <C-h> <BS>
+  cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 " }}
 
 " meta keys {{
@@ -102,7 +100,7 @@
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
   " coc.nvim show hover info
-  nnoremap <silent> K :call CocAction('doHover')<CR>
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
 
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -187,6 +185,14 @@ function! s:gpush()
     let old_cwd = getcwd()
     execute 'lcd ' . fnamemodify(b:git_dir, ':h')
     execute 'Nrun git push origin '.substitute(branch, "\n$", '', ''). ' --force-with-lease'
+  endif
+endfunction
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
   endif
 endfunction
 " }}

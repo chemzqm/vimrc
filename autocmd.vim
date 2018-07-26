@@ -8,7 +8,7 @@ augroup common
   autocmd BufWritePost * if get(b:, 'auto_execute', 0) == 1|execute 'Execute'|endif
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd DirChanged,VimEnter * let &titlestring = s:ShortPath(getcwd())
-  autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
+  autocmd CursorHoldI,CursorMovedI * silent! call CocAction('showSignatureHelp')
   autocmd User CocQuickfixChange :Denite -mode=normal quickfix
   autocmd BufNewFile,BufReadPost *.json setf jsonc
   " set up default omnifunc

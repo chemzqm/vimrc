@@ -167,8 +167,10 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
-nnoremap <silent> <space>a  :<C-u>Denite coc-diagnostic<cr>
-nnoremap <silent> <space>c  :<C-u>Denite commands<cr>
+nnoremap <silent> <space>o  :<C-u>Denite coc-symbols<cr>
+nnoremap <silent> <space>t  :<C-u>Denite coc-workspace<cr>
+nnoremap <silent> <space>a  :<C-u>Denite -mode=normal coc-diagnostic<cr>
+nnoremap <silent> <space>c  :<C-u>Denite -mode=normal coc-command<cr>
 nnoremap <silent> <space>d  :<C-u>Denite todo<cr>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
@@ -178,13 +180,12 @@ nnoremap <silent> <space>j  :Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> <space>k  :Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal location_list<CR>
 nnoremap <silent> <space>n  :<C-u>Denite note<cr>
-nnoremap <silent> <space>o  :<C-u>Denite coc-symbols<cr>
-nnoremap <silent> <space>t  :<C-u>Denite coc-workspace<cr>
 nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru:.<cr>
 nnoremap <silent> <space>s  :<C-u>Denite session<cr>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
 nnoremap <silent> <space>v  :<C-u>Denite vim<cr>
+nnoremap <silent> <space>b  :<C-u>Denite -mode=normal gitbranch<cr>
 nnoremap <silent> <space>w  :<C-u>DeniteCursorWord  -auto-resize line<CR>
 nnoremap <silent> \r  :<C-u>Denite redis_mru<cr>

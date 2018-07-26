@@ -1,5 +1,21 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
+" airline {{
+  "let g:airline_theme='lucius'
+  "let g:airline_detect_spell=1
+  "if !exists('g:airline_symbols')
+  "  let g:airline_symbols = {}
+  "endif
+  "let g:airline_symbols.crypt = '🔒'
+  "let g:airline_symbols.linenr = '␊'
+  "let g:airline#extensions#disable_rtp_load = 1
+  " or only load what you want
+  "let g:airline_extensions = ['branch', 'hunks', 'coc']
+  "let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+  "let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
+" }}"
+
 " vim-prettier {{
   let g:prettier#exec_cmd_async = 1
   let g:prettier#quickfix_enabled = 0
@@ -7,7 +23,7 @@
 " }}
 
 " vim-markdown {{
-  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json', 'typescript', 'ruby', 'sass', 'xml']
+  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json', 'typescript']
   let g:markdown_syntax_conceal = 0
 " }}"
 
@@ -60,6 +76,7 @@
   \   'wxss': [],
   \   'vim': ['vint'],
   \   'markdown': [],
+  \   'python': [],
   \   'html': [],
   \   'ruby': [],
   \   'scss': [],
@@ -67,7 +84,6 @@
   \   'typescript': [],
   \   'json': [],
   \   'swift': ['swiftlint'],
-  \   'python': ['pylint'],
   \}
   let g:ale_swift_swiftlint_use_defaults = 1
   let g:ale_warn_about_trailing_whitespace = 0
@@ -108,41 +124,46 @@
   let g:user_emmet_mode='a'
   let g:emmet_html5 = 0
   let g:user_emmet_settings = {
-  \ 'wxss': {
-  \   'extends': 'css',
-  \ },
-  \ 'wxml': {
-  \   'extends': 'html',
-  \   'aliases': {
-  \     'div': 'view',
-  \     'span': 'text',
-  \   },
-  \   'default_attributes': {
-  \     'block': [{'wx:if': '{{somevalue}}'}],
-  \     'navigator': [{'url': '', 'redirect': 'false'}],
-  \     'scroll-view': [{'bindscroll': ''}],
-  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
-  \     'icon': [{'type': 'success', 'size': '23'}],
-  \     'progress': [{'precent': '0'}],
-  \     'button': [{'size': 'default'}],
-  \     'checkbox-group': [{'bindchange': ''}],
-  \     'checkbox': [{'value': '', 'checked': ''}],
-  \     'form': [{'bindsubmit': ''}],
-  \     'input': [{'type': 'text'}],
-  \     'label': [{'for': ''}],
-  \     'picker': [{'bindchange': ''}],
-  \     'radio-group': [{'bindchange': ''}],
-  \     'radio': [{'checked': ''}],
-  \     'switch': [{'checked': ''}],
-  \     'slider': [{'value': ''}],
-  \     'action-sheet': [{'bindchange': ''}],
-  \     'modal': [{'title': ''}],
-  \     'audio': [{'src': ''}],
-  \     'video': [{'src': ''}],
-  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
-  \   }
-  \ },
-  \}
+        \ 'javascript': {
+        \   'extends': 'html',
+        \   'attribute_name': {'class': 'className', 'for': 'htmlFor'},
+        \   'empty_element_suffix': ' />',
+        \ },
+        \ 'wxss': {
+        \   'extends': 'css',
+        \ },
+        \ 'wxml': {
+        \   'extends': 'html',
+        \   'aliases': {
+        \     'div': 'view',
+        \     'span': 'text',
+        \   },
+        \   'default_attributes': {
+        \     'block': [{'wx:if': '{{somevalue}}'}],
+        \     'navigator': [{'url': '', 'redirect': 'false'}],
+        \     'scroll-view': [{'bindscroll': ''}],
+        \     'swiper': [{'autoplay': 'false', 'current': '0'}],
+        \     'icon': [{'type': 'success', 'size': '23'}],
+        \     'progress': [{'precent': '0'}],
+        \     'button': [{'size': 'default'}],
+        \     'checkbox-group': [{'bindchange': ''}],
+        \     'checkbox': [{'value': '', 'checked': ''}],
+        \     'form': [{'bindsubmit': ''}],
+        \     'input': [{'type': 'text'}],
+        \     'label': [{'for': ''}],
+        \     'picker': [{'bindchange': ''}],
+        \     'radio-group': [{'bindchange': ''}],
+        \     'radio': [{'checked': ''}],
+        \     'switch': [{'checked': ''}],
+        \     'slider': [{'value': ''}],
+        \     'action-sheet': [{'bindchange': ''}],
+        \     'modal': [{'title': ''}],
+        \     'audio': [{'src': ''}],
+        \     'video': [{'src': ''}],
+        \     'image': [{'src': '', 'mode': 'scaleToFill'}],
+        \   }
+        \ },
+        \}
 " }}
 
 " jsdoc settings {{
@@ -202,8 +223,8 @@
 " }}
 
 " easygit {{
-  let g:easygit_enable_root_rev_parse = 0
-  let g:easygit_enable_command = 0
+  "let g:easygit_enable_root_rev_parse = 0
+  "let g:easygit_enable_command = 0
 "}}
 
 " html5.vim {{
@@ -282,8 +303,4 @@
   let g:rename_hl_guifg = '#ffffff'
   let g:rename_hl_guibg = '#b180a4'
   let g:rename_search_execute = 'rg'
-" }}"
-
-" coc.nvim {{
-  let g:coc_show_quickfix = 0
 " }}"

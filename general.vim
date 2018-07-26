@@ -108,12 +108,12 @@ highlight link CocHintSign    GruvboxBlueSign
 " Complete config {{
 set complete+=k
 set complete-=t
-set completeopt=menu,preview
-"set completeopt=menuone,noinsert,noselect
+"set completeopt=menu,preview
+set completeopt=menuone,noinsert,noselect,longest
 
 if !has('nvim')
-  set balloonevalterm
-  set ballooneval
+  "set balloonevalterm
+  "set ballooneval
   " cursor shape of vim
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_SR = "\<Esc>]50;CursorShape=2\x7"
