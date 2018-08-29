@@ -7,6 +7,7 @@ command! -nargs=0 Todo                                 :Denite   todo
 command! -nargs=0 Mouse                                :call     s:ToggleMouse()
 command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()
+command! -nargs=? Fold                                 :call     CocAction('fold', <f-args>)
 command! -nargs=* Exe                                  :call     s:Execute(<q-args>)
 command! -nargs=0 MakeTags                             :execute  'Nrun ctags -R .'
 command! -nargs=? Gitlog                               :call     s:ShowGitlog('<args>')
@@ -15,6 +16,7 @@ command! -nargs=+ -complete=dir                        Rg        call  s:Grep(<f
 command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
 command! -nargs=* -complete=custom,easygit#completeAdd Gadd      :call easygit#add(<f-args>)
+command! -nargs=0 Tslint :call CocAction('runCommand', 'tslint.lintProject')
 
 let s:cmd_map = {
       \'javascript': 'babel-node',

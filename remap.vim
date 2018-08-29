@@ -3,7 +3,6 @@
 " basic {{
   " no enter ex mode
   nnoremap Q <Nop>
-  nnoremap q :bd<CR>
   vnoremap < <gv
   vnoremap > >gv
   inoremap <C-v> <C-o>"+]p
@@ -102,6 +101,7 @@
   " coc.nvim show hover info
   nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+  imap <silent> <C-x><C-u> <Plug>(coc-complete-custom)
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
@@ -178,7 +178,6 @@ function! s:check_back_space() abort
 endfunction
 
 function! s:gpush()
-  let g:x = 1
   if empty(get(b:, 'git_dir', '')) | return | endif
   let branch = system('git --git-dir='.b:git_dir.' rev-parse --abbrev-ref HEAD')
   if !v:shell_error && !empty(branch)

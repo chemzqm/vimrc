@@ -1,21 +1,5 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" airline {{
-  "let g:airline_theme='lucius'
-  "let g:airline_detect_spell=1
-  "if !exists('g:airline_symbols')
-  "  let g:airline_symbols = {}
-  "endif
-  "let g:airline_symbols.crypt = '🔒'
-  "let g:airline_symbols.linenr = '␊'
-  "let g:airline#extensions#disable_rtp_load = 1
-  " or only load what you want
-  "let g:airline_extensions = ['branch', 'hunks', 'coc']
-  "let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-  "let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
-" }}"
-
 " vim-prettier {{
   let g:prettier#exec_cmd_async = 1
   let g:prettier#quickfix_enabled = 0
@@ -24,7 +8,6 @@
 
 " vim-markdown {{
   let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json', 'typescript']
-  let g:markdown_syntax_conceal = 0
 " }}"
 
 " vim-run {{
@@ -269,24 +252,13 @@
   let g:asyncrun_bell = 1
 " }}
 
-" LanguageClient-neovim {{
-  let g:LanguageClient_devel = 1
-  let g:LanguageClient_serverCommands = {
-        \ 'wxml': ['wxml-langserver', '--debug'],
-        \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-        \ 'vue': ['vls'],
-        \ }
-  " Only Error in vim echo area
-  let g:LanguageClient_windowLogMessageLevel = 'Error'
-  let g:LanguageClient_loggingLevel = 'INFO'
-  let g:LanguageClient_diagnosticsEnable = 0
-  let g:LanguageClient_settingsPath = expand('~')."/.vim/settings.json"
-  " loadSettings default to 1
-  let g:LanguageClient_loadSettings = 1
+" coc.nvim {{
+  let g:coc_force_debug = 1
+  let g:coc_auto_copen = 0
 " }}"
 
 " indentLine {{
-  let g:indentLine_fileTypeExclude = ['json']
+  let g:indentLine_fileTypeExclude = ['json', 'markdown']
 " }}"
 
 " denite-extra {{

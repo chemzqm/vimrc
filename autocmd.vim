@@ -9,10 +9,16 @@ augroup common
   autocmd BufEnter ~/wechat-dev/* call s:SetWxapp()
   autocmd DirChanged,VimEnter * let &titlestring = s:ShortPath(getcwd())
   autocmd CursorHoldI,CursorMovedI * silent! call CocAction('showSignatureHelp')
+  autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd User CocQuickfixChange :Denite -mode=normal quickfix
   autocmd BufNewFile,BufReadPost *.json setf jsonc
+
+  "autocmd BufLeave *.css,*.scss normal! mC
+  "autocmd BufLeave *.html       normal! mH
+  "autocmd BufLeave *.js         normal! mJ
+  "autocmd BufLeave *.ts         normal! mJ
   " set up default omnifunc
-  autocmd Filetype *
+  autocmd FileType *
         \ if &omnifunc == "" |
         \    setlocal omnifunc=syntaxcomplete#Complete |
         \ endif

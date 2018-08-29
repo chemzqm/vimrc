@@ -170,7 +170,7 @@ call denite#custom#map(
 nnoremap <silent> <space>o  :<C-u>Denite coc-symbols<cr>
 nnoremap <silent> <space>t  :<C-u>Denite coc-workspace<cr>
 nnoremap <silent> <space>a  :<C-u>Denite -mode=normal coc-diagnostic<cr>
-nnoremap <silent> <space>c  :<C-u>Denite -mode=normal coc-command<cr>
+nnoremap <silent> <space>c  :<C-u>Denite coc-command<cr>
 nnoremap <silent> <space>d  :<C-u>Denite todo<cr>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
@@ -183,7 +183,7 @@ nnoremap <silent> <space>n  :<C-u>Denite note<cr>
 nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal quickfix<CR>
 nnoremap <silent> <space>r  :<C-u>Denite redis_mru:.<cr>
-nnoremap <silent> <space>s  :<C-u>Denite session<cr>
+nnoremap <silent> <space>s  :<C-u>Denite coc-service<cr>
 nnoremap <silent> <space>u  :<C-u>Denite ultisnips:all<cr>
 nnoremap <silent> <space>v  :<C-u>Denite vim<cr>
 nnoremap <silent> <space>b  :<C-u>Denite -mode=normal gitbranch<cr>

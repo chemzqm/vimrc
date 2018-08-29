@@ -156,6 +156,8 @@ function! s:GenDoc()
 endfunction
 
 function! s:Open()
+  let res = CocAction('openLink')
+  if res | return | endif
   let line = getline('.')
   " match url
   let url = matchstr(line, '\vhttps?:\/\/[^)\]''" ]+')
