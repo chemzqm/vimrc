@@ -134,11 +134,11 @@ function! s:ListVimrc(...)
 endfunction
 
 function! s:EditVimrc(...)
-  if a:0 == 0
-    execute 'edit ~/.vim/vimrc/.vimrc'
-  else
-    execute 'edit ~/.vim/vimrc/' . a:1
+  let p = $HOME.'/.vim/vimrc/'.(a:0 == 0 ? '.vimrc' : a:1)
+  if getcwd() == $HOME.'/.vim/vimrc'
+    let p = p[len(getcwd()) + 1 : ]
   endif
+  execute 'edit '.p
 endfunction
 
 " L input:[all]

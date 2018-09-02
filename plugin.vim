@@ -37,11 +37,11 @@
 " }}
 
 " gruvbox {{
-  let g:gundo_prefer_python3 = 1
+  let g:gruvbox_italic=1
 " }}
 
-" gundo.vim {{
-  let g:gruvbox_italic=1
+" numdo.vim {{
+  let g:mundo_prefer_python3 = 1
 " }}
 
 " vim-jsx-improve {{

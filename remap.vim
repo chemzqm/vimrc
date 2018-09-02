@@ -92,16 +92,14 @@
   nmap <silent> ]a <Plug>(ale_next_wrap)
 
   " coc.nvim
+  imap <silent> <C-x><C-u> <Plug>(coc-complete-custom)
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
   nmap <silent> ]c <Plug>(coc-diagnostic-next)
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
-  " coc.nvim show hover info
   nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-  imap <silent> <C-x><C-u> <Plug>(coc-complete-custom)
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
