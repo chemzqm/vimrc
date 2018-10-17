@@ -55,7 +55,8 @@ let g:mapleader = ','
   nmap <leader>f  <Plug>(coc-format-selected)
   vmap <leader>a  <Plug>(coc-codeaction-selected)
   nmap <leader>a  <Plug>(coc-codeaction-selected)
-  nmap <leader>ac  <Plug>(coc-codeaction)
+  nmap <leader>ac <Plug>(coc-codeaction)
+  nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 " }}
 
 " grep by motion {{

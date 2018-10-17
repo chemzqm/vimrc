@@ -1,9 +1,5 @@
 let s:job_status = {}
 
-function! MyStatusSyntaxItem()
-  return synIDattr(synID(line("."),col("."),1),"name")
-endfunction
-
 function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"

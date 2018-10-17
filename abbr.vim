@@ -1,4 +1,5 @@
 iabbrev mocah mocha
+iabbrev slient silent
 iabbrev Licence License
 iabbrev accross across
 iabbrev cosnt const
@@ -26,7 +27,7 @@ call SetupCommandAbbrs('U', 'UltiSnipsEdit')
 call SetupCommandAbbrs('P', 'Preview')
 call SetupCommandAbbrs('F', 'Format')
 call SetupCommandAbbrs('N', 'Note')
-call SetupCommandAbbrs('Y', 'YarnAdd')
+call SetupCommandAbbrs('A', 'TodoAdd')
 call SetupCommandAbbrs('D', 'Denite')
 call SetupCommandAbbrs('R', 'NpmRun')
 call SetupCommandAbbrs('M', 'Mouse')

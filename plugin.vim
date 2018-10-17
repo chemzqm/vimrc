@@ -1,13 +1,11 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 
-" vim-prettier {{
-  let g:prettier#exec_cmd_async = 1
-  let g:prettier#quickfix_enabled = 0
-  let g:prettier#config#use_tabs = 'false'
-" }}
+"  fruzzy {{
+  let g:fruzzy#usenative = 1
+" }}"
 
 " vim-markdown {{
-  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json', 'typescript']
+  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript']
 " }}"
 
 " vim-run {{
@@ -55,7 +53,9 @@
 
 " ale {{
   let g:ale_linters = {
+  \   'vue': [],
   \   'javascript': [],
+  \   'dart': [],
   \   'wxss': [],
   \   'vim': ['vint'],
   \   'markdown': [],
@@ -240,21 +240,14 @@
   let g:redismru_disable_auto_validate = 1
 " }}
 
-" vim-stay {{
-  let g:volatile_ftypes = ['scss', 'css']
-" }}
-
 " vim-flow {{
   "let g:flow#autoclose = 1
-" }}
-
-" asyncrun.vim {{
-  let g:asyncrun_bell = 1
 " }}
 
 " coc.nvim {{
   let g:coc_force_debug = 1
   let g:coc_auto_copen = 0
+  let g:coc_node_rpc_debug = 1
 " }}"
 
 " indentLine {{

@@ -12,18 +12,17 @@ call denite#custom#var('file_rec', 'command',
   \ ['rg', '--color', 'never', '--files'])
 " buffer
 call denite#custom#var('buffer', 'date_format', '')
-call denite#custom#source('buffer', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
 " Change grep options.
 call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts',
-    \ ['--vimgrep', '--no-follow'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-follow'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 " Change file_rec matcher
+call denite#custom#source('_', 'matchers', ['matcher/fuzzy'])
 call denite#custom#source('line', 'matchers', ['matcher_regexp'])
-call denite#custom#source('file_rec, redis_mru', 'sorters', ['sorter/sublime'])
+call denite#custom#source('redis_mru', 'sorters', [])
 
 
 " Change mappings.
@@ -174,7 +173,7 @@ nnoremap <silent> <space>c  :<C-u>Denite coc-command<cr>
 nnoremap <silent> <space>d  :<C-u>Denite todo<cr>
 nnoremap <silent> <space>e  :<C-u>Denite buffer<cr>
 nnoremap <silent> <space>f  :<C-u>Denite file_rec<cr>
-nnoremap <silent> <space>g  :<C-u>Denite gitstatus<CR>
+nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
 nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
 nnoremap <silent> <space>j  :Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> <space>k  :Denite -resume -cursor-pos=-1 -immediately<CR>

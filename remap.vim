@@ -19,6 +19,8 @@
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
   nnoremap gp :call <SID>gpush()<CR>
+
+  nmap s <Plug>(easymotion-prefix)
 " }}
 
 " insert keymap like emacs {{

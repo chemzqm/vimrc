@@ -50,7 +50,7 @@ set showtabline=2
 set laststatus=2
 set noshowmode
 set updatetime=300
-set synmaxcol=300
+"set synmaxcol=300
 " Formatting
 set smarttab
 set smartcase
@@ -110,7 +110,6 @@ highlight link CocHintSign    GruvboxBlueSign
 set complete+=k
 set complete-=t
 set completeopt=menu,preview
-"set completeopt=menuone,noinsert,noselect
 
 if !has('nvim')
   "set balloonevalterm
