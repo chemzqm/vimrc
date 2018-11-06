@@ -4,6 +4,10 @@
   let g:fruzzy#usenative = 1
 " }}"
 
+" vim-go {{
+  let g:go_def_mapping_enabled = 0
+" }}"
+
 " vim-markdown {{
   let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript']
 " }}"
@@ -54,6 +58,7 @@
 " ale {{
   let g:ale_linters = {
   \   'vue': [],
+  \   'java': [],
   \   'javascript': [],
   \   'dart': [],
   \   'wxss': [],
@@ -248,6 +253,10 @@
   let g:coc_force_debug = 1
   let g:coc_auto_copen = 0
   let g:coc_node_rpc_debug = 1
+  let g:coc_filetype_map = {
+        \ 'html.swig': 'html',
+        \ 'wxss': 'css',
+        \ }
 " }}"
 
 " indentLine {{

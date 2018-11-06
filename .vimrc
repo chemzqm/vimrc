@@ -24,7 +24,6 @@ Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/jsonc.vim', {'dir': g:local, 'frozen': 1}
-Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'

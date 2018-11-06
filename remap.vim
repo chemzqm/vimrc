@@ -19,8 +19,6 @@
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
   nnoremap gp :call <SID>gpush()<CR>
-
-  nmap s <Plug>(easymotion-prefix)
 " }}
 
 " insert keymap like emacs {{
@@ -110,8 +108,6 @@
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   " remap for complete to use tab and <cr>
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  inoremap <silent><expr> <C-u> pumvisible() ? '<PageUp>' : '<C-u>'
-  inoremap <silent><expr> <C-d> pumvisible() ? '<PageDown>' : '<C-d>'
 
   " ultisnip complete
   inoremap <C-l> <C-R>=SnipComplete()<CR>
@@ -188,7 +184,7 @@ function! s:gpush()
 endfunction
 
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if &filetype ==# 'vim'
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')

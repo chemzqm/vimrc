@@ -3,8 +3,8 @@ let s:job_status = {}
 function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
-        \. "%5*%{MyStatusGitChanges()}%* %6*%{MyStatusDiagnostic()}%*"
-        \. " %{MyStatusTsc()} %f %{MyStatusRunningFrame()} %{MyStatusModifySymbol()}"
+        \. "%5*%{MyStatusGitChanges()}%* %{MyStatusCoc()}"
+        \. " %{MyStatusTsc()} %f %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. "%=%-{&ft} %l,%c %P "
 "%{&fenc}
@@ -21,28 +21,16 @@ function! s:GetPaste()
   return "%#MyStatusPaste# paste %*"
 endfunction
 
-function! MyStatusDiagnostic() abort
-  if s:IsTempFile() | return '' | endif
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, '❌ ' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, '⚠️ ' . info['warning'])
-  endif
-  return join(msgs, ' ')
-endfunction
-
 function! MyStatusReadonly()
   if !&readonly | return '' |endif
   return "  "
 endfunction
 
-function! MyStatusRunningFrame()
-  let s = get(g:, 'tslint_frame', '')
-  return s
+function! MyStatusCoc()
+  if get(g:, 'did_coc_loaded', 0)
+    return coc#status()
+  endif
+  return ''
 endfunction
 
 function! MyStatusTsc()
@@ -154,6 +142,7 @@ endfunction
 augroup statusline
   autocmd!
   autocmd User GitGutter call SetStatusLine()
+  autocmd User CocStatusChange call SetStatusLine()
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * call SetStatusLine()

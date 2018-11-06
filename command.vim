@@ -21,8 +21,7 @@ command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVim
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
 command! -nargs=* -complete=custom,easygit#completeAdd Gadd      :call easygit#add(<f-args>)
 
-command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
-command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.fileTest', ['%'])
 
 let s:cmd_map = {
       \'javascript': 'babel-node',
