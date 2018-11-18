@@ -3,7 +3,7 @@ let g:mapleader = ','
 
 " basic {{
   " Edit file in current file folder
-  nnoremap <leader>q :bd!<CR>
+  nnoremap <leader>q :silent! Bdelete!<CR>
   nnoremap <leader>e :e <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<CR>
   nnoremap <leader>v :vs <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<CR>
   nnoremap <leader>t :tabe <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<CR>

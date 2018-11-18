@@ -250,6 +250,7 @@
 " }}
 
 " coc.nvim {{
+  let g:coc_node_path = '/usr/local/opt/node@10/bin/node'
   let g:coc_force_debug = 1
   let g:coc_auto_copen = 0
   let g:coc_node_rpc_debug = 1

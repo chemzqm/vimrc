@@ -1,6 +1,8 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
 " basic {{
+  vnoremap J :m '>+1<CR>gv=gv
+  vnoremap K :m '<-2<CR>gv=gv
   " no enter ex mode
   nnoremap Q <Nop>
   vnoremap < <gv

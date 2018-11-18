@@ -1,5 +1,7 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 command! -nargs=0 Format                               :call     CocAction('format')
+command! -nargs=0 PickColor                            :call     CocAction('pickColor')
+command! -nargs=0 CP                                   :call     CocAction('colorPresentation')
 command! -nargs=0 Prettier                             :call     CocAction('runCommand', 'prettier.formatFile')
 command! -nargs=0 Tslint                               :call     CocAction('runCommand', 'tslint.lintProject')
 command! -nargs=0 Tsc                                  :call     CocAction('runCommand', 'tsserver.watchBuild')

@@ -37,7 +37,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'othree/csscomplete.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'mattn/emmet-vim'
-Plug 'ap/vim-css-color', {'branch': 'me'}
+"Plug 'ap/vim-css-color', {'branch': 'me'}
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'whiteinge/diffconflicts'

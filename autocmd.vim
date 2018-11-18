@@ -1,7 +1,5 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
 " common file autocmd {{
-let s:jsx_pragma_pattern = '\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*@jsx\_.\{-}\*\/'
-
 augroup common
   autocmd!
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -13,13 +11,12 @@ augroup common
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   autocmd BufEnter,FocusGained * checktime
-  autocmd CursorHoldI,CursorMovedI * silent call CocActionAsync('showSignatureHelp')
+  autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
   autocmd CursorHold * silent call CocActionAsync('highlight')
   autocmd User CocQuickfixChange :Denite -mode=normal quickfix
   "autocmd BufReadCmd,FileReadCmd,SourceCmd jdt://* call s:LoadJavaContent(expand("<amatch>"))
   "autocmd CursorMoved * if &previewwindow != 1 | pclose | endif
   "autocmd User CocQuickfixChange :call fzf_quickfix#run()
-
   " set up default omnifunc
   autocmd FileType *
         \ if &omnifunc == "" |
@@ -42,9 +39,5 @@ function! s:OnBufEnter()
     setl bufhidden=delete
   endif
   unlet name
-endfunction
-
-function! s:EnableJSX()
-  return search(s:jsx_pragma_pattern, 'npw')
 endfunction
 " }}
