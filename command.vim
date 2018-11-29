@@ -1,4 +1,5 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
+command! -nargs=0 Save                                 :call     s:Save()
 command! -nargs=0 Format                               :call     CocAction('format')
 command! -nargs=0 PickColor                            :call     CocAction('pickColor')
 command! -nargs=0 CP                                   :call     CocAction('colorPresentation')
@@ -198,4 +199,10 @@ function! s:Jsongen()
   endfor
   if !exist | execute 'keepalt belowright vs ' . out | endif
   exe 'wincmd p'
+endfunction
+
+function! s:Save()
+  let file = $HOME.'/tmp.log'
+  let content = getline(1, '$')
+  call writefile(content, file)
 endfunction

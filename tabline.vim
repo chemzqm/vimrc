@@ -1,3 +1,4 @@
+let s:time = ''
 let s:file_node_extensions = {
   \  'styl'     : '',
   \  'scss'     : '',
@@ -174,6 +175,23 @@ function! MyTabLabel(n)
   endif
 endfunction
 
+function! CurrentTime(...)
+  call jobstart("date '+%H:%M %m-%d' | tr -d '\n'", {
+        \ 'stdout_buffered': 1,
+        \ 'on_stdout': function('s:OnStdout')
+        \})
+endfunction
+
+function! s:OnStdout(id, data, event) dict
+  let s:time = get(a:data, 0, '')
+endfunction
+
+function! s:start_timer()
+  if !has('nvim') | return | endif
+  call CurrentTime()
+  call timer_start(60000, 'CurrentTime', {'repeat': -1})
+endfunction
+
 function! MyTabLine()
   "if &buftype =~# '\v(help|nofile|terminal)' | return '' | endif
   let s = ''
@@ -195,7 +213,7 @@ function! MyTabLine()
   let s .= ' %= '
   let s .= '%#TabLineSepnullinactive# '
   let s .= '%#TabLineSepinactiveinactive# '
-  let s .= system("date '+%H:%M %m-%d' | tr -d '\n'")
+  let s .= s:time
   let s .= '%#TabLineSepinactiveinactive_mod# '
   let s .= '%#TabLineSepinactive_modinactive_mod# '
   let s .= get(g:, 'coc_weather', '')
@@ -204,4 +222,4 @@ function! MyTabLine()
 endfunction
 
 call s:init_colors()
-
+call s:start_timer()

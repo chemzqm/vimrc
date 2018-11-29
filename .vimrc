@@ -10,6 +10,7 @@ if has('nvim')
   Plug 'neoclide/smartim', {'dir': g:local, 'frozen': 1}
 endif
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-neco', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
@@ -37,7 +38,6 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'othree/csscomplete.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'mattn/emmet-vim'
-"Plug 'ap/vim-css-color', {'branch': 'me'}
 Plug 'Shougo/denite.nvim', {'branch': 'me'}
 Plug 'w0rp/ale', {'branch': 'me'}
 Plug 'whiteinge/diffconflicts'
@@ -57,7 +57,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'Shougo/neco-vim'
-Plug 'Shougo/echodoc'
+"Plug 'Shougo/echodoc'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'posva/vim-vue'
 Plug 'dart-lang/dart-vim-plugin'
@@ -65,7 +65,6 @@ Plug 'tweekmonster/helpful.vim'
 "Plug 'easymotion/vim-easymotion'
 "Plug 'Shougo/neosnippet.vim'
 "Plug 'Shougo/neosnippet-snippets'
-"Plug 'natebosch/vim-lsc'
 "Plug 'prabirshrestha/async.vim'
 "Plug 'prabirshrestha/vim-lsp'
 "Plug 'prabirshrestha/asyncomplete.vim'

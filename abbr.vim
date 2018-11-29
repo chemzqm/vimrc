@@ -10,6 +10,7 @@ function! SetupCommandAbbrs(from, to)
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
+call SetupCommandAbbrs('J', 'Jest')
 call SetupCommandAbbrs('CR', 'CocRestart')
 call SetupCommandAbbrs('Co', 'Copy')
 call SetupCommandAbbrs('B', 'BlogNew')

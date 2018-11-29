@@ -142,7 +142,6 @@ endfunction
 augroup statusline
   autocmd!
   autocmd User GitGutter call SetStatusLine()
-  autocmd User CocStatusChange call SetStatusLine()
   autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * call SetStatusLine()

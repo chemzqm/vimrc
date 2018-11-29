@@ -11,9 +11,10 @@ augroup common
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   autocmd BufEnter,FocusGained * checktime
-  autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
   autocmd CursorHold * silent call CocActionAsync('highlight')
+  autocmd CursorHoldI,CursorMovedI call CocActionAsync('showSignatureHelp')
   autocmd User CocQuickfixChange :Denite -mode=normal quickfix
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   "autocmd BufReadCmd,FileReadCmd,SourceCmd jdt://* call s:LoadJavaContent(expand("<amatch>"))
   "autocmd CursorMoved * if &previewwindow != 1 | pclose | endif
   "autocmd User CocQuickfixChange :call fzf_quickfix#run()
@@ -26,6 +27,11 @@ augroup common
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
         \ endi
+augroup end
+
+augroup mygroup
+  autocmd!
+  autocmd FileType typescript setl formatexpr=CocAction('formatSelected')
 augroup end
 
 function! s:OnBufEnter()
