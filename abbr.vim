@@ -1,4 +1,5 @@
 iabbrev mocah mocha
+iabbrev thsi this
 iabbrev slient silent
 iabbrev Licence License
 iabbrev accross across
@@ -10,9 +11,11 @@ function! SetupCommandAbbrs(from, to)
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
+call SetupCommandAbbrs('C', 'CocConfig')
 call SetupCommandAbbrs('J', 'Jest')
 call SetupCommandAbbrs('CR', 'CocRestart')
 call SetupCommandAbbrs('Co', 'Copy')
+call SetupCommandAbbrs('D', 'Dict')
 call SetupCommandAbbrs('B', 'BlogNew')
 call SetupCommandAbbrs('T', 'tabe')
 call SetupCommandAbbrs('Gd', 'Gvdiff')
@@ -24,13 +27,12 @@ call SetupCommandAbbrs('Gcaa', 'Gcommit --amend -a -v')
 call SetupCommandAbbrs('Gco', 'Gcheckout')
 call SetupCommandAbbrs('Grm', 'Gremove')
 call SetupCommandAbbrs('Gmv', 'Gmove')
-call SetupCommandAbbrs('L', 'Gitlog')
+call SetupCommandAbbrs('L', 'CocList')
 call SetupCommandAbbrs('U', 'UltiSnipsEdit')
 call SetupCommandAbbrs('P', 'Preview')
 call SetupCommandAbbrs('F', 'Format')
 call SetupCommandAbbrs('N', 'Note')
 call SetupCommandAbbrs('A', 'TodoAdd')
-call SetupCommandAbbrs('D', 'Denite')
 call SetupCommandAbbrs('R', 'NpmRun')
 call SetupCommandAbbrs('M', 'Mouse')
 call SetupCommandAbbrs('E', 'EditVimrc')

@@ -2,20 +2,20 @@
 " common file autocmd {{
 augroup common
   autocmd!
+  autocmd BufEnter * call EmptyBuffer()
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call s:OnBufEnter()
   autocmd DirChanged,VimEnter * let &titlestring = pathshorten(substitute(getcwd(), $HOME, '~', ''))
-  autocmd BufNewFile,BufReadPost *.json setf jsonc
   autocmd BufNewFile,BufReadPost *.ejs setf html
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   autocmd BufEnter,FocusGained * checktime
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-  autocmd CursorHoldI,CursorMovedI call CocActionAsync('showSignatureHelp')
-  autocmd User CocQuickfixChange :Denite -mode=normal quickfix
+
+  autocmd User CocQuickfixChange :CocList --normal quickfix
+  autocmd CursorHold * silent! call CocActionAsync('highlight')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  "autocmd BufReadCmd,FileReadCmd,SourceCmd jdt://* call s:LoadJavaContent(expand("<amatch>"))
+  "autocmd FileType txt call PlainText()
   "autocmd CursorMoved * if &previewwindow != 1 | pclose | endif
   "autocmd User CocQuickfixChange :call fzf_quickfix#run()
   " set up default omnifunc
@@ -26,13 +26,16 @@ augroup common
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
-        \ endi
-augroup end
-
-augroup mygroup
-  autocmd!
+        \ endif
+  autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd FileType typescript setl formatexpr=CocAction('formatSelected')
 augroup end
+
+function! EmptyBuffer()
+  if @% ==# ""
+    setfiletype txt
+  endif
+endfunction
 
 function! s:OnBufEnter()
   let name = bufname(+expand('<abuf>'))

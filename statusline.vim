@@ -4,7 +4,7 @@ function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
         \. "%5*%{MyStatusGitChanges()}%* %{MyStatusCoc()}"
-        \. " %{MyStatusTsc()} %f %{MyStatusModifySymbol()}"
+        \. " %f %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. "%=%-{&ft} %l,%c %P "
 "%{&fenc}
@@ -12,8 +12,12 @@ endfunction
 
 function! s:IsTempFile()
   if !empty(&buftype) | return 1 | endif
+  if &previewwindow | return 1 | endif
   if &filetype ==# 'gitcommit' | return 1 | endif
-  if expand('%:p') =~# '^/tmp' | return 1 | endif
+  let filename = expand('%:p')
+  if filename =~# '^/tmp' | return 1 | endif
+  if filename =~# '^fugitive:' | return 1 | endif
+  return 0
 endfunction
 
 function! s:GetPaste()
@@ -29,23 +33,6 @@ endfunction
 function! MyStatusCoc()
   if get(g:, 'did_coc_loaded', 0)
     return coc#status()
-  endif
-  return ''
-endfunction
-
-function! MyStatusTsc()
-  if s:IsTempFile() | return '' | endif
-  let s = get(g:, 'tsc_status', '')
-  if s ==? 'init'
-    return ''
-  elseif s ==? 'compiling'
-    return '🏃'
-  elseif s ==? 'running'
-    return '🐳'
-  elseif s ==? 'stopped'
-    return '⚪️'
-  elseif s ==? 'error'
-    return '🔴'
   endif
   return ''
 endfunction
@@ -94,7 +81,7 @@ endfunction
 
 function! s:JobHandler(job_id, data, event) dict
   if !has_key(s:job_status, a:job_id) | return | endif
-  if v:dying | return | endif
+  if !has_key(self, 'stdout') | return | endif
   if !empty(self.stdout)
     let output = join(self.stdout)
     if !empty(output)
@@ -123,14 +110,6 @@ function! SetStatusLine()
   if s:IsTempFile() | return | endif
   call MyStatusGit(1)
   setl statusline=%!MyStatusLine()
-  call s:highlight()
-endfunction
-
-function! s:PrintError(msg)
-  echohl Error | echon a:msg | echohl None
-endfunction
-
-function! s:highlight()
   hi User6         guifg=#fb4934 guibg=#282828 gui=none
   hi User3         guifg=#e03131 guibg=#111111    gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
@@ -139,10 +118,14 @@ function! s:highlight()
   hi User5 guifg=#f8f9fa guibg=#343a40
 endfunction
 
+function! s:PrintError(msg)
+  echohl Error | echon a:msg | echohl None
+endfunction
+
 augroup statusline
   autocmd!
   autocmd User GitGutter call SetStatusLine()
-  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call SetStatusLine()
+  autocmd BufNewFile,BufReadPost,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
   autocmd FileReadPre,ShellCmdPost,FileWritePost * call SetStatusLine()
 augroup end

@@ -1,12 +1,16 @@
-""" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:
+""" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0 fen:
 
-"  fruzzy {{
-  let g:fruzzy#usenative = 1
-" }}"
+" vimtex {{
+  let g:vimtex_matchparen_enabled = 0
+" }}
 
 " vim-go {{
   let g:go_def_mapping_enabled = 0
 " }}"
+
+" fugitive {{
+  let g:fugitive_browse_handlers = []
+" }}
 
 " vim-markdown {{
   let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript']
@@ -57,22 +61,27 @@
 
 " ale {{
   let g:ale_linters = {
-  \   'vue': [],
-  \   'java': [],
-  \   'javascript': [],
-  \   'dart': [],
-  \   'wxss': [],
-  \   'vim': ['vint'],
-  \   'markdown': [],
-  \   'python': [],
-  \   'html': [],
-  \   'ruby': [],
-  \   'scss': [],
-  \   'css': [],
-  \   'typescript': [],
-  \   'json': [],
-  \   'swift': ['swiftlint'],
-  \}
+        \   'rust': [],
+        \   'go': [],
+        \   'vue': [],
+        \   'objcpp': [],
+        \   'c': [],
+        \   'java': [],
+        \   'javascript': [],
+        \   'dart': [],
+        \   'tex': [],
+        \   'wxss': [],
+        \   'vim': ['vint'],
+        \   'markdown': [],
+        \   'python': [],
+        \   'html': [],
+        \   'ruby': [],
+        \   'scss': [],
+        \   'css': [],
+        \   'typescript': [],
+        \   'json': [],
+        \   'swift': ['swiftlint'],
+        \}
   let g:ale_swift_swiftlint_use_defaults = 1
   let g:ale_warn_about_trailing_whitespace = 0
   let g:ale_sign_column_always = 1
@@ -85,10 +94,8 @@
 " }}
 
 " ultisnips {{
-  let g:UltiSnipsNoPythonWarning = 1
   let g:UltiSnipsExpandTrigger='<C-j>'
   let g:UltiSnipsJumpForwardTrigger='<C-j>'
-  let g:UltiSnipsJumpBackwardTrigger='<C-p>'
   let g:UltiSnipsEditSplit='vertical'
   let g:UltiSnipsSnippetsDir='/Users/chemzqm/vim-dev/snippets/UltiSnips'
 " }}
@@ -106,7 +113,7 @@
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
   " <c-y>a Make anchor from URL
   " <c-y>A Make quoted text from URL
-  let g:user_emmet_leader_key = '<C-e>'
+  let g:user_emmet_leader_key = '<C-p>'
   let g:user_emmet_expandabbr_key = '<M-y>'
   "内部全选
   let g:user_emmet_mode='a'
@@ -250,10 +257,14 @@
 " }}
 
 " coc.nvim {{
-  let g:coc_node_path = '/usr/local/opt/node@10/bin/node'
+  let g:vim_node_rpc_folder = '~/vim-dev/vim-node-rpc'
+  let g:vim_node_rpc_debug = 1
+  let g:coc_enable_profile = 1
+  let g:coc_watch_extensions = ['coc-snippets', 'coc-eslint']
+  "let g:coc_trace_client = 1
+  "let g:coc_node_args = ['--nolazy', '--inspect=6045']
   let g:coc_force_debug = 1
   let g:coc_auto_copen = 0
-  let g:coc_node_rpc_debug = 1
   let g:coc_filetype_map = {
         \ 'html.swig': 'html',
         \ 'wxss': 'css',
@@ -262,6 +273,7 @@
 
 " indentLine {{
   let g:indentLine_fileTypeExclude = ['json', 'markdown']
+  let g:indentLine_bufTypeExclude = ['help', 'terminal', 'nofile']
 " }}"
 
 " denite-extra {{

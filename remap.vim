@@ -1,22 +1,24 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker:
 
 " basic {{
-  vnoremap J :m '>+1<CR>gv=gv
-  vnoremap K :m '<-2<CR>gv=gv
+  xnoremap J :m '>+1<CR>gv=gv
+  xnoremap K :m '<-2<CR>gv=gv
   " no enter ex mode
   nnoremap Q <Nop>
-  vnoremap < <gv
-  vnoremap > >gv
+  xnoremap < <gv
+  xnoremap > >gv
   inoremap <C-v> <C-o>"+]p
-  vnoremap <C-c> "+y
+  xnoremap <C-c> "+y
   nnoremap <expr> n  'Nn'[v:searchforward]
   nnoremap <expr> N  'nN'[v:searchforward]
   nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
   nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
   " yank to end
   nnoremap Y y$
+  " no overwrite paste
+  xnoremap p "_dP
   " clear highlight update diff
-  nnoremap <silent> <C-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+  nnoremap <silent> <A-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
   " some shortcut for git
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
@@ -31,8 +33,7 @@
   inoremap <C-b> <Left>
   inoremap <C-f> <Right>
   inoremap <C-a> <Home>
-  inoremap <C-e> <End>
-" }}
+  inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
 
 " window navigate {{
   nnoremap <C-l> <c-w>l
@@ -85,7 +86,7 @@
   nmap <leader>7 7gt
   nmap <leader>8 8gt
 
-  " gitgutter
+  " signify
   nmap [g <Plug>GitGutterPrevHunk
   nmap ]g <Plug>GitGutterNextHunk
 
@@ -93,8 +94,12 @@
   nmap <silent> [a <Plug>(ale_previous_wrap)
   nmap <silent> ]a <Plug>(ale_next_wrap)
 
+  " vim-exchange
+  xmap x <Plug>(Exchange)
+
   " coc.nvim
-  imap <silent> <C-x><C-u> <Plug>(coc-complete-custom)
+  imap <C-j> <Plug>(coc-snippets-expand-jump)
+  xmap <C-j> <Plug>(coc-snippets-select)
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
   nmap <silent> ]c <Plug>(coc-diagnostic-next)
   nmap <silent> gd <Plug>(coc-definition)
@@ -109,16 +114,14 @@
   inoremap <silent><expr> <c-space> coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   " remap for complete to use tab and <cr>
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-  " ultisnip complete
-  inoremap <C-l> <C-R>=SnipComplete()<CR>
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<c-r>=coc#on_enter()\<CR>\<C-g>u\<CR>"
 " }}
 
 " visual search {{
   "  In visual mode when you press * or # to search for the current selection
-  vnoremap    <silent> * :call <SID>visualSearch('f')<CR>
-  vnoremap    <silent> # :call <SID>visualSearch('b')<CR>
+  xnoremap    <silent> * :call <SID>visualSearch('f')<CR>
+  xnoremap    <silent> # :call <SID>visualSearch('b')<CR>
 " }}
 
 " functions {{
@@ -136,39 +139,6 @@ function!   s:visualSearch(direction)
   let       @/ = l:pattern
   let       @" = l:saved_reg
 endfunction
-
-func! SnipComplete()
-  let line = getline('.')
-  let start = col('.') - 1
-  while start > 0 && line[start - 1] =~# '\k'
-    let start -= 1
-  endwhile
-  let suggestions = []
-  " I've change the code of ultisnips
-  let snips =  UltiSnips#SnippetsInCurrentScope(0)
-  for item in snips
-    let trigger = item.key
-    let entry = {'word': item.key, 'menu': item.description}
-    call add(suggestions, entry)
-  endfor
-  if empty(suggestions)
-    echohl Error | echon 'no match' | echohl None
-  elseif len(suggestions) == 1
-    let pos = getcurpos()
-    if start == 0
-      let str = trigger
-    else
-      let str = line[0:start - 1] . trigger
-    endif
-    call setline('.', str)
-    let pos[2] = len(str) + 1
-    call setpos('.', pos)
-    call UltiSnips#ExpandSnippet()
-  else
-    call complete(start + 1, suggestions)
-  endif
-  return ''
-endfunc
 
 function! s:check_back_space() abort
   let col = col('.') - 1

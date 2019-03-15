@@ -9,8 +9,7 @@ command! -nargs=0 Tsc                                  :call     CocAction('runC
 command! -nargs=0 OR                                   :call     CocAction('runCommand', 'tsserver.organizeImports')
 command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
-command! -nargs=0 C                                    :call     s:Gcd()
-command! -nargs=0 Todo                                 :Denite   todo
+command! -nargs=0 Cd                                   :call     s:Gcd()
 command! -nargs=0 Mouse                                :call     s:ToggleMouse()
 command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()
@@ -19,7 +18,7 @@ command! -nargs=* Execute                              :call     s:Execute(<q-ar
 command! -nargs=0 MakeTags                             :execute  'Nrun ctags -R .'
 command! -nargs=? Gitlog                               :call     s:ShowGitlog('<args>')
 command! -nargs=0 -range=%                             Prefixer  call  s:Prefixer(<line1>, <line2>)
-command! -nargs=+ -complete=dir                        Rg        call  s:Grep(<f-args>)
+command! -nargs=+ -complete=custom,s:GrepArgs          Rg        :exe 'CocList grep '.<q-args>
 command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
 command! -nargs=* -complete=custom,easygit#completeAdd Gadd      :call easygit#add(<f-args>)
@@ -46,27 +45,6 @@ function! s:Execute(args)
   let command = get(b:, 'command', s:cmd_map[&filetype])
   let cmd = "rewatch ".file." -c '".command." ".shellescape(file)." ".a:args." '"
   execute 'Nrun ' . cmd
-endfunction
-
-function! s:Grep(...)
-  let arguments = deepcopy(a:000)
-  let opts = []
-  let strs = []
-  for str in arguments
-    if str =~ '\v^-'
-      call add(opts, str)
-    else
-      call add(strs, str)
-    endif
-  endfor
-  if index(opts, '-e') < 0
-    call add(opts, '-F')
-  endif
-  if empty(strs)
-    echoerr 'No pattern found'
-  endif
-  let path = get(strs, 1, '')
-  execute 'Denite grep:'.path.':'.join(opts, '\ ').':'.strs[0]
 endfunction
 
 function! s:FileDir(filename)
@@ -139,6 +117,12 @@ function! s:ListVimrc(...)
   return join(map(split(globpath('~/.vim/vimrc/', '*.vim'),'\n'),
     \ "substitute(v:val, '" . expand('~'). "/.vim/vimrc/', '', '')")
     \ , "\n")
+endfunction
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
 endfunction
 
 function! s:EditVimrc(...)

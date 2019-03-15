@@ -36,14 +36,10 @@ let g:mapleader = ','
 " }}
 
 " plugin {{
-  " denite-extra session helper
+  "session helper
   nmap <leader>ss :call <SID>SessionSave()<CR>
   nmap <leader>sl :<C-u>SessionLoad 
   nmap <leader>sr :call <SID>SessionReload()<CR>
-  " ultisnips
-  noremap <leader>snip :UltiSnipsEdit<CR>
-  " Gundo
-  nnoremap <leader>Gt :GundoToggle<CR>
   " svg.vim not used very often
   nmap <leader>se <Plug>SvgEdit
   " rename.nvim grep and replace
@@ -51,11 +47,14 @@ let g:mapleader = ','
 
   " coc.nvim
   nmap <leader>rn <Plug>(coc-rename)
+  nmap <leader>cl <Plug>(coc-codelens-action)
   vmap <leader>f  <Plug>(coc-format-selected)
   nmap <leader>f  <Plug>(coc-format-selected)
   vmap <leader>a  <Plug>(coc-codeaction-selected)
   nmap <leader>a  <Plug>(coc-codeaction-selected)
   nmap <leader>ac <Plug>(coc-codeaction)
+  nmap <leader>di <Plug>(coc-diagnostic-info)
+  nmap <leader>qf <Plug>(coc-fix-current)
   nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 " }}
 
@@ -75,7 +74,7 @@ function! s:GrepFromSelected(type)
   let word = substitute(@@, '\n$', '', 'g')
   let word = escape(word, '| ')
   let @@ = saved_unnamed_register
-  execute 'Denite grep:::'.word
+  execute 'CocList grep '.word
 endfunction
 " }}
 
@@ -184,7 +183,7 @@ function! OpenCurrentFileInGithub()
   let branch = system('git symbolic-ref --short -q HEAD | tr -d "\n"')
   let git_remote = system('cd ' . file_dir . '; git remote get-url origin')
   let repo_path = matchlist(git_remote, ':\(.*\)\.')[1]
-  let url = 'https://github.com/' . repo_path . '/blob/' . branch . '/' . file_path
+  let url = 'https://' . repo_path . '/blob/' . branch . '/' . file_path
   let first_line = getpos("'<")[1]
   let url .= '#L' . first_line
   let last_line = getpos("'>")[1]

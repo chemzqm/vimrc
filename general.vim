@@ -2,6 +2,7 @@
 set termguicolors
 set hidden " allow buffer switch without saving
 set history=2000
+set pumheight=15
 set wildmenu
 set signcolumn=yes
 set wildmode=list:longest,full
@@ -31,12 +32,13 @@ set diffopt=vertical
 set path+=**
 set tags+=gems.tags,stdlib.tags
 set showbreak=↪ 
-set shortmess=a
+set shortmess=aFc
 set cmdheight=2
 set sessionoptions+=winsize
 set sessionoptions+=resize
 set sessionoptions-=blank
 set sessionoptions+=localoptions
+set sessionoptions+=globals
 set viewoptions=cursor,folds,slash,unix
 set ttimeout
 set ttimeoutlen=100
@@ -50,7 +52,7 @@ set showtabline=2
 set laststatus=2
 set noshowmode
 set updatetime=300
-"set synmaxcol=300
+set synmaxcol=300
 " Formatting
 set smarttab
 set smartcase
@@ -63,11 +65,11 @@ set wrap
 set guioptions-=r
 set number
 set relativenumber
-set shortmess+=F
-set shortmess+=c
 set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
 set title
+set wildignorecase
+set noruler
 " }}
 
 " Special options for macvim {{
@@ -90,11 +92,12 @@ endif
 " Syntax related {{
 " improve performance
 "syntax sync minlines=300
-hi Pmenu  guifg=#111111 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+"hi Pmenu  guifg=#111111 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+"hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+"hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 " change default search highlight
 hi Search guibg=#111111 guifg=#C5B569
+hi CocHighlightText  guibg=#222222 ctermbg=223
 if !has('gui_running') | hi normal guibg=NONE | endif
 call matchadd('ColorColumn', '\%81v', 100)
 hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
@@ -104,11 +107,14 @@ highlight link CocErrorSign   GruvboxRedSign
 highlight link CocWarningSign GruvboxYellowSign
 highlight link CocInfoSign    GruvboxYellowSign
 highlight link CocHintSign    GruvboxBlueSign
+highlight link CocFloating    SignColumn
+
 " }}
 
 " Complete config {{
 set complete+=k
 set complete-=t
+"set completeopt=noinsert,noselect,menuone
 set completeopt=menu,preview
 
 if !has('nvim')
