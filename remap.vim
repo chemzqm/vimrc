@@ -23,6 +23,8 @@
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
   nnoremap gp :call <SID>gpush()<CR>
+  nnoremap <TAB> :bn<CR>
+  nnoremap <S-TAB> :bp<CR>
 " }}
 
 " insert keymap like emacs {{
@@ -87,8 +89,9 @@
   nmap <leader>8 8gt
 
   " signify
-  nmap [g <Plug>GitGutterPrevHunk
-  nmap ]g <Plug>GitGutterNextHunk
+  nmap [g <Plug>(coc-git-prevchunk)
+  nmap ]g <Plug>(coc-git-nextchunk)
+  nmap gs <Plug>(coc-git-chunkinfo)
 
   " ale
   nmap <silent> [a <Plug>(ale_previous_wrap)
@@ -107,15 +110,14 @@
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
   nnoremap <silent> K :call <SID>show_documentation()<CR>
+  " remap for complete to use tab and <cr>
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
   inoremap <silent><expr> <c-space> coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-  " remap for complete to use tab and <cr>
-
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<c-r>=coc#on_enter()\<CR>\<C-g>u\<CR>"
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " }}
 
 " visual search {{

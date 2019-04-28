@@ -1,4 +1,4 @@
-""" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0 fen:
+""" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0 nofen:
 
 " vimtex {{
   let g:vimtex_matchparen_enabled = 0
@@ -257,11 +257,11 @@
 " }}
 
 " coc.nvim {{
-  let g:vim_node_rpc_folder = '~/vim-dev/vim-node-rpc'
-  let g:vim_node_rpc_debug = 1
-  let g:coc_enable_profile = 1
-  let g:coc_watch_extensions = ['coc-snippets', 'coc-eslint']
+  let g:node_client_debug = 1
+  "let g:coc_global_extensions = ['coc-ultisnips']
+  let g:coc_watch_extensions = ['coc-snippets']
   "let g:coc_trace_client = 1
+  let g:coc_node_path = '/usr/local/Cellar/node/11.14.0_1/bin/node'
   "let g:coc_node_args = ['--nolazy', '--inspect=6045']
   let g:coc_force_debug = 1
   let g:coc_auto_copen = 0

@@ -7,15 +7,15 @@ call plug#begin()
 if has('nvim')
   Plug 'neoclide/rename.nvim', {'dir': g:local, 'frozen': 1}
 endif
-"Plug 'neoclide/coc-jedi', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-neco', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-git', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-imselect', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 1}
-Plug 'chemzqm/snippets', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
@@ -27,7 +27,7 @@ Plug 'tpope/vim-markdown'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'tpope/vim-rhubarb'
 Plug 'romainl/vim-cool' " search improve
-Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree'
 Plug 'rizzatti/dash.vim'
 Plug 'mattn/emmet-vim'
 Plug 'w0rp/ale', {'branch': 'me'}
@@ -38,6 +38,7 @@ Plug 'fatih/vim-go'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 Plug 'othree/xml.vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'kana/vim-textobj-user'
 Plug 'tommcdo/vim-lion'
 Plug 'keith/swift.vim'
@@ -49,8 +50,11 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'posva/vim-vue'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'tweekmonster/helpful.vim'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'lervag/vimtex'
+"Plug 'honza/vim-snippets'
+"Plug 'scrooloose/nerdtree'
+"Plug 'jparise/vim-graphql'
 "Plug 'neoclide/todoapp.vim', {'dir': g:local, 'frozen': 1}
 "Plug 'liuchengxu/vista.vim'
 "Plug 'easymotion/vim-easymotion'
@@ -60,8 +64,8 @@ Plug 'lervag/vimtex'
 "Plug 'itchyny/lightline.vim'
 "Plug 'machakann/vim-highlightedyank'
 "Plug 'neoclide/denite-git', {'dir': g:local, 'frozen': 1}
-"Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 "Plug 'Shougo/denite.nvim', {'branch': 'me'}
+"Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 "Plug 'Shougo/echodoc'
 "Plug 'easymotion/vim-easymotion'
 "Plug 'Shougo/neosnippet.vim'

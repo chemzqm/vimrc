@@ -15,14 +15,12 @@ command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()
 command! -nargs=? Fold                                 :call     CocAction('fold', <f-args>)
 command! -nargs=* Execute                              :call     s:Execute(<q-args>)
-command! -nargs=0 MakeTags                             :execute  'Nrun ctags -R .'
-command! -nargs=? Gitlog                               :call     s:ShowGitlog('<args>')
+command! -nargs=0 Ctags                                :execute  'Nrun ctags -R .'
 command! -nargs=0 -range=%                             Prefixer  call  s:Prefixer(<line1>, <line2>)
 command! -nargs=+ -complete=custom,s:GrepArgs          Rg        :exe 'CocList grep '.<q-args>
 command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
 command! -nargs=* -complete=custom,easygit#completeAdd Gadd      :call easygit#add(<f-args>)
-
 command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.fileTest', ['%'])
 
 let s:cmd_map = {
@@ -131,13 +129,6 @@ function! s:EditVimrc(...)
     let p = p[len(getcwd()) + 1 : ]
   endif
   execute 'edit '.p
-endfunction
-
-" L input:[all]
-function! s:ShowGitlog(arg)
-  let args = split(a:arg, ':', 1)
-  let input = get(args, 0, '')
-  execute 'Denite -no-quit -no-empty gitlog:' . get(args, 1, '') . ' -input=' . input . ' -mode=normal'
 endfunction
 
 " Remove hidden buffers and cd to current dir

@@ -18,10 +18,10 @@ set mousehide
 set mousemodel=popup
 set mouse=a
 set novisualbell
+set nobackup
 set nowritebackup
 set noimdisable
 set noswapfile
-set nobackup
 set undofile
 set undodir=~/.undodir
 set fileformats=unix,dos
@@ -97,7 +97,6 @@ endif
 "hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 " change default search highlight
 hi Search guibg=#111111 guifg=#C5B569
-hi CocHighlightText  guibg=#222222 ctermbg=223
 if !has('gui_running') | hi normal guibg=NONE | endif
 call matchadd('ColorColumn', '\%81v', 100)
 hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333

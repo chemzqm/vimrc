@@ -6,6 +6,7 @@ augroup common
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd BufReadPost *.log normal! G
   autocmd BufWinEnter * call s:OnBufEnter()
+  autocmd FileType * call s:OnFileType(expand('<amatch>'))
   autocmd DirChanged,VimEnter * let &titlestring = pathshorten(substitute(getcwd(), $HOME, '~', ''))
   autocmd BufNewFile,BufReadPost *.ejs setf html
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
@@ -15,6 +16,7 @@ augroup common
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd CursorHold * silent! call CocActionAsync('highlight')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd InsertEnter * call CocActionAsync('showSignatureHelp')
   "autocmd FileType txt call PlainText()
   "autocmd CursorMoved * if &previewwindow != 1 | pclose | endif
   "autocmd User CocQuickfixChange :call fzf_quickfix#run()
@@ -37,12 +39,18 @@ function! EmptyBuffer()
   endif
 endfunction
 
+function! s:OnFileType(filetype)
+  if index(['xml', 'wxml', 'html', 'wxss', 'css', 'scss', 'less'], a:filetype) >=0
+    let b:coc_additional_keywords = ['-']
+  endif
+endfunction
+
 function! s:OnBufEnter()
   let name = bufname(+expand('<abuf>'))
   " quickly leave those temporary buffers
   if &previewwindow || name =~# '^term://' || &buftype ==# 'nofile' || &buftype ==# 'help'
     if !mapcheck('q', 'n')
-      nnoremap <buffer> q :<C-U>bd!<CR>
+      nnoremap <silent><buffer> q :<C-U>bd!<CR>
     endif
   elseif name =~# '/tmp/'
     setl bufhidden=delete

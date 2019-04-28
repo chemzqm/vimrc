@@ -43,66 +43,12 @@ endfunction
 
 function! MyStatusGitChanges() abort
   if s:IsTempFile() | return '' | endif
-  let gutter = get(b:, 'gitgutter', {})
-  if empty(gutter) | return '' | endif
-  let summary = get(gutter, 'summary', [])
-  if empty(summary) | return '' | endif
-  if summary[0] == 0 && summary[1] == 0 && summary[2] == 0
-    return ''
-  endif
-  return '  +'.summary[0].' ~'.summary[1].' -'.summary[2].' '
+  return get(b:, 'coc_git_status', '')
 endfunction
 
 function! MyStatusGit(...) abort
   if s:IsTempFile() | return '' | endif
-  let reload = get(a:, 1, 0) == 1
-  if exists('b:git_branch') && !reload | return b:git_branch | endif
-  if !exists('*FugitiveExtractGitDir') | return '' | endif
-  if s:IsTempFile() | return '' | endif
-  " only support neovim
-  if !exists('*jobstart') | return '' | endif
-  let roots = values(s:job_status)
-  let dir = get(b:, 'git_dir', FugitiveExtractGitDir(resolve(expand('%:p'))))
-  if empty(dir) | return '' | endif
-  let b:git_dir = dir
-  let root = fnamemodify(dir, ':h')
-  if index(roots, root) >= 0 | return '' | endif
-  let nr = bufnr('%')
-  let job_id = jobstart('git-status', {
-    \ 'cwd': root,
-    \ 'stdout_buffered': v:true,
-    \ 'stderr_buffered': v:true,
-    \ 'on_exit': function('s:JobHandler')
-    \})
-  if job_id == 0 || job_id == -1 | return '' | endif
-  let s:job_status[job_id] = root
-  return ''
-endfunction
-
-function! s:JobHandler(job_id, data, event) dict
-  if !has_key(s:job_status, a:job_id) | return | endif
-  if !has_key(self, 'stdout') | return | endif
-  if !empty(self.stdout)
-    let output = join(self.stdout)
-    if !empty(output)
-      call s:SetGitStatus(self.cwd, ' '.output.' ')
-    endif
-  else
-    let errs = join(self.stderr)
-    if !empty(errs) | echoerr errs | endif
-  endif
-  call remove(s:job_status, a:job_id)
-endfunction
-
-function! s:SetGitStatus(root, str)
-  let buf_list = filter(range(1, bufnr('$')), 'bufexists(v:val)')
-  for nr in buf_list
-    let path = fnamemodify(bufname(nr), ':p')
-    if match(path, a:root) >= 0
-      call setbufvar(nr, 'git_branch', a:str)
-    endif
-  endfor
-  redraws!
+  return get(g:, 'coc_git_status', '')
 endfunction
 
 function! SetStatusLine()
@@ -116,10 +62,6 @@ function! SetStatusLine()
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
   hi User4 guifg=#f8f8ff guibg=#000000
   hi User5 guifg=#f8f9fa guibg=#343a40
-endfunction
-
-function! s:PrintError(msg)
-  echohl Error | echon a:msg | echohl None
 endfunction
 
 augroup statusline
