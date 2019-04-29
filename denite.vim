@@ -1,9 +1,8 @@
 " Install ripgrep with `brew install ripgrep`
-nnoremap <silent> <space>h  :<C-u>Denite history:all<cr>
-nnoremap <silent> <space>g  :<C-u>Denite -mode=normal gitstatus<CR>
 nnoremap <silent> <space>b  :<C-u>Denite -mode=normal gitbranch<cr>
-
 nnoremap <silent> \r  :<C-u>CocList -N mru -A<cr>
+nnoremap <silent> <space>h  :<C-u>CocList helptags<cr>
+nnoremap <silent> <space>g  :<C-u>CocList --normal gstatus<CR>
 nnoremap <silent> <space>t  :<C-u>CocList --normal buffers<cr>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>u  :<C-u>CocList snippets<cr>

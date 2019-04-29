@@ -1,5 +1,3 @@
-let s:job_status = {}
-
 function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
