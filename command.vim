@@ -10,6 +10,7 @@ command! -nargs=0 OR                                   :call     CocAction('runC
 command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
 command! -nargs=0 Cd                                   :call     s:Gcd()
+command! -nargs=0 Commits                              :CocList  commits
 command! -nargs=0 Mouse                                :call     s:ToggleMouse()
 command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()

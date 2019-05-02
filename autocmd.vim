@@ -31,6 +31,7 @@ augroup common
         \ endif
   autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd FileType typescript setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript let b:coc_pairs_disabled = ['<']
 augroup end
 
 function! EmptyBuffer()

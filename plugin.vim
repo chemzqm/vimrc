@@ -1,5 +1,13 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0 nofen:
 
+" vim-translate-me {{
+  let g:vtm_default_mapping = 0
+  let g:vtm_youdao_app_key = '67409b467378f463'
+  let g:vtm_youdao_app_secret = 'njwzFZ7YTbbtkcqD4gYyIrl6utr3vA7x'
+  let g:vtm_popup_window = 'floating'
+  let g:vtm_default_api = 'youdao'
+" }}"
+
 " vimtex {{
   let g:vimtex_matchparen_enabled = 0
 " }}

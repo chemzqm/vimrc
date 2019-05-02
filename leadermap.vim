@@ -48,14 +48,16 @@ let g:mapleader = ','
   " coc.nvim
   nmap <leader>rn <Plug>(coc-rename)
   nmap <leader>cl <Plug>(coc-codelens-action)
-  vmap <leader>f  <Plug>(coc-format-selected)
+  xmap <leader>f  <Plug>(coc-format-selected)
   nmap <leader>f  <Plug>(coc-format-selected)
-  vmap <leader>a  <Plug>(coc-codeaction-selected)
+  xmap <leader>a  <Plug>(coc-codeaction-selected)
   nmap <leader>a  <Plug>(coc-codeaction-selected)
   nmap <leader>ac <Plug>(coc-codeaction)
   nmap <leader>di <Plug>(coc-diagnostic-info)
   nmap <leader>qf <Plug>(coc-fix-current)
   nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+
+  nmap <silent> <Leader>tr <Plug>TranslateW
 " }}
 
 " grep by motion {{
