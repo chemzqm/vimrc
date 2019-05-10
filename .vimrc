@@ -10,6 +10,8 @@ endif
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-neco', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-git', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-snippets', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-npm', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-imselect', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-easygit', {'dir': g:local, 'frozen': 1}
@@ -54,6 +56,7 @@ Plug 'lervag/vimtex'
 Plug 'derekwyatt/vim-scala'
 Plug 'voldikss/vim-translate-me'
 "Plug 'airblade/vim-gitgutter'
+"Plug 'garbas/vim-snipmate'
 "Plug 'honza/vim-snippets'
 "Plug 'scrooloose/nerdtree'
 "Plug 'jparise/vim-graphql'

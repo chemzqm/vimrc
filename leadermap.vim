@@ -38,7 +38,7 @@ let g:mapleader = ','
 " plugin {{
   "session helper
   nmap <leader>ss :call <SID>SessionSave()<CR>
-  nmap <leader>sl :<C-u>SessionLoad 
+  nmap <leader>sl :<C-u>SessionLoad
   nmap <leader>sr :call <SID>SessionReload()<CR>
   " svg.vim not used very often
   nmap <leader>se <Plug>SvgEdit
@@ -47,7 +47,7 @@ let g:mapleader = ','
 
   " coc.nvim
   nmap <leader>rn <Plug>(coc-rename)
-  nmap <leader>cl <Plug>(coc-codelens-action)
+  nmap <leader>ca <Plug>(coc-codelens-action)
   xmap <leader>f  <Plug>(coc-format-selected)
   nmap <leader>f  <Plug>(coc-format-selected)
   xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -121,7 +121,7 @@ function! s:Clean()
   endif
   " remove tailing white space
   silent! execute '%s/\s\+$//'
-  " remove windows 
+  " remove windows `\r`
   silent! execute '%s/$//'
   call winrestview(view)
 endfunction

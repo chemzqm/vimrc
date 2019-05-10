@@ -7,6 +7,7 @@ command! -nargs=0 Prettier                             :call     CocAction('runC
 command! -nargs=0 Tslint                               :call     CocAction('runCommand', 'tslint.lintProject')
 command! -nargs=0 Tsc                                  :call     CocAction('runCommand', 'tsserver.watchBuild')
 command! -nargs=0 OR                                   :call     CocAction('runCommand', 'tsserver.organizeImports')
+command! -nargs=0 Start                                :call     CocAction('runCommand', 'npm.run', 'start')
 command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
 command! -nargs=0 Cd                                   :call     s:Gcd()

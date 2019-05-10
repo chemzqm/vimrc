@@ -88,11 +88,6 @@
   nmap <leader>7 7gt
   nmap <leader>8 8gt
 
-  " signify
-  nmap [g <Plug>(coc-git-prevchunk)
-  nmap ]g <Plug>(coc-git-nextchunk)
-  nmap gs <Plug>(coc-git-chunkinfo)
-
   " ale
   nmap <silent> [a <Plug>(ale_previous_wrap)
   nmap <silent> ]a <Plug>(ale_next_wrap)
@@ -101,6 +96,10 @@
   xmap x <Plug>(Exchange)
 
   " coc.nvim
+  nmap [g <Plug>(coc-git-prevchunk)
+  nmap ]g <Plug>(coc-git-nextchunk)
+  nmap gs <Plug>(coc-git-chunkinfo)
+  nmap gb <Plug>(coc-git-commit)
   imap <C-j> <Plug>(coc-snippets-expand-jump)
   xmap <C-j> <Plug>(coc-snippets-select)
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -173,7 +172,7 @@ endfunction
   nnoremap <silent> <space>t  :<C-u>CocList buffers<cr>
   nnoremap <silent> <space>y  :<C-u>CocList yank<cr>
   nnoremap <silent> <space>u  :<C-u>CocList snippets<cr>
-  nnoremap <silent> <space>w  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words'<CR>
+  nnoremap <silent> <space>w  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words -w'<CR>
   nnoremap <silent> <space>l  :<C-u>CocList locationlist<CR>
   nnoremap <silent> <space>q  :<C-u>CocList quickfix<CR>
   nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
