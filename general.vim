@@ -57,7 +57,6 @@ set synmaxcol=300
 set smarttab
 set smartcase
 set shiftwidth=2
-set tabstop=2
 set expandtab
 set shiftround
 set autoindent
@@ -89,27 +88,6 @@ else
 endif
 " }}
 
-" Syntax related {{
-" improve performance
-"syntax sync minlines=300
-"hi Pmenu  guifg=#111111 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-"hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-"hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-" change default search highlight
-hi Search guibg=#111111 guifg=#C5B569
-if !has('gui_running') | hi normal guibg=NONE | endif
-call matchadd('ColorColumn', '\%81v', 100)
-hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
-hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
-
-highlight link CocErrorSign   GruvboxRedSign
-highlight link CocWarningSign GruvboxYellowSign
-highlight link CocInfoSign    GruvboxYellowSign
-highlight link CocHintSign    GruvboxBlueSign
-highlight link CocFloating    SignColumn
-
-" }}
-
 " Complete config {{
 set complete+=k
 set complete-=t
@@ -117,8 +95,8 @@ set complete-=t
 set completeopt=menu,preview
 
 if !has('nvim')
-  "set balloonevalterm
-  "set ballooneval
+  set balloonevalterm
+  set ballooneval
   " cursor shape of vim
   "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -128,7 +106,6 @@ if !has('nvim')
   execute "set <M-c>=\ec"
 else
   set fillchars+=msgsep:-
-  highlight link MsgSeparator MoreMsg
 endif
 " }}
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:

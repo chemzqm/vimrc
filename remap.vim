@@ -23,8 +23,6 @@
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
   nnoremap gp :call <SID>gpush()<CR>
-  nnoremap <TAB> :bn<CR>
-  nnoremap <S-TAB> :bp<CR>
 " }}
 
 " insert keymap like emacs {{
@@ -88,14 +86,15 @@
   nmap <leader>7 7gt
   nmap <leader>8 8gt
 
-  " ale
-  nmap <silent> [a <Plug>(ale_previous_wrap)
-  nmap <silent> ]a <Plug>(ale_next_wrap)
-
   " vim-exchange
   xmap x <Plug>(Exchange)
 
   " coc.nvim
+  nmap <silent> <TAB> <Plug>(coc-range-select)
+  xmap <silent> <TAB> <Plug>(coc-range-select)
+  xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+  nmap s <Plug>(coc-smartf-forward)
+  nmap S <Plug>(coc-smartf-backward)
   nmap [g <Plug>(coc-git-prevchunk)
   nmap ]g <Plug>(coc-git-nextchunk)
   nmap gs <Plug>(coc-git-chunkinfo)
@@ -191,6 +190,8 @@ endfunction
     if name ==# 'mru'
       return 'delete'
     elseif name ==# 'buffers'
+      return 'delete'
+    elseif name ==# 'sessions'
       return 'delete'
     elseif name ==# 'gstatus'
       return 'preview'

@@ -6,8 +6,10 @@ command! -nargs=0 CP                                   :call     CocAction('colo
 command! -nargs=0 Prettier                             :call     CocAction('runCommand', 'prettier.formatFile')
 command! -nargs=0 Tslint                               :call     CocAction('runCommand', 'tslint.lintProject')
 command! -nargs=0 Tsc                                  :call     CocAction('runCommand', 'tsserver.watchBuild')
-command! -nargs=0 OR                                   :call     CocAction('runCommand', 'tsserver.organizeImports')
+command! -nargs=0 Webpack                              :call     CocAction('runCommand', 'webpack.watch')
+command! -nargs=0 OR                                   :call     CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 Start                                :call     CocAction('runCommand', 'npm.run', 'start')
+command! -nargs=0 RestartVim                           :call     CocAction('runCommand', 'session.restart')
 command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
 command! -nargs=0 Cd                                   :call     s:Gcd()
@@ -22,7 +24,6 @@ command! -nargs=0 -range=%                             Prefixer  call  s:Prefixe
 command! -nargs=+ -complete=custom,s:GrepArgs          Rg        :exe 'CocList grep '.<q-args>
 command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
-command! -nargs=* -complete=custom,easygit#completeAdd Gadd      :call easygit#add(<f-args>)
 command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.fileTest', ['%'])
 
 let s:cmd_map = {

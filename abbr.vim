@@ -40,5 +40,6 @@ call SetupCommandAbbrs('S', 'RenameSearch')
 call SetupCommandAbbrs('Ex', 'Execute')
 call SetupCommandAbbrs('Ns', 'NoteSearch')
 call SetupCommandAbbrs('Done', 'Unite todo:done')
+call SetupCommandAbbrs('SL', 'SessionLoad')
 
 " vim: set sw=2 ts=2 sts=2 et tw=78;

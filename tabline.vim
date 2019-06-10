@@ -1,5 +1,6 @@
 let s:time = ''
 let s:file_node_extensions = {
+  \  'rust'     : '',
   \  'styl'     : '',
   \  'scss'     : '',
   \  'htm'      : '',

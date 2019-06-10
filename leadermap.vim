@@ -3,6 +3,7 @@ let g:mapleader = ','
 
 " basic {{
   " Edit file in current file folder
+  nnoremap <leader>n :Lexplore<CR>
   nnoremap <leader>q :silent! Bdelete!<CR>
   nnoremap <leader>e :e <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<CR>
   nnoremap <leader>v :vs <C-R>=substitute(expand('%:p:h').'/', getcwd().'/', '', '')<CR>
@@ -25,7 +26,6 @@ let g:mapleader = ','
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
   nnoremap <silent> <leader>pp "0p
   nnoremap <silent> <leader>o :call <SID>Open()<CR>
-  nnoremap <silent> <leader>og V:<c-u>call OpenCurrentFileInGithub()<cr>
 " }}
 
 " setting switch {{
@@ -176,20 +176,5 @@ function! s:Open()
   if v:shell_error && output !=# ""
     echoerr output
   endif
-endfunction
-
-function! OpenCurrentFileInGithub()
-  let file_dir = expand('%:h')
-  let git_root = system('cd ' . file_dir . '; git rev-parse --show-toplevel | tr -d "\n"')
-  let file_path = substitute(expand('%:p'), git_root . '/', '', '')
-  let branch = system('git symbolic-ref --short -q HEAD | tr -d "\n"')
-  let git_remote = system('cd ' . file_dir . '; git remote get-url origin')
-  let repo_path = matchlist(git_remote, ':\(.*\)\.')[1]
-  let url = 'https://' . repo_path . '/blob/' . branch . '/' . file_path
-  let first_line = getpos("'<")[1]
-  let url .= '#L' . first_line
-  let last_line = getpos("'>")[1]
-  if last_line != first_line | let url .= '-L' . last_line | endif
-  call system('open ' . url)
 endfunction
 " }}

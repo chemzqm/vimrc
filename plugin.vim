@@ -16,10 +16,6 @@
   let g:go_def_mapping_enabled = 0
 " }}"
 
-" fugitive {{
-  let g:fugitive_browse_handlers = []
-" }}
-
 " vim-markdown {{
   let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript']
 " }}"
@@ -40,10 +36,6 @@
 
 " plug.nvim {{
   let g:plug_rebase = 1
-" }}
-
-" npm.nvim {{
-  let g:npm_project_folders = ['~/nodejs-dev', '~/component-dev', '~/react-dev']
 " }}
 
 " vim-highlightedyank {{
@@ -67,50 +59,13 @@
   let g:xml_syntax_folding = 1
 " }}
 
-" ale {{
-  let g:ale_linters = {
-        \   'rust': [],
-        \   'go': [],
-        \   'vue': [],
-        \   'objcpp': [],
-        \   'c': [],
-        \   'java': [],
-        \   'javascript': [],
-        \   'dart': [],
-        \   'tex': [],
-        \   'wxss': [],
-        \   'vim': ['vint'],
-        \   'markdown': [],
-        \   'python': [],
-        \   'html': [],
-        \   'ruby': [],
-        \   'scss': [],
-        \   'css': [],
-        \   'typescript': [],
-        \   'json': [],
-        \   'swift': ['swiftlint'],
-        \}
-  let g:ale_swift_swiftlint_use_defaults = 1
-  let g:ale_warn_about_trailing_whitespace = 0
-  let g:ale_sign_column_always = 1
-  let g:ale_sign_error = '>>'
-  let g:ale_sign_info = '💡'
-  let g:ale_sign_warning = '⚠'
-  let g:ale_echo_msg_error_str = 'E'
-  let g:ale_echo_msg_warning_str = 'W'
-  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" }}
-
-" ultisnips {{
-  let g:UltiSnipsExpandTrigger='<C-j>'
-  let g:UltiSnipsJumpForwardTrigger='<C-j>'
-  let g:UltiSnipsEditSplit='vertical'
-  let g:UltiSnipsSnippetsDir='/Users/chemzqm/vim-dev/snippets/UltiSnips'
-" }}
-
 " Netrw {{
   let g:netrw_banner=0
   let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
+  let g:netrw_banner=0
+  let g:netrw_winsize=20
+  let g:netrw_liststyle=3
+  let g:netrw_localrmdir='rm -r'
 " }}
 
 " vim-gitgutter {{
@@ -225,11 +180,6 @@
   \}
 " }}
 
-" easygit {{
-  "let g:easygit_enable_root_rev_parse = 0
-  "let g:easygit_enable_command = 0
-"}}
-
 " html5.vim {{
   let g:html5_event_handler_attributes_complete = 0
   let g:html5_rdfa_attributes_complete = 0
@@ -265,23 +215,27 @@
 " }}
 
 " coc.nvim {{
+  let $NODE_CLIENT_LOG_LEVEL = 'debug'
   let g:node_client_debug = 1
   "let g:coc_global_extensions = ['coc-ultisnips']
-  let g:coc_watch_extensions = ['coc-snippets']
+  "let g:coc_watch_extensions = ['coc-smartf']
   "let g:coc_trace_client = 1
   let g:coc_node_path = '/usr/local/Cellar/node/11.14.0_1/bin/node'
-  "let g:coc_node_args = ['--nolazy', '--inspect=6045']
+  "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
   let g:coc_force_debug = 1
-  let g:coc_auto_copen = 0
   let g:coc_filetype_map = {
         \ 'html.swig': 'html',
         \ 'wxss': 'css',
         \ }
+  call coc#add_command('mundoToggle', 'MundoToggle', 'toggle mundo window')
+  call coc#add_command('explore', 'Vexplore', 'open netrw explorer')
+  call coc#add_command('translate', 'TranslateW', 'translate word')
 " }}"
 
 " indentLine {{
   let g:indentLine_fileTypeExclude = ['json', 'markdown']
   let g:indentLine_bufTypeExclude = ['help', 'terminal', 'nofile']
+  let g:indentLine_char = '│'
 " }}"
 
 " denite-extra {{

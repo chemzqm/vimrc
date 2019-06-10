@@ -1,7 +1,8 @@
 function! MyStatusLine()
   return s:GetPaste()
         \. "%4*%{MyStatusGit()}%*"
-        \. "%5*%{MyStatusGitChanges()}%* %{MyStatusCoc()}"
+        \. "%5*%{MyStatusGitChanges()}%* %{MyStatusCoc()} "
+        \. "%6*%{get(b:, 'coc_current_function', '')}%*"
         \. " %f %{MyStatusModifySymbol()}"
         \. " %{MyStatusReadonly()}"
         \. "%=%-{&ft} %l,%c %P "
@@ -11,7 +12,6 @@ endfunction
 function! s:IsTempFile()
   if !empty(&buftype) | return 1 | endif
   if &previewwindow | return 1 | endif
-  if &filetype ==# 'gitcommit' | return 1 | endif
   let filename = expand('%:p')
   if filename =~# '^/tmp' | return 1 | endif
   if filename =~# '^fugitive:' | return 1 | endif
@@ -45,16 +45,15 @@ function! MyStatusGitChanges() abort
 endfunction
 
 function! MyStatusGit(...) abort
-  if s:IsTempFile() | return '' | endif
-  return get(g:, 'coc_git_status', '')
+  let status = get(g:, 'coc_git_status', '')
+  return empty(status) ? '' : '  '.status.' '
 endfunction
 
 function! SetStatusLine()
   if &previewwindow | return | endif
   if s:IsTempFile() | return | endif
-  call MyStatusGit(1)
   setl statusline=%!MyStatusLine()
-  hi User6         guifg=#fb4934 guibg=#282828 gui=none
+  hi User6         guifg=#fe8019 guibg=#282828 gui=none
   hi User3         guifg=#e03131 guibg=#111111    gui=none
   hi MyStatusPaste guifg=#F8F8F0 guibg=#FF5F00 gui=none
   hi MyStatusPaste ctermfg=202   ctermbg=16    cterm=none
@@ -64,8 +63,6 @@ endfunction
 
 augroup statusline
   autocmd!
-  autocmd User GitGutter call SetStatusLine()
-  autocmd BufNewFile,BufReadPost,ShellCmdPost,BufWritePost * call SetStatusLine()
+  autocmd BufEnter,BufNewFile,BufReadPost,ShellCmdPost,BufWritePost * call SetStatusLine()
   autocmd FileChangedShellPost,ColorScheme * call SetStatusLine()
-  autocmd FileReadPre,ShellCmdPost,FileWritePost * call SetStatusLine()
 augroup end
