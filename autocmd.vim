@@ -8,7 +8,9 @@ augroup common
   autocmd BufWinEnter * call s:OnBufEnter()
   autocmd ColorScheme * call s:Highlight()
   autocmd FileType * call s:OnFileType(expand('<amatch>'))
-  autocmd DirChanged,VimEnter * let &titlestring = pathshorten(substitute(getcwd(), $HOME, '~', ''))
+  if exists('##DirChanged')
+    autocmd DirChanged,VimEnter * let &titlestring = pathshorten(substitute(getcwd(), $HOME, '~', ''))
+  endif
   autocmd BufNewFile,BufReadPost *.ejs setf html
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
@@ -47,6 +49,7 @@ function! s:Highlight() abort
   call matchadd('ColorColumn', '\%81v', 100)
   hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
   hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
+  hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
   highlight link CocErrorSign   GruvboxRedSign
   highlight link CocWarningSign GruvboxYellowSign
   highlight link CocInfoSign    GruvboxYellowSign

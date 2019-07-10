@@ -2,13 +2,11 @@ let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/coc-smartf', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/coc-snippets', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-imselect', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 2}
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
@@ -41,7 +39,6 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'tweekmonster/helpful.vim'
 Plug 'lervag/vimtex'
 Plug 'derekwyatt/vim-scala'
-Plug 'voldikss/vim-translate-me'
 Plug 'simnalamburt/vim-mundo'
 Plug 'AndrewRadev/splitjoin.vim'
 "Plug 'w0rp/ale', {'branch': 'me'}
@@ -62,7 +59,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 "Plug 'Shougo/denite.nvim', {'branch': 'me'}
 "Plug 'neoclide/denite-extra', {'dir': g:local, 'frozen': 1}
 "Plug 'Shougo/echodoc'
-"Plug 'easymotion/vim-easymotion'
 "Plug 'Shougo/neosnippet.vim'
 "Plug 'Shougo/neosnippet-snippets'
 "Plug 'mitsuse/autocomplete-swift'

@@ -1,5 +1,6 @@
 " General options {{
 set termguicolors
+set lazyredraw
 set hidden " allow buffer switch without saving
 set history=2000
 set pumheight=15
@@ -15,9 +16,9 @@ set incsearch
 set regexpengine=2
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
-set mousemodel=popup
 set mouse=a
 set novisualbell
+set belloff
 set nobackup
 set nowritebackup
 set noimdisable
@@ -57,6 +58,7 @@ set synmaxcol=300
 set smarttab
 set smartcase
 set shiftwidth=2
+set tabstop=2
 set expandtab
 set shiftround
 set autoindent
@@ -95,8 +97,6 @@ set complete-=t
 set completeopt=menu,preview
 
 if !has('nvim')
-  set balloonevalterm
-  set ballooneval
   " cursor shape of vim
   "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   "let &t_SR = "\<Esc>]50;CursorShape=2\x7"

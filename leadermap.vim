@@ -46,7 +46,9 @@ let g:mapleader = ','
   nmap <leader>rs <Plug>(rename-search-replace)
 
   " coc.nvim
+  nmap <leader>x  <Plug>(coc-cursors-operator)
   nmap <leader>rn <Plug>(coc-rename)
+  nmap <leader>rf <Plug>(coc-refactor)
   nmap <leader>ca <Plug>(coc-codelens-action)
   xmap <leader>f  <Plug>(coc-format-selected)
   nmap <leader>f  <Plug>(coc-format-selected)
@@ -56,8 +58,9 @@ let g:mapleader = ','
   nmap <leader>di <Plug>(coc-diagnostic-info)
   nmap <leader>qf <Plug>(coc-fix-current)
   nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+  nmap <leader>dr <Plug>(coc-diagnostic-related)
 
-  nmap <silent> <Leader>tr <Plug>TranslateW
+  nmap <silent> <Leader>tr <Plug>(coc-translator-p)
 " }}
 
 " grep by motion {{
@@ -122,7 +125,6 @@ function! s:Clean()
   " remove tailing white space
   silent! execute '%s/\s\+$//'
   " remove windows `\r`
-  silent! execute '%s/$//'
   call winrestview(view)
 endfunction
 

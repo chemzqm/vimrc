@@ -1,13 +1,5 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0 nofen:
 
-" vim-translate-me {{
-  let g:vtm_default_mapping = 0
-  let g:vtm_youdao_app_key = '67409b467378f463'
-  let g:vtm_youdao_app_secret = 'njwzFZ7YTbbtkcqD4gYyIrl6utr3vA7x'
-  let g:vtm_popup_window = 'floating'
-  let g:vtm_default_api = 'youdao'
-" }}"
-
 " vimtex {{
   let g:vimtex_matchparen_enabled = 0
 " }}
@@ -42,10 +34,6 @@
   let g:highlightedyank_highlight_duration = 100
 " }}
 
-" gruvbox {{
-  let g:gruvbox_italic=1
-" }}
-
 " numdo.vim {{
   let g:mundo_prefer_python3 = 1
 " }}
@@ -60,12 +48,13 @@
 " }}
 
 " Netrw {{
+  let g:netrw_chgwin = 2
   let g:netrw_banner=0
   let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
-  let g:netrw_banner=0
   let g:netrw_winsize=20
   let g:netrw_liststyle=3
-  let g:netrw_localrmdir='rm -r'
+  let g:netrw_localrmdir='rmtrash'
+  let g:netrw_bufsettings = "noma nomod nonu nobl nowrap ro nornu buftype=nofile"
 " }}
 
 " vim-gitgutter {{
@@ -74,9 +63,9 @@
 
 " emmet {{
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
-  " <c-y>a Make anchor from URL
-  " <c-y>A Make quoted text from URL
-  let g:user_emmet_leader_key = '<C-p>'
+  " <A-y>a Make anchor from URL
+  " <A-y>A Make quoted text from URL
+  let g:user_emmet_leader_key = '<A-y>'
   let g:user_emmet_expandabbr_key = '<M-y>'
   "内部全选
   let g:user_emmet_mode='a'
@@ -206,29 +195,20 @@
   let g:macnote_unite_quickfix = 1
 " }}
 
-" redismru.vim {{
-  let g:redismru_disable_auto_validate = 1
-" }}
-
-" vim-flow {{
-  "let g:flow#autoclose = 1
-" }}
-
 " coc.nvim {{
   let $NODE_CLIENT_LOG_LEVEL = 'debug'
   let g:node_client_debug = 1
-  "let g:coc_global_extensions = ['coc-ultisnips']
-  "let g:coc_watch_extensions = ['coc-smartf']
+  let g:coc_global_extensions = []
+  let g:coc_watch_extensions = []
   "let g:coc_trace_client = 1
-  let g:coc_node_path = '/usr/local/Cellar/node/11.14.0_1/bin/node'
-  "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+  let g:coc_node_path = '/usr/local/bin/node'
   let g:coc_force_debug = 1
   let g:coc_filetype_map = {
         \ 'html.swig': 'html',
         \ 'wxss': 'css',
         \ }
   call coc#add_command('mundoToggle', 'MundoToggle', 'toggle mundo window')
-  call coc#add_command('explore', 'Vexplore', 'open netrw explorer')
+  call coc#add_command('tree', 'Vexplore', 'open netrw explorer')
   call coc#add_command('translate', 'TranslateW', 'translate word')
 " }}"
 
@@ -236,11 +216,6 @@
   let g:indentLine_fileTypeExclude = ['json', 'markdown']
   let g:indentLine_bufTypeExclude = ['help', 'terminal', 'nofile']
   let g:indentLine_char = '│'
-" }}"
-
-" denite-extra {{
-  let g:denite_source_session_path = '/Users/chemzqm/.vim/sessions'
-  let tern_set_omni_function = 0
 " }}"
 
 " vim-lion {{
