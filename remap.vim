@@ -21,7 +21,7 @@
   " some shortcut for git
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
-  nnoremap gp :call <SID>gpush()<CR>
+  nnoremap gp :CocCommand git.push
 " }}
 
 " insert keymap like emacs {{
