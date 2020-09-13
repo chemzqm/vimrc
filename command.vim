@@ -1,5 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78:
 command! -nargs=0 Save                                 :call     s:Save()
+command! -nargs=1 SessionSave                          :call     CocAction('runCommand', 'session.save', <f-args>)
 command! -nargs=0 Format                               :call     CocAction('format')
 command! -nargs=0 PickColor                            :call     CocAction('pickColor')
 command! -nargs=0 CP                                   :call     CocAction('colorPresentation')
@@ -10,10 +11,8 @@ command! -nargs=0 Webpack                              :call     CocAction('runC
 command! -nargs=0 OR                                   :call     CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 Start                                :call     CocAction('runCommand', 'npm.run', 'start')
 command! -nargs=0 RestartVim                           :call     CocAction('runCommand', 'session.restart')
-command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
 command! -nargs=0 Cd                                   :call     s:Gcd()
-command! -nargs=0 Commits                              :CocList  commits
 command! -nargs=0 Mouse                                :call     s:ToggleMouse()
 command! -nargs=0 Jsongen                              :call     s:Jsongen()
 command! -nargs=0 Reset                                :call     s:StatusReset()
@@ -25,6 +24,7 @@ command! -nargs=+ -complete=custom,s:GrepArgs          Rg        :exe 'CocList g
 command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
 command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+command! -nargs=0 Debug                                :call     s:DebugCoc()
 
 let s:cmd_map = {
       \'javascript': 'babel-node',
@@ -183,4 +183,34 @@ function! s:Save()
   let file = $HOME.'/tmp.log'
   let content = getline(1, '$')
   call writefile(content, file)
+endfunction
+
+function! s:DebugCoc() abort
+  call s:osascript(
+    \ 'tell application "iTerm2"',
+    \   'tell current window',
+    \     'create tab with default profile',
+    \     'tell current session',
+    \       'write text "cd ' . $HOME . '"',
+    \       'write text "clear"',
+    \       'write text "tail -f '.$NODE_CLIENT_LOG_FILE.'"',
+    \       'activate',
+    \     'end tell',
+    \   'end tell',
+    \ 'end tell')
+endfunction
+
+function! s:osascript(...) abort
+  let args = join(map(copy(a:000), '" -e ".shellescape(v:val)'), '')
+  call  s:system('osascript'. args)
+  return !v:shell_error
+endfunction
+
+function! s:system(cmd)
+  let output = system(a:cmd)
+  if v:shell_error && output !=# ""
+    echohl Error | echom output | echohl None
+    return
+  endif
+  return output
 endfunction

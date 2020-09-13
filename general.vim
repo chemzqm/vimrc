@@ -1,6 +1,9 @@
 " General options {{
+if !has('nvim')
+  set notagbsearch
+endif
 set termguicolors
-set lazyredraw
+"set lazyredraw
 set hidden " allow buffer switch without saving
 set history=2000
 set pumheight=15
@@ -18,7 +21,11 @@ set fileencodings=utf-8,gbk,ucs-bom,cp936
 set mousehide
 set mouse=a
 set novisualbell
-set belloff
+if exists('&tagfunc')
+  set tagfunc=CocTagFunc
+endif
+"set splitright
+set belloff=all
 set nobackup
 set nowritebackup
 set noimdisable
@@ -96,7 +103,7 @@ set complete-=t
 "set completeopt=noinsert,noselect,menuone
 set completeopt=menu,preview
 
-if !has('nvim')
+if !has('nvim') && !has('macvim')
   " cursor shape of vim
   "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -104,8 +111,6 @@ if !has('nvim')
   " make <M-s> for saving
   execute "set <M-s>=\es"
   execute "set <M-c>=\ec"
-else
-  set fillchars+=msgsep:-
 endif
 " }}
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0:

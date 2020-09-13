@@ -13,7 +13,7 @@
   nnoremap <expr> N  'nN'[v:searchforward]
   nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
   nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
-  " yank to end
+  nnoremap <space>rl :source ~/.vimrc<CR>
   nnoremap Y y$
   " no overwrite paste
   xnoremap p "_dP
@@ -61,7 +61,7 @@
   vnoremap <M-c> "+y
   inoremap <M-v> <C-o>"+]p
   nnoremap <M-q> :qa!<cr>
-  nnoremap <M-s> :wa<cr>
+  nnoremap <M-s> :silent! wa<cr>
   inoremap <M-s> <C-o>:w<cr>
   nnoremap <M-1> 1gt
   nnoremap <M-2> 2gt
@@ -77,19 +77,20 @@
 
 " plugins {{
   " buftabline
-  nmap <leader>1 1gt
-  nmap <leader>2 2gt
-  nmap <leader>3 3gt
-  nmap <leader>4 4gt
-  nmap <leader>5 5gt
-  nmap <leader>6 6gt
-  nmap <leader>7 7gt
-  nmap <leader>8 8gt
+  nnoremap <leader>1 1gt
+  nnoremap <leader>2 2gt
+  nnoremap <leader>3 3gt
+  nnoremap <leader>4 4gt
+  nnoremap <leader>5 5gt
+  nnoremap <leader>6 6gt
+  nnoremap <leader>7 7gt
+  nnoremap <leader>8 8gt
 
   " vim-exchange
   xmap x <Plug>(Exchange)
 
   " coc.nvim
+  nmap <silent> <C-a> :call CocAction('runCommand', 'document.renameCurrentWord')<CR>
   nmap <silent> <C-c> <Plug>(coc-cursors-position)
   nmap <silent> <C-d> <Plug>(coc-cursors-word)
   xmap <silent> <C-d> <Plug>(coc-cursors-range)
@@ -104,14 +105,14 @@
   nmap gs <Plug>(coc-git-chunkinfo)
   nmap gb <Plug>(coc-git-commit)
   imap <C-l> <Plug>(coc-snippets-expand)
-  imap <C-j> <Plug>(coc-snippets-expand)
-  xmap <C-j> <Plug>(coc-snippets-select)
+  xmap <C-l> <Plug>(coc-snippets-select)
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
   nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  nmap <silent> gt :call CocAction('jumpDefinition', 'tabe')<CR>
   nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> gy :call CocAction('jumpTypeDefinition', v:false)<CR>
+  nmap <silent> gi :call CocAction('jumpImplementation', v:false)<CR>
+  nmap <silent> gr :call CocAction('jumpReferences', v:false)<CR>
   nnoremap <silent> K :call <SID>show_documentation()<CR>
   " remap for complete to use tab and <cr>
   inoremap <silent><expr> <TAB>
@@ -121,6 +122,14 @@
   inoremap <silent><expr> <c-space> coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  xmap if <Plug>(coc-funcobj-i)
+  xmap af <Plug>(coc-funcobj-a)
+  omap if <Plug>(coc-funcobj-i)
+  omap af <Plug>(coc-funcobj-a)
+  omap ig <Plug>(coc-git-chunk-inner)
+  xmap ig <Plug>(coc-git-chunk-inner)
+  omap ag <Plug>(coc-git-chunk-outer)
+  xmap ag <Plug>(coc-git-chunk-outer)
 " }}
 
 " visual search {{
@@ -171,38 +180,22 @@ endfunction
 
 " list {{
   nnoremap <silent> \r  :<C-u>CocList -N mru -A<cr>
-  nnoremap <silent> <space>h  :<C-u>CocList helptags<cr>
-  nnoremap <silent> <space>g  :<C-u>CocList gstatus<CR>
-  nnoremap <silent> <space>t  :<C-u>CocList buffers<cr>
-  nnoremap <silent> <space>y  :<C-u>CocList yank<cr>
-  nnoremap <silent> <space>u  :<C-u>CocList snippets<cr>
-  nnoremap <silent> <space>w  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words -w'<CR>
-  nnoremap <silent> <space>l  :<C-u>CocList locationlist<CR>
-  nnoremap <silent> <space>q  :<C-u>CocList quickfix<CR>
-  nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-  nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-  nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-  nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-  nnoremap <silent> <space>s  :<C-u>CocList symbols<cr>
-  nnoremap <silent> <space>r  :<C-u>CocList mru<cr>
-  nnoremap <silent> <space>f  :<C-u>CocList files<cr>
-  nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-  nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-  nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-  function! GetDeleteAction(context)
-    let name = a:context['name']
-    if name ==# 'mru'
-      return 'delete'
-    elseif name ==# 'buffers'
-      return 'delete'
-    elseif name ==# 'sessions'
-      return 'delete'
-    elseif name ==# 'gstatus'
-      return 'preview'
-    elseif name ==# 'bcommits' || name ==# 'commits'
-      return 'diff'
-    endif
-    return ''
-  endfunction
+  nnoremap <silent><nowait> <space>h  :<C-u>CocList helptags<cr>
+  nnoremap <silent><nowait> <space>g  :<C-u>CocList gstatus<CR>
+  nnoremap <silent><nowait> <space>t  :<C-u>CocList buffers<cr>
+  nnoremap <silent><nowait> <space>y  :<C-u>CocList yank<cr>
+  nnoremap <silent><nowait> <space>u  :<C-u>CocList snippets<cr>
+  nnoremap <silent><nowait> <space>w  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words -w'<CR>
+  nnoremap <silent><nowait> <space>l  :<C-u>CocList -I --ignore-case lines<CR>
+  nnoremap <silent><nowait> <space>q  :<C-u>CocList quickfix<CR>
+  nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+  nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+  nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+  nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+  nnoremap <silent><nowait> <space>s  :<C-u>CocList symbols<cr>
+  nnoremap <silent><nowait> <space>r  :<C-u>CocList mru<cr>
+  nnoremap <silent><nowait> <space>f  :<C-u>CocList files<cr>
+  nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+  nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+  nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " }}

@@ -3,6 +3,8 @@ set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-imselect', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-eslint', {'dir': g:local, 'frozen': 1}
+"Plug 'evanleck/vim-svelte'
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
@@ -11,6 +13,9 @@ Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/jsonc.vim', {'dir': g:local, 'frozen': 1}
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'lambdatoast/elm.vim'
+"Plug 'chemzqm/coc-task', {'dir': g:local, 'frozen': 1}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -24,7 +29,7 @@ Plug 'mattn/emmet-vim'
 Plug 'whiteinge/diffconflicts'
 Plug 'tommcdo/vim-exchange'
 Plug 'dag/vim-fish'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 Plug 'othree/xml.vim'
@@ -41,16 +46,18 @@ Plug 'lervag/vimtex'
 Plug 'derekwyatt/vim-scala'
 Plug 'simnalamburt/vim-mundo'
 Plug 'AndrewRadev/splitjoin.vim'
+"Plug 'mhinz/vim-startify'
+"Plug 'mg979/vim-visual-multi'
 "Plug 'w0rp/ale', {'branch': 'me'}
 "Plug 'Shougo/neco-vim'
 "Plug 'garbas/vim-snipmate'
-"Plug 'honza/vim-snippets'
 "Plug 'scrooloose/nerdtree'
 "Plug 'jparise/vim-graphql'
 "Plug 'neoclide/todoapp.vim', {'dir': g:local, 'frozen': 1}
 "Plug 'liuchengxu/vista.vim'
 "Plug 'easymotion/vim-easymotion'
 "Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 "Plug 'tpope/vim-rails'
 "Plug 'tpope/vim-projectionist'
 "Plug 'itchyny/lightline.vim'
@@ -70,3 +77,4 @@ syntax on
 for s:path in split(glob('~/.vim/vimrc/*.vim'), "\n")
   exe 'source ' . s:path
 endfor
+autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0) | call system('kill -9 '.g:coc_process_pid) | endif

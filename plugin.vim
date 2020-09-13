@@ -1,11 +1,16 @@
 """ vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{,}} foldmethod=marker foldlevel=0 nofen:
 
+" startify {{
+  let g:startify_change_to_dir = 0
+" }}"
+
 " vimtex {{
   let g:vimtex_matchparen_enabled = 0
 " }}
 
 " vim-go {{
   let g:go_def_mapping_enabled = 0
+  let g:go_doc_keywordprg_enabled = 0
 " }}"
 
 " vim-markdown {{
@@ -65,7 +70,7 @@
   " https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
   " <A-y>a Make anchor from URL
   " <A-y>A Make quoted text from URL
-  let g:user_emmet_leader_key = '<A-y>'
+  let g:user_emmet_leader_key = '<C-y>'
   let g:user_emmet_expandabbr_key = '<M-y>'
   "内部全选
   let g:user_emmet_mode='a'
@@ -196,13 +201,15 @@
 " }}
 
 " coc.nvim {{
-  let $NODE_CLIENT_LOG_LEVEL = 'debug'
+  "let g:coc_channel_timeout = 5
+  "let g:coc_data_home = '~/.config/a/b/coc'
+  "let g:coc_disable_startup_warning = 1
+  "let g:coc_quickfix_open_command = 'copen|cfirst'
+  let g:coc_global_extensions = ['coc-word@1.2.0']
   let g:node_client_debug = 1
-  let g:coc_global_extensions = []
   let g:coc_watch_extensions = []
-  "let g:coc_trace_client = 1
-  let g:coc_node_path = '/usr/local/bin/node'
-  let g:coc_force_debug = 1
+  "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+  "let g:coc_node_path = '/usr/local/bin/node'
   let g:coc_filetype_map = {
         \ 'html.swig': 'html',
         \ 'wxss': 'css',
