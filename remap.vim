@@ -3,7 +3,6 @@
 " basic {{
   xnoremap J :m '>+1<CR>gv=gv
   xnoremap K :m '<-2<CR>gv=gv
-  " no enter ex mode
   nnoremap Q <Nop>
   xnoremap < <gv
   xnoremap > >gv
