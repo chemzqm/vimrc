@@ -2,13 +2,17 @@ let g:local = expand('~/vim-dev')
 set runtimepath^=~/vim-dev/plug.nvim
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/coc-imselect', {'dir': g:local, 'frozen': 1}
+Plug 'ryanoasis/vim-devicons'
+"Plug 'neoclide/coc-imselect', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/coc-eslint', {'dir': g:local, 'frozen': 1}
+Plug 'neoclide/coc-stylelint', {'dir': g:local, 'frozen': 1}
 "Plug 'evanleck/vim-svelte'
 Plug 'neoclide/mycomment.vim', {'dir': g:local, 'frozen': 1}
-Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
+"Plug 'neoclide/vim-jsx-improve', {'dir': g:local, 'frozen': 1}
+"Plug 'yuezk/vim-js'
 Plug 'neoclide/macdown.vim', {'dir': g:local, 'frozen': 1}
 Plug 'neoclide/macnote.vim', {'dir': g:local, 'frozen': 2}
+"Plug 'voldikss/vim-floaterm'
 Plug 'chemzqm/vim-macos', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/vim-run', {'dir': g:local, 'frozen': 1}
 Plug 'chemzqm/wxapp.vim', {'dir': g:local, 'frozen': 1}
@@ -46,8 +50,8 @@ Plug 'lervag/vimtex'
 Plug 'derekwyatt/vim-scala'
 Plug 'simnalamburt/vim-mundo'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'lambdalisue/gina.vim'
 "Plug 'mhinz/vim-startify'
-"Plug 'mg979/vim-visual-multi'
 "Plug 'w0rp/ale', {'branch': 'me'}
 "Plug 'Shougo/neco-vim'
 "Plug 'garbas/vim-snipmate'
@@ -73,8 +77,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 call plug#end()
 filetype plugin on
 syntax on
+
 " vimrc files
 for s:path in split(glob('~/.vim/vimrc/*.vim'), "\n")
   exe 'source ' . s:path
 endfor
-autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0) | call system('kill -9 '.g:coc_process_pid) | endif

@@ -78,6 +78,7 @@ set grepformat=%f:%l:%c:%m
 set title
 set wildignorecase
 set noruler
+"set dictionary+=/usr/share/dict/words
 " }}
 
 " Special options for macvim {{

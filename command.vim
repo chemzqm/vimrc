@@ -23,7 +23,7 @@ command! -nargs=0 -range=%                             Prefixer  call  s:Prefixe
 command! -nargs=+ -complete=custom,s:GrepArgs          Rg        :exe 'CocList grep '.<q-args>
 command! -nargs=? -complete=custom,s:ListVimrc         EditVimrc :call s:EditVimrc(<f-args>)
 command! -nargs=? -complete=custom,s:ListDict          Dict      :call s:ToggleDictionary(<f-args>)
-command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+command! -nargs=0 Jest :call  CocActionAsync('runCommand', 'jest.fileTest', ['%'])
 command! -nargs=0 Debug                                :call     s:DebugCoc()
 
 let s:cmd_map = {

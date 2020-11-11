@@ -42,8 +42,6 @@ let g:mapleader = ','
   nmap <leader>sr :call <SID>SessionReload()<CR>
   " svg.vim not used very often
   nmap <leader>se <Plug>SvgEdit
-  " rename.nvim grep and replace
-  nmap <leader>rs <Plug>(rename-search-replace)
 
   " coc.nvim
   nmap <leader>x  <Plug>(coc-cursors-operator)
@@ -61,6 +59,7 @@ let g:mapleader = ','
   nmap <leader>qf <Plug>(coc-fix-current)
   nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
   nmap <leader>dr <Plug>(coc-diagnostic-related)
+  nmap <leader>ms <Plug>(coc-menu-show)
 
   nmap <silent> <Leader>tr <Plug>(coc-translator-p)
 " }}

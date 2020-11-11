@@ -2,7 +2,7 @@
 " common file autocmd {{
 augroup common
   autocmd!
-  autocmd BufEnter * call EmptyBuffer()
+  "autocmd BufEnter * call EmptyBuffer()
   "autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd FocusGained * checktime
   autocmd BufReadPost *.log normal! G
@@ -17,7 +17,7 @@ augroup common
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   "autocmd BufNewFile,BufRead *.jsx setlocal filetype=javascript.jsx
   autocmd BufNewFile,BufRead *.re setlocal filetype=reason
-  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#6638F0
+  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#cc241d
   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
@@ -54,12 +54,17 @@ function! s:Highlight() abort
   hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
   hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
   hi CursorLineNr  ctermfg=214 ctermbg=NONE guifg=#fabd2f guibg=NONE
-  highlight link CocErrorSign   GruvboxRedSign
-  highlight link CocWarningSign GruvboxYellowSign
-  highlight link CocInfoSign    GruvboxYellowSign
-  highlight link CocHintSign    GruvboxBlueSign
-  highlight link CocFloating    SignColumn
-  highlight link MsgSeparator MoreMsg
+  hi CocErrorFloat   guifg=#fb4934 guibg=#504945
+  hi CocWarningFloat guifg=#fabd2f guibg=#504945
+  hi CocInfoFloat    guifg=#d3869b guibg=#504945
+  hi CocHintFloat    guifg=#83a598 guibg=#504945
+  hi CocMenuSel      ctermbg=237 guibg=#504945
+  hi link CocErrorSign    GruvboxRedSign
+  hi link CocWarningSign  GruvboxYellowSign
+  hi link CocInfoSign     GruvboxPurpleSign
+  hi link CocHintSign     GruvboxBlueSign
+  hi link CocFloating     Pmenu
+  hi link MsgSeparator    MoreMsg
 endfunction
 
 function! s:OnFileType(filetype)

@@ -14,7 +14,7 @@
 " }}"
 
 " vim-markdown {{
-  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript']
+  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript', 'rust']
 " }}"
 
 " vim-run {{
@@ -201,12 +201,16 @@
 " }}
 
 " coc.nvim {{
+  if has('nvim') && !has('nvim-0.4.3')
+    let g:coc_disable_startup_warning = 1
+  endif
   "let g:coc_channel_timeout = 5
   "let g:coc_data_home = '~/.config/a/b/coc'
   "let g:coc_disable_startup_warning = 1
   "let g:coc_quickfix_open_command = 'copen|cfirst'
+  "let g:node_client_debug = 1
+  let $NVIM_COC_LOG_LEVEL = 'debug'
   let g:coc_global_extensions = ['coc-word@1.2.0']
-  let g:node_client_debug = 1
   let g:coc_watch_extensions = []
   "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
   "let g:coc_node_path = '/usr/local/bin/node'
@@ -214,9 +218,9 @@
         \ 'html.swig': 'html',
         \ 'wxss': 'css',
         \ }
-  call coc#add_command('mundoToggle', 'MundoToggle', 'toggle mundo window')
-  call coc#add_command('tree', 'Vexplore', 'open netrw explorer')
-  call coc#add_command('translate', 'TranslateW', 'translate word')
+  "call coc#add_command('mundoToggle', 'MundoToggle', 'toggle mundo window')
+  "call coc#add_command('tree', 'Vexplore', 'open netrw explorer')
+  "call coc#add_command('translate', 'TranslateW', 'translate word')
 " }}"
 
 " indentLine {{

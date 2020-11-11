@@ -17,11 +17,12 @@
   " no overwrite paste
   xnoremap p "_dP
   " clear highlight update diff
-  nnoremap <silent> <A-u> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
+  nnoremap <silent> <C-l> :let @/=''<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>
   " some shortcut for git
+  nnoremap gci :Gcommit -v<CR>
   nnoremap gca :Gcommit -a -v<CR>
   nnoremap gcc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
-  nnoremap gp :CocCommand git.push
+  nnoremap gp :CocCommand git.push<CR>
 " }}
 
 " insert keymap like emacs {{
@@ -29,17 +30,8 @@
   inoremap <C-h> <BS>
   inoremap <C-d> <Del>
   inoremap <C-u> <C-G>u<C-U>
-  inoremap <C-b> <Left>
-  inoremap <C-f> <Right>
   inoremap <C-a> <Home>
   inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
-
-" window navigate {{
-  nnoremap <C-l> <c-w>l
-  nnoremap <C-h> <c-w>h
-  nnoremap <C-j> <c-w>j
-  nnoremap <C-k> <c-w>k
-" }}
 
 " command line alias {{
   cnoremap w!! w !sudo tee % >/dev/null
@@ -89,6 +81,11 @@
   xmap x <Plug>(Exchange)
 
   " coc.nvim
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
   nmap <silent> <C-a> :call CocAction('runCommand', 'document.renameCurrentWord')<CR>
   nmap <silent> <C-c> <Plug>(coc-cursors-position)
   nmap <silent> <C-d> <Plug>(coc-cursors-word)
@@ -102,17 +99,17 @@
   nmap [g <Plug>(coc-git-prevchunk)
   nmap ]g <Plug>(coc-git-nextchunk)
   nmap gs <Plug>(coc-git-chunkinfo)
-  nmap gb <Plug>(coc-git-commit)
+  nmap gm <Plug>(coc-git-commit)
   imap <C-l> <Plug>(coc-snippets-expand)
   xmap <C-l> <Plug>(coc-snippets-select)
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
   nmap <silent> ]c <Plug>(coc-diagnostic-next)
-  nmap <silent> gt :call CocAction('jumpDefinition', 'tabe')<CR>
+  nmap <silent> gt :call CocActionAsync('jumpDefinition', 'tabe')<CR>
   nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy :call CocAction('jumpTypeDefinition', v:false)<CR>
-  nmap <silent> gi :call CocAction('jumpImplementation', v:false)<CR>
-  nmap <silent> gr :call CocAction('jumpReferences', v:false)<CR>
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nmap <silent> gy :call CocActionAsync('jumpTypeDefinition', v:false)<CR>
+  nmap <silent> gi :call CocActionAsync('jumpImplementation', v:false)<CR>
+  nmap <silent> gr :call CocActionAsync('jumpUsed', v:false)<CR>
+  nnoremap <silent> K :call CocActionAsync('doHover')<CR>
   " remap for complete to use tab and <cr>
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -138,8 +135,7 @@
 " }}
 
 " functions {{
-
-function!   s:visualSearch(direction)
+function! s:visualSearch(direction)
   let       l:saved_reg = @"
   execute   'normal! vgvy'
   let       l:pattern = escape(@", '\\/.*$^~[]')
@@ -156,24 +152,6 @@ endfunction
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! s:gpush()
-  if empty(get(b:, 'git_dir', '')) | return | endif
-  let branch = system('git --git-dir='.b:git_dir.' rev-parse --abbrev-ref HEAD')
-  if !v:shell_error && !empty(branch)
-    let old_cwd = getcwd()
-    execute 'lcd ' . fnamemodify(b:git_dir, ':h')
-    execute 'Nrun git push origin '.substitute(branch, "\n$", '', ''). ' --force-with-lease'
-  endif
-endfunction
-
-function! s:show_documentation()
-  if &filetype ==# 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
 endfunction
 " }}
 
